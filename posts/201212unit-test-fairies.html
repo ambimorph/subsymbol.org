@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit Test Fairies | subsymbol.org</title>
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="http://www.subsymbol.org/posts/201212unit-test-fairies.html">
+<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><meta name="author" content="L. Amber Wilcox-O'Hearn">
+<meta name="og:title" content="Unit Test Fairies">
+<meta name="og:url" content="http://www.subsymbol.org/posts/201212unit-test-fairies.html">
+<meta name="og:description" content="Sometimes unit tests take more than a few seconds to run, especially if they involve training a small test corpus in some way or other.  This can be dangerous for my focus.  &quot;I'll just check my email ">
+<meta name="og:site_name" content="subsymbol.org">
+<meta name="og:type" content="article">
+</head>
+<body>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://www.subsymbol.org/">
+
+                <span id="blog-title">subsymbol.org</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../archive.html">Archives</a>
+                </li>
+<li>
+<a href="../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../rss.xml">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+    <a href="#" id="sourcelink">Source</a>
+    </li>
+
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Unit Test Fairies</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">L. Amber Wilcox-O'Hearn</span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2012-12-11T04:27:00+00:00" itemprop="datePublished" title="Publication date">2012-12-11 04:27</time></a></p>
+                <p class="commentline">
+        
+    <a href="201212unit-test-fairies.html#disqus_thread" data-disqus-identifier="cache/posts/201212unit-test-fairies.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="#" id="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>Sometimes unit tests take more than a few seconds to run, especially if they involve training a small test corpus in some way or other.  This can be dangerous for my focus.  "I'll just check my email while I'm waiting for this test to complete." are famous last words that can lead to a slow development cycle.  See <a href="http://xkcd.com/303/">compiling</a>. </p>
+<p>So, I started queuing a sound file to play after each test finished.  This way I would be alerted immediately, rather than relying on polling. </p>
+<p>Recently <a href="http://zooko.com">Zooko</a> helped me improve this system by adding the feature of switching the file to play based on the test results. </p>
+<p>Currently, I have the following alias in my .bash_aliases file: </p>
+<pre><code><br>alias testbell='X=$? ;  if [ $X = 0 ] ; then mplayer -really-quiet -volume 50 ~/<a href="https://github.com/edse/puzzle/blob/master/audio/51710__bristolstories__u-chimes3.mp3?raw=true">chimes3.mp3</a> ; <br>else mplayer -really-quiet ~/<a href="http://soundjax.com/reddo/51294%5EWINDGONG.mp3">gong.mp3</a>  ; fi'<br></code></pre> The -really-quiet flag is about verbosity, not volume, and the -volume 50 is just because my chimes file is much louder than my gong file. <br><br><p>So today, for example, I've been running: </p>
+<pre><code><br>time python -m unittest code.error_insertion.test.test_RealWordErrorChannel.RealWordErrorChannelTest ;<br> testbell<br></code></pre>
+<br><p>A friend told me it sounds like there is a fairy somewhere intermittently trying to escape.</p>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../categories/bash.html" rel="tag">bash</a></li>
+           <li><a class="tag p-category" href="../categories/productivity.html" rel="tag">productivity</a></li>
+        </ul>
+<ul class="pager">
+<li class="previous">
+                <a href="201209xmonad-on-unity-1204.html" rel="prev" title="xmonad on Unity 12.04">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="201301publishing-paper-without-code-is-not.html" rel="next" title="Publishing a Paper without the Code is Not Enough">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="nikolademo",
+            disqus_url="http://www.subsymbol.org/posts/201212unit-test-fairies.html",
+        disqus_title="Unit Test Fairies",
+        disqus_identifier="cache/posts/201212unit-test-fairies.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="nikolademo";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer>
+            Contents © 2014         <a href="mailto:amber@cs.toronto.edu">L. Amber Wilcox-O'Hearn</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../assets/js/jquery.min.js"></script><script src="../assets/js/bootstrap.min.js"></script><script src="../assets/js/jquery.colorbox-min.js"></script><!-- Social buttons --><div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
+<a class="addthis_button_more">Share</a>
+<ul>
+<li>
+<a class="addthis_button_facebook"></a>
+</li>
+<li>
+<a class="addthis_button_google_plusone_share"></a>
+</li>
+<li>
+<a class="addthis_button_linkedin"></a>
+</li>
+<li>
+<a class="addthis_button_twitter"></a>
+</li>
+</ul>
+</div>
+<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script><!-- End of social buttons --><script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+</body>
+</html>
