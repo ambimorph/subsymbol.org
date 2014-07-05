@@ -1,0 +1,7 @@
+*~
+# Nikola related
+output/
+cache/
+plugins/
+.doit.db
+Guardfile
