@@ -165,8 +165,8 @@ POSTS = [
 PAGES = [
           ("pages/*.rst", "", "story.tmpl"),
           ("posts/*.html", "posts", "post.tmpl"),
-          ("blog/*.rst", "blog", "story.tmpl"),
-          ("blog/*.html", "blog", "story.tmpl"),
+          ("stories/*.rst", "stories", "story.tmpl"),
+#         ("stories/*.html", "stories", "story.tmpl"),
         ]
 
 #PAGES = (
@@ -503,6 +503,7 @@ COMMENT_SYSTEM_ID = "nikolademo"
 
 # Create index.html for story folders?
 # STORY_INDEX = False
+# STORY_INDEX = True
 # Enable comments on story pages?
 # COMMENTS_IN_STORIES = False
 # Enable comments on picture gallery pages?
