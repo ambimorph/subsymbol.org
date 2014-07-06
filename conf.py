@@ -165,6 +165,8 @@ POSTS = [
 PAGES = [
           ("pages/*.rst", "", "story.tmpl"),
           ("posts/*.html", "posts", "post.tmpl"),
+          ("blog/*.rst", "blog", "story.tmpl"),
+          ("blog/*.html", "blog", "story.tmpl"),
         ]
 
 #PAGES = (
