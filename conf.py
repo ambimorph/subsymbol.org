@@ -503,7 +503,7 @@ COMMENT_SYSTEM_ID = "nikolademo"
 
 # Create index.html for story folders?
 # STORY_INDEX = False
-# STORY_INDEX = True
+STORY_INDEX = True
 # Enable comments on story pages?
 # COMMENTS_IN_STORIES = False
 # Enable comments on picture gallery pages?
@@ -512,7 +512,7 @@ COMMENT_SYSTEM_ID = "nikolademo"
 # What file should be used for directory indexes?
 # Defaults to index.html
 # Common other alternatives: default.html for IIS, index.php
-# INDEX_FILE = "index.html"
+INDEX_FILE = "default.html"
 
 # If a link ends in /index.html,  drop the index.html part.
 # http://mysite/foo/bar/index.html => http://mysite/foo/bar/
