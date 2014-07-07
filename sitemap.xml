@@ -5,14 +5,6 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
-  <loc>http://www.subsymbol.org/</loc>
-  <lastmod>2014-07-07</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2012/</loc>
-  <lastmod>2014-07-07</lastmod>
- </url>
- <url>
   <loc>http://www.subsymbol.org/2012/09/xmonad-on-unity-1204.html</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
@@ -21,7 +13,7 @@
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
-  <loc>http://www.subsymbol.org/2013/</loc>
+  <loc>http://www.subsymbol.org/2012/default.html</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
@@ -37,7 +29,7 @@
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
-  <loc>http://www.subsymbol.org/2014/</loc>
+  <loc>http://www.subsymbol.org/2013/default.html</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
@@ -141,15 +133,15 @@
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
+  <loc>http://www.subsymbol.org/2014/default.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
   <loc>http://www.subsymbol.org/archive.html</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
-  <loc>http://www.subsymbol.org/blog/</loc>
-  <lastmod>2014-07-07</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/categories/</loc>
+  <loc>http://www.subsymbol.org/blog/default.html</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
@@ -162,6 +154,10 @@
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/cryptography.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/categories/default.html</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
@@ -194,6 +190,10 @@
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/tools.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/default.html</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
@@ -230,10 +230,6 @@
  </url>
  <url>
   <loc>http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html</loc>
-  <lastmod>2014-07-07</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/stories/</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
@@ -322,6 +318,10 @@
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201407hacker-school-wednesday-july-2nd-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/stories/default.html</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
