@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hacker School, Thursday, June 26th, 2014 | subsymbol.org</title>
+<title>Hacker School, Tuesday, July 1st, 2014 | subsymbol.org</title>
 <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/code.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
-<link rel="canonical" href="http://www.subsymbol.org/journal/201406hacker-school-thursday-june-26th-2014.html">
+<link rel="canonical" href="http://www.subsymbol.org/journal/hacker-school-tuesday-july-1st-2014.html">
 <!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><meta name="author" content="L. Amber Wilcox-O'Hearn">
-<meta name="og:title" content="Hacker School, Thursday, June 26th, 2014">
-<meta name="og:url" content="http://www.subsymbol.org/journal/201406hacker-school-thursday-june-26th-2014.html">
-<meta name="og:description" content="On Thursday I gave my first presentation. This was great, because the desire to prepare increased my drive. Also, it was good practice.  I was ridiculously nervous.I focused well during the early part">
+<meta name="og:title" content="Hacker School, Tuesday, July 1st, 2014">
+<meta name="og:url" content="http://www.subsymbol.org/journal/hacker-school-tuesday-july-1st-2014.html">
+<meta name="og:description" content="On Tuesday I made some progress toward the Protagonist repair functionality.I also started porting off of Blogger so I can have more control over content here, including getting these blog posts out o">
 <meta name="og:site_name" content="subsymbol.org">
 <meta name="og:type" content="article">
 <meta name="author" content="L. Amber Wilcox-O'Hearn">
-<meta name="og:title" content="Hacker School, Thursday, June 26th, 2014">
-<meta name="og:url" content="http://www.subsymbol.org/journal/201406hacker-school-thursday-june-26th-2014.html">
-<meta name="og:description" content="On Thursday I gave my first presentation. This was great, because the desire to prepare increased my drive. Also, it was good practice.  I was ridiculously nervous.I focused well during the early part">
+<meta name="og:title" content="Hacker School, Tuesday, July 1st, 2014">
+<meta name="og:url" content="http://www.subsymbol.org/journal/hacker-school-tuesday-july-1st-2014.html">
+<meta name="og:description" content="On Tuesday I made some progress toward the Protagonist repair functionality.I also started porting off of Blogger so I can have more control over content here, including getting these blog posts out o">
 <meta name="og:site_name" content="subsymbol.org">
 <meta name="og:type" content="article">
 </head>
@@ -80,28 +80,49 @@
         <div class="row">
             
             
-<article class="storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Hacker School, Thursday, June 26th, 2014</a></h1>
+<article class="storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Hacker School, Tuesday, July 1st, 2014</a></h1>
 
         
 
     </header><div itemprop="articleBody text">
-    <div class="document" id="hacker-school-thursday-june-26th-2014">   <p>On Thursday I gave my first presentation. This was great, because the desire to prepare increased my drive. Also, it was good practice.  I was ridiculously nervous.</p>
-<p>I focused well during the early part of the day, and then did some review with Allison. Allison's feedback helped me understand which parts of the design required motivation, so I made that the focus of my presentation. I used this <a class="reference external" href="https://github.com/ambimorph/protagonist/blob/216a8fe6bfcd0048bcebc06cb93c30922ceb6be8/notes.rst">draft of notes</a> as make-shift slides. Unfortunately, I ran out of time, and didn't get to my demo at all! And even so, I didn't touch on everything in the design. Next time I'll book ten minutes, instead of seven.</p>
-<p>Allison also helped me with my code. We found some places where I could run into unexpected errors, and she introduced me to <a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#typecontextmanager">context managers</a> to handle those cases. Then she taught me how to write my own Exception class. Not only was that something I had been wanting to learn, it was a great improvement. I was sorry when the time was up.</p>
-<div class="section" id="check-in">
-<h3>Check-in</h3>
+    <div class="document" id="hacker-school-tuesday-july-1st-2014">   <p>On Tuesday I made some progress toward the Protagonist repair functionality.</p>
+<p>I also started porting off of Blogger so I can have more control over content here, including getting these blog posts out of your stream, if you are subscribed for my posts, but don't want my logs.</p>
 <div class="section" id="plan">
-<h4>Plan</h4>
-<ul class="simple"><li>Prepare for demo by finishing Boolean parsing.</li></ul>
+<h3>Plan</h3>
+<div class="section" id="protagonist">
+<h4>Protagonist</h4>
+<ul><li>
+<p class="first">Begin implementing repair: a script to make sure that files in the tagsystem still match the filesystem they map to. The intended use is somewhat like the way in unix <cite>locate</cite> relies on  <cite>mlocate</cite> to regularly run <cite>updatedb</cite> to index all files.</p>
+<p>The repair function should do three things:</p>
+<ul class="simple">
+<li>Find files that are in truenames but not tagged with any tags, and remove them.</li>
+<li>Find tagged files that have been moved on the original system, and update their truenames entry.</li>
+<li>Find tagged files that have been removed from the filesystem, and free the space by releasing the hard links.</li>
+</ul>
+</li></ul>
+</div>
+<div class="section" id="blogging">
+<h4>Blogging</h4>
+<ul class="simple"><li>Start porting subsymbol.org to Nikola, so that I can have better control over the structure of the site. In particular, I want to let logging posts like these accumulate in the background, while keeping the front page clean and more professional.</li></ul>
+</div>
 </div>
 <div class="section" id="actual">
-<h4>Actual</h4>
+<h3>Actual</h3>
+<div class="section" id="id1">
+<h4>Protagonist</h4>
 <ul class="simple">
-<li>Noticed a problem with names being not human readable when the files that match a tag are listed. To solve this, I made an index by storing the text of the pathnames in files named by the file id in a special directory called truenames. That solution is simpler than the others I considered, but has an undesirable consequence that I haven't fixed yet: it isn't updated when files in the original filesystem are moved. I'm beginning to wonder whether I'm going to need some garbage collection and repair routines, and how that would work.</li>
-<li>Got feedback and code review from Allison, as described above.</li>
-<li>Watched all the other fantastic presentations.</li>
-<li>Fixed up some of the code based on the review session.</li>
+<li>Wrote a function that finds all places in the tagsystem where a given file is tagged. This will be used to discover when a file has no more tags and can therefore be removed from the truenames index. It can be run by the repairer, but it can also be run whenever a file is untagged, to check for the case that there are no more tags on the file.</li>
+<li>Put this function into <cite>untag</cite> as just described.</li>
 </ul>
+</div>
+<div class="section" id="id2">
+<h4>Blogging</h4>
+<ul class="simple"><li>Looked at the Nikola docs, tried out the demo, and figured out how to port subsymbol using the import_blogger plugin.<ul><li>This was really straightforward and easy.  Before I can complete it, though, I need to do two things:<ul>
+<li>Rearrange the imported sections a little to reflect that I want a site, not a blog.</li>
+<li>Get new hosting set up, which I'm not really sure how to do.</li>
+</ul>
+</li></ul>
+</li></ul>
 </div>
 </div>
 </div>

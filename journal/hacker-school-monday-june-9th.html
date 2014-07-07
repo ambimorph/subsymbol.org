@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hacker School, Tuesday, July 1st, 2014 | subsymbol.org</title>
+<title>Hacker School Monday, June 9th, 2014 | subsymbol.org</title>
 <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/code.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
-<link rel="canonical" href="http://www.subsymbol.org/journal/201407hacker-school-tuesday-july-1st-2014.html">
+<link rel="canonical" href="http://www.subsymbol.org/journal/hacker-school-monday-june-9th.html">
 <!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><meta name="author" content="L. Amber Wilcox-O'Hearn">
-<meta name="og:title" content="Hacker School, Tuesday, July 1st, 2014">
-<meta name="og:url" content="http://www.subsymbol.org/journal/201407hacker-school-tuesday-july-1st-2014.html">
-<meta name="og:description" content="On Tuesday I made some progress toward the Protagonist repair functionality.I also started porting off of Blogger so I can have more control over content here, including getting these blog posts out o">
+<meta name="og:title" content="Hacker School Monday, June 9th, 2014">
+<meta name="og:url" content="http://www.subsymbol.org/journal/hacker-school-monday-june-9th.html">
+<meta name="og:description" content="At Hacker School we have daily checkins in small groups. This is more or less like &quot;standup&quot;. I'm going to post my checkin notes today, just for fun. I may or may not keep doing so throughout the summ">
 <meta name="og:site_name" content="subsymbol.org">
 <meta name="og:type" content="article">
 <meta name="author" content="L. Amber Wilcox-O'Hearn">
-<meta name="og:title" content="Hacker School, Tuesday, July 1st, 2014">
-<meta name="og:url" content="http://www.subsymbol.org/journal/201407hacker-school-tuesday-july-1st-2014.html">
-<meta name="og:description" content="On Tuesday I made some progress toward the Protagonist repair functionality.I also started porting off of Blogger so I can have more control over content here, including getting these blog posts out o">
+<meta name="og:title" content="Hacker School Monday, June 9th, 2014">
+<meta name="og:url" content="http://www.subsymbol.org/journal/hacker-school-monday-june-9th.html">
+<meta name="og:description" content="At Hacker School we have daily checkins in small groups. This is more or less like &quot;standup&quot;. I'm going to post my checkin notes today, just for fun. I may or may not keep doing so throughout the summ">
 <meta name="og:site_name" content="subsymbol.org">
 <meta name="og:type" content="article">
 </head>
@@ -80,50 +80,41 @@
         <div class="row">
             
             
-<article class="storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Hacker School, Tuesday, July 1st, 2014</a></h1>
+<article class="storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Hacker School Monday, June 9th, 2014</a></h1>
 
         
 
     </header><div itemprop="articleBody text">
-    <div class="document" id="hacker-school-tuesday-july-1st-2014">   <p>On Tuesday I made some progress toward the Protagonist repair functionality.</p>
-<p>I also started porting off of Blogger so I can have more control over content here, including getting these blog posts out of your stream, if you are subscribed for my posts, but don't want my logs.</p>
+    <div class="document" id="monday-june-9th-2014">   <p>At Hacker School we have daily checkins in small groups. This is more or less like "standup". I'm going to post my checkin notes today, just for fun. I may or may not keep doing so throughout the summer.</p>
 <div class="section" id="plan">
 <h3>Plan</h3>
-<div class="section" id="protagonist">
-<h4>Protagonist</h4>
-<ul><li>
-<p class="first">Begin implementing repair: a script to make sure that files in the tagsystem still match the filesystem they map to. The intended use is somewhat like the way in unix <cite>locate</cite> relies on  <cite>mlocate</cite> to regularly run <cite>updatedb</cite> to index all files.</p>
-<p>The repair function should do three things:</p>
-<ul class="simple">
-<li>Find files that are in truenames but not tagged with any tags, and remove them.</li>
-<li>Find tagged files that have been moved on the original system, and update their truenames entry.</li>
-<li>Find tagged files that have been removed from the filesystem, and free the space by releasing the hard links.</li>
-</ul>
+<ul class="simple"><li>At checkin I said I would work on the symlink patch to tahoe: <a class="reference external" href="https://tahoe-lafs.org/trac/tahoe-lafs/ticket/641">https://tahoe-lafs.org/trac/tahoe-lafs/ticket/641</a>
 </li></ul>
-</div>
-<div class="section" id="blogging">
-<h4>Blogging</h4>
-<ul class="simple"><li>Start porting subsymbol.org to Nikola, so that I can have better control over the structure of the site. In particular, I want to let logging posts like these accumulate in the background, while keeping the front page clean and more professional.</li></ul>
-</div>
 </div>
 <div class="section" id="actual">
 <h3>Actual</h3>
-<div class="section" id="id1">
-<h4>Protagonist</h4>
+<ul>
+<li><p class="first">cleaned up my git branches</p></li>
+<li><p class="first">changed my github account name to ambimorph</p></li>
+<li><p class="first">went to git tutorial</p></li>
+<li><p class="first">got up and running on Zulip</p></li>
+<li>
+<p class="first">talked about possibly working on:</p>
 <ul class="simple">
-<li>Wrote a function that finds all places in the tagsystem where a given file is tagged. This will be used to discover when a file has no more tags and can therefore be removed from the truenames index. It can be run by the repairer, but it can also be run whenever a file is untagged, to check for the case that there are no more tags on the file.</li>
-<li>Put this function into <cite>untag</cite> as just described.</li>
+<li>Coq</li>
+<li>Rust</li>
+<li>Factor</li>
+<li>disassembly</li>
+<li>virtualenv</li>
+<li>Talked to xxx about text classification and topic modelling tools</li>
 </ul>
-</div>
-<div class="section" id="id2">
-<h4>Blogging</h4>
-<ul class="simple"><li>Looked at the Nikola docs, tried out the demo, and figured out how to port subsymbol using the import_blogger plugin.<ul><li>This was really straightforward and easy.  Before I can complete it, though, I need to do two things:<ul>
-<li>Rearrange the imported sections a little to reflect that I want a site, not a blog.</li>
-<li>Get new hosting set up, which I'm not really sure how to do.</li>
+</li>
+<li>
+<p class="first">Read Allison's virtualenv post: <a class="reference external" href="https://www.hackerschool.com/blog/14-there-is-no-magic-virtualenv-edition">https://www.hackerschool.com/blog/14-there-is-no-magic-virtualenv-edition</a></p>
+<p>"The first thing to notice is that it's only ~80 lines! Cool - we can handle this."</p>
+</li>
+<li><p class="first">Got the ProofGeneral running, so I can start Software Foundations: <a class="reference external" href="http://www.cis.upenn.edu/~bcpierce/sf/current/index.html">http://www.cis.upenn.edu/~bcpierce/sf/current/index.html</a></p></li>
 </ul>
-</li></ul>
-</li></ul>
-</div>
 </div>
 </div>
     </div>
