@@ -271,6 +271,7 @@ REDIRECTIONS = [
                  ("2014/index.html", "2014/default.html"),
                  ("2013/index.html", "2013/default.html"),
                  ("2012/index.html", "2012/default.html"),
+                 ("stories/index.html", "http://www.subsymbol.org/stories/default.html"),
                  ("2014/06/hacker-school-tuesday-june-24th-2014.html", "http://www.subsymbol.org/stories/201406hacker-school-tuesday-june-24th-2014.html"),
 		 ("2012/09/xmonad-on-unity-1204.html", "http://www.subsymbol.org/stories/201209xmonad-on-unity-1204.html"),
                  ("2014/06/hacker-school-saturday-june-28th-2014.html", "http://www.subsymbol.org/stories/201406hacker-school-saturday-june-28th-2014.html"),
