@@ -12,6 +12,8 @@ I have an M.Sc. from the University of Toronto, where `I studied computational l
 
 My primary research interest is in the properties that emerge from the way information is structured. For example, different languages (formal or natural) vary in robustness to error, potential for ambiguity, expressiveness, and susceptibility to inference.
 
+I'm currently improving my coding skills at `Hacker School <www.hackerschool.com>`_.
+
 My skills:
 
 * I am an excellent problem solver: I draw useful connections between different problems easily, making creative use of known solutions when possible. 
