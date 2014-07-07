@@ -54,6 +54,10 @@
  </sitemap>
  <sitemap>
   <loc>http://www.subsymbol.org/sitemap.xml</loc>
+  <lastmod>2014-07-07</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://www.subsymbol.org/sitemapindex.xml</loc>
   <lastmod>2014-07-06</lastmod>
  </sitemap>
 </sitemapindex>
