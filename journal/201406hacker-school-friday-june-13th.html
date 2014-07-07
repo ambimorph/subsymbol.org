@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hacker School, Friday, June 13th | subsymbol.org</title>
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="http://www.subsymbol.org/journal/201406hacker-school-friday-june-13th.html">
+<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><meta name="author" content="L. Amber Wilcox-O'Hearn">
+<meta name="og:title" content="Hacker School, Friday, June 13th">
+<meta name="og:url" content="http://www.subsymbol.org/journal/201406hacker-school-friday-june-13th.html">
+<meta name="og:description" content="Today it was quiet around here, which was nice.  I got an actual repository started for my tagging project, which I dubbed protagonist. I found myself faced with some old procrastination behaviour, an">
+<meta name="og:site_name" content="subsymbol.org">
+<meta name="og:type" content="article">
+<meta name="author" content="L. Amber Wilcox-O'Hearn">
+<meta name="og:title" content="Hacker School, Friday, June 13th">
+<meta name="og:url" content="http://www.subsymbol.org/journal/201406hacker-school-friday-june-13th.html">
+<meta name="og:description" content="Today it was quiet around here, which was nice.  I got an actual repository started for my tagging project, which I dubbed protagonist. I found myself faced with some old procrastination behaviour, an">
+<meta name="og:site_name" content="subsymbol.org">
+<meta name="og:type" content="article">
+</head>
+<body>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://www.subsymbol.org/">
+
+                <span id="blog-title">subsymbol.org</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../categories/default.html">Tags</a>
+                </li>
+<li>
+<a href="../blog/default.html">Blog</a>
+                </li>
+<li>
+<a href="default.html">Journal</a>
+                </li>
+<li>
+<a href="../rss.xml">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+    <a href="#" id="sourcelink">Source</a>
+    </li>
+
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Hacker School, Friday, June 13th</a></h1>
+
+        
+
+    </header><div itemprop="articleBody text">
+    <div class="document" id="hacker-school-friday-june-13th">   <p>Today it was quiet around here, which was nice.  I got an actual repository started for my tagging project, which I dubbed <cite>protagonist</cite>. I found myself faced with some old procrastination behaviour, and overcame it.  I had a sucessful and refreshing nap. All-in-all it was a good day for <em>flow</em>.</p>
+<p>The day started with pouring rain, and now, when I need to leave, it is pouring again.  I like the rain.</p>
+<p>Here was my day:</p>
+<div class="section" id="plan">
+<h3>Plan</h3>
+<div class="section" id="tahoe-lafs-symlinks">
+<h4>Tahoe-LAFS symlinks</h4>
+<p>I'm still interested in this as a design problem.  In fact, I <em>love</em> design problems. However, that is different from a coding project, and so I'm bumping this out of the priviledged position. My goal for it now is to work with the devs in making a spec that everyone can agree on.</p>
+</div>
+<div class="section" id="tagging">
+<h4>Tagging</h4>
+<p>The tagging project is moving into the current priority slot.</p>
+<p>In brief, it will be a program on top of my filesystem that organises files by multiple, non-hierarchical tags, that can be queried with Boolean operators.</p>
+<p>Rather than fully specify it here, I'm putting the specification as my plan. This includes settling on using a sql database, or links. I have the beginnings of an implementation using both of the first two, but I'm thinking of switching to hardlinks, so that I can use it in conjunction with Taho-LAFS as it is.</p>
+<p>This time I'm going to GitHub it.</p>
+</div>
+<div class="section" id="light-reading">
+<h4>Light Reading</h4>
+<p>I might go to the library today to read Zellig Harris.</p>
+</div>
+</div>
+<div class="section" id="actual">
+<h3>Actual</h3>
+<div class="section" id="protagonist">
+<h4>Protagonist</h4>
+<ul class="simple"><li>Made a new <a class="reference external" href="https://github.com/ambimorph/protagonist">GitHub repo</a>.</li></ul>
+<p><strong>Design</strong></p>
+<blockquote>
+<p>I started by considering two basic designs that I had already mocked up a little bit.</p>
+<ul>
+<li>
+<p class="first">sql: The sql design would involve having a database tracking each file in the system, and a table for each tag.</p>
+<p>Advantages:</p>
+<ul class="simple">
+<li>The queries are already managed in sql, and would just need wrapping.</li>
+<li>Recent experience with sql is probably marketable.</li>
+</ul>
+<p>Disadvantages:</p>
+<ul class="simple"><li>Wrapped sql is bit hard to read.</li></ul>
+</li>
+<li>
+<p class="first">links: The links design would involve having a special directory for tags called, maybe, <cite>.tags</cite>.  Every new tag <cite>tag_x</cite> is represented by a directory <cite>.tags/tag_x/</cite>.  Every file to be tagged with <cite>tag_x</cite> is linked to in that directory.</p>
+<p>Advantages:</p>
+<ul class="simple">
+<li>This is human readable, in that it is easy for a user to browse the directories and see exactly what is going on.</li>
+<li>The code is easier to read and write just with os directives.</li>
+<li>The design is easily extensible to key, value pairs, by making one more level of directories, and using <cite>tag/</cite> for the ones that are just tags.</li>
+</ul>
+<p>Disadvantages:</p>
+<ul class="simple"><li>???</li></ul>
+</li>
+</ul>
+<p>Here is a comparison of code from the two explorations of the design space I had done previously:</p>
+<ul>
+<li>
+<p class="first">sql</p>
+<pre class="code python literal-block"><br><span class="keyword">def</span> <span class="name function">tag_file</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="name">tag</span><span class="punctuation">,</span> <span class="name">file_name</span><span class="punctuation">):</span><br><span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">new_tag</span><span class="punctuation">(</span><span class="name">tag</span><span class="punctuation">)</span><br><span class="keyword">if</span> <span class="operator word">not</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">exists</span><span class="punctuation">(</span><span class="name">file_name</span><span class="punctuation">):</span><br><span class="keyword">raise</span> <span class="name">TagNoFileError</span><span class="punctuation">(</span><span class="name">file_name</span><span class="punctuation">)</span><br><span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">cursor</span><span class="operator">.</span><span class="name">execute</span><span class="punctuation">(</span><span class="literal string">"select id from file_names where path='"</span> <span class="operator">+</span> <span class="name">file_name</span> <span class="operator">+</span> <span class="literal string">"'"</span><span class="punctuation">)</span><br><span class="name">primary_key_row</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">cursor</span><span class="operator">.</span><span class="name">fetchone</span><span class="punctuation">()</span><br><span class="keyword">if</span> <span class="name">primary_key_row</span> <span class="operator">==</span> <span class="name builtin pseudo">None</span><span class="punctuation">:</span><br><span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">new_file</span><span class="punctuation">(</span><span class="name">file_name</span><span class="punctuation">)</span><br><span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">cursor</span><span class="operator">.</span><span class="name">execute</span><span class="punctuation">(</span><span class="literal string">"select id from file_names where path='"</span> <span class="operator">+</span> <span class="name">file_name</span> <span class="operator">+</span> <span class="literal string">"'"</span><span class="punctuation">)</span><br><span class="name">primary_key_row</span> <span class="operator">=</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">cursor</span><span class="operator">.</span><span class="name">fetchone</span><span class="punctuation">()</span><br><span class="name">primary_key</span> <span class="operator">=</span> <span class="name">primary_key_row</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">]</span><br><span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">cursor</span><span class="operator">.</span><span class="name">execute</span><span class="punctuation">(</span><span class="literal string">"select id from "</span> <span class="operator">+</span> <span class="name">tag</span> <span class="operator">+</span> <span class="literal string">" where id='"</span> <span class="operator">+</span> <span class="name builtin">str</span><span class="punctuation">(</span><span class="name">primary_key</span><span class="punctuation">)</span> <span class="operator">+</span> <span class="literal string">"'"</span><span class="punctuation">)</span><br><span class="name">keys</span> <span class="operator">=</span> <span class="punctuation">[</span><span class="name">row</span><span class="punctuation">[</span><span class="literal number integer">0</span><span class="punctuation">]</span> <span class="keyword">for</span> <span class="name">row</span> <span class="operator word">in</span> <span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">cursor</span><span class="operator">.</span><span class="name">fetchall</span><span class="punctuation">()]</span><br><span class="keyword">if</span> <span class="name builtin">len</span><span class="punctuation">(</span><span class="name">keys</span><span class="punctuation">)</span> <span class="operator">==</span> <span class="literal number integer">0</span><span class="punctuation">:</span><br><span class="name builtin pseudo">self</span><span class="operator">.</span><span class="name">cursor</span><span class="operator">.</span><span class="name">execute</span><span class="punctuation">(</span><span class="literal string">"insert into "</span> <span class="operator">+</span> <span class="name">tag</span> <span class="operator">+</span> <span class="literal string">"(id) values('"</span> <span class="operator">+</span> <span class="name builtin">str</span><span class="punctuation">(</span><span class="name">primary_key</span><span class="punctuation">)</span> <span class="operator">+</span> <span class="literal string">"')"</span><span class="punctuation">)</span><br></pre>
+</li>
+<li>
+<p class="first">links</p>
+<pre class="code python literal-block"><br><span class="keyword">def</span> <span class="name function">tag_file</span><span class="punctuation">(</span><span class="name builtin pseudo">self</span><span class="punctuation">,</span> <span class="name">tag</span><span class="punctuation">,</span> <span class="name">file_name</span><span class="punctuation">):</span><br><span class="keyword">if</span> <span class="operator word">not</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">exists</span><span class="punctuation">(</span><span class="name">file_name</span><span class="punctuation">):</span><br><span class="keyword">raise</span> <span class="name">TagNoFileError</span><span class="punctuation">(</span><span class="name">file_name</span><span class="punctuation">)</span><br><span class="keyword">if</span> <span class="operator word">not</span> <span class="name">os</span><span class="operator">.</span><span class="name">path</span><span class="operator">.</span><span class="name">exists</span><span class="punctuation">(</span><span class="name">tag_dir</span> <span class="operator">+</span> <span class="name">tag</span><span class="punctuation">):</span> <span class="name">os</span><span class="operator">.</span><span class="name">mkdir</span><span class="punctuation">(</span><span class="name">tag_dir</span> <span class="operator">+</span> <span class="name">tag</span><span class="punctuation">)</span><br><span class="name">os</span><span class="operator">.</span><span class="name">symlink</span><span class="punctuation">(</span><span class="name">file_name</span><span class="punctuation">,</span> <span class="name">tag_dir</span> <span class="operator">+</span> <span class="name">tag</span> <span class="operator">+</span> <span class="name">md5</span><span class="punctuation">(</span><span class="name builtin">open</span><span class="punctuation">(</span><span class="name">file_name</span><span class="punctuation">,</span> <span class="literal string">'r'</span><span class="punctuation">)</span><span class="operator">.</span><span class="name">read</span><span class="punctuation">())</span><span class="operator">.</span><span class="name">hexdigest</span><span class="punctuation">())</span><br></pre>
+</li>
+</ul>
+<p><strong>Unique ids</strong></p>
+<p>Both of these designs require a unique identifier for files.  In the <em>links</em> mockup above, I am using the md5 hash for this purpose.  (<strong>Well, actually</strong> I ought to be using <a class="reference external" href="https://leastauthority.com/blog/BLAKE2-harder-better-faster-stronger-than-MD5.html">BLAKE2: “Harder, Better, Faster, Stronger” Than MD5</a>.  I'll fix that this time around.) The reason I wanted to use content-based hashing as opposed to e.g. an integer, is that it might help identify multiple copies of the same file, recover from accidentally moving the original, and look for files that haven't been tagged.  It might be overkill.  That's ok.</p>
+<p>But what about the case for mutable files?</p>
+<p>In Tahoe-LAFS, references to mutable files (capabilities) are not content based, they merely securely identify slots from which to read or write. So I think the right analogy here would be to hash the pathname. This will not help with finding something that moved, of course.</p>
+<p>I'm not sure I want to have to choose mutable or immutable every time I tag a file.  So, I'll think about this part of the design more.</p>
+<p>The links solution appeals to me most.  I'm going to use hard links instaed of symlinks, because they seem strictly better.</p>
+</blockquote>
+<ul class="simple"><li>Wrote a bare unit test for creating the tagsystem set up, and made it pass (by making a module to correspond to the import).</li></ul>
+</div>
+<div class="section" id="tahoe-lafs-symlinks-design">
+<h4>Tahoe-LAFS symlinks design</h4>
+<p>Got instructions on where to collaborate on design docs (mailing list).  Joined mailing list.</p>
+</div>
+</div>
+<div class="section" id="reflections">
+<h3>Reflections</h3>
+<p>I've been thinking about the overlapping batches.  Obviously I can't directly compare what it is like to be introduced to Hacker School in different ways, but I was suddenly reminded of the way that kindergarden is stagger-started in Boulder.  At Mesa Elementary, they divided the classes into two halves, and half the class came each alone for a few days, and then they merged.  At Boulder Community Montessori, the class is a mix of two cohorts of preschool, and kindergarten.  They start the kindergarteners in first; those children have the most mentoring role.  Then they bring in the youngest, new preschoolers who can bond directly with the Ks, and finally the returning preschoolers join.  It seems to work well.</p>
+<p>I'm looking forward to the new people coming, 5 weeks from now.  I hope I will have bonded more with the <em>firsts</em> by then, though, which means I need to start pairing a <em>lot</em> more.</p>
+</div>
+</div>
+    </div>
+</article>
+</div>
+        <!--End of body content-->
+
+        <footer>
+            Contents © 2014         <a href="mailto:amber@cs.toronto.edu">L. Amber Wilcox-O'Hearn</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../assets/js/jquery.min.js"></script><script src="../assets/js/bootstrap.min.js"></script><script src="../assets/js/jquery.colorbox-min.js"></script><!-- Social buttons --><div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
+<a class="addthis_button_more">Share</a>
+<ul>
+<li>
+<a class="addthis_button_facebook"></a>
+</li>
+<li>
+<a class="addthis_button_google_plusone_share"></a>
+</li>
+<li>
+<a class="addthis_button_linkedin"></a>
+</li>
+<li>
+<a class="addthis_button_twitter"></a>
+</li>
+</ul>
+</div>
+<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script><!-- End of social buttons --><script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hacker School, Wednesday, June 18th, 2014 | subsymbol.org</title>
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="http://www.subsymbol.org/journal/201406hacker-school-wednesday-june-18th-2014.html">
+<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><meta name="author" content="L. Amber Wilcox-O'Hearn">
+<meta name="og:title" content="Hacker School, Wednesday, June 18th, 2014">
+<meta name="og:url" content="http://www.subsymbol.org/journal/201406hacker-school-wednesday-june-18th-2014.html">
+<meta name="og:description" content="Delving into the Factor debuggerAs I mentioned in Tuesday's post, I'm writing about what I learned from backwards-debugging in Factor, that is, looking at the debugging information available after fig">
+<meta name="og:site_name" content="subsymbol.org">
+<meta name="og:type" content="article">
+<meta name="author" content="L. Amber Wilcox-O'Hearn">
+<meta name="og:title" content="Hacker School, Wednesday, June 18th, 2014">
+<meta name="og:url" content="http://www.subsymbol.org/journal/201406hacker-school-wednesday-june-18th-2014.html">
+<meta name="og:description" content="Delving into the Factor debuggerAs I mentioned in Tuesday's post, I'm writing about what I learned from backwards-debugging in Factor, that is, looking at the debugging information available after fig">
+<meta name="og:site_name" content="subsymbol.org">
+<meta name="og:type" content="article">
+</head>
+<body>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://www.subsymbol.org/">
+
+                <span id="blog-title">subsymbol.org</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../categories/default.html">Tags</a>
+                </li>
+<li>
+<a href="../blog/default.html">Blog</a>
+                </li>
+<li>
+<a href="default.html">Journal</a>
+                </li>
+<li>
+<a href="../rss.xml">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+    <a href="#" id="sourcelink">Source</a>
+    </li>
+
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Hacker School, Wednesday, June 18th, 2014</a></h1>
+
+        
+
+    </header><div itemprop="articleBody text">
+    <div class="document" id="hacker-school-wednesday-june-18th-2014">   <p><strong>Delving into the Factor debugger</strong></p>
+<p>As I mentioned in Tuesday's post, I'm writing about what I learned from backwards-debugging in Factor, that is, looking at the debugging information available after figuring out the bug independently.</p>
+<p>The bug I had inserted was this:</p>
+<p>In running unit tests for <a class="reference external" href="https://github.com/ambimorph/protagonist">protagonist</a>, I had wanted to do a "setUp" and "tearDown", because the test involves creating a tagsystem and then trying different things with it.  So, I didn't want to create the tagsystem over and over again.  I'm not sure if this is idiomatic Factor or not, but what I did was to use the <a class="reference external" href="http://docs.factorcode.org/content/word-SYMBOL__colon__%2Csyntax.html">SYMBOL</a> word.</p>
+<p><cite>SYMBOL</cite> is considered a <a class="reference external" href="http://docs.factorcode.org/content/article-parsing-words.html">parsing word</a>, because it is used to define new words.  A word defined with <cite>SYMBOL</cite> is a like a boxed mutable variable that can be set with <cite>set</cite> and read with <cite>get</cite>. So, if you push a symbol on the stack, it is not the same as pushing its value on the stack. My bug was that I tried to use a symbol as the argument to a function. I forgot to get the value out first.</p>
+<p>My bug involved the word <cite>delete-tree</cite>, which recursively deletes a directory.  Since deleting directory trees is a bit dangerous, I replicated the behaviour with <cite>make-directory</cite>.</p>
+<hr class="docutils">
+<pre class="code factor literal-block"><br><span class="keyword namespace">IN:</span> <span class="name namespace">scratchpad</span><span class="name builtin"> </span><span class="keyword">SYMBOL:</span><span class="name builtin"> </span>s<span class="name builtin"><br></span><span class="keyword namespace">IN:</span> <span class="name namespace">scratchpad</span><span class="name builtin"> </span><span class="literal string">"s"</span><span class="name builtin"> </span>s<span class="name builtin"> set<br></span><span class="keyword namespace">IN:</span> <span class="name namespace">scratchpad</span><span class="name builtin"> </span><span class="keyword namespace">USE:</span> <span class="name namespace">io.directories</span><span class="name builtin"><br></span><span class="keyword namespace">IN:</span> <span class="name namespace">scratchpad</span><span class="name builtin"> </span>s<span class="name builtin"> </span>make-directory<span class="name builtin"><br></span>Generic<span class="name builtin"> </span>word<span class="name builtin"> </span>absolute-path<span class="name builtin"> </span>does<span class="name builtin"> not </span>define<span class="name builtin"> </span>a<span class="name builtin"> </span>method<span class="name builtin"> </span>for<span class="name builtin"> </span>the<span class="name builtin"> </span>word<span class="name builtin"> </span>class.<span class="name builtin"><br></span>Dispatching<span class="name builtin"> on </span>object:<span class="name builtin"> </span>s<span class="name builtin"><br><br></span>Type<span class="name builtin"> </span>:help<span class="name builtin"> </span>for<span class="name builtin"> </span>debugging<span class="name builtin"> </span>help.<span class="name builtin"><br></span><span class="keyword namespace">IN:</span> <span class="name namespace">scratchpad</span><br></pre>
+<hr class="docutils">
+<p>So we have a call to <a class="reference external" href="http://docs.factorcode.org/content/word-absolute-path,io.pathnames.html">absolute-path</a>, which is a generic word.  It is generic, because it is defined polymorphically for both <cite>pathnames</cite> and <cite>strings</cite>. The error is telling me that <cite>absolute-path</cite> has been called on a <cite>word</cite>.  However, I didn't call <cite>absolute-path</cite>. This initially confused me in my situation, because I did call <cite>absolute-path</cite> elsewhere in the actual code under test, and so I was misdirected for a time.</p>
+<p>So let's try that <cite>:help</cite> suggestion.</p>
+<hr class="docutils">
+<pre class="code factor literal-block"><br><span class="keyword namespace">IN:</span> <span class="name namespace">scratchpad</span><span class="name builtin"> </span>:help<span class="name builtin"><br></span>no-method<span class="name builtin"> </span><span class="name function">(</span> <span class="name variable">object</span> <span class="name variable">generic</span> <span class="name function">--</span> <span class="name variable">*</span> <span class="name function">)</span><span class="name builtin"><br><br></span>Vocabulary<span class="name builtin"><br></span>generic.single<span class="name builtin"><br><br></span>Inputs<span class="name builtin"> and </span>outputs<span class="name builtin"><br>object  </span>an<span class="name builtin"> object<br></span>generic<span class="name builtin"> </span>a<span class="name builtin"> </span>generic<span class="name builtin"> </span>word<span class="name builtin"><br><br></span>Word<span class="name builtin"> </span>description<span class="name builtin"><br></span>Throws<span class="name builtin"> </span>a<span class="name builtin"> </span>no-method<span class="name builtin"> </span>error.<span class="name builtin"><br><br></span>Error<span class="name builtin"> </span>description<span class="name builtin"><br></span>Thrown<span class="name builtin"> </span>by<span class="name builtin"> </span>the<span class="name builtin"> </span>generic<span class="name builtin"> </span>word<span class="name builtin"> </span>to<span class="name builtin"> </span>indicate<span class="name builtin"> </span>it<span class="name builtin"> </span>does<span class="name builtin"> not </span>have<span class="name builtin"> </span>a<span class="name builtin"> </span>method<span class="name builtin"> </span>for<span class="name builtin"> </span>the<span class="name builtin"> </span>class<span class="name builtin"> </span>of<span class="name builtin"> </span>object.<span class="name builtin"><br><br></span>Definition<span class="name builtin"><br></span><span class="keyword namespace">IN:</span> <span class="name namespace">generic.single</span><span class="name builtin"><br></span><span class="keyword">TUPLE:</span> <span class="name class">no-method</span> <span class="name variable">{</span> <span class="name variable">object</span> <span class="name variable">read-only</span> <span class="name variable">}</span> <span class="name variable">{</span> <span class="name variable">generic</span> <span class="name variable">read-only</span> <span class="name variable">}</span> <span class="keyword">;<br></span><span class="name builtin"><br></span><span class="keyword namespace">USING:</span> <span class="name namespace">kernel</span> <span class="keyword">;</span><span class="name builtin"><br></span><span class="keyword namespace">IN:</span> <span class="name namespace">generic.single</span><br><span class="keyword">:</span> <span class="name function">no-method</span><span class="name builtin"> </span><span class="name function">(</span> <span class="name variable">object</span> <span class="name variable">generic</span> <span class="name function">--</span> <span class="name variable">*</span> <span class="name function">)</span><span class="name builtin"> \ </span>no-method<span class="name builtin"> boa throw </span><span class="keyword">;<br></span><span class="name builtin"><br></span>Methods<span class="name builtin"><br></span><span class="keyword namespace">USING:</span> <span class="name namespace">accessors</span> <span class="name namespace">classes</span> <span class="name namespace">debugger</span> <span class="name namespace">generic.single</span> <span class="name namespace">io</span> <span class="name namespace">kernel</span><br><span class="name namespace">prettyprint</span> <span class="keyword">;</span><br><span class="keyword">M:</span> <span class="name class">no-method</span> <span class="name function">error.</span><span class="name builtin"><br></span><span class="literal string">"Generic word "</span><span class="name builtin"> write dup </span>generic&gt;&gt;<span class="name builtin"> </span>pprint<span class="name builtin"><br></span><span class="literal string">" does not define a method for the "</span><span class="name builtin"> write<br>dup </span>object&gt;&gt;<span class="name builtin"> </span>class-of<span class="name builtin"> </span>pprint<span class="name builtin"> </span><span class="literal string">" class."</span><span class="name builtin"> print<br></span><span class="literal string">"Dispatching on object: "</span><span class="name builtin"> write </span>object&gt;&gt;<span class="name builtin"> </span>short.<span class="name builtin"> </span><span class="keyword">;<br></span><span class="name builtin"><br></span><span class="keyword namespace">USING:</span> <span class="name namespace">generic.single</span> <span class="name namespace">kernel</span> <span class="name namespace">summary</span> <span class="keyword">;</span><br><span class="keyword">M:</span> <span class="name class">no-method</span> <span class="name function">summary</span><span class="name builtin"> drop </span><span class="literal string">"No suitable method"</span><span class="name builtin"> </span><span class="keyword">;</span><br></pre>
+<hr class="docutils">
+<p>Those are nice docs, but it doesn't get me closer to solving the problem.  However, at the bottom of all that, there are more hints:</p>
+<hr class="docutils">
+<pre class="code factor literal-block"><br>Debugger<span class="name builtin"> </span>commands:<span class="name builtin"><br><br></span>:s<span class="name builtin">    </span><span class="operator">- </span>data<span class="name builtin"> </span>stack<span class="name builtin"> at error </span>time<span class="name builtin"><br></span>:r<span class="name builtin">    </span><span class="operator">- </span>retain<span class="name builtin"> </span>stack<span class="name builtin"> at error </span>time<span class="name builtin"><br></span>:c<span class="name builtin">    </span><span class="operator">- </span><span class="name builtin">call </span>stack<span class="name builtin"> at error </span>time<span class="name builtin"><br></span>:edit<span class="name builtin"> </span><span class="operator">- </span>jump<span class="name builtin"> </span>to<span class="name builtin"> </span>source<span class="name builtin"> </span>location<span class="name builtin"> </span>(parse<span class="name builtin"> </span>errors<span class="name builtin"> </span>only)<span class="name builtin"><br></span>:get<span class="name builtin">  </span><span class="name function">(</span> <span class="name variable">var</span> <span class="name function">--</span> <span class="name variable">value</span> <span class="name function">)</span><span class="name builtin"> </span>accesses<span class="name builtin"> </span>variables<span class="name builtin"> at </span>time<span class="name builtin"> </span>of<span class="name builtin"> </span>the<span class="name builtin"> error<br></span>:vars<span class="name builtin"> </span><span class="operator">- </span>list<span class="name builtin"> all </span>variables<span class="name builtin"> at error </span>time<br></pre>
+<hr class="docutils">
+<p>In Factor there are <a class="reference external" href="http://docs.factorcode.org:8080/content/article-continuations.private.html">5 stacks that make up a continuation</a></p>
+<ul class="simple">
+<li>The <em>data stack</em> is <em>the</em> stack.  It is where arguments are drawn from and returned to, and this is what makes the language <em>stack-based</em>.</li>
+<li>The <em>retain stack</em> is a kind of swap space, and I don't know exactly when and why it is used.</li>
+<li>The <em>call stack</em> keeps track of words in progress, which means it will contain a traceback.</li>
+<li>The <em>name</em> stack holds variable bindings.</li>
+<li>The <em>catch</em> stack probably has something to do with exception handling.</li>
+</ul>
+<p>Let's try them all!  (Well, I'll skip <cite>:edit</cite> and <cite>:get</cite>.)</p>
+<hr class="docutils">
+<pre class="code factor literal-block"><br><span class="keyword namespace">IN:</span> <span class="name namespace">scratchpad</span><span class="name builtin"> </span>:s<span class="name builtin"><br></span>s<span class="name builtin"><br></span>T{<span class="name builtin"> </span>no-method<span class="name builtin"> </span><span class="name constant">f </span>s<span class="name builtin"> </span>absolute-path<span class="name builtin"> </span>}<br></pre>
+<p>Okay, so s was still on the stack, and then this thing <cite>T{ no-method f s absolute-path }</cite>, which is a tuple class object <cite>no-method</cite>, as described in detail above.</p>
+<hr class="docutils">
+<pre class="code factor literal-block"><br><span class="keyword namespace">IN:</span> <span class="name namespace">scratchpad</span><span class="name builtin"> </span>:r<span class="name builtin"><br></span>{<span class="name builtin"> </span>}<br></pre>
+<hr class="docutils">
+<p>It looks like it has an empty sequence in it.  More on this later.</p>
+<hr class="docutils">
+<pre class="code factor literal-block"><br><span class="keyword namespace">IN:</span> <span class="name namespace">scratchpad</span><span class="name builtin"> </span>:c<span class="name builtin"><br></span>(U)<span class="name builtin"> </span>Quotation:<span class="name builtin"> </span>[<span class="name builtin"> </span>c-to-factor<span class="name builtin"> </span>-&gt;<span class="name builtin"> </span>]<span class="name builtin"><br></span>Word:<span class="name builtin"> </span>c-to-factor<span class="name builtin"><br></span>(U)<span class="name builtin"> </span>Quotation:<span class="name builtin"> </span>[<span class="name builtin"> </span>[<span class="name builtin"> </span>catchstack*<span class="name builtin"> push </span>]<span class="name builtin"> dip call </span>-&gt;<span class="name builtin"> </span>catchstack*<span class="name builtin"> </span>pop*<span class="name builtin"> </span>]<span class="name builtin"><br></span>(O)<span class="name builtin"> </span>Word:<span class="name builtin"> </span>command-line-startup<span class="name builtin"><br></span>(O)<span class="name builtin"> </span>Word:<span class="name builtin"> </span>listener<span class="name builtin"><br></span>(O)<span class="name builtin"> </span>Word:<span class="name builtin"> </span>(listener)<span class="name builtin"><br></span>(U)<span class="name builtin"> </span>Quotation:<span class="name builtin"> </span>[<span class="name builtin"><br></span>[<span class="name builtin"> </span>~quotation~<span class="name builtin"> dip swap </span>~quotation~<span class="name builtin"> dip </span>]<span class="name builtin"> dip swap<br></span>[<span class="name builtin"> call datastack </span>]<span class="name builtin"> dip </span>-&gt;<span class="name builtin"> swap </span>[<span class="name builtin"> </span>set-datastack<span class="name builtin"> </span>]<span class="name builtin"> dip<br></span>]<span class="name builtin"><br></span>(U)<span class="name builtin"> </span>Quotation:<span class="name builtin"> </span>[<span class="name builtin"> call </span>-&gt;<span class="name builtin"> datastack </span>]<span class="name builtin"><br></span>(O)<span class="name builtin"> </span>Method:<span class="name builtin"> </span>M\<span class="name builtin"> </span>unix<span class="name builtin"> </span>make-directory<span class="name builtin"><br></span>(O)<span class="name builtin"> </span>Method:<span class="name builtin"> </span>M\<span class="name builtin"> object </span>absolute-path<span class="name builtin"><br></span>(O)<span class="name builtin"> </span>Word:<span class="name builtin"> </span>no-method<span class="name builtin"><br></span>(O)<span class="name builtin"> </span>Method:<span class="name builtin"> </span>M\<span class="name builtin"> object throw<br></span>(U)<span class="name builtin"> </span>Quotation:<span class="name builtin"> </span>[<span class="name builtin"><br></span>OBJ-CURRENT-THREAD<span class="name builtin"> </span>special-object<span class="name builtin"> error-thread set-global<br></span>current-continuation<span class="name builtin"> </span>-&gt;<span class="name builtin"> error-continuation set-global<br></span>[<span class="name builtin"> </span>original-error<span class="name builtin"> set-global </span>]<span class="name builtin"> </span>[<span class="name builtin"> rethrow </span>]<span class="name builtin"> bi<br></span>]<br></pre>
+<hr class="docutils">
+<p>So now I can see that the <cite>absolute-path</cite> method was called by <cite>make-directory</cite>, which I was directly responsible for.</p>
+<pre class="code factor literal-block"><br><span class="keyword namespace">IN:</span> <span class="name namespace">scratchpad</span><span class="name builtin"> </span>:vars<span class="name builtin"><br></span>hashtable<span class="name builtin"> with </span><span class="literal number integer">2 </span>entries<span class="name builtin"><br></span>inotify<span class="name builtin"> </span>T{<span class="name builtin"> </span>input-port<span class="name builtin"> </span><span class="name constant">f t f </span>~fd~<span class="name builtin"> </span><span class="name constant">f </span>~buffer~<span class="name builtin"> </span>}<span class="name builtin"><br></span>watches<span class="name builtin"> </span>H{<span class="name builtin"> </span>{<span class="name builtin"> </span><span class="literal number integer">1 </span>~linux-monitor~<span class="name builtin"> </span>}<span class="name builtin"> </span>{<span class="name builtin"> </span><span class="literal number integer">2 </span>~linux-monitor~<span class="name builtin"> </span>}<span class="name builtin"> </span>{<span class="name builtin"> </span>3...<br></pre>
+<hr class="docutils">
+<p>And those are some variables that I don't know anything about.</p>
+<p>Well, the answer <em>is</em> in there.  When I called <cite>make-directory</cite>, it called <cite>absolute-path</cite>, and this was called on a <cite>word</cite> that doesn't have that method defined. The hint about which word was having the problem is given in the data stack report.</p>
+<p>So, now I have a better idea of how to use what is given to find the point in my code where the problem is.  Next time maybe I'll be able to resolve it more quickly.</p>
+<hr class="docutils">
+<p><strong>Plan and Actual, with a few comments</strong></p>
+<div class="section" id="plan">
+<h3>Plan</h3>
+<ul>
+<li>
+<p class="first">Haskell:</p>
+<ul><li>
+<p class="first">Do problems 5 and 6 from homework one of <a class="reference external" href="http://www.seas.upenn.edu/~cis194/">Yorgey's Haskell course</a>.</p>
+<p>I notice that I am intimidated at this point, because number 6 is marked as "optional", which I take to mean "hard".  Somewhere along the line I have started doubting my ability to do hard problems, which is ridiculous.  Time to get over it.  I guess the worst that can happen is that I'll get really stuck, and I'll have to (get to?) go ask someone around here for help.</p>
+</li></ul>
+</li>
+<li>
+<p class="first">Tahoe-LAFS:</p>
+<ul><li>
+<p class="first">Complete the first draft of my design proposal and ask Zooko to proofread it before I put it on the dev list.</p>
+<p>(This is verbatim from yesterday's list.  Didn't get to it.)</p>
+</li></ul>
+</li>
+<li>
+<p class="first">Factor / Protagonist:</p>
+<ul class="simple">
+<li>Write up what I learned from yesterday's debugging.</li>
+<li>I'm tempted to now try the exercises from Yorgey in Factor.</li>
+</ul>
+</li>
+<li>
+<p class="first">Light reading:</p>
+<ul class="simple">
+<li>
+<a class="reference external" href="http://www.codecommit.com/blog/cat/the-joy-of-concatenative-languages-part-2">The Joy of Concatenative Languages Part 2: Innately Functional</a>.</li>
+<li>Read a <a class="reference external" href="http://bangbangcon.com/recordings.html">!!con transcript</a>.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="actual">
+<h3>Actual</h3>
+<ul class="simple">
+<li>Haskell:<ul><li>Completed problem 5, quickly, and spent a long time trying to come up with an implementation of 6 that was as fast as the claim. I didn't solve it, though I did get some progressively faster solutions. Decided to let it rest. The trickiness is in figuring out a clever algorithm, not in using Haskell correctly. So, while I could look up what Knuth did, and I'm sure it would be interesting, I think I'll move forward with the Haskell lessons.</li></ul>
+</li>
+<li>Reading:<ul>
+<li>Skimmed the paper for the evening's Papers We Love in a room with others doing the same thing. I didn't end up attending, taking a relaxing social opportunity instead. Others who went reported that it was a fantastic meetup.</li>
+<li>Read <a class="reference external" href="http://www.codecommit.com/blog/cat/the-joy-of-concatenative-languages-part-2">The Joy of Concatenative Languages Part 2: Innately Functional</a>, and <a class="reference external" href="http://www.codecommit.com/blog/cat/the-joy-of-concatenative-languages-part-3">The Joy of Concatenative Languages Part 3: Kindly Types</a>.</li>
+<li>Started reading <a class="reference external" href="http://chimera.labs.oreilly.com/books/1234000001813/index.html">Apprenticeship Patterns</a>, and am enthralled.</li>
+</ul>
+</li>
+<li>Tahoe-LAFS:<ul><li>Thought more deeply through the design I had envisioned for solving symlinks, and decided I agree with the devs after all, that the only right way to do it involves supporting the notion of symlinks in LAFS. Through that process, I did come up with a nice design for integration of <cite>protagonist</cite> with LAFS, however.</li></ul>
+</li>
+</ul>
+</div>
+</div>
+    </div>
+</article>
+</div>
+        <!--End of body content-->
+
+        <footer>
+            Contents © 2014         <a href="mailto:amber@cs.toronto.edu">L. Amber Wilcox-O'Hearn</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../assets/js/jquery.min.js"></script><script src="../assets/js/bootstrap.min.js"></script><script src="../assets/js/jquery.colorbox-min.js"></script><!-- Social buttons --><div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
+<a class="addthis_button_more">Share</a>
+<ul>
+<li>
+<a class="addthis_button_facebook"></a>
+</li>
+<li>
+<a class="addthis_button_google_plusone_share"></a>
+</li>
+<li>
+<a class="addthis_button_linkedin"></a>
+</li>
+<li>
+<a class="addthis_button_twitter"></a>
+</li>
+</ul>
+</div>
+<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script><!-- End of social buttons --><script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+</body>
+</html>
