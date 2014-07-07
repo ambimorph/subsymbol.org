@@ -5,351 +5,331 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
+  <loc>http://www.subsymbol.org/</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2012/</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
   <loc>http://www.subsymbol.org/2012/09/xmonad-on-unity-1204.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/2012/12/unit-test-fairies.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2012/default.html</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
-  <loc>http://www.subsymbol.org/2012/index.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <loc>http://www.subsymbol.org/2013/</loc>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/2013/01/publishing-paper-without-code-is-not.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/2013/03/malaprop-v010.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/2013/11/brief-notes-from-front-range-nlp-meeting.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2013/default.html</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
-  <loc>http://www.subsymbol.org/2013/index.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <loc>http://www.subsymbol.org/2014/</loc>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/2014/01/the-year-of-em-dash.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/03/transparent-learning.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/04/literally-ironic-semantic-shifts-are.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-checkin-monday-june-9th.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-friday-june-13th.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-friday-june-20th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-friday-june-27th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-monday-june-16th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-monday-june-23rd-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-saturday-june-14th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-saturday-june-28th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-sunday-june-29th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-thursday-june-12th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-thursday-june-19th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-thursday-june-26th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-tuesday-june-10th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-tuesday-june-17th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-tuesday-june-24th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-wednesday-june-11-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-wednesday-june-18th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/06/hacker-school-wednesday-june-25th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/07/hacker-school-monday-june-30th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/07/hacker-school-thursday-june-3rd-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/07/hacker-school-tuesday-july-1st-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/07/hacker-school-wednesday-july-2nd-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/2014/default.html</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
-  <loc>http://www.subsymbol.org/2014/index.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <loc>http://www.subsymbol.org/2014/03/transparent-learning.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/04/literally-ironic-semantic-shifts-are.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-checkin-monday-june-9th.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-friday-june-13th.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-friday-june-20th-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-friday-june-27th-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-monday-june-16th-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-monday-june-23rd-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-saturday-june-14th-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-saturday-june-28th-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-sunday-june-29th-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-thursday-june-12th-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-thursday-june-19th-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-thursday-june-26th-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-tuesday-june-10th-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-tuesday-june-17th-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-tuesday-june-24th-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-wednesday-june-11-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-wednesday-june-18th-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/06/hacker-school-wednesday-june-25th-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/07/hacker-school-monday-june-30th-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/07/hacker-school-thursday-june-3rd-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/07/hacker-school-tuesday-july-1st-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/2014/07/hacker-school-wednesday-july-2nd-2014.html</loc>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/archive.html</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
-  <loc>http://www.subsymbol.org/blog/default.html</loc>
+  <loc>http://www.subsymbol.org/blog/</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
-  <loc>http://www.subsymbol.org/blog/index.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <loc>http://www.subsymbol.org/categories/</loc>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/bash.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/computational-linguistics.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/cryptography.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/categories/default.html</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/evaluation.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/categories/index.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/linguistics.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/linux.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/open-access.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/open-source.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/productivity.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/science.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/tools.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/default.html</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/index.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/posts/201209xmonad-on-unity-1204.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/posts/201212unit-test-fairies.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/posts/201301publishing-paper-without-code-is-not.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/posts/201303malaprop-v010.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/posts/201311brief-notes-from-front-range-nlp-meeting.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/posts/201401the-year-of-em-dash.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/posts/201403transparent-learning.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/stories/</loc>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-checkin-monday-june-9th.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-friday-june-13th.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-friday-june-20th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-friday-june-27th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-monday-june-16th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-monday-june-23rd-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-saturday-june-14th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-saturday-june-28th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-sunday-june-29th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-thursday-june-12th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-thursday-june-19th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-thursday-june-26th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-tuesday-june-10th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-tuesday-june-17th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-tuesday-june-24th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-wednesday-june-11-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-wednesday-june-18th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201406hacker-school-wednesday-june-25th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201407hacker-school-monday-june-30th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201407hacker-school-thursday-june-3rd-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201407hacker-school-tuesday-july-1st-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/201407hacker-school-wednesday-july-2nd-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
- </url>
- <url>
-  <loc>http://www.subsymbol.org/stories/default.html</loc>
   <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/hacker-school-friday-july-4th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/stories/hacker-school-saturday-july-5th-2014.html</loc>
-  <lastmod>2014-07-06</lastmod>
+  <lastmod>2014-07-07</lastmod>
  </url>
 </urlset>
