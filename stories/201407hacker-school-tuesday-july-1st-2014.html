@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hacker School, Tuesday, July 1st, 2014 | subsymbol.org</title>
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="http://www.subsymbol.org/stories/201407hacker-school-tuesday-july-1st-2014.html">
+<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><meta name="author" content="L. Amber Wilcox-O'Hearn">
+<meta name="og:title" content="Hacker School, Tuesday, July 1st, 2014">
+<meta name="og:url" content="http://www.subsymbol.org/stories/201407hacker-school-tuesday-july-1st-2014.html">
+<meta name="og:description" content="On Tuesday I made some progress toward the Protagonist repair functionality.I also started porting off of Blogger so I can have more control over content here, including getting these blog posts out o">
+<meta name="og:site_name" content="subsymbol.org">
+<meta name="og:type" content="article">
+<meta name="author" content="L. Amber Wilcox-O'Hearn">
+<meta name="og:title" content="Hacker School, Tuesday, July 1st, 2014">
+<meta name="og:url" content="http://www.subsymbol.org/stories/201407hacker-school-tuesday-july-1st-2014.html">
+<meta name="og:description" content="On Tuesday I made some progress toward the Protagonist repair functionality.I also started porting off of Blogger so I can have more control over content here, including getting these blog posts out o">
+<meta name="og:site_name" content="subsymbol.org">
+<meta name="og:type" content="article">
+</head>
+<body>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://www.subsymbol.org/">
+
+                <span id="blog-title">subsymbol.org</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../archive.html">Archives</a>
+                </li>
+<li>
+<a href="../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../rss.xml">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+    <a href="#" id="sourcelink">Source</a>
+    </li>
+
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Hacker School, Tuesday, July 1st, 2014</a></h1>
+
+        
+
+    </header><div itemprop="articleBody text">
+    <div class="document" id="hacker-school-tuesday-july-1st-2014">   <p>On Tuesday I made some progress toward the Protagonist repair functionality.</p>
+<p>I also started porting off of Blogger so I can have more control over content here, including getting these blog posts out of your stream, if you are subscribed for my posts, but don't want my logs.</p>
+<div class="section" id="plan">
+<h3>Plan</h3>
+<div class="section" id="protagonist">
+<h4>Protagonist</h4>
+<ul><li>
+<p class="first">Begin implementing repair: a script to make sure that files in the tagsystem still match the filesystem they map to. The intended use is somewhat like the way in unix <cite>locate</cite> relies on  <cite>mlocate</cite> to regularly run <cite>updatedb</cite> to index all files.</p>
+<p>The repair function should do three things:</p>
+<ul class="simple">
+<li>Find files that are in truenames but not tagged with any tags, and remove them.</li>
+<li>Find tagged files that have been moved on the original system, and update their truenames entry.</li>
+<li>Find tagged files that have been removed from the filesystem, and free the space by releasing the hard links.</li>
+</ul>
+</li></ul>
+</div>
+<div class="section" id="blogging">
+<h4>Blogging</h4>
+<ul class="simple"><li>Start porting subsymbol.org to Nikola, so that I can have better control over the structure of the site. In particular, I want to let logging posts like these accumulate in the background, while keeping the front page clean and more professional.</li></ul>
+</div>
+</div>
+<div class="section" id="actual">
+<h3>Actual</h3>
+<div class="section" id="id1">
+<h4>Protagonist</h4>
+<ul class="simple">
+<li>Wrote a function that finds all places in the tagsystem where a given file is tagged. This will be used to discover when a file has no more tags and can therefore be removed from the truenames index. It can be run by the repairer, but it can also be run whenever a file is untagged, to check for the case that there are no more tags on the file.</li>
+<li>Put this function into <cite>untag</cite> as just described.</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h4>Blogging</h4>
+<ul class="simple"><li>Looked at the Nikola docs, tried out the demo, and figured out how to port subsymbol using the import_blogger plugin.<ul><li>This was really straightforward and easy.  Before I can complete it, though, I need to do two things:<ul>
+<li>Rearrange the imported sections a little to reflect that I want a site, not a blog.</li>
+<li>Get new hosting set up, which I'm not really sure how to do.</li>
+</ul>
+</li></ul>
+</li></ul>
+</div>
+</div>
+</div>
+    </div>
+</article>
+</div>
+        <!--End of body content-->
+
+        <footer>
+            Contents © 2014         <a href="mailto:amber@cs.toronto.edu">L. Amber Wilcox-O'Hearn</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../assets/js/jquery.min.js"></script><script src="../assets/js/bootstrap.min.js"></script><script src="../assets/js/jquery.colorbox-min.js"></script><!-- Social buttons --><div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
+<a class="addthis_button_more">Share</a>
+<ul>
+<li>
+<a class="addthis_button_facebook"></a>
+</li>
+<li>
+<a class="addthis_button_google_plusone_share"></a>
+</li>
+<li>
+<a class="addthis_button_linkedin"></a>
+</li>
+<li>
+<a class="addthis_button_twitter"></a>
+</li>
+</ul>
+</div>
+<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script><!-- End of social buttons --><script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+</body>
+</html>
