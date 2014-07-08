@@ -7,8 +7,8 @@
 .. type: text
 
 I was having two problems with the setup of this website.
-First, I wanted to factor out `the experiment in vulnerability and transparency that I have been doing by keep a log of my daily goals, progress, and insights at Hacker School <http://www.subsymbol.org.journal/>`_.
-I like the experiment, but I wanted it to be separate from `articles I write more deliberately <http://wwww.subsymbol.org/blog/>`_.
+First, I wanted to factor out `the experiment in vulnerability and transparency that I have been doing by keep a log of my daily goals, progress, and insights at Hacker School <http://www.subsymbol.org/journal/>`_.
+I like the experiment, but I wanted it to be separate from `articles I write more deliberately <http://www.subsymbol.org/blog/>`_.
 
 The second problem was that I wanted to migrate from Blogger.
 
@@ -58,7 +58,7 @@ Being a programmer and not a designer, I can't articulate it much more precisely
 These days, the sites look fine to me.
 The docs are well written, the code looks good, and `people whose opinions about such things I respect <http://www.lothar.com/blog/>`_ use it.
 
-In the meantime, I also found out about `Nikola <http://getnikola.com/>`_,
+In the meantime, I also found out about Nikola,
 which was recommended by `another respected coder-friend <https://github.com/punchagan>`_.
 
 I decided to use Nikola, in part because it has a plugin to import from Blogger, and in part because the above-mentioned friend offered to help me.
