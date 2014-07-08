@@ -1,7 +1,7 @@
 .. title: Hacker School, Monday, July 7th, 2014
 .. slug: hacker-school-monday-july-7th-2014
 .. date: 2014-07-08 03:02:13 UTC
-.. tags: mathjax
+.. tags: mathjax, hacker school, checkin
 .. link: 
 .. description: 
 .. type: text
