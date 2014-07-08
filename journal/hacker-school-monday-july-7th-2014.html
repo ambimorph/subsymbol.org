@@ -18,13 +18,6 @@
 I imported it to Nikola, a static site generator, and spent many hours figuring out how to configure it to have both a main blog f">
 <meta name="og:site_name" content="subsymbol.org">
 <meta name="og:type" content="article">
-<meta name="author" content="L. Amber Wilcox-O'Hearn">
-<meta name="og:title" content="Hacker School, Monday, July 7th, 2014">
-<meta name="og:url" content="http://www.subsymbol.org/journal/hacker-school-monday-july-7th-2014.html">
-<meta name="og:description" content="I spent most of the weekend working on moving my blog off of Blogger.
-I imported it to Nikola, a static site generator, and spent many hours figuring out how to configure it to have both a main blog f">
-<meta name="og:site_name" content="subsymbol.org">
-<meta name="og:type" content="article">
 </head>
 <body>
 
@@ -82,11 +75,24 @@ I imported it to Nikola, a static site generator, and spent many hours figuring 
         <div class="row">
             
             
-<article class="storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Hacker School, Monday, July 7th, 2014</a></h1>
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Hacker School, Monday, July 7th, 2014</a></h1>
 
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">L. Amber Wilcox-O'Hearn</span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2014-07-08T03:02:13+00:00" itemprop="datePublished" title="Publication date">2014-07-08 03:02</time></a></p>
+                <p class="commentline">
+        
+    <a href="hacker-school-monday-july-7th-2014.html#disqus_thread" data-disqus-identifier="cache/journal/hacker-school-monday-july-7th-2014.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="hacker-school-monday-july-7th-2014.rst" id="sourcelink">Source</a></p>
+
+        </div>
         
 
-    </header><div itemprop="articleBody text">
+    </header><div class="e-content entry-content" itemprop="articleBody text">
     <p>I spent most of the weekend working on moving my blog off of Blogger.
 I imported it to Nikola, a static site generator, and spent many hours figuring out how to configure it to have both a main blog for articles, and a journal blog in the background.
 I also had to learn how to host it on GitHub.
@@ -101,8 +107,52 @@ I don't find the <em>concept</em> confusing, but the name for it makes it hard f
 A <em>random variable</em> is just a function that maps a set to a probability distribution.
 A <em>randomised algorithm</em> is defined here in essentially the same way.</p>
 <p>I guess I would prefer if the variable were abstracted away entirely.</p>
+<div class="section" id="update">
+<h2>Update</h2>
+<p>The above statement "A <em>random variable</em> is just a function that maps a set to a probability distribution." is not technically correct.</p>
+<p>A random variable is a function from the universe to some outcome set.
+However, the random variable implicitly <em>induces</em> a probability distribution on the outcome set based on the distribution of the outputs given a uniform distribution on the inputs.
+That is, if the random variable is <span class="math">\(X:U \to V\)</span>
+, then the probability distribution that \( X \) induces on \( V \) can be described by a function
+<span class="math">\(F: V \to R\)</span>
+, where <span class="math">\(F(v) = P(X^{-1}(v))\)</span>
+.
+This is usually written as <span class="math">\(P(X=v)\)</span>
+.</p>
+<p>The idea I was trying to convey was that the <cite>F</cite> form of the function is a kind of pointfree function, that feels more intuitive to me.
+Something like this:</p>
+<p><span class="math">\(F: V \to R = lambda X: P(X^{-1}(v))\)</span>
+</p>
+<p>I'm not sure how much sense this makes, either.
+I confess I'm a bit underslept.</p>
+</div>
     </div>
-</article>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../categories/mathjax.html" rel="tag">mathjax</a></li>
+        </ul></nav></aside><section class="comments"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="subsymbolorg",
+            disqus_url="http://www.subsymbol.org/journal/hacker-school-monday-july-7th-2014.html",
+        disqus_title="Hacker School, Monday, July 7th, 2014",
+        disqus_identifier="cache/journal/hacker-school-monday-july-7th-2014.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section><script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});</script><script src="../assets/js/mathjax.js"></script></article><script>var disqus_shortname="subsymbolorg";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
 </div>
         <!--End of body content-->
 
