@@ -1,7 +1,7 @@
 .. title: Moving my site off of Blogger
 .. slug: moving-my-site-off-of-blogger
 .. date: 2014-07-08 16:48:18 UTC
-.. tags: 
+.. tags: blogging, nikola, blogger
 .. link: 
 .. description: 
 .. type: text

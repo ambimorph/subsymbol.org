@@ -9,6 +9,14 @@
   <lastmod>2014-07-08</lastmod>
  </sitemap>
  <sitemap>
+  <loc>http://www.subsymbol.org/categories/blogger.xml</loc>
+  <lastmod>2014-07-08</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://www.subsymbol.org/categories/blogging.xml</loc>
+  <lastmod>2014-07-08</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>http://www.subsymbol.org/categories/computational-linguistics.xml</loc>
   <lastmod>2014-07-08</lastmod>
  </sitemap>
@@ -26,6 +34,10 @@
  </sitemap>
  <sitemap>
   <loc>http://www.subsymbol.org/categories/linux.xml</loc>
+  <lastmod>2014-07-08</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://www.subsymbol.org/categories/nikola.xml</loc>
   <lastmod>2014-07-08</lastmod>
  </sitemap>
  <sitemap>
