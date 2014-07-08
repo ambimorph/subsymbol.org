@@ -143,6 +143,7 @@ But my server doesn't redirect "default.html", so I also added more manual redir
 
 .. code::
 
+  ("blog/index.html", "http://www.subsymbol.org/blog/default.html"),
   ("journal/index.html", "http://www.subsymbol.org/journal/default.html"),
   ("2014/index.html", "2014/default.html"),
   ("2013/index.html", "2013/default.html"),

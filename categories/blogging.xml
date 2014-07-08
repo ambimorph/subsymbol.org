@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>subsymbol.org (blogging)</title><link>http://www.subsymbol.org/</link><description></description><language>en</language><lastBuildDate>Tue, 08 Jul 2014 13:32:33 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>How I transformed a Blogger blog to a Nikola two-blog website</title><link>http://www.subsymbol.org/posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;In the last post I described why I wanted to move my blog, and what went into my choices.
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>subsymbol.org (blogging)</title><link>http://www.subsymbol.org/</link><description></description><language>en</language><lastBuildDate>Tue, 08 Jul 2014 13:37:00 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>How I transformed a Blogger blog to a Nikola two-blog website</title><link>http://www.subsymbol.org/posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;In the last post I described why I wanted to move my blog, and what went into my choices.
 My goal in exporting my site from Blogger to Nikola was to separate my content into two separate blogs on a single site:
 one which is the primary blog, and the other which resides in the background.
 I wanted them to be archived separately.
@@ -100,6 +100,7 @@ INDEX_FILE = "default.html"
 &lt;/pre&gt;
 &lt;p&gt;But my server doesn't redirect "default.html", so I also added more manual redirects, for the journal, and also for the archives, which also use the &lt;cite&gt;INDEX_FILE&lt;/cite&gt; variable.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
+("blog/index.html", "http://www.subsymbol.org/blog/default.html"),
 ("journal/index.html", "http://www.subsymbol.org/journal/default.html"),
 ("2014/index.html", "2014/default.html"),
 ("2013/index.html", "2013/default.html"),
