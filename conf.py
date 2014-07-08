@@ -165,9 +165,9 @@ POSTS = [
           ("posts/*.html", "posts", "post.tmpl"),
         ]
 PAGES = [
+          ("journal/*.rst", "journal", "story.tmpl"),
           ("pages/*.rst", "", "story.tmpl"),
           ("posts/*.html", "posts", "post.tmpl"),
-          ("journal/*.rst", "journal", "story.tmpl"),
           ("journal/*.html", "journal", "story.tmpl"),
         ]
 
