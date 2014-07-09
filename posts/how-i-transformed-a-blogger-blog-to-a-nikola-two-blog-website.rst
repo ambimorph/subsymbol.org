@@ -133,21 +133,11 @@ To add indexing I had to add to conf.py:
    STORY_INDEX = True
 
 But again, this created a conflict with multiple files called "index.html" trying to go in the same folder.
-So I also had to change the name of the index.  I chose "default.html"
+So I also had to change the name of the index.  I chose "index.htm", so that the server would automatically redirect.
 
 .. code::
 
-   INDEX_FILE = "default.html"
-
-But my server doesn't redirect "default.html", so I also added more manual redirects, for the journal, and also for the archives, which also use the `INDEX_FILE` variable.
-
-.. code::
-
-  ("blog/index.html", "http://www.subsymbol.org/blog/default.html"),
-  ("journal/index.html", "http://www.subsymbol.org/journal/default.html"),
-  ("2014/index.html", "2014/default.html"),
-  ("2013/index.html", "2013/default.html"),
-  ("2012/index.html", "2012/default.html"),
+   INDEX_FILE = "index.htm"
 
 Finally, I wanted the journal to be findable without knowing the directory name "journal", so I updated the navigation links:
 
@@ -156,9 +146,9 @@ Finally, I wanted the journal to be findable without knowing the directory name 
    NAVIGATION_LINKS = {
     DEFAULT_LANG: (
         ("/archive.html", "Archive"),
-        ("/categories/default.html", "Tags"),
-        ("/blog/default.html", "Blog"),
-        ("/journal/default.html", "Journal"),
+        ("/categories/", "Tags"),
+        ("/blog/", "Blog"),
+        ("/journal/", "Journal"),
         ("/rss.xml", "RSS feed"),
      ),
     }

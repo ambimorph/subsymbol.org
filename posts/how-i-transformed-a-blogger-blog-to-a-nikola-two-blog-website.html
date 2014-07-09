@@ -196,26 +196,18 @@ That meant that if I knew the URL, I could go to the article, but a visitor to t
 STORY_INDEX = True
 </pre>
 <p>But again, this created a conflict with multiple files called "index.html" trying to go in the same folder.
-So I also had to change the name of the index.  I chose "default.html"</p>
+So I also had to change the name of the index.  I chose "index.htm", so that the server would automatically redirect.</p>
 <pre class="code literal-block">
-INDEX_FILE = "default.html"
-</pre>
-<p>But my server doesn't redirect "default.html", so I also added more manual redirects, for the journal, and also for the archives, which also use the <cite>INDEX_FILE</cite> variable.</p>
-<pre class="code literal-block">
-("blog/index.html", "http://www.subsymbol.org/blog/default.html"),
-("journal/index.html", "http://www.subsymbol.org/journal/default.html"),
-("2014/index.html", "2014/default.html"),
-("2013/index.html", "2013/default.html"),
-("2012/index.html", "2012/default.html"),
+INDEX_FILE = "index.htm"
 </pre>
 <p>Finally, I wanted the journal to be findable without knowing the directory name "journal", so I updated the navigation links:</p>
 <pre class="code literal-block">
 NAVIGATION_LINKS = {
  DEFAULT_LANG: (
      ("/archive.html", "Archive"),
-     ("/categories/default.html", "Tags"),
-     ("/blog/default.html", "Blog"),
-     ("/journal/default.html", "Journal"),
+     ("/categories/", "Tags"),
+     ("/blog/", "Blog"),
+     ("/journal/", "Journal"),
      ("/rss.xml", "RSS feed"),
   ),
  }
