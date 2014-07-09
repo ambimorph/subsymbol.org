@@ -94,9 +94,9 @@ TRANSLATIONS_PATTERN = "{path}.{lang}.{ext}"
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
         ("/archive.html", "Archive"),
-        ("/categories/default.html", "Tags"),
-        ("/blog/default.html", "Blog"),
-        ("/journal/default.html", "Journal"),
+        ("/categories/", "Tags"),
+        ("/blog/", "Blog"),
+        ("/journal/", "Journal"),
         ("/rss.xml", "RSS feed"),
     ),
 }
@@ -269,11 +269,6 @@ INDEX_PATH = "blog"
 #
 # If you don't need any of these, just set to []
 REDIRECTIONS = [
-                 ("2014/index.html", "2014/default.html"),
-                 ("2013/index.html", "2013/default.html"),
-                 ("2012/index.html", "2012/default.html"),
-                 ("journal/index.html", "http://www.subsymbol.org/journal/default.html"),
-                 ("blog/index.html", "http://www.subsymbol.org/blog/default.html"),
                  ("2014/06/hacker-school-tuesday-june-24th-2014.html", "http://www.subsymbol.org/journal/hacker-school-tuesday-june-24th-2014.html"),
 		 ("2012/09/xmonad-on-unity-1204.html", "http://www.subsymbol.org/journal/201209xmonad-on-unity-1204.html"),
                  ("2014/06/hacker-school-saturday-june-28th-2014.html", "http://www.subsymbol.org/journal/hacker-school-saturday-june-28th-2014.html"),
@@ -519,7 +514,7 @@ STORY_INDEX = True
 # What file should be used for directory indexes?
 # Defaults to index.html
 # Common other alternatives: default.html for IIS, index.php
-INDEX_FILE = "default.html"
+INDEX_FILE = "index.htm"
 
 # If a link ends in /index.html,  drop the index.html part.
 # http://mysite/foo/bar/index.html => http://mysite/foo/bar/
