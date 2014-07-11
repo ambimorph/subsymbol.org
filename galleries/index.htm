@@ -10,7 +10,7 @@
 <link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
-<link rel="canonical" href="http://www.subsymbol.org/galleries/index.html">
+<link rel="canonical" href="http://www.subsymbol.org/galleries/index.htm">
 <!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><style type="text/css">
     .image-block {
         display: inline-block;
@@ -42,10 +42,16 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
 <li>
-<a href="../archive.html">Archives</a>
+<a href="../archive.html">Archive</a>
                 </li>
 <li>
-<a href="../categories/index.html">Tags</a>
+<a href="../categories/">Tags</a>
+                </li>
+<li>
+<a href="../blog/">Blog</a>
+                </li>
+<li>
+<a href="../journal/">Journal</a>
                 </li>
 <li>
 <a href="../rss.xml">RSS feed</a>
@@ -70,12 +76,17 @@
 </ul></nav><h1>galleries</h1>
 
 <div id="gallery_container"></div>
+<noscript>
+<ul class="thumbnails"><li>
+<a href="name_triangle.png" class="thumbnail image-reference" title="Name triangle">
+            <img src="name_triangle.thumbnail.png" alt="Name triangle"></a>
+</li></ul>
+</noscript>
 
         </div>
         <!--End of body content-->
 
-        <footer>
-            Contents © 2014         <a href="mailto:amber@cs.toronto.edu">L. Amber Wilcox-O'Hearn</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+        <footer><br><br>Contents © 2014         <a href="mailto:amber@cs.toronto.edu">L. Amber Wilcox-O'Hearn</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
             
         </footer>
 </div>
@@ -100,7 +111,7 @@
 </ul>
 </div>
 <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script><!-- End of social buttons --><script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><script src="../assets/js/flowr.plugin.js"></script><script>
-jsonContent = [];
+jsonContent = [{"url": "name_triangle.png", "title": "Name triangle", "size": {"h": 158, "w": 180}, "url_thumb": "name_triangle.thumbnail.png"}];
 $("#gallery_container").flowr({
         data : jsonContent,
         height : 180*.6,

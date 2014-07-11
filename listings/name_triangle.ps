@@ -1,0 +1,141 @@
+
+/nodedict 3 dict def
+/node
+{ 
+    nodedict begin
+        /radius exch def
+        /y exch def /x exch def
+        newpath 
+        x y radius 0 360 arc 
+    end
+} def
+
+/arrowhead
+    {
+	/qx exch def
+	/py exch def
+	/px exch def
+	/x node_radius 1 py neg px neg div dup mul add sqrt div qx add def
+	/y node_radius 1 px neg py neg div dup mul add sqrt div def
+	x y 5 node fill
+    } def
+
+/arrowdict 17 dict def
+arrowdict begin
+    /mtrx matrix def
+end
+/arrow
+    { arrowdict begin
+      /tipradius exch def  % How much arrow length to remove from tip
+      /tailradius exch def  % How much arrow length to remove from tail
+      /headlength exch def  
+      /halfheadwidth exch 2 div def
+      /tipy exch def /tipx exch def
+      /taily exch def /tailx exch def
+
+      /dx tipx tailx sub def
+      /dy tipy taily sub def
+      /arrowlength dx dx mul dy dy mul add sqrt tipradius sub def
+      /base arrowlength headlength sub def
+      /angle dy dx atan def
+
+      /savematrix mtrx currentmatrix def  % Save current coordinate system
+
+      tailx taily translate
+      angle rotate
+      newpath
+      tailradius 0 moveto
+      arrowlength 0 lineto
+      base halfheadwidth moveto
+      arrowlength 0 lineto
+      base halfheadwidth neg lineto
+
+      savematrix setmatrix
+
+    end
+    } def
+
+/draw_labelled_node
+    {
+      /n1y exch def /n1x exch def
+      /radius exch def
+      /label exch def
+      0 0 0 setrgbcolor 
+      n1x n1y radius node stroke
+      
+      /point_size 8 def
+      /FreeSans findfont
+      point_size scalefont setfont
+      /label_width point_size label length mul def
+      n1x label_width 4 div sub n1y moveto
+%      n1x n1y moveto
+      label show
+	
+    } def
+
+
+/doBorder %Print card’s border
+{ 
+    .55 .55 .55 setrgbcolor
+    %.95 .95 .95 setrgbcolor
+    0 top moveto
+    width top lineto 
+    width top height sub lineto 
+    0 top height sub lineto
+    closepath
+    stroke 
+} def
+
+/triangle_points % centre height -- [ right left top ]
+{
+   2 div dup %  
+    
+} def
+
+
+%/top 792 def
+%/height 144 def
+%/left_edge 0 def
+%/width 252 def
+%doBorder
+
+%/up 1 def
+%/down -1 def
+%/node_radius 16 def
+
+
+%(name) 16 width 2 div left_edge sub top height 2 div sub draw_labelled_node
+
+/length 200 def
+/radius 30 def
+
+0 0 0 setrgbcolor
+200 200 translate
+/x1 length 2 div def
+/y1 length radius add def
+/x2 0 def
+/y2 radius def
+/x3 length radius add def
+/y3 radius def
+
+x1 y1 radius node stroke
+x2 y2 radius node stroke
+x3 y3 radius node stroke
+
+x1 y1 x2 y2 radius radius radius radius  arrow stroke
+x1 y1 x3 y3 radius radius radius radius  arrow stroke
+x2 y2 x3 y3 radius radius radius radius  arrow stroke
+
+
+/FreeSans findfont
+14 scalefont setfont
+x1 14 sub y1 5 sub moveto
+(path) show
+x2 25 sub y2 5 sub moveto
+(address) show
+x3 25 sub y3 5 sub moveto
+(contents) show
+
+
+
+

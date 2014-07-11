@@ -1,0 +1,61 @@
+.. slideconf::
+   :autoslides: True
+   :theme: single-level
+
+.. role:: red
+.. role:: blue
+
+
+========================
+ Addresses and Contents
+========================
+
+What are we naming?
+===================
+
+* Protagonist seeks to replace naming from a hierarchy-based system, to a category-based system.
+* Fundamental issue: 
+
+  **We conflate addresses with contents when naming things.**
+
+* Which do we want to name?
+
+Citations
+=========
+
+* Citations of books or research papers are to *contents*.
+
+  * They have content-based IDs, such as ISBNs.
+
+* URLs are *addresses*.
+
+  * If you want to cite them in your research, they need to have timestamps to guarantee uniqueness.
+
+Pointers
+========
+
+* Many of you have probably had a bug once confusing a pointer with its value.
+
+Filesystem
+==========
+
+Relationships
+
+.. image:: https://lh5.googleusercontent.com/-0dFaK3jKirQ/U78BnodwrUI/AAAAAAAACPs/mGzaDJfLZk4/w426-h376-no/name_triangle.png
+   
+
+Tahoe-LAFS
+==========
+
+* Immutable files: the reference to the file is content based for integrity and deduplication.
+* Mutable files: the reference to the file specifies a "slot".
+
+Protagonist
+===========
+
+* Tags should be applicable to addresses (inodes) or contents (by hash)
+* Since system calls operate on path names, results should be in paths in either case.
+
+
+
+

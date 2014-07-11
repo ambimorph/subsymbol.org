@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>subsymbol.org (storage)</title><link>http://www.subsymbol.org/</link><description></description><language>en</language><lastBuildDate>Thu, 10 Jul 2014 21:04:41 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Addresses and Contents</title><link>http://www.subsymbol.org/posts/addresses-and-contents.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div class="section" id="what-are-we-naming"&gt;
+&lt;h2&gt;What are we naming?&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The name of the song is called "Haddocks' Eyes."'&lt;/p&gt;
+&lt;p&gt;'Oh, that's the name of the song, is it?' Alice said, trying to feel interested.&lt;/p&gt;
+&lt;p&gt;'No, you don't understand,' the Knight said, looking a little vexed. 'That's what the name is called. The name really is "The Aged Aged Man."'&lt;/p&gt;
+&lt;p&gt;'Then I ought to have said "That's what the song is called"?' Alice corrected herself.&lt;/p&gt;
+&lt;p&gt;'No, you oughtn't: that's quite another thing! The song is called "Ways and Means": but that's only what it's called, you know!'&lt;/p&gt;
+&lt;p&gt;'Well, what is the song, then?' said Alice, who was by this time completely bewildered.&lt;/p&gt;
+&lt;p&gt;'I was coming to that,' the Knight said. 'The song really is "A-sitting On A Gate": and the tune's my own invention.'&lt;/p&gt;
+&lt;p class="attribution"&gt;—&lt;a class="reference external" href="http://www.alice-in-wonderland.net/books/2chpt8.html"&gt;Alice Through the Looking Glass&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="mutability-applies-to-content"&gt;
+&lt;h2&gt;Mutability applies to content&lt;/h2&gt;
+&lt;p&gt;I have been designing a system that seeks to change the way we name our data:
+instead of naming the hierarchical way, using directories (or folders), it will name the category way, using tags.
+Because the system needed an ID for every file it tagged, and perhaps for no other good reason than that I am fond of content-based hashing,
+I chose to use a content-based hash for the IDs.
+However, this ID is not a good match for mutable files.
+I had been putting off thinking about how to handle mutable files, figuring I could add that functionality later.&lt;/p&gt;
+&lt;p&gt;When I was finally ready to confront mutable files, I realised that I was running up against a fundamental issue:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="people-often-conflate-addresses-with-contents-when-naming-things"&gt;
+&lt;h2&gt;People often conflate addresses with contents when naming things&lt;/h2&gt;
+&lt;p&gt;Take for example the problem of citation.
+If you cite a book or a research paper, then what you are citing is the contents.
+When we first started wanting to cite URLs, we treated them as though we were addressing content, but we aren't.
+URLs point to content that can change.&lt;/p&gt;
+&lt;p&gt;Of course, this issue shows up in many areas of computer science whenever we use references.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="filesystems"&gt;
+&lt;h2&gt;Filesystems&lt;/h2&gt;
+&lt;p&gt;In a filesystem, we usually refer to files by their paths.
+The relationships between paths, addresses (inodes), and contents are shown here:&lt;/p&gt;
+&lt;img alt="https://lh5.googleusercontent.com/-0dFaK3jKirQ/U78BnodwrUI/AAAAAAAACPs/mGzaDJfLZk4/w426-h376-no/name_triangle.png" src="https://lh5.googleusercontent.com/-0dFaK3jKirQ/U78BnodwrUI/AAAAAAAACPs/mGzaDJfLZk4/w426-h376-no/name_triangle.png"&gt;&lt;p&gt;That is, a pathname refers to a single inode, but not necessarily vice versa.
+An inode has exactly one set of contents, but those contents may be replicated in many inodes in the system.
+I didn't recognise at first that the problem of mutable and immutable files is the distinction between addresses and contents.&lt;/p&gt;
+&lt;p&gt;As far as file systems go, I don't know of any that make the distinction between contents and addresses, except Tahoe-LAFS.
+The reference to an immutable file in Tahoe is content based for integrity and deduplication.
+The reference to a mutable file just specifies a unique "slot".&lt;/p&gt;
+&lt;p&gt;I've decide to follow this paradigm in Protagonist.
+Both addresses and contents should be eligible for tagging.
+Tagging the box will use the inode.
+Tagging the contents will use the hash.&lt;/p&gt;
+&lt;!-- The fact that we make extensive use of links in our systems attests the fact that hierarchies are not a great model for naming things. --&gt;
+&lt;/div&gt;</description><category>cs</category><category>linguistics</category><category>names</category><category>storage</category><guid>http://www.subsymbol.org/posts/addresses-and-contents.html</guid><pubDate>Wed, 09 Jul 2014 21:42:03 GMT</pubDate></item></channel></rss>
