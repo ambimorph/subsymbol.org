@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Posts about computational linguistics | subsymbol.org</title>
+<title>Posts about lsa | subsymbol.org</title>
 <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/code.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
-<link rel="alternate" type="application/rss+xml" title="RSS for tag computational linguistics (en)" href="computational-linguistics.xml">
-<link rel="canonical" href="http://www.subsymbol.org/categories/computational-linguistics.html">
+<link rel="alternate" type="application/rss+xml" title="RSS for tag lsa (en)" href="lsa.xml">
+<link rel="canonical" href="http://www.subsymbol.org/categories/lsa.html">
 <!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
 </head>
 <body>
@@ -115,37 +115,6 @@ Even just within semantics, a morpheme may carry more than one meaning that cann
 For example, "uncle" is male, and while we could assign "uncle" a set of semantic features in a computer system in order to reason about its meaning, those features are only implicit in English.
 In <a class="reference external" href="http://en.wikipedia.org/wiki/Logogram">logographic writing systems</a> this is all the more apparent.</p>
 <p>This simultaneity of features in an apparently linear system is, to me, one of the most interesting aspects of language, and one of the reasons computational linguistics is difficult and rewarding.</p>
-    </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/201303malaprop-v010.html" class="u-url">Malaprop v0.1.0</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">L. Amber Wilcox-O'Hearn</span></p>
-            <p class="dateline"><a href="../posts/201303malaprop-v010.html" rel="bookmark"><time class="published dt-published" datetime="2013-03-07T22:05:00+00:00" itemprop="datePublished" title="Publication date">2013-03-07 22:05</time></a></p>
-                <p class="commentline">
-        
-    <a href="../posts/201303malaprop-v010.html#disqus_thread" data-disqus-identifier="cache/posts/201303malaprop-v010.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <blockquote>"...she's as headstrong as an allegory on the banks of Nile." </blockquote>
-<p align="right">— Mrs. Malaprop, in Sheridan's <u>The Rivals</u>   </p> <hr>
-<p>As a contribution to the adversarial evaluation paradigm, I have released my first version of <a href="https://github.com/lamber/malaprop">Malaprop</a> <a href="../posts/201303malaprop-v010.html">⁰</a>, a project involving transformations of natural text that result in some words being replaced by real-word near neighbours.  </p>
-<p></p>
-<h3>The Adversarial Evaluation Model for Natural Language Processing</h3>
-<p>Noah Smith recently proposed a <a href="http://arxiv.org/abs/1207.0245">framework for evaluating linguistic models based on adversarial roles</a> <a href="../posts/201303malaprop-v010.html">¹</a>. In essence, if you have a sufficiently good linguistic model, you should be able to differentiate between a sample of natural language and an artificially altered sample. An entity that performs this differentiation is called a <i>Claude</i>. At the same time, having a good linguistic model should also enable you to transform a sample of natural language in a way that preserves its linguistic properties; that is, that makes it hard for a Claude to tell which was the original. An entity that performs this transformation is called a <i>Zellig</i>. These tasks are complementary. </p>
-<p>This framework is reminiscent of the <a href="http://en.wikipedia.org/wiki/Ciphertext_indistinguishability">cryptographic indistinguishability property</a>, in which an attacker chooses two plaintexts to give to an Oracle. The Oracle chooses one and encrypts it. The encryption scheme is considered secure if the attacker can not guess at better than chance which of the two plaintexts corresponds to the Oracle's ciphertext. </p>
-<p>Even though encryption schemes are constructed mathematically, questions of security are always empirical. The notion of Provable Security is regarded with skepticism (at least by some); schemes are considered tentatively secure based on withstanding attempts to be broken. Similarly, it would take an array of independent Claude's all unable to guess at better than chance to support the claim that a given Zellig had hit upon a truly linguistic-structure-preserving transformation. Likewise, if an array of independent Zelligs can't fool a given Claude, that would support a strong claim about his ability to recognize natural language. </p>
-<p></p>
-<h3>A Real-Word Error Corpus</h3>
-<p>In this spirit, I've just released Malaprop v0.1.0.  It creates a corpus of real-word errors embedded in text. It was designed to work with <a href="http://www.psych.ualberta.ca/~westburylab/downloads/westburylab.wikicorp.download.html">Westbury Lab's Wikipedia corpora</a>, but can be used with any text. </p>
-<p>The code acts as a noisy channel, randomly inserting <a href="http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance">Damerau-Levenshtein</a> errors at the character level as a word is passed through. If the resulting string is a <i>real word</i> — that is, a sufficiently frequent word in the original corpus — the new word replaces the original. </p>
-<p>I intend to use this corpus to evaluate algorithms that correct orthographical errors. However, it could be used quite generally as just one Zellig in what I hope becomes a large body of such resources.   </p>
-<hr>
-<p></p>
-<h3>Notes </h3>
-<p><a name="%E2%81%B0">⁰</a>The term malapropism was first used in the context of the computational linguistics task of real-word error detection and correction by David St-Onge in 1995 in his Master's thesis, <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.55.596">Detecting and Correcting Malapropisms with Lexical Chains </a>.  </p>
-<p><a name="%C2%B9">¹</a><a href="http://arxiv.org/abs/1207.0245">Noah A. Smith. Adversarial Evaluation for Models of Natural Language. CoRR abs/1207.0245 2012 </a></p>
     </div>
     </article>
 </div>

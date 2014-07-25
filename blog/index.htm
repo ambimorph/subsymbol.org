@@ -64,7 +64,59 @@
             
             
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/productively-lost.html" class="u-url">Productively Lost</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/the-grammaticality-continuum.html" class="u-url">The Grammaticality Continuum</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">L. Amber Wilcox-O'Hearn</span></p>
+            <p class="dateline"><a href="../posts/the-grammaticality-continuum.html" rel="bookmark"><time class="published dt-published" datetime="2014-07-25T15:20:07+00:00" itemprop="datePublished" title="Publication date">2014-07-25 15:20</time></a></p>
+                <p class="commentline">
+        
+    <a href="../posts/the-grammaticality-continuum.html#disqus_thread" data-disqus-identifier="cache/posts/the-grammaticality-continuum.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>Yesterday I was thinking about implementing <em>Latent Dirichlet Allocation</em> (LDA).
+LDA is used for <em>topic modelling</em> — inducing a set of topics, such that a set of natural language documents can be represented by a mixture of those topics.
+This is then used to estimate document similarity, and related information retrieval tasks.</p>
+<p>The first step in such a project is to <em>tokenise</em> — to break up the text into words, removing attached punctuation, and regularising things like capitalisation.
+When looking at the words in a document for the purposes of topic modelling,
+it seems appropriate to merge word forms with the same root, or stem, instead of having each form of the "same" word represented individually.
+The canonical way to tokenise for topic modelling involves stemming, and it also involves removing <em>stop words</em> — words like "the", and "and" that are more syntactic than semantic.</p>
+<p>I am not entirely convinced that this latter is appropriate.
+The reason is that the grammatically of words exists on a continuum.
+Even the word "the" carries semantic weight, though its main function is probably to signal the boundaries of syntactic chunks.</p>
+<hr class="docutils">
+<blockquote>
+<p>My favourite example of the syntactic function of "the" comes from <a class="reference external" href="http://en.wikipedia.org/wiki/Petr_Beckmann">Petr Beckmann</a> 's book <em>The structure of language: a new approach</em>, which has profoundly influenced me since my undergraduate days.
+In it he shows how the following headline is disambiguated by the placement of "the" before or after "biting":</p>
+<p>"Man Refuses to Give up Biting Dog"</p>
+</blockquote>
+<hr class="docutils">
+<p>A couple of years ago at <a class="reference external" href="http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=18614">the NAACL conference</a>,
+there was a session where a few prominent computational linguists presented their favourite papers from the past.
+Eugene Charniak presented Kenneth Church's 2000 COLING paper: <em>Empirical Estimates of Adaptation:</em>
+<em>The chance of Two Noriegas is closer to</em> <span class="math">\(p/2\)</span>
+ <em>than</em> <span class="math">\(p^2\)</span>
+.
+It introduced a measure of adaptation for language models based on how much a recent occurrence of a word increases its tendency to occur beyond what is already expected.</p>
+<p>Charniak used this paper as a background with which to present a new idea about the way the prior likelihood of a word predicts its future occurrences.
+He divided words into sets according to how well their priors predicted them.
+Stop words were most likely to be true to priors, and content words least, with verbs at the end of the spectrum.</p>
+<p>At the time I took this as evidence for the stratification of grammaticality.
+Because of this stratification, treating stop words as a special set appears arbitrary and oversimplified.
+I expect that leaving stop words in a topic model would simply result in having some topics that are distributed more evenly throughout the corpus of documents.
+These topics would discriminate among documents poorly.
+However, this result should also be part of a continuum.
+It may be useful to account for the distribution of topics when using them in LDA, in a way analogous to <a class="reference external" href="http://en.wikipedia.org/wiki/Tf%E2%80%93idf">inverse document frequency</a> in <a class="reference external" href="http://en.wikipedia.org/wiki/Latent_semantic_analysis">latent semantic analysis</a>.</p>
+<hr class="docutils">
+<p>More generally, I am interested in the phenomenon that words vary in their semantic and syntactic load.
+Even just within semantics, a morpheme may carry more than one meaning that cannot be decomposed linguistically.
+For example, "uncle" is male, and while we could assign "uncle" a set of semantic features in a computer system in order to reason about its meaning, those features are only implicit in English.
+In <a class="reference external" href="http://en.wikipedia.org/wiki/Logogram">logographic writing systems</a> this is all the more apparent.</p>
+<p>This simultaneity of features in an apparently linear system is, to me, one of the most interesting aspects of language, and one of the reasons computational linguistics is difficult and rewarding.</p>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/productively-lost.html" class="u-url">Productively Lost</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn">L. Amber Wilcox-O'Hearn</span></p>
             <p class="dateline"><a href="../posts/productively-lost.html" rel="bookmark"><time class="published dt-published" datetime="2014-07-23T15:21:37+00:00" itemprop="datePublished" title="Publication date">2014-07-23 15:21</time></a></p>
@@ -563,34 +615,6 @@ which was recommended by <a class="reference external" href="https://github.com/
 <p><a name="%E2%81%B0">⁰</a>The term malapropism was first used in the context of the computational linguistics task of real-word error detection and correction by David St-Onge in 1995 in his Master's thesis, <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.55.596">Detecting and Correcting Malapropisms with Lexical Chains </a>.  </p>
 <p><a name="%C2%B9">¹</a><a href="http://arxiv.org/abs/1207.0245">Noah A. Smith. Adversarial Evaluation for Models of Natural Language. CoRR abs/1207.0245 2012 </a></p>
     </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/201301publishing-paper-without-code-is-not.html" class="u-url">Publishing a Paper without the Code is Not Enough</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">L. Amber Wilcox-O'Hearn</span></p>
-            <p class="dateline"><a href="../posts/201301publishing-paper-without-code-is-not.html" rel="bookmark"><time class="published dt-published" datetime="2013-01-18T23:11:00+00:00" itemprop="datePublished" title="Publication date">2013-01-18 23:11</time></a></p>
-                <p class="commentline">
-        
-    <a href="../posts/201301publishing-paper-without-code-is-not.html#disqus_thread" data-disqus-identifier="cache/posts/201301publishing-paper-without-code-is-not.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <h3>Shoulders to stand on</h3>
-<p>Here are a couple of anecdotes demonstrating that without access to the implementation of an experiment, scientific progress is halted. </p>
-<ul>
-<li>When I first began my master's degree, I made serious starts on a few ideas that eventually were blocked for lack of access of one kind or another. In one case I was unable to make progress because my idea involved building on the work of another who would not release his code to me. <p>(To give the benefit of the doubt, I now assume that the code was sloppy, missing pieces, or poorly documented, and he was simply embarrassed. Or perhaps there was some other valid reason. I don't know; he never gave one.) </p>
-<p>Regardless of his motivation, this was a suboptimal outcome for him as well as for me, because his work could have been extended and improved at that time, but it was not. I had already spent a lot of time working out design details of my project, under the assumption that the code would be available. Nonetheless, I felt it would be too much work to replicate his entire thesis, and so I moved on to another topic. </p>
-</li>
-<li>A colleague in my cohort had a related experience in which she did replicate the work of a renowned scientist in the field, in order to attempt some improvements. In her case, the code she wrote, guided by interpreting the relevant paper, didn't do what the paper claimed. It is not clear whether this was because she was missing some vital methodology, or whether the claims were not justified. Neither is an acceptable result. </li>
-</ul>Having talked with other students, I know that these stories are not of isolated experiences. <p>Surely, you too have recently come across some fascinating scientific results that gave you an idea you wanted to implement right away, but to your dismay, you quickly realized that you would have to start from scratch. The algorithm was complex. Maybe the data was not available.   With disappointment, you realized that it would take you weeks or months of error-prone coding just to get to the baseline. Then you would not be confident that you implemented it in exactly the same way as the original, and there would be no direct comparison. So you wrote it down in your Someday/Maybe file and forgot about it. This happens to me constantly, and it just seems tragic and unnecessary.  </p>
-<h3>My own dog food</h3>
-<p>Later, I too did a replication study. In this case my advisor and a fellow student wanted to compare their work to known work on the same problem. However, neither the code nor the data was released (the data was proprietary), and the evaluations were not published in a form comparable to more modern evaluation. Luckily for us, the method worked beautifully, and now everyone can see that more clearly. </p>
-<p>In an ironic turn, being a novice programmer at the time, my replication code was disorganized. Some of it was lost. It was not under version control until quite late and had few tests of correctness. I now had grounds to empathize with the colleague I earlier felt slighted by. However, I am in the fortunate position of having had to take a forced break before graduating, during which I learned basic software engineering skills, and had ample time to think about this issue. </p>
-<p>I am now re-rewriting the entire code base such that the experiments can be completely replicated from scratch. Every step will be included in the code I release, including "trivial" command line glue. Although every module has tests, no code is invulnerable. Bugs may well turn up, and if they do, they will be there for analysis and repair by anyone who cares. Most importantly, if anyone wants to know exactly what I did, they will not have to scour the paper for hints. Similarly, all the data will be at their disposal for analysis, if mine lacks the answer to any particular unforeseeable analytical question.  </p>
-<h3>This should be standard</h3>
-<p>In 2013, there is no excuse for publishing a paper in applied computer science without releasing the code; a paper by itself is an unsubstantiated claim. Unlike in biology, or other physical fields, applied computer science results should be trivial to replicate by anyone with the right equipment. Moreover, not releasing the code gives your lab an unsportsmanlike advantage: you get to claim the results, perhaps state-of-the-art results, and you get to stay on the cutting edge, because no one else has time to catch up. </p>
-<p>Many universities and labs now have projects under open licenses, but it is by no means a standard, and it is not a prerequisite for publication. We ought to change this.</p>
-    </div>
     </article>
 </div>
 
@@ -598,7 +622,8 @@ which was recommended by <a class="reference external" href="https://github.com/
 <li class="next">
                 <a href="index-1.html" rel="next">Older posts</a>
             </li>
-        </ul></nav><script>var disqus_shortname="subsymbolorg";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+        </ul></nav><script>var disqus_shortname="subsymbolorg";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});</script><script src="../assets/js/mathjax.js"></script>
 </div>
         <!--End of body content-->
 

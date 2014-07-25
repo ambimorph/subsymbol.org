@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>subsymbol.org (lsa)</title><link>http://www.subsymbol.org/</link><description></description><language>en</language><lastBuildDate>Fri, 25 Jul 2014 12:54:14 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>The Grammaticality Continuum</title><link>http://www.subsymbol.org/posts/the-grammaticality-continuum.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;Yesterday I was thinking about implementing &lt;em&gt;Latent Dirichlet Allocation&lt;/em&gt; (LDA).
+LDA is used for &lt;em&gt;topic modelling&lt;/em&gt; — inducing a set of topics, such that a set of natural language documents can be represented by a mixture of those topics.
+This is then used to estimate document similarity, and related information retrieval tasks.&lt;/p&gt;
+&lt;p&gt;The first step in such a project is to &lt;em&gt;tokenise&lt;/em&gt; — to break up the text into words, removing attached punctuation, and regularising things like capitalisation.
+When looking at the words in a document for the purposes of topic modelling,
+it seems appropriate to merge word forms with the same root, or stem, instead of having each form of the "same" word represented individually.
+The canonical way to tokenise for topic modelling involves stemming, and it also involves removing &lt;em&gt;stop words&lt;/em&gt; — words like "the", and "and" that are more syntactic than semantic.&lt;/p&gt;
+&lt;p&gt;I am not entirely convinced that this latter is appropriate.
+The reason is that the grammatically of words exists on a continuum.
+Even the word "the" carries semantic weight, though its main function is probably to signal the boundaries of syntactic chunks.&lt;/p&gt;
+&lt;hr class="docutils"&gt;&lt;blockquote&gt;
+&lt;p&gt;My favourite example of the syntactic function of "the" comes from &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Petr_Beckmann"&gt;Petr Beckmann&lt;/a&gt; 's book &lt;em&gt;The structure of language: a new approach&lt;/em&gt;, which has profoundly influenced me since my undergraduate days.
+In it he shows how the following headline is disambiguated by the placement of "the" before or after "biting":&lt;/p&gt;
+&lt;p&gt;"Man Refuses to Give up Biting Dog"&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr class="docutils"&gt;&lt;p&gt;A couple of years ago at &lt;a class="reference external" href="http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=18614"&gt;the NAACL conference&lt;/a&gt;,
+there was a session where a few prominent computational linguists presented their favourite papers from the past.
+Eugene Charniak presented Kenneth Church's 2000 COLING paper: &lt;em&gt;Empirical Estimates of Adaptation:&lt;/em&gt;
+&lt;em&gt;The chance of Two Noriegas is closer to&lt;/em&gt; &lt;span class="math"&gt;\(p/2\)&lt;/span&gt;
+ &lt;em&gt;than&lt;/em&gt; &lt;span class="math"&gt;\(p^2\)&lt;/span&gt;
+.
+It introduced a measure of adaptation for language models based on how much a recent occurrence of a word increases its tendency to occur beyond what is already expected.&lt;/p&gt;
+&lt;p&gt;Charniak used this paper as a background with which to present a new idea about the way the prior likelihood of a word predicts its future occurrences.
+He divided words into sets according to how well their priors predicted them.
+Stop words were most likely to be true to priors, and content words least, with verbs at the end of the spectrum.&lt;/p&gt;
+&lt;p&gt;At the time I took this as evidence for the stratification of grammaticality.
+Because of this stratification, treating stop words as a special set appears arbitrary and oversimplified.
+I expect that leaving stop words in a topic model would simply result in having some topics that are distributed more evenly throughout the corpus of documents.
+These topics would discriminate among documents poorly.
+However, this result should also be part of a continuum.
+It may be useful to account for the distribution of topics when using them in LDA, in a way analogous to &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Tf%E2%80%93idf"&gt;inverse document frequency&lt;/a&gt; in &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Latent_semantic_analysis"&gt;latent semantic analysis&lt;/a&gt;.&lt;/p&gt;
+&lt;hr class="docutils"&gt;&lt;p&gt;More generally, I am interested in the phenomenon that words vary in their semantic and syntactic load.
+Even just within semantics, a morpheme may carry more than one meaning that cannot be decomposed linguistically.
+For example, "uncle" is male, and while we could assign "uncle" a set of semantic features in a computer system in order to reason about its meaning, those features are only implicit in English.
+In &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Logogram"&gt;logographic writing systems&lt;/a&gt; this is all the more apparent.&lt;/p&gt;
+&lt;p&gt;This simultaneity of features in an apparently linear system is, to me, one of the most interesting aspects of language, and one of the reasons computational linguistics is difficult and rewarding.&lt;/p&gt;</description><category>computational linguistics</category><category>lda</category><category>lsa</category><category>mathjax</category><guid>http://www.subsymbol.org/posts/the-grammaticality-continuum.html</guid><pubDate>Fri, 25 Jul 2014 15:20:07 GMT</pubDate></item></channel></rss>
