@@ -10,10 +10,6 @@ var colours = ["Red",
 	       "Orange", 
 	       "Purple"]
 
-var urn = [1,1];
-//urn = [1,2,3];
-
-
 function proportional_random(counts) {
     var s = counts.reduce(function(a, b) { return a + b; }, 0);
     var r = Math.floor(Math.random() * (s+1));
@@ -39,8 +35,12 @@ function print_urn(e) {
 	urn_string += dashes.fontcolor(colours[index % colours.length]);
 	urn_string += "<br>"
     });
-    var urn_graphic = document.getElementById("urn");
     urn_graphic.innerHTML = urn_string;
+};
+
+function reset(e) {
+    urn = initial_urn;
+    print_urn(1);
 };
 
 document.getElementById("print-urn").addEventListener("click", 
@@ -51,3 +51,9 @@ document.getElementById("print-urn").addEventListener("click",
   }
 );
 
+document.getElementById("reset").addEventListener("click", reset);
+
+var initial_urn = [1,1];
+var urn = initial_urn;
+var urn_graphic = document.getElementById("urn");
+print_urn(1);

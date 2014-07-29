@@ -106,14 +106,18 @@ More colours
 
 Another way to change the starting conditions is to increase the number of colours.
 If our starting urn had one each of 10 different colours, then, again, when we draw the first ball, it has much less of an effect on the chance of drawing it again.
+We can call the number of colours :math:`n`.
 
-Try it
-======
+Try it!
+=======
+
+:math:`n=2`, :math:`\alpha = 1`, :math:`\beta = 1`:
 
 .. raw:: html
 
-	 <button id="print-urn">Update</button>
 	 <p id="urn">Urn</p>
+	 <button id="print-urn">Draw!</button>
+	 <button id="reset">Reset</button>
 
 	 <script src="/scripts/polya.js">
 	 </script>
