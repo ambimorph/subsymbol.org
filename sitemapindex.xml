@@ -61,6 +61,10 @@
   <lastmod>2014-07-25</lastmod>
  </sitemap>
  <sitemap>
+  <loc>http://www.subsymbol.org/categories/mathjax.xml</loc>
+  <lastmod>2014-07-25</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>http://www.subsymbol.org/categories/mel-chua.xml</loc>
   <lastmod>2014-07-25</lastmod>
  </sitemap>
@@ -78,6 +82,10 @@
  </sitemap>
  <sitemap>
   <loc>http://www.subsymbol.org/categories/open-source.xml</loc>
+  <lastmod>2014-07-25</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://www.subsymbol.org/categories/probability.xml</loc>
   <lastmod>2014-07-25</lastmod>
  </sitemap>
  <sitemap>
