@@ -1,8 +1,0 @@
-function main() {
-    document.getElementById("our-button").addEventListener("click", function (e) {
-	var header = document.getElementById("header");
-	header.innerHTML = "Hello, world!";
-    });
-}
-
-window.onload = main; 
