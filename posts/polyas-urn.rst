@@ -97,7 +97,7 @@ We can call the number of colours :math:`n`.
 Try it!
 =======
 
-Use the sliders to choose :math:`n` colours, and a single :math:`\alpha` and :math:`beta` for all colours. Try drawing balls from the urn, and see how the urn changes.  At any time you can display the urn in rank order or reset to the current slider position.
+Use the sliders to choose :math:`n` colours, and a single :math:`\alpha` and :math:`\beta` for all colours. Try drawing balls from the urn, and see how the urn changes.  At any time you can display the urn in rank order or reset to the current slider position.
 
 .. raw:: HTML
 
