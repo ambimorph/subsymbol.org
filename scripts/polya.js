@@ -52,6 +52,8 @@ function change_word(e) {
 document.getElementById("our-button").addEventListener("click", change_word);
 document.getElementById("print-urn").addEventListener("click", 
   function (e) {
+      var i_urn = polya_draw_from(urn);
+      urn = i_urn[1];
       print_urn(e);
   }
 );
