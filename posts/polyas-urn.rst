@@ -35,31 +35,17 @@ One of each
 -----------
 
 Let's imagine the simplest case, in which we start with one each of two colours, red and green.
-The following tables show the probabilities of the first three draws, and how each draw changes the probability of the next by changing the proportion of colours in the urn.
+The following table shows the probabilities of getting red on the first three draws, and how each draw changes the probability of the next by changing the proportion of colours in the urn.
 
-So, for example, to draw red three times in a row (RRR), the first red draw has a probability of :math:`1/2`, the second :math:`2/3`, and the third :math:`3/4`.
-
------
 
 .. csv-table:: 
-   :header: , RRR, , , , RRG, ,  , , RGR, , , , RGG,
-   :widths: 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4
+   :header: , RRR, 
+   :widths: 4, 4, 4
 
-   **Draw**, **p(Draw)**, **new R:G**, , **Draw**, **p(Draw)**, **new R:G**, , **Draw**, **p(Draw)**, **new R:G**, , **Draw**, **p(Draw)**, **new R:G**
-   R, :math:`1/2`, 2:1, , R, :math:`1/2`, 2:1, , R, :math:`1/2`, 2:1, , R, :math:`1/2`, 2:1
-   R, :math:`2/3`, 3:1, , R, :math:`2/3`, 3:1, , G, :math:`1/3`, 2:2, , G, :math:`1/3`, 2:2
-   R, :math:`3/4`, 4:1, , G, :math:`1/4`, 3:2, , R, :math:`1/2`, 3:2, , G, :math:`1/2`, 2:3
-
------
-
-.. csv-table:: 
-   :header: , GRR, , , , GRG, ,  , , GGR, , , , GGG,
-   :widths: 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4
-
-   **Draw**, **p(Draw)**, **new R:G**, , **Draw**, **p(Draw)**, **new R:G**, , **Draw**, **p(Draw)**, **new R:G**, , **Draw**, **p(Draw)**, **new R:G**
-   G, :math:`1/2`, 1:2, , G, :math:`1/2`, 1:2, , G, :math:`1/2`, 1:2, , G, :math:`1/2`, 1:2
-   R, :math:`1/3`, 2:2, , R, :math:`1/3`, 2:2, , G, :math:`2/3`, 1:3, , G, :math:`2/3`, 1:3 
-   R, :math:`1/2`, 3:2, , G, :math:`1/2`, 2:3, , R, :math:`1/4`, 2:3, , G, :math:`3/4`, 1:4
+   **Draw**, **p(Draw)**, **new R:G**
+   R, :math:`1/2`, 2:1
+   R, :math:`2/3`, 3:1
+   R, :math:`3/4`, 4:1
 
 -----
 
@@ -111,15 +97,19 @@ We can call the number of colours :math:`n`.
 Try it!
 =======
 
+Use the sliders to choose :math:`n` colours, and a single :math:`\alpha` and :math:`beta` for all colours. Try drawing balls from the urn, and see how the urn changes.  At any time you can display the urn in rank order or reset to the current slider position.
+
 .. raw:: HTML
 
+	 n: <b id="n-output"></b>
+	 <input class="n-slider" type="range" min="1" max="8">
 	 α: <b id="alpha-output"></b>
 	 <input class="alpha-slider" type="range" min="1" max="8">
 	 β: <b id="beta-output"></b>
 	 <input class="beta-slider" type="range" min="1" max="8">
-	 n: <b id="n-output"></b>
-	 <input class="n-slider" type="range" min="1" max="8">
+	 <br>
 	 <p id="urn">Urn</p>
+	 <br>
 	 <button id="draw">Draw!</button>
 	 <button id="reset">Reset.</button>
 	 <button id="rank">Order by rank.</button>

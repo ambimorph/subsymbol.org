@@ -115,7 +115,7 @@ var alphaSlider = document.querySelector(".alpha-slider");
 var betaSlider = document.querySelector(".beta-slider");
 var nSlider = document.querySelector(".n-slider");
 
-var colours = ["Red", "Green", "Yellow", "Blue", "Orange", "Purple", "Aqua"]
+var colours = ["Red", "Green", "Yellow", "Blue", "Orange", "Purple", "Aqua", "LimeGreen"]
 
 init();
 
