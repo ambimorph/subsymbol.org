@@ -5,7 +5,7 @@
 .. link: 
 .. description: 
 .. type: text
-.. nocomments
+.. nocomments: True
 
 Balls in Urns
 =============
