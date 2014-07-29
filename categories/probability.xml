@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>subsymbol.org (probability)</title><link>http://www.subsymbol.org/</link><description></description><language>en</language><lastBuildDate>Tue, 29 Jul 2014 10:55:48 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Pólya's Urn</title><link>http://www.subsymbol.org/posts/polyas-urn.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div class="section" id="balls-in-urns"&gt;
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>subsymbol.org (probability)</title><link>http://www.subsymbol.org/</link><description></description><language>en</language><lastBuildDate>Tue, 29 Jul 2014 16:53:13 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Pólya's Urn</title><link>http://www.subsymbol.org/posts/polyas-urn.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div class="section" id="balls-in-urns"&gt;
 &lt;h2&gt;Balls in Urns&lt;/h2&gt;
 &lt;p&gt;If you have studied probability, you are probably familiar with the canonical balls-in-an-urn allegory for understanding discrete probability distributions.
 For example, you could imagine an urn containing 1 red ball and 3 green balls.
-Drawing a ball from the urn at random represents sampling from a probability distribution where the probability of one outcome is 25%, and the probability of the other outcome is 75%.
+Drawing a ball from the urn at random represents sampling from a probability distribution where the probability of one outcome is &lt;span class="math"&gt;\(25\%\)&lt;/span&gt;
+ and the probability of the other outcome is &lt;span class="math"&gt;\(75\%\)&lt;/span&gt;
+
 We can extend this idea in a variety of ways.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="polya-s-urn"&gt;
 &lt;h2&gt;Pólya's Urn&lt;/h2&gt;
 &lt;p&gt;In &lt;em&gt;Pólya's Urn&lt;/em&gt;, the extension is that whenever you draw a ball from the urn, you not only replace it, but you add an extra ball of the same colour.
-So if you happened to draw a green ball in the example above, then the ratio would change from 1:3 to 1:4.
-That means on the next draw, you would now have only a 20% chance of drawing red.
-On the other hand, if you happened to have drawn red, then the ratio would change to 2:3, giving red a probability of 40%/&lt;/p&gt;
+So if you happened to draw a green ball in the example above, then the ratio would change from &lt;span class="math"&gt;\(1:3\)&lt;/span&gt;
+ to &lt;span class="math"&gt;\(1:4\)&lt;/span&gt;
+.
+That means on the next draw, you would now have only a &lt;span class="math"&gt;\(20\%\)&lt;/span&gt;
+ chance of drawing red.
+On the other hand, if you happened to have drawn red, then the ratio would change to &lt;span class="math"&gt;\(2:3\)&lt;/span&gt;
+, giving red a probability of &lt;span class="math"&gt;\(40\%\)&lt;/span&gt;
+&lt;/p&gt;
 &lt;p&gt;This process is interesting, because it has the property that the more often you observe something, the more likely you are to observe it again.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="the-effect-of-different-starting-conditions"&gt;
-&lt;h2&gt;The effect of different starting conditions&lt;/h2&gt;
-&lt;p&gt;Let's imagine the simplest case, in which we start with one each of two colours, red and green, and think about the probability and effects of the first three draws:&lt;/p&gt;
-&lt;table border="1" class="docutils"&gt;&lt;colgroup&gt;&lt;col width="21%"&gt;&lt;col width="46%"&gt;&lt;col width="32%"&gt;&lt;/colgroup&gt;&lt;thead valign="bottom"&gt;&lt;tr&gt;&lt;th class="head"&gt;Draw&lt;/th&gt;
-&lt;th class="head"&gt;p(Draw)&lt;/th&gt;
-&lt;th class="head"&gt;new R:G&lt;/th&gt;
-&lt;/tr&gt;&lt;/thead&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td&gt;R&lt;/td&gt;
+&lt;div class="section" id="different-starting-conditions"&gt;
+&lt;h2&gt;Different starting conditions&lt;/h2&gt;
+&lt;p&gt;The way the distribution changes over time depends on the starting conditions.&lt;/p&gt;
+&lt;div class="section" id="one-of-each"&gt;
+&lt;h3&gt;One of each&lt;/h3&gt;
+&lt;p&gt;Let's imagine the simplest case, in which we start with one each of two colours, red and green.
+The following table shows the probabilities of getting red on the first three draws, and how each draw changes the probability of the next by changing the proportion of colours in the urn.&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;&lt;colgroup&gt;&lt;col width="33%"&gt;&lt;col width="33%"&gt;&lt;col width="33%"&gt;&lt;/colgroup&gt;&lt;thead valign="bottom"&gt;&lt;tr&gt;&lt;th class="head"&gt; &lt;/th&gt;
+&lt;th class="head"&gt;RRR&lt;/th&gt;
+&lt;th class="head"&gt; &lt;/th&gt;
+&lt;/tr&gt;&lt;/thead&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Draw&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;p(Draw)&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;new R:G&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;R&lt;/td&gt;
 &lt;td&gt;&lt;span class="math"&gt;\(1/2\)&lt;/span&gt;
 &lt;/td&gt;
 &lt;td&gt;2:1&lt;/td&gt;
@@ -32,98 +46,85 @@ On the other hand, if you happened to have drawn red, then the ratio would chang
 &lt;td&gt;&lt;span class="math"&gt;\(3/4\)&lt;/span&gt;
 &lt;/td&gt;
 &lt;td&gt;4:1&lt;/td&gt;
-&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; &lt;/td&gt;
-&lt;td&gt; &lt;/td&gt;
-&lt;td&gt; &lt;/td&gt;
-&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;R&lt;/td&gt;
-&lt;td&gt;&lt;span class="math"&gt;\(1/2\)&lt;/span&gt;
+&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;hr class="docutils"&gt;&lt;p&gt;There are more ways to have drawn two of one colour, and one of the other, than 3 of one colour.
+However, because of the way drawing a particular colour reinforces itself,
+there is a &lt;span class="math"&gt;\(50\%\)&lt;/span&gt;
+ chance of drawing the same colour every time over the first three draws.&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;&lt;colgroup&gt;&lt;col width="50%"&gt;&lt;col width="50%"&gt;&lt;/colgroup&gt;&lt;thead valign="bottom"&gt;&lt;tr&gt;&lt;th class="head"&gt;First three draws&lt;/th&gt;
+&lt;th class="head"&gt;probability&lt;/th&gt;
+&lt;/tr&gt;&lt;/thead&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td&gt;p(RRR)&lt;/td&gt;
+&lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 3/4 = 1/4\)&lt;/span&gt;
 &lt;/td&gt;
-&lt;td&gt;2:1&lt;/td&gt;
-&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;R&lt;/td&gt;
-&lt;td&gt;&lt;span class="math"&gt;\(2/3\)&lt;/span&gt;
+&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;p(RRG)&lt;/td&gt;
+&lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/4 = 1/12\)&lt;/span&gt;
 &lt;/td&gt;
-&lt;td&gt;3:1&lt;/td&gt;
-&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;G&lt;/td&gt;
-&lt;td&gt;&lt;span class="math"&gt;\(1/4\)&lt;/span&gt;
+&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;p(RGR)&lt;/td&gt;
+&lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/2 = 1/6\)&lt;/span&gt;
 &lt;/td&gt;
-&lt;td&gt;3:2&lt;/td&gt;
-&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;p&gt;R      &lt;span class="math"&gt;\(1/2\)&lt;/span&gt;
-   2:1
-R      &lt;span class="math"&gt;\(2/3\)&lt;/span&gt;
-   3:1
-G      &lt;span class="math"&gt;\(1/4\)&lt;/span&gt;
-   3:2
-===== ============= ========
-R      &lt;span class="math"&gt;\(1/2\)&lt;/span&gt;
-   2:1
-G      &lt;span class="math"&gt;\(1/3\)&lt;/span&gt;
-   2:2
-R      &lt;span class="math"&gt;\(1/2\)&lt;/span&gt;
-   3:2
-===== ============= ========
-R      &lt;span class="math"&gt;\(1/2\)&lt;/span&gt;
-   2:1
-G      &lt;span class="math"&gt;\(1/3\)&lt;/span&gt;
-   2:2
-G      &lt;span class="math"&gt;\(1/2\)&lt;/span&gt;
-   2:3
-===== ============= ========
-G      &lt;span class="math"&gt;\(1/2\)&lt;/span&gt;
-   1:2
-R      &lt;span class="math"&gt;\(1/3\)&lt;/span&gt;
-   2:2
-R      &lt;span class="math"&gt;\(1/2\)&lt;/span&gt;
-   3:2
-===== ============= ========
-G      &lt;span class="math"&gt;\(1/2\)&lt;/span&gt;
-   1:2
-R      &lt;span class="math"&gt;\(1/3\)&lt;/span&gt;
-   2:2
-G      &lt;span class="math"&gt;\(1/2\)&lt;/span&gt;
-   2:3
-===== ============= ========
-G      &lt;span class="math"&gt;\(1/2\)&lt;/span&gt;
-   1:2
-G      &lt;span class="math"&gt;\(2/3\)&lt;/span&gt;
-   1:3
-R      &lt;span class="math"&gt;\(1/4\)&lt;/span&gt;
-   2:3
-===== ============= ========
-G      &lt;span class="math"&gt;\(1/2\)&lt;/span&gt;
-   1:2
-G      &lt;span class="math"&gt;\(2/3\)&lt;/span&gt;
-   1:3
-G      &lt;span class="math"&gt;\(3/4\)&lt;/span&gt;
-   1:4
-===== ============= ========&lt;/p&gt;
+&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;p(RGG)&lt;/td&gt;
+&lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/2 = 1/6\)&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;p(GRR)&lt;/td&gt;
+&lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/2 = 1/6\)&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;p(GRG)&lt;/td&gt;
+&lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/2 = 1/6\)&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;p(GGR)&lt;/td&gt;
+&lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/4 = 1/12\)&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;p(GGG)&lt;/td&gt;
+&lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 3/4 = 1/4\)&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;div class="section" id="ten-of-each"&gt;
+&lt;h3&gt;Ten of each&lt;/h3&gt;
+&lt;p&gt;Now suppose that we start with 10 each of red and green balls.
+In this case, simply drawing a red ball the first time does not change the probability that it will be drawn again nearly as significantly as with the &lt;span class="math"&gt;\(1:1\)&lt;/span&gt;
+ starting conditions.
+The probability of drawing 3 of the same colour in a row falls to &lt;span class="math"&gt;\(2 \times 10/20 \times 11/21 \times 12/22 = 2/7 \cong  29\%\)&lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;We can view the starting conditions as a list of numbers, one for each starting colour, and call it &lt;em&gt;alpha&lt;/em&gt; (&lt;span class="math"&gt;\(\alpha\)&lt;/span&gt;
+).
+So our first example had &lt;span class="math"&gt;\(\alpha = [1, 3]\)&lt;/span&gt;
+,
+our second example had &lt;span class="math"&gt;\(\alpha = [1, 1]\)&lt;/span&gt;
+,
+and our third example had &lt;span class="math"&gt;\(\alpha = [10, 10]\)&lt;/span&gt;
+,&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="inference"&gt;
-&lt;h2&gt;Inference&lt;/h2&gt;
-&lt;p&gt;We can look at this from the opposite perspective, too.
-Suppose you have an urn, and you know the balls in it were generated by the above process, but now the urn is fixed.
-Because of the way the distribution of colours was generated,
-it is still the case that the more you see a particular colour, the more you should expect to see it.
-That's because the result of the process tends to result in a &lt;em&gt;skewed&lt;/em&gt; distribution, where colour with the most balls has more by a large proportion.&lt;/p&gt;
-&lt;p&gt;To see this, imagine the simple case of starting with one each of red and green.
-No matter what you start with&lt;/p&gt;
+&lt;div class="section" id="higher-returns"&gt;
+&lt;h3&gt;Higher returns&lt;/h3&gt;
+&lt;p&gt;On the other hand, imagine if we started with 1 each of red and green, but instead of increasing the number of balls by 1 when we draw a colour, we increased it by 10.
+Now every draw has a much stronger effect.
+The probability of drawing the same colour 3 times in a row would now be &lt;span class="math"&gt;\(2 \times 1/2 \times 11/12 \times 21/22 = 7/8 \cong 88\%\)&lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;We could even have a particular increase number for each colour, and have another list, called &lt;em&gt;beta&lt;/em&gt; (&lt;span class="math"&gt;\(\beta\)&lt;/span&gt;
+).&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="polya-s-urn-basic"&gt;
-&lt;h2&gt;Pólya's Urn — Basic&lt;/h2&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;Random generator of elements of an unordered set.&lt;/li&gt;
-&lt;li&gt;Giant urn containing some number of balls of each colour.&lt;/li&gt;
-&lt;li&gt;To get a sample, draw from the urn.&lt;/li&gt;
-&lt;li&gt;Replace the ball and &lt;em&gt;add another&lt;/em&gt; of the same colour&lt;/li&gt;
-&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;Every observation increases the likelihood of that observation.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="more-colours"&gt;
+&lt;h3&gt;More colours&lt;/h3&gt;
+&lt;p&gt;Another way to change the starting conditions is to increase the number of colours.
+If our starting urn had one each of 10 different colours, then, again, when we draw the first ball, it has much less of an effect on the chance of drawing it again.
+We can call the number of colours &lt;span class="math"&gt;\(n\)&lt;/span&gt;
+.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="polya-s-urn-dirichlet-process"&gt;
-&lt;h2&gt;Pólya's Urn — Dirichlet Process&lt;/h2&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;Urn intially has one black ball.&lt;/li&gt;
-&lt;li&gt;To generate a sample, draw a ball from the urn.&lt;ul&gt;&lt;li&gt;As before, except:&lt;ul&gt;&lt;li&gt;If we draw black, select a new colour that has never been in the urn.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;
-&lt;div class="section" id="alpha"&gt;
-&lt;h2&gt;Alpha&lt;/h2&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;More generally, start with alpha black balls.&lt;/li&gt;
-&lt;li&gt;alpha can be fractional, but breaks analogy.&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</description><category>mathjax</category><category>probability</category><guid>http://www.subsymbol.org/posts/polyas-urn.html</guid><pubDate>Fri, 25 Jul 2014 17:24:37 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;
+&lt;div class="section" id="try-it"&gt;
+&lt;h2&gt;Try it!&lt;/h2&gt;
+&lt;p&gt;Use the sliders to choose &lt;span class="math"&gt;\(n\)&lt;/span&gt;
+ colours, and a single &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt;
+ and &lt;span class="math"&gt;\(beta\)&lt;/span&gt;
+ for all colours. Try drawing balls from the urn, and see how the urn changes.  At any time you can display the urn in rank order or reset to the current slider position.&lt;/p&gt;
+n: &lt;b id="n-output"&gt;&lt;/b&gt;
+&lt;input class="n-slider" type="range" min="1" max="8"&gt;
+α: &lt;b id="alpha-output"&gt;&lt;/b&gt;
+&lt;input class="alpha-slider" type="range" min="1" max="8"&gt;
+β: &lt;b id="beta-output"&gt;&lt;/b&gt;
+&lt;input class="beta-slider" type="range" min="1" max="8"&gt;&lt;br&gt;&lt;p id="urn"&gt;Urn&lt;/p&gt;
+&lt;br&gt;&lt;button id="draw"&gt;Draw!&lt;/button&gt;
+&lt;button id="reset"&gt;Reset.&lt;/button&gt;
+&lt;button id="rank"&gt;Order by rank.&lt;/button&gt;
+
+&lt;script src="http://www.subsymbol.org/scripts/polya.js"&gt;
+&lt;/script&gt;&lt;/div&gt;</description><category>mathjax</category><category>probability</category><guid>http://www.subsymbol.org/posts/polyas-urn.html</guid><pubDate>Fri, 25 Jul 2014 17:24:37 GMT</pubDate></item></channel></rss>
