@@ -180,6 +180,7 @@ PAGES = [
 # Default is:
 # FILES_FOLDERS = {'files': '' }
 # Which means copy 'files' into 'output'
+FILES_FOLDERS = {'scripts':'scripts'}
 
 # A mapping of languages to file-extensions that represent that language.
 # Feel free to add or delete extensions to any list, but don't add any new
