@@ -111,12 +111,16 @@ We can call the number of colours :math:`n`.
 Try it!
 =======
 
-:math:`n=2`, :math:`\alpha = 1`, :math:`\beta = 1`:
+.. raw:: HTML
 
-.. raw:: html
-
+	 α: <b id="alpha-output"></b>
+	 <input class="alpha-slider" type="range" min="1" max="8">
+	 β: <b id="beta-output"></b>
+	 <input class="beta-slider" type="range" min="1" max="8">
+	 n: <b id="n-output"></b>
+	 <input class="n-slider" type="range" min="1" max="8">
 	 <p id="urn">Urn</p>
-	 <button id="print-urn">Draw!</button>
+	 <button id="draw">Draw!</button>
 	 <button id="reset">Reset.</button>
 
 	 <script src="/scripts/polya.js">

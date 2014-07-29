@@ -14,10 +14,10 @@ function proportional_random(counts) {
 
 function polya_draw_from(urn) {
     var i = proportional_random(urn);
-    return [i, urn.slice(0,i).concat(urn[i]+BETA).concat(urn.slice(i+1, urn.length))];
+    return [i, urn.slice(0,i).concat(urn[i]+beta).concat(urn.slice(i+1, urn.length))];
 };
 
-function print_urn(e) {
+function print_urn() {
     var urn_string = "";
     urn.forEach(function (element, index) {
 	var dashes = "◉".repeat(element);
@@ -29,32 +29,67 @@ function print_urn(e) {
 
 function reset(e) {
     urn = initial_urn;
-    print_urn(1);
+    print_urn();
 };
 
-document.getElementById("print-urn").addEventListener("click", 
-  function (e) {
-      var i_urn = polya_draw_from(urn);
-      urn = i_urn[1];
-      print_urn(e);
-  }
-);
+function changeValues(e) {
+    alpha = parseInt(alphaSlider.value);
+    document.getElementById("alpha-output").innerHTML = alpha;
+    beta = parseInt(betaSlider.value);
+    document.getElementById("beta-output").innerHTML = beta;
+    n = parseInt(nSlider.value);
+    document.getElementById("n-output").innerHTML = n;
+    initial_urn = Array(n+1).join().split('').map(function(){return alpha})
+    reset();
+}
 
-document.getElementById("reset").addEventListener("click", reset);
+function addInteractivity () {
+    document.getElementById("reset").addEventListener("click", reset); 
+    document.getElementById("draw").addEventListener("click", 
+      function (e) {
+	  var i_urn = polya_draw_from(urn);
+          urn = i_urn[1];
+          print_urn();
+      }
+    );
+    alphaSlider.addEventListener("change", changeValues);
+    betaSlider.addEventListener("change", changeValues);
+    nSlider.addEventListener("change", changeValues);
+}
 
-var ALPHA = 1;
-var BETA = 1;
-var N = 2;
+function setSlidersToInitialValues () {
+    /* Update slider values with the ones specified above */
+    alphaSlider.value = alpha;
+    document.getElementById("alpha-output").innerHTML = alpha;
+    betaSlider.value = beta;
+    document.getElementById("beta-output").innerHTML = beta;
+    nSlider.value = n;
+    document.getElementById("n-output").innerHTML = n;
+}
 
-var colours = ["Red", 
-	       "Green", 
-	       "Yellow", 
-	       "Blue", 
-	       "Orange", 
-	       "Purple"]
+function init () {
+    setSlidersToInitialValues();
+    initial_urn = Array(n+1).join().split('').map(function(){return alpha})
+    urn = initial_urn;
+    print_urn();
+    addInteractivity();
+}
 
-var initial_urn = Array(N+1).join().split('').map(function(){return ALPHA})
-var urn = initial_urn;
+
+var initial_urn;
+var urn;
+
+var alpha = 1;
+var beta = 1;
+var n = 2;
+
+/* dom references */
 var urn_graphic = document.getElementById("urn");
-print_urn(1);
+var alphaSlider = document.querySelector(".alpha-slider");
+var betaSlider = document.querySelector(".beta-slider");
+var nSlider = document.querySelector(".n-slider");
+
+var colours = ["Red", "Green", "Yellow", "Blue", "Orange", "Purple"]
+
+init();
 
