@@ -117,7 +117,7 @@ Try it!
 
 	 <p id="urn">Urn</p>
 	 <button id="print-urn">Draw!</button>
-	 <button id="reset">Reset</button>
+	 <button id="reset">Reset.</button>
 
 	 <script src="/scripts/polya.js">
 	 </script>
