@@ -11,7 +11,7 @@ var colours = ["Red",
 	       "Purple"]
 
 var urn = [1,1];
-urn = [1,2,3];
+//urn = [1,2,3];
 
 
 function proportional_random(counts) {
