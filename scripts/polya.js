@@ -27,6 +27,27 @@ function print_urn() {
     urn_graphic.innerHTML = urn_string;
 };
 
+function print_urn_by_rank(urn) {
+    var urn_to_sort = [];
+    urn.forEach(function (balls, index) {
+	urn_to_sort = urn_to_sort.concat([[balls, index]]);
+    });
+    urn_to_sort = urn_to_sort.sort(function(a,b) {
+	return a[0]-b[0];
+    });
+    urn_to_sort.reverse()
+
+    var urn_string = "";
+    for (i = 0; i < urn_to_sort.length; i++) {
+	var balls = urn_to_sort[i][0];
+	var index = urn_to_sort[i][1];
+	var dashes = "◉".repeat(balls);
+	urn_string += dashes.fontcolor(colours[index % colours.length]);
+	urn_string += "<br>";
+    };
+    urn_graphic.innerHTML = urn_string;
+};
+
 function reset(e) {
     urn = initial_urn;
     print_urn();
@@ -45,6 +66,11 @@ function changeValues(e) {
 
 function addInteractivity () {
     document.getElementById("reset").addEventListener("click", reset); 
+    document.getElementById("rank").addEventListener("click", 
+      function(e) {
+	  print_urn_by_rank(urn);
+      }
+    ); 
     document.getElementById("draw").addEventListener("click", 
       function (e) {
 	  var i_urn = polya_draw_from(urn);
@@ -89,7 +115,7 @@ var alphaSlider = document.querySelector(".alpha-slider");
 var betaSlider = document.querySelector(".beta-slider");
 var nSlider = document.querySelector(".n-slider");
 
-var colours = ["Red", "Green", "Yellow", "Blue", "Orange", "Purple"]
+var colours = ["Red", "Green", "Yellow", "Blue", "Orange", "Purple", "Aqua"]
 
 init();
 

@@ -122,6 +122,7 @@ Try it!
 	 <p id="urn">Urn</p>
 	 <button id="draw">Draw!</button>
 	 <button id="reset">Reset.</button>
+	 <button id="rank">Order by rank.</button>
 
 	 <script src="/scripts/polya.js">
 	 </script>
