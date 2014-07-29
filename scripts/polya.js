@@ -43,13 +43,6 @@ function print_urn(e) {
     urn_graphic.innerHTML = urn_string;
 };
 
-function change_word(e) {
-    var word = document.getElementById("word");
-    word.innerHTML = "Hello, world!";
-    word.innerHTML = proportional_random(urn);
-};
-
-document.getElementById("our-button").addEventListener("click", change_word);
 document.getElementById("print-urn").addEventListener("click", 
   function (e) {
       var i_urn = polya_draw_from(urn);

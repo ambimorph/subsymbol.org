@@ -112,9 +112,6 @@ Try it
 
 .. raw:: html
 
-	 <button id="our-button">Get a random index proportional to its value from [1,2,3]</button>
-	 <p id="word">Hello!</p>
-
 	 <button id="print-urn">Update</button>
 	 <p id="urn">Urn</p>
 
