@@ -50,5 +50,9 @@ function change_word(e) {
 };
 
 document.getElementById("our-button").addEventListener("click", change_word);
-document.getElementById("print-urn").addEventListener("click", print_urn);
+document.getElementById("print-urn").addEventListener("click", 
+  function (e) {
+      print_urn(e);
+  }
+);
 
