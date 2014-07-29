@@ -1,14 +1,3 @@
-var ALPHA = 1;
-var BETA = 1;
-var ITERATIONS = 8;
-var INTERVAL = 0.05;
-
-var colours = ["Red", 
-	       "Green", 
-	       "Yellow", 
-	       "Blue", 
-	       "Orange", 
-	       "Purple"]
 
 function proportional_random(counts) {
     var s = counts.reduce(function(a, b) { return a + b; }, 0);
@@ -53,7 +42,19 @@ document.getElementById("print-urn").addEventListener("click",
 
 document.getElementById("reset").addEventListener("click", reset);
 
-var initial_urn = [1,1];
+var ALPHA = 1;
+var BETA = 1;
+var N = 2;
+
+var colours = ["Red", 
+	       "Green", 
+	       "Yellow", 
+	       "Blue", 
+	       "Orange", 
+	       "Purple"]
+
+var initial_urn = Array(N+1).join().split('').map(function(){return ALPHA})
 var urn = initial_urn;
 var urn_graphic = document.getElementById("urn");
 print_urn(1);
+
