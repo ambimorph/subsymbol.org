@@ -7,6 +7,8 @@
 .. type: text
 .. nocomments: True
 
+Skip to interactive demo: `Try it!`_
+
 Balls in Urns
 =============
 
