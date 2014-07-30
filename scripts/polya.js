@@ -17,10 +17,18 @@ function polya_draw_from(urn) {
     return [i, urn.slice(0,i).concat(urn[i]+beta).concat(urn.slice(i+1, urn.length))];
 };
 
+function repeat(str, count) {
+    var ret = [];
+    for (var i = 0; i < count; i++) {
+	ret.push(str);
+    }
+    return ret.join('');
+};
+
 function print_urn() {
     var urn_string = "";
     urn.forEach(function (element, index) {
-	var dashes = "◉".repeat(element);
+	var dashes = repeat("◉", element);
 	urn_string += dashes.fontcolor(colours[index % colours.length]);
 	urn_string += "<br>"
     });
@@ -41,7 +49,7 @@ function print_urn_by_rank(urn) {
     for (i = 0; i < urn_to_sort.length; i++) {
 	var balls = urn_to_sort[i][0];
 	var index = urn_to_sort[i][1];
-	var dashes = "◉".repeat(balls);
+	var dashes = repeat("◉", balls);
 	urn_string += dashes.fontcolor(colours[index % colours.length]);
 	urn_string += "<br>";
     };
