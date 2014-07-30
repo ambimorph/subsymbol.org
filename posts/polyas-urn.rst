@@ -59,14 +59,14 @@ there is a :math:`50\%` chance of drawing the same colour every time over the fi
    :header: First three draws, probability
    :widths: 32, 32
 
-   p(RRR), :math:`1/2 \times 2/3 \times 3/4 = 1/4`
-   p(RRG), :math:`1/2 \times 2/3 \times 1/4 = 1/12`
-   p(RGR), :math:`1/2 \times 2/3 \times 1/2 = 1/6`
-   p(RGG), :math:`1/2 \times 2/3 \times 1/2 = 1/6`
-   p(GRR), :math:`1/2 \times 2/3 \times 1/2 = 1/6`
-   p(GRG), :math:`1/2 \times 2/3 \times 1/2 = 1/6`
-   p(GGR), :math:`1/2 \times 2/3 \times 1/4 = 1/12`
-   p(GGG), :math:`1/2 \times 2/3 \times 3/4 = 1/4`
+   RRR, :math:`1/2 \times 2/3 \times 3/4 = 1/4`
+   RRG, :math:`1/2 \times 2/3 \times 1/4 = 1/12`
+   RGR, :math:`1/2 \times 2/3 \times 1/2 = 1/6`
+   RGG, :math:`1/2 \times 2/3 \times 1/2 = 1/6`
+   GRR, :math:`1/2 \times 2/3 \times 1/2 = 1/6`
+   GRG, :math:`1/2 \times 2/3 \times 1/2 = 1/6`
+   GGR, :math:`1/2 \times 2/3 \times 1/4 = 1/12`
+   GGG, :math:`1/2 \times 2/3 \times 3/4 = 1/4`
 
 Ten of each
 -----------
