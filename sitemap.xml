@@ -181,7 +181,15 @@
   <lastmod>2014-07-31</lastmod>
  </url>
  <url>
+  <loc>http://www.subsymbol.org/categories/emacs.html</loc>
+  <lastmod>2014-07-31</lastmod>
+ </url>
+ <url>
   <loc>http://www.subsymbol.org/categories/evaluation.html</loc>
+  <lastmod>2014-07-31</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/categories/filesystems.html</loc>
   <lastmod>2014-07-31</lastmod>
  </url>
  <url>
@@ -193,11 +201,19 @@
   <lastmod>2014-07-31</lastmod>
  </url>
  <url>
+  <loc>http://www.subsymbol.org/categories/inotify.html</loc>
+  <lastmod>2014-07-31</lastmod>
+ </url>
+ <url>
   <loc>http://www.subsymbol.org/categories/lda.html</loc>
   <lastmod>2014-07-31</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/linguistics.html</loc>
+  <lastmod>2014-07-31</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/categories/links.html</loc>
   <lastmod>2014-07-31</lastmod>
  </url>
  <url>
@@ -254,6 +270,10 @@
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/tools.html</loc>
+  <lastmod>2014-07-31</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/categories/vim.html</loc>
   <lastmod>2014-07-31</lastmod>
  </url>
  <url>
@@ -486,6 +506,10 @@
  </url>
  <url>
   <loc>http://www.subsymbol.org/posts/the-grammaticality-continuum.html</loc>
+  <lastmod>2014-07-31</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/posts/two-inotify-pitfalls.html</loc>
   <lastmod>2014-07-31</lastmod>
  </url>
 </urlset>
