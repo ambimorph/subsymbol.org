@@ -1,7 +1,7 @@
 .. title: Productively Lost
 .. slug: productively-lost
 .. date: 2014-07-23 15:21:37 UTC
-.. tags: hacker school, psychology, education, Mel Chua, courage
+.. tags: hacker school, psychology, education, Mel Chua, courage, vulnerability, blog
 .. link: 
 .. description: 
 .. type: text

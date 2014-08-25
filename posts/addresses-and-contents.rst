@@ -1,7 +1,7 @@
 .. title: Addresses and Contents
 .. slug: addresses-and-contents
 .. date: 2014-07-09 21:42:03 UTC
-.. tags: names, linguistics, cs, storage
+.. tags: names, linguistics, cs, storage, blog
 .. link: 
 .. description: 
 .. type: text

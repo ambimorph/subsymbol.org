@@ -1,7 +1,7 @@
 .. title: The Grammaticality Continuum
 .. slug: the-grammaticality-continuum
 .. date: 2014-07-25 15:20:07 UTC
-.. tags: mathjax, computational linguistics, lda, lsa
+.. tags: mathjax, computational linguistics, lda, lsa, blog
 .. link: 
 .. description: 
 .. type: text

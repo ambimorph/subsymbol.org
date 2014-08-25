@@ -1,7 +1,7 @@
 .. title: How I transformed a Blogger blog to a Nikola two-blog website
 .. slug: how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website
 .. date: 2014-07-08 16:59:38 UTC
-.. tags: blogging, nikola, blogger
+.. tags: blogging, nikola, blogger, blog
 .. link: 
 .. description: 
 .. type: text
