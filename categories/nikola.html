@@ -9,9 +9,9 @@
 <link href="../assets/css/code.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
-<link rel="alternate" type="application/rss+xml" title="RSS for tag nikola (en)" href="nikola.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
 <link rel="canonical" href="http://www.subsymbol.org/categories/nikola.html">
-<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><link rel="alternate" type="application/rss+xml" title="RSS for tag nikola" href="nikola.xml">
 </head>
 <body>
 
@@ -41,7 +41,7 @@
 <a href=".">Tags</a>
                 </li>
 <li>
-<a href="../blog/">Blog</a>
+<a href="blog.html">Blog</a>
                 </li>
 <li>
 <a href="../journal/">Journal</a>
@@ -63,250 +63,18 @@
         <div class="row">
             
             
-<div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html" class="u-url">How I transformed a Blogger blog to a Nikola two-blog website</a></h1>
+<article class="tagpage"><header><h1>Posts about nikola</h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">L. Amber Wilcox-O'Hearn</span></p>
-            <p class="dateline"><a href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html" rel="bookmark"><time class="published dt-published" datetime="2014-07-08T16:59:38+00:00" itemprop="datePublished" title="Publication date">2014-07-08 16:59</time></a></p>
-                <p class="commentline">
-        
-    <a href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#disqus_thread" data-disqus-identifier="cache/posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <p>In the last post I described why I wanted to move my blog, and what went into my choices.
-My goal in exporting my site from Blogger to Nikola was to separate my content into two separate blogs on a single site:
-one which is the primary blog, and the other which resides in the background.
-I wanted them to be archived separately.
-I also wanted there to be a front page that didn't change every time I wrote a new post.</p>
-<div class="section" id="importing-the-blog">
-<h2>Importing the blog</h2>
-<p>Nikola has a plugin to import a blog from Blogger, so the first step was to import the blog.
-To import, I took the following steps:</p>
-<ul class="simple">
-<li>First, I exported my blog from Blogger, which gave me a file called <cite>blog-07-05-2014.xml</cite>. Then,</li>
-</ul>
-<pre class="code literal-block">
-$ sudo pip install nikola
-$ nikola plugin -i import_blogger
-$ nikola import_blogger -o site blog-07-05-2014.xml # The -o tells nikola what directory to make the site in.
-</pre>
-<p>After this, I had some cleanup to do.
-For one thing, Nikola renamed all the Blogger files (in a sensible way).
-Blogger has date-derived subdirectories for posts, whereas in Nikola all the posts are kept in one folder, called "posts"
-So when the new site is up, redirects will be required for anyone with the old link.</p>
-<p>The import gave me a file called <cite>url_map.csv</cite>, which contained all the information necessary to redirect the old links to their new locations, but as far as I could tell, those redirects still had to be encoded into the configuration file to take effect.
-Since I only had a few, I did this manually.
-For every line in the url_map, I inserted a tuple into the <cite>REDIRECTIONS</cite> list in <cite>conf.py</cite>.</p>
-<p>The result at this point was a Nikola blog that contained everything the old blog did.</p>
-</div>
-<div class="section" id="making-it-not-a-blog">
-<h2>Making it not a blog</h2>
-<p>There is a document in the Nikola project describing <a class="reference external" href="http://getnikola.com/creating-a-site-not-a-blog-with-nikola.html">how to make a non-blog site</a>.
-The instructions boil down to changing three lines of <cite>conf.py</cite>.</p>
-<div class="section" id="posts-and-pages">
-<h3>Posts and Pages</h3>
-<p>As usual, Nikola distinguishes two different kinds of text-derived files.</p>
-<ul class="simple">
+                <p class="feedlink"><a href="nikola.xml" type="application/rss+xml">RSS feed</a></p>
+        </div>
+    </header><ul class="postlist">
 <li>
-<em>Posts</em> are blog files.
-They are archived, indexed by tag, and ordered by date for display.</li>
-<li>
-<em>Pages</em> are essentially independent.</li>
-</ul>
-<p>So to make a blog into a non-blog, you simply manipulate the variable <cite>POSTS</cite> defined in <cite>conf.py</cite>.
-<cite>POSTS</cite> and <cite>PAGES</cite> are lists describing where to find posts or pages respectively, where to render them, and what template to use for them.
-We let the <cite>POSTS</cite> list be empty, so everything on the site will be a page.</p>
-<pre class="code literal-block">
-POSTS = []
-PAGES = [
-        ("pages/*.rst", "", "story.tmpl"),
-        ("pages/*.txt", "", "story.tmpl"),
-        ]
-</pre>
-<p>The two entries for <cite>PAGES</cite> are here to allow either txt or rst, but the one that comes first is what will be used when you use the <cite>new_post</cite> command.</p>
-<p>So you can create a <em>page</em> called "index.html" by running <cite>new_post -p</cite>, and giving it the name <cite>index</cite>.</p>
-<pre class="code literal-block">
-$ nikola new_post -p
-
-[...]
-
-Creating New Page
------------------
-
-Title: index
-
-[...]
-INFO: new_page: Your page's text is at: pages/index.rst
-</pre>
-<p>Since we put it at "", which is the top level of the site, it will be what you see on the "front page".</p>
-<p>Unfortunately, this creates a conflict, because when you build the site, the <em>blog</em> part is already wired to make an index.html file in the top-level directory, since that's how blogs normally appear.
-So you intercept this by adding to <cite>conf.py</cite> the line:</p>
-<pre class="code literal-block">
-INDEX_PATH = "blog"
-</pre>
-<p>This just makes it so the blog index is now created under the folder blog, instead of the top level, and it no longer conflicts.</p>
-<p>It also means that now you can have a regular blog under the subdirectory blog, by putting options back in for <cite>POSTS</cite>:</p>
-<pre class="code literal-block">
-POSTS = [("posts/*.rst", "blog", "post.tmpl")]
-</pre>
-<p>But this is not enough for us, because we have imported posts from Blogger that were also being found from the <cite>POSTS</cite> list.
-There is another entry in <cite>POSTS</cite> that we need back, that tells Nikola to also collect and render existing html files, such as those we imported.
-So we need to add:</p>
-<pre class="code literal-block">
-("posts/*.html", "blog", "post.tmpl")
-</pre>
-<p>back into the list.</p>
-</div>
-</div>
-<div class="section" id="two-blogs">
-<h2>Two blogs</h2>
-<p>At this point I had part of what I wanted.
-I had a front page separate from my blog, and all of my previous blog reachable from the site.
-But I still wanted to have two blogs, a primary one for themed entries, and a journal for unstructured reflections.</p>
-<p>Here are the steps I took to factor the blogs apart:</p>
-<ul class="simple">
-<li>Made a new directory for the journal posts called "journal", and moved the appropriate files into it.</li>
-<li>Added ("journal/<em>.rst", "journal", "story.tmpl") and ("journal/</em>.html", "journal", "story.tmpl") to the <cite>PAGES</cite> list, so old and new journal entries can be found for rendering.</li>
-<li>Updated the conf.py <cite>REDIRECTIONS</cite> to reflect those</li>
-</ul>
-<p>This worked to render them and include them in the site, but the journal articles were not indexed.
-That meant that if I knew the URL, I could go to the article, but a visitor to the site could never discover them.</p>
-<p>To add indexing I had to add to conf.py:</p>
-<pre class="code literal-block">
-STORY_INDEX = True
-</pre>
-<p>But again, this created a conflict with multiple files called "index.html" trying to go in the same folder.
-So I also had to change the name of the index.  I chose "index.htm", so that the server would automatically redirect.</p>
-<pre class="code literal-block">
-INDEX_FILE = "index.htm"
-</pre>
-<p>Finally, I wanted the journal to be findable without knowing the directory name "journal", so I updated the navigation links:</p>
-<pre class="code literal-block">
-NAVIGATION_LINKS = {
- DEFAULT_LANG: (
-     ("/archive.html", "Archive"),
-     ("/categories/", "Tags"),
-     ("/blog/", "Blog"),
-     ("/journal/", "Journal"),
-     ("/rss.xml", "RSS feed"),
-  ),
- }
-</pre>
-<p>As an extra configuration tweak, I set <cite>TAG_PAGES_ARE_INDEXES = True</cite>, so that when you go to the page for a given tag, it renders the posts themselves, rather than a list.</p>
-<p>I would like to do that for my journal index as well, but that feature is not yet general, so if you navigate to "Journal" you will get a list of posts, and unfortunately, since it is a journal, they are named by date.
-Moreover, their tags aren't collected.</p>
-</div>
-<div class="section" id="parting-thoughts">
-<h2>Parting thoughts</h2>
-<p>All in all, I'm satisfied with the move.
-I got a lot of help from the Nikola community, and my main requirements are fulfilled.</p>
-<p>There are a few remaining troubles.</p>
-<div class="section" id="comments">
-<h3>Comments</h3>
-<p>I signed up with Disqus, and think I have initiated the process of importing my old comments, which I was reluctant to lose.
-It takes an unspecified amount of time to complete, so I'm hoping that will take care of itself now, but I'm uncertain.</p>
-</div>
-<div class="section" id="orphaned-rst">
-<h3>Orphaned rst</h3>
-<p>Because of the way I built my Blogger site: writing in reStructuredText, converting to HTML, and uploading, I still have the original, pristine rst files on my local system, but Nikola doesn't use them.
-It uses the backported HTML from Blogger.
-In order to inject the old rst files into Nikola, however, would require manually editing them all to include the correct headers and timestamps.
-This seems like a lot of work, and I'm not willing to do it right now.</p>
-</div>
-</div>
-    </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/moving-my-site-off-of-blogger.html" class="u-url">Moving my site off of Blogger</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">L. Amber Wilcox-O'Hearn</span></p>
-            <p class="dateline"><a href="../posts/moving-my-site-off-of-blogger.html" rel="bookmark"><time class="published dt-published" datetime="2014-07-08T16:48:18+00:00" itemprop="datePublished" title="Publication date">2014-07-08 16:48</time></a></p>
-                <p class="commentline">
-        
-    <a href="../posts/moving-my-site-off-of-blogger.html#disqus_thread" data-disqus-identifier="cache/posts/moving-my-site-off-of-blogger.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <p>I was having two problems with the setup of this website.
-First, I wanted to factor out <a class="reference external" href="http://www.subsymbol.org/journal/">the experiment in vulnerability and transparency that I have been doing by keep a log of my daily goals, progress, and insights at Hacker School</a>.
-I like the experiment, but I wanted it to be separate from <a class="reference external" href="http://www.subsymbol.org/blog/">articles I write more deliberately</a>.</p>
-<p>The second problem was that I wanted to migrate from Blogger.</p>
-<p>Blogger has advantages.
-It is easy to set up, and freely hosted.
-It has themes, comments, and a variety of plugins.
-You can export your stuff if you want to, so you aren't completely locked in.</p>
-<p>However, Blogger is not a good match for someone who wants fine-grained control over her content.
-My use of Blogger for the three sites I have hosted on it has consisted of the following elaborate dance:</p>
-<ol class="arabic simple">
-<li>Edit my post in reStructuredText <a class="footnote-reference" href="../posts/moving-my-site-off-of-blogger.html#id3" id="id1">[1]</a>.</li>
-<li>Convert my post into HTML using a custom script I adapted from <a class="reference external" href="https://pypi.python.org/pypi/rst2blogger">rst2blogger</a> <a class="footnote-reference" href="../posts/moving-my-site-off-of-blogger.html#id4" id="id2">[2]</a>.</li>
-<li>Cut and paste my post into the Blogger compose form, click <cite>Preview</cite>, and see if it looked ok.</li>
-<li>Repeat until all typos and other issues were resolved.</li>
-<li>Click <cite>Publish</cite>.</li>
-</ol>
-<p>The result of all this work was a site that looked more-or-less how I wanted it to in some ways, but was frustrating in others.
-For example,</p>
-<ul class="simple">
-<li>I couldn't change the css styles that went with a given theme, (and some of them were really dysfunctional).</li>
-<li>I couldn't make the site <em>not a blog</em> — the blog assumption is that your most recent content ought to be your most prominent, and this is not an appropriate assumption for some of my use cases.
-I sometimes found myself putting off making a post that was less compelling until I knew I could follow it with a better one quickly!
-The restrictiveness wasn't serving me.</li>
-</ul>
-<p>Also, a little independence from Google seems healthy.</p>
-<p>What I really wanted was a static site generator, with no dynamic logic on a server-side database.
-I wanted my whole site complete and rendered on my local machine to do with what I liked.
-In other words, I wanted a static site generator.</p>
-<div class="section" id="choosing-a-static-site-generator">
-<h2>Choosing a static site generator</h2>
-<p>My criteria were:</p>
-<ul class="simple">
-<li>Open source</li>
-<li>Python</li>
-<li>Works to generate non-blog sites.</li>
-</ul>
-<p>This gave me two choices that I knew of: <a class="reference external" href="http://blog.getpelican.com/">Pelican</a>, and <a class="reference external" href="http://getnikola.com/">Nikola</a>.</p>
-<p>I have had my eyes on Pelican for some time now.
-I didn't like the way the resulting websites looked, though, until recently.
-They had a jarring "I'm a programmer, not a designer" feel.
-Being a programmer and not a designer, I can't articulate it much more precisely than that.
-These days, the sites look fine to me.
-The docs are well written, the code looks good, and <a class="reference external" href="http://www.lothar.com/blog/">people whose opinions about such things I respect</a> use it.</p>
-<p>In the meantime, I also found out about Nikola,
-which was recommended by <a class="reference external" href="https://github.com/punchagan">another respected coder-friend</a>.</p>
-<p>I decided to use Nikola, in part because it has a plugin to import from Blogger, and in part because the above-mentioned friend offered to help me.</p>
-<p>In the next post, I'll describe how I ported my Blogger blog into a Nikola blog.</p>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
-<colgroup>
-<col class="label">
-<col>
-</colgroup>
-<tbody valign="top"><tr>
-<td class="label"><a class="fn-backref" href="../posts/moving-my-site-off-of-blogger.html#id1">[1]</a></td>
-<td>I used to write in pure HTML, but after much goading from Zooko, I switched to rst.  I'm glad; I find rst more flexible.</td>
-</tr></tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup>
-<col class="label">
-<col>
-</colgroup>
-<tbody valign="top"><tr>
-<td class="label"><a class="fn-backref" href="../posts/moving-my-site-off-of-blogger.html#id2">[2]</a></td>
-<td>I didn't want the script to deploy it, because I didn't want to trust the script with my Google authentication, so I took that part out.  I also changed some heading styles that Blogger doesn't render well.</td>
-</tr></tbody>
-</table>
-</div>
-    </div>
-    </article>
-</div>
-
-
-
-        
-       <script>var disqus_shortname="subsymbolorg";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+<a href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html" class="listtitle">How I transformed a Blogger blog to a Nikola two-blog website</a> <time class="listdate" datetime="2014-07-08T16:59:38+00:00" title="Publication date">2014-07-08 16:59</time>
+</li>
+        <li>
+<a href="../posts/moving-my-site-off-of-blogger.html" class="listtitle">Moving my site off of Blogger</a> <time class="listdate" datetime="2014-07-08T16:48:18+00:00" title="Publication date">2014-07-08 16:48</time>
+</li>
+    </ul></article>
 </div>
         <!--End of body content-->
 

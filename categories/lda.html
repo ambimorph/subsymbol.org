@@ -9,9 +9,9 @@
 <link href="../assets/css/code.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
-<link rel="alternate" type="application/rss+xml" title="RSS for tag lda (en)" href="lda.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
 <link rel="canonical" href="http://www.subsymbol.org/categories/lda.html">
-<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><link rel="alternate" type="application/rss+xml" title="RSS for tag lda" href="lda.xml">
 </head>
 <body>
 
@@ -41,7 +41,7 @@
 <a href=".">Tags</a>
                 </li>
 <li>
-<a href="../blog/">Blog</a>
+<a href="blog.html">Blog</a>
                 </li>
 <li>
 <a href="../journal/">Journal</a>
@@ -63,67 +63,15 @@
         <div class="row">
             
             
-<div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/the-grammaticality-continuum.html" class="u-url">The Grammaticality Continuum</a></h1>
+<article class="tagpage"><header><h1>Posts about lda</h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">L. Amber Wilcox-O'Hearn</span></p>
-            <p class="dateline"><a href="../posts/the-grammaticality-continuum.html" rel="bookmark"><time class="published dt-published" datetime="2014-07-25T15:20:07+00:00" itemprop="datePublished" title="Publication date">2014-07-25 15:20</time></a></p>
-                <p class="commentline">
-        
-    <a href="../posts/the-grammaticality-continuum.html#disqus_thread" data-disqus-identifier="cache/posts/the-grammaticality-continuum.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <p>Yesterday I was thinking about implementing <em>Latent Dirichlet Allocation</em> (LDA).
-LDA is used for <em>topic modelling</em> — inducing a set of topics, such that a set of natural language documents can be represented by a mixture of those topics.
-This is then used to estimate document similarity, and related information retrieval tasks.</p>
-<p>The first step in such a project is to <em>tokenise</em> — to break up the text into words, removing attached punctuation, and regularising things like capitalisation.
-When looking at the words in a document for the purposes of topic modelling,
-it seems appropriate to merge word forms with the same root, or stem, instead of having each form of the "same" word represented individually.
-The canonical way to tokenise for topic modelling involves stemming, and it also involves removing <em>stop words</em> — words like "the", and "and" that are more syntactic than semantic.</p>
-<p>I am not entirely convinced that this latter is appropriate.
-The reason is that the grammatically of words exists on a continuum.
-Even the word "the" carries semantic weight, though its main function is probably to signal the boundaries of syntactic chunks.</p>
-<hr class="docutils">
-<blockquote>
-<p>My favourite example of the syntactic function of "the" comes from <a class="reference external" href="http://en.wikipedia.org/wiki/Petr_Beckmann">Petr Beckmann</a> 's book <em>The structure of language: a new approach</em>, which has profoundly influenced me since my undergraduate days.
-In it he shows how the following headline is disambiguated by the placement of "the" before or after "biting":</p>
-<p>"Man Refuses to Give up Biting Dog"</p>
-</blockquote>
-<hr class="docutils">
-<p>A couple of years ago at <a class="reference external" href="http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=18614">the NAACL conference</a>,
-there was a session where a few prominent computational linguists presented their favourite papers from the past.
-Eugene Charniak presented Kenneth Church's 2000 COLING paper: <em>Empirical Estimates of Adaptation:</em>
-<em>The chance of Two Noriegas is closer to</em> <span class="math">\(p/2\)</span>
- <em>than</em> <span class="math">\(p^2\)</span>
-.
-It introduced a measure of adaptation for language models based on how much a recent occurrence of a word increases its tendency to occur beyond what is already expected.</p>
-<p>Charniak used this paper as a background with which to present a new idea about the way the prior likelihood of a word predicts its future occurrences.
-He divided words into sets according to how well their priors predicted them.
-Stop words were most likely to be true to priors, and content words least, with verbs at the end of the spectrum.</p>
-<p>At the time I took this as evidence for the stratification of grammaticality.
-Because of this stratification, treating stop words as a special set appears arbitrary and oversimplified.
-I expect that leaving stop words in a topic model would simply result in having some topics that are distributed more evenly throughout the corpus of documents.
-These topics would discriminate among documents poorly.
-However, this result should also be part of a continuum.
-It may be useful to account for the distribution of topics when using them in LDA, in a way analogous to <a class="reference external" href="http://en.wikipedia.org/wiki/Tf%E2%80%93idf">inverse document frequency</a> in <a class="reference external" href="http://en.wikipedia.org/wiki/Latent_semantic_analysis">latent semantic analysis</a>.</p>
-<hr class="docutils">
-<p>More generally, I am interested in the phenomenon that words vary in their semantic and syntactic load.
-Even just within semantics, a morpheme may carry more than one meaning that cannot be decomposed linguistically.
-For example, "uncle" is male, and while we could assign "uncle" a set of semantic features in a computer system in order to reason about its meaning, those features are only implicit in English.
-In <a class="reference external" href="http://en.wikipedia.org/wiki/Logogram">logographic writing systems</a> this is all the more apparent.</p>
-<p>This simultaneity of features in an apparently linear system is, to me, one of the most interesting aspects of language, and one of the reasons computational linguistics is difficult and rewarding.</p>
-    </div>
-    </article>
-</div>
-
-
-
-        
-       <script>var disqus_shortname="subsymbolorg";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><script type="text/x-mathjax-config">
-        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});</script><script src="../assets/js/mathjax.js"></script>
+                <p class="feedlink"><a href="lda.xml" type="application/rss+xml">RSS feed</a></p>
+        </div>
+    </header><ul class="postlist">
+<li>
+<a href="../posts/the-grammaticality-continuum.html" class="listtitle">The Grammaticality Continuum</a> <time class="listdate" datetime="2014-07-25T15:20:07+00:00" title="Publication date">2014-07-25 15:20</time>
+</li>
+    </ul></article>
 </div>
         <!--End of body content-->
 

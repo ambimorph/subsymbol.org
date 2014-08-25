@@ -1,7 +1,7 @@
 .. title: Pólya's Urn
 .. slug: polyas-urn
 .. date: 2014-07-25 17:24:37 UTC
-.. tags: mathjax, probability
+.. tags: mathjax, probability, blog
 .. link: 
 .. description: 
 .. type: text

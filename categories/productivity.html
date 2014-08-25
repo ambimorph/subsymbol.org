@@ -9,9 +9,9 @@
 <link href="../assets/css/code.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
-<link rel="alternate" type="application/rss+xml" title="RSS for tag productivity (en)" href="productivity.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
 <link rel="canonical" href="http://www.subsymbol.org/categories/productivity.html">
-<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><link rel="alternate" type="application/rss+xml" title="RSS for tag productivity" href="productivity.xml">
 </head>
 <body>
 
@@ -41,7 +41,7 @@
 <a href=".">Tags</a>
                 </li>
 <li>
-<a href="../blog/">Blog</a>
+<a href="blog.html">Blog</a>
                 </li>
 <li>
 <a href="../journal/">Journal</a>
@@ -63,34 +63,15 @@
         <div class="row">
             
             
-<div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/201212unit-test-fairies.html" class="u-url">Unit Test Fairies</a></h1>
+<article class="tagpage"><header><h1>Posts about productivity</h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">L. Amber Wilcox-O'Hearn</span></p>
-            <p class="dateline"><a href="../posts/201212unit-test-fairies.html" rel="bookmark"><time class="published dt-published" datetime="2012-12-11T04:27:00+00:00" itemprop="datePublished" title="Publication date">2012-12-11 04:27</time></a></p>
-                <p class="commentline">
-        
-    <a href="../posts/201212unit-test-fairies.html#disqus_thread" data-disqus-identifier="cache/posts/201212unit-test-fairies.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <p>Sometimes unit tests take more than a few seconds to run, especially if they involve training a small test corpus in some way or other.  This can be dangerous for my focus.  "I'll just check my email while I'm waiting for this test to complete." are famous last words that can lead to a slow development cycle.  See <a href="http://xkcd.com/303/">compiling</a>. </p>
-<p>So, I started queuing a sound file to play after each test finished.  This way I would be alerted immediately, rather than relying on polling. </p>
-<p>Recently <a href="http://zooko.com">Zooko</a> helped me improve this system by adding the feature of switching the file to play based on the test results. </p>
-<p>Currently, I have the following alias in my .bash_aliases file: </p>
-<pre><code><br>alias testbell='X=$? ;  if [ $X = 0 ] ; then mplayer -really-quiet -volume 50 ~/<a href="https://github.com/edse/puzzle/blob/master/audio/51710__bristolstories__u-chimes3.mp3?raw=true">chimes3.mp3</a> ; <br>else mplayer -really-quiet ~/<a href="http://soundjax.com/reddo/51294%5EWINDGONG.mp3">gong.mp3</a>  ; fi'<br></code></pre> The -really-quiet flag is about verbosity, not volume, and the -volume 50 is just because my chimes file is much louder than my gong file. <br><br><p>So today, for example, I've been running: </p>
-<pre><code><br>time python -m unittest code.error_insertion.test.test_RealWordErrorChannel.RealWordErrorChannelTest ;<br> testbell<br></code></pre>
-<br><p>A friend told me it sounds like there is a fairy somewhere intermittently trying to escape.</p>
-    </div>
-    </article>
-</div>
-
-
-
-        
-       <script>var disqus_shortname="subsymbolorg";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+                <p class="feedlink"><a href="productivity.xml" type="application/rss+xml">RSS feed</a></p>
+        </div>
+    </header><ul class="postlist">
+<li>
+<a href="../posts/201212unit-test-fairies.html" class="listtitle">Unit Test Fairies</a> <time class="listdate" datetime="2012-12-11T04:27:00+00:00" title="Publication date">2012-12-11 04:27</time>
+</li>
+    </ul></article>
 </div>
         <!--End of body content-->
 

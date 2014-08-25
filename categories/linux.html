@@ -9,9 +9,9 @@
 <link href="../assets/css/code.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
-<link rel="alternate" type="application/rss+xml" title="RSS for tag linux (en)" href="linux.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
 <link rel="canonical" href="http://www.subsymbol.org/categories/linux.html">
-<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><link rel="alternate" type="application/rss+xml" title="RSS for tag linux" href="linux.xml">
 </head>
 <body>
 
@@ -41,7 +41,7 @@
 <a href=".">Tags</a>
                 </li>
 <li>
-<a href="../blog/">Blog</a>
+<a href="blog.html">Blog</a>
                 </li>
 <li>
 <a href="../journal/">Journal</a>
@@ -63,37 +63,15 @@
         <div class="row">
             
             
-<div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/201209xmonad-on-unity-1204.html" class="u-url">xmonad on Unity 12.04</a></h1>
+<article class="tagpage"><header><h1>Posts about linux</h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">L. Amber Wilcox-O'Hearn</span></p>
-            <p class="dateline"><a href="../posts/201209xmonad-on-unity-1204.html" rel="bookmark"><time class="published dt-published" datetime="2012-09-09T18:15:00+00:00" itemprop="datePublished" title="Publication date">2012-09-09 18:15</time></a></p>
-                <p class="commentline">
-        
-    <a href="../posts/201209xmonad-on-unity-1204.html#disqus_thread" data-disqus-identifier="cache/posts/201209xmonad-on-unity-1204.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <p>I love the <a href="http://xmonad.org/">xmonad window manager</a>.   It's tiling, so it maximizes real estate, and it is driven by keys instead of the mouse.   It's written in Haskell -- enough said. </p>
-<p>However, much as I love to tinker, I am reluctant to give up some things that "just work" when running Gnome and its successor, Unity.   So I run xmonad as the replacement window manager within Unity.   </p>
-<p>I recently had the privilege of obtaining a new <a href="http://zareason.com">Zareason </a> UltraLap laptop (Zareason has an open bootloader, and ships with any of a variety of linuxes that also "just work"), and so I got to configure xmonad from scratch. </p>
-<p>My modus operandus for this kind of thing is to see if someone else has solved it first, and my final (so-far) configuration came from merging a few sources. </p>
-<p>First, I followed <a href="http://www.elonflegenheimer.com/2012/06/22/xmonad-in-ubuntu-12.04-with-unity-2d.html">the advice of Elon Flegenheimer</a>. Three of my config files came from him:   </p>
-<h4>/usr/share/applications/xmonad.desktop</h4> <pre><code>[Desktop Entry]<br>Type=Application<br>Encoding=UTF-8<br>Name=Xmonad<br>Exec=xmonad<br>NoDisplay=true<br>X-GNOME-WMName=Xmonad<br>X-GNOME-Autostart-Phase=WindowManager<br>X-GNOME-Provides=windowmanager<br>X-GNOME-Autostart-Notify=true<br></code></pre> <h4>/usr/share/gnome-session/sessions/xmonad.session</h4> <pre><code>[GNOME Session]<br>Name=Xmonad Unity-2D Desktop<br>RequiredComponents=gnome-settings-daemon;<br>RequiredProviders=windowmanager;panel;<br>DefaultProvider-windowmanager=xmonad<br>DefaultProvider-panel=unity-2d-panel<br></code></pre> <h4>/usr/bin/gnome-session-xmonad</h4> <pre><code>#! /bin/sh<br>exec gnome-session --session xmonad "$@"<br></code></pre> <p>Then I based my /home/amber/.xmonad/xmonad.hs on <a href="https://gist.github.com/2551959">that of Arash Rouhani</a>, but I changed the Unity panel option to "doFloat" instead of doIgnore:  </p>
-<h4>/home/amber/.xmonad/xmonad.hs</h4>
-<pre><code>import XMonad<br>import XMonad.Util.Run<br>import XMonad.Util.EZConfig (additionalKeys)<br>import XMonad.Hooks.ManageDocks<br>import XMonad.Hooks.ICCCMFocus<br>import XMonad.Config.Gnome<br><br>myManageHook = composeAll (<br>  [ className =? "Unity-2d-panel" --&gt; doFloat<br>  , className =? "Unity-2d-launcher" --&gt; doFloat<br>  ])<br><br>main = <br>  xmonad $ gnomeConfig { modMask = mod4Mask<br>                       , manageHook = manageDocks  myManageHook  manageHook gnomeConfig <br>                       , layoutHook = avoidStruts $ layoutHook defaultConfig<br>                       , logHook = takeTopFocus<br>                       } `additionalKeys` [ ((mod4Mask, xK_d), spawn "dmenu_run -b")<br>                                          , ((mod4Mask, xK_Return), spawn "xfce4-terminal")<br>                                          ]<br></code></pre> <p>All the configurations I looked at had something in /usr/share/xsessions/xmonad-gnome-session.desktop, but my old laptop, on which I also run xmonad on Unity, does not, so I left that out. </p>
-<p>Finally, there is <a href="https://bugs.launchpad.net/ubuntu/+source/indicator-appmenu/+bug/734325">a problem with application menus</a> which I fixed per advice in that link by uninstalling indicator-appmenu. </p>
-<p><a href="http://augix.com/img/Xmbindings.png">This keymap chart</a> shows most everything you need to know to get going with xmonad, and if you get stuck, try joining the irc channel #xmonad for help.</p>
-    </div>
-    </article>
-</div>
-
-
-
-        
-       <script>var disqus_shortname="subsymbolorg";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+                <p class="feedlink"><a href="linux.xml" type="application/rss+xml">RSS feed</a></p>
+        </div>
+    </header><ul class="postlist">
+<li>
+<a href="../posts/201209xmonad-on-unity-1204.html" class="listtitle">xmonad on Unity 12.04</a> <time class="listdate" datetime="2012-09-09T18:15:00+00:00" title="Publication date">2012-09-09 18:15</time>
+</li>
+    </ul></article>
 </div>
         <!--End of body content-->
 
