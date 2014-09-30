@@ -12,14 +12,14 @@
 
 -----
 
-I am a computer scientist and software engineer with experience in natural language processing and machine learning.
+I am a computer scientist and aspiring software engineer with experience in natural language processing and machine learning.
 I have an M.Sc. from the University of Toronto, where `I studied computational linguistics <http://www.cs.toronto.edu/~amber/>`_ with `Graeme Hirst <http://www.cs.utoronto.ca/~gh/>`_.
 
 My primary research interest is in the properties that emerge from the way information is structured. For example, different languages (formal or natural) vary in robustness to error, potential for ambiguity, expressiveness, and susceptibility to inference.
 
 `My publications so far <http://scholar.google.com/citations?user=15gGywMAAAAJ>`_ have explored this from the perspectives of coding theory, human memory, and natural language error correction:
 
-I'm currently improving my coding skills at `Hacker School <www.hackerschool.com>`_.
+I'm spent the summer improving my coding skills at `Hacker School <www.hackerschool.com>`_.
 
 
 See also:
