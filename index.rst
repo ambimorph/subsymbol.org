@@ -19,7 +19,7 @@ My primary research interest is in the properties that emerge from the way infor
 
 `My publications so far <http://scholar.google.com/citations?user=15gGywMAAAAJ>`_ have explored this from the perspectives of coding theory, human memory, and natural language error correction:
 
-I spent the summer improving my coding skills at `Hacker School <www.hackerschool.com>`_.
+I spent the summer improving my coding skills at `Hacker School <http://www.hackerschool.com>`_.
 
 
 See also:
