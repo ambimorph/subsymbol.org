@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two inotify Pitfalls | subsymbol.org</title>
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="http://www.subsymbol.org/posts/two-inotify-pitfalls.html">
+<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><meta name="author" content="L. Amber Wilcox-O'Hearn">
+<meta name="og:title" content="Two inotify Pitfalls">
+<meta name="og:url" content="http://www.subsymbol.org/posts/two-inotify-pitfalls.html">
+<meta name="og:description" content="All I wanted was to track some files.
+I have a set of directories populated with files that are hardlinked from other places.
+This serves as a kind of database for associating tags to files.
+I wanted ">
+<meta name="og:site_name" content="subsymbol.org">
+<meta name="og:type" content="article">
+</head>
+<body>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://www.subsymbol.org/">
+
+                <span id="blog-title">subsymbol.org</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../categories/">Tags</a>
+                </li>
+<li>
+<a href="../categories/blog.html">Blog</a>
+                </li>
+<li>
+<a href="../journal/">Journal</a>
+                </li>
+<li>
+<a href="../rss.xml">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+    <a href="two-inotify-pitfalls.rst" id="sourcelink">Source</a>
+    </li>
+
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Two inotify Pitfalls</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">L. Amber Wilcox-O'Hearn</span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2014-07-31T19:35:05+00:00" itemprop="datePublished" title="Publication date">2014-07-31 19:35</time></a></p>
+                <p class="commentline">
+        
+    <a href="two-inotify-pitfalls.html#disqus_thread" data-disqus-identifier="cache/posts/two-inotify-pitfalls.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="two-inotify-pitfalls.rst" id="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>All I wanted was to track some files.</p>
+<p>I have a set of directories populated with files that are hardlinked from other places.
+This serves as a kind of database for associating tags to files.
+I wanted to write a daemon that notifies changes to the files that might affect the consistency of the database.
+For example, if the file is removed, I want my database to let go of its reference.</p>
+<p>The linux kernel has a set of system calls for this called <a class="reference external" href="http://en.wikipedia.org/wiki/Inotify">inotify</a>, and <a class="reference external" href="http://twistedmatrix.com/documents/current/api/twisted.internet.inotify.html">Twisted has a module to support that API</a>.
+Not only that, but the module documentation has everything you need.</p>
+<hr class="docutils">
+<pre class="code python literal-block">
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">inotify</span>
+<span class="kn">from</span> <span class="nn">twisted.python</span> <span class="kn">import</span> <span class="n">filepath</span>
+
+<span class="k">def</span> <span class="nf">notify</span><span class="p">(</span><span class="n">ignored</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+    <span class="sd">"""
+    For historical reasons, an opaque handle is passed as first
+    parameter. This object should never be used.
+
+    @param filepath: FilePath on which the event happened.
+    @param mask: inotify event as hexadecimal masks
+    """</span>
+    <span class="k">print</span> <span class="s">"event </span><span class="si">%s</span><span class="s"> on </span><span class="si">%s</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span>
+        <span class="s">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inotify</span><span class="o">.</span><span class="n">humanReadableMask</span><span class="p">(</span><span class="n">mask</span><span class="p">)),</span> <span class="n">filepath</span><span class="p">)</span>
+
+<span class="n">notifier</span> <span class="o">=</span> <span class="n">inotify</span><span class="o">.</span><span class="n">INotify</span><span class="p">()</span>
+<span class="n">notifier</span><span class="o">.</span><span class="n">startReading</span><span class="p">()</span>
+<span class="n">notifier</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="n">filepath</span><span class="o">.</span><span class="n">FilePath</span><span class="p">(</span><span class="s">"/some/directory"</span><span class="p">),</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">notify</span><span class="p">])</span>
+</pre>
+<hr class="docutils">
+<div class="section" id="pitfall-1">
+<h2>Pitfall #1</h2>
+<p>Great!  I copy the code, change the path from "/some/directory" to "/home/amber/somedir", and start it up.</p>
+<ul class="simple">
+<li>I make a file, "f", and am notified of its creation, and some attribute change.</li>
+</ul>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>touch f
+</pre>
+<pre class="code bash literal-block">
+event create on FilePath<span class="o">(</span><span class="s1">'/home/amber/somedir/f'</span><span class="o">)</span>
+event attrib on FilePath<span class="o">(</span><span class="s1">'/home/amber/somedir/f'</span><span class="o">)</span>
+</pre>
+<ul class="simple">
+<li>I hard link it with another name</li>
+</ul>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>ln f h
+</pre>
+<pre class="code bash literal-block">
+event create on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/h'</span><span class="o">)</span>
+</pre>
+<p>Ok.  It logged the creation of h for me, but hasn't this changed the links attribute of f?
+Why wasn't I notified of that?</p>
+<ul class="simple">
+<li>I try modifying it.</li>
+</ul>
+<pre class="code bash literal-block">
+<span class="nv">$ </span><span class="nb">echo </span>hello &gt;&gt; h
+</pre>
+<pre class="code bash literal-block">
+event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/h'</span><span class="o">)</span>
+</pre>
+<p>I'm further non-plussed.
+This event should have modified both f and h, but I was only notified of the one used in the command.</p>
+<p>Finally I try what I really want.
+* I make a hard link to f from outside of "somedir/", and modify it through there.</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>ln f ../h
+<span class="nv">$ </span><span class="nb">echo </span>hello &gt;&gt; ../h
+</pre>
+<pre class="code bash literal-block">
+<span class="o">(</span>no response<span class="o">)</span>
+</pre>
+<div class="section" id="what-s-going-on">
+<h3>What's going on?</h3>
+<p>Inotify takes a pathname.
+If the pathname is a directory, then it watches the directory, but this is not the same as watching each file in the directory.</p>
+</div>
+</div>
+<div class="section" id="pitfall-2">
+<h2>Pitfall #2</h2>
+<p>Glad to have figured out my error, I try again, modifying the pathname argument in the daemon to "somedir/f".
+I remove all those files, touch f, and start the daemon again.
+This time it does what I want.</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>ln f h
+</pre>
+<pre class="code bash literal-block">
+event attrib on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+</pre>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>ln f h
+<span class="nv">$ </span><span class="nb">echo </span>hello &gt;&gt; h
+</pre>
+<pre class="code bash literal-block">
+event attrib on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+</pre>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>ln f ../h
+<span class="nv">$ </span><span class="nb">echo </span>hello &gt;&gt; ../h
+</pre>
+<pre class="code bash literal-block">
+event attrib on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+</pre>
+<div class="section" id="but-wait">
+<h3>But wait!</h3>
+<p>I was about to call it good, when I decided to try modifying the file with vim or emacs.
+I deleted all those files again, touched f, and this time modified it with vim.
+On saving the file, I get this:</p>
+<pre class="code bash literal-block">
+event move_self on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+event attrib on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+event delete_self on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+</pre>
+</div>
+<div class="section" id="id1">
+<h3>What's going on?</h3>
+<p>It turns out that vim and emacs, and who knows what else, have a trick to save backups while in use.</p>
+<p>To see what happens, I edited the daemon to watch the directory again, and also to print some stats about the files:</p>
+<pre class="code python literal-block">
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">inotify</span><span class="p">,</span> <span class="n">reactor</span>
+<span class="kn">from</span> <span class="nn">twisted.python</span> <span class="kn">import</span> <span class="n">filepath</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<span class="k">def</span> <span class="nf">notify</span><span class="p">(</span><span class="n">ignored</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+    <span class="sd">"""
+    For historical reasons, an opaque handle is passed as first
+    parameter. This object should never be used.
+
+    @param filepath: FilePath on which the event happened.
+    @param mask: inotify event as hexadecimal masks
+    """</span>
+    <span class="k">print</span> <span class="s">"event </span><span class="si">%s</span><span class="s"> on </span><span class="si">%s</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span> <span class="s">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inotify</span><span class="o">.</span><span class="n">humanReadableMask</span><span class="p">(</span><span class="n">mask</span><span class="p">)),</span> <span class="n">filepath</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">fp</span><span class="p">):</span>
+        <span class="n">stat</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span>
+        <span class="k">print</span> <span class="n">f</span><span class="p">,</span> <span class="s">"mode:"</span><span class="p">,</span> <span class="n">stat</span><span class="o">.</span><span class="n">st_mode</span><span class="p">,</span> <span class="s">"inode:"</span><span class="p">,</span> <span class="n">stat</span><span class="o">.</span><span class="n">st_ino</span>
+
+<span class="n">fp</span> <span class="o">=</span> <span class="s">"/home/amber/subdir"</span>
+<span class="n">notifier</span> <span class="o">=</span> <span class="n">inotify</span><span class="o">.</span><span class="n">INotify</span><span class="p">()</span>
+<span class="n">notifier</span><span class="o">.</span><span class="n">startReading</span><span class="p">()</span>
+<span class="n">notifier</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="n">filepath</span><span class="o">.</span><span class="n">FilePath</span><span class="p">(</span><span class="n">fp</span><span class="p">),</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">notify</span><span class="p">])</span>
+<span class="n">reactor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre>
+<p>Now I run it and open f with vi.</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>vi f
+</pre>
+<pre class="code bash literal-block">
+event create on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+f mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+event create on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swpx'</span><span class="o">)</span>
+f mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+event delete on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swpx'</span><span class="o">)</span>
+f mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+event delete on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+f mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+event create on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+f mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+f mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+event attrib on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+f mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+</pre>
+<p>(pause)</p>
+<pre class="code bash literal-block">
+event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+f mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+</pre>
+<p>(modify manually)</p>
+<pre class="code bash literal-block">
+event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+f mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+f mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+</pre>
+<p>(save manually)</p>
+<pre class="code bash literal-block">
+event create on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/4913'</span><span class="o">)</span>
+f~ mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+event attrib on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/4913'</span><span class="o">)</span>
+f~ mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+event delete on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/4913'</span><span class="o">)</span>
+f~ mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+event moved_from on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+f~ mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+event moved_to on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f~'</span><span class="o">)</span>
+f~ mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+event create on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+f mode: 33204 inode: 2307371
+f~ mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+f mode: 33204 inode: 2307371
+f~ mode: 33204 inode: 2307370
+.f.swp mode: 33188 inode: 2307363
+event attrib on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+f mode: 33204 inode: 2307371
+.f.swp mode: 33188 inode: 2307363
+event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+f mode: 33204 inode: 2307371
+.f.swp mode: 33188 inode: 2307363
+event delete on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f~'</span><span class="o">)</span>
+f mode: 33204 inode: 2307371
+.f.swp mode: 33188 inode: 2307363
+</pre>
+<p>(exit)</p>
+<pre class="code bash literal-block">
+event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+f mode: 33204 inode: 2307371
+.f.swp mode: 33188 inode: 2307363
+event delete on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+f mode: 33204 inode: 2307371
+</pre>
+<p>As far as I can tell, the result is as if they have renamed f to something else like f~, copied the contents of f~ to a new file named f, modified f, and finally deleted f~.
+This is essentially <a class="reference external" href="http://en.wikipedia.org/wiki/Copy-on-write">copy-on write</a>.</p>
+<p>But inotify, while taking pathnames as arguments and returning pathnames, actually tracks inodes.
+So simply using an editor has the effect of moving the file to a different inode and thereby breaks inotify!</p>
+<p>This is ultimately a consequence of using aliases to files (pathnames) as if they were canonical references to files (inodes).</p>
+<!-- **It is a property of mutable objects that -->
+</div>
+<div class="section" id="post-script-lucky-break">
+<h3>Post Script: Lucky break?</h3>
+<p>As it happens, the behaviour of vim and emacs is different when the inode holding the file has more than one reference.
+I can prevent the inode from disappearing by making a hardlink to the file before opening it with an editor.
+The editor must have recognised that it can't move inodes willy-nilly when other pathnames depend on it.
+This maps exactly to my original scenario, and therefore might make it safe for me to use.
+On the other hand, my whole confidence in the bahaviour is undermined, and I am reluctant to rely on it.</p>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../categories/blog.html" rel="tag">blog</a></li>
+           <li><a class="tag p-category" href="../categories/emacs.html" rel="tag">emacs</a></li>
+           <li><a class="tag p-category" href="../categories/filesystems.html" rel="tag">filesystems</a></li>
+           <li><a class="tag p-category" href="../categories/inotify.html" rel="tag">inotify</a></li>
+           <li><a class="tag p-category" href="../categories/links.html" rel="tag">links</a></li>
+           <li><a class="tag p-category" href="../categories/linux.html" rel="tag">linux</a></li>
+           <li><a class="tag p-category" href="../categories/vim.html" rel="tag">vim</a></li>
+        </ul>
+<ul class="pager">
+<li class="previous">
+                <a href="polyas-urn.html" rel="prev" title="Pólya's Urn">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="subsymbolorg",
+            disqus_url="http://www.subsymbol.org/posts/two-inotify-pitfalls.html",
+        disqus_title="Two inotify Pitfalls",
+        disqus_identifier="cache/posts/two-inotify-pitfalls.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="subsymbolorg";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer><br><br>Contents © 2014         <a href="mailto:amber@cs.toronto.edu">L. Amber Wilcox-O'Hearn</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../assets/js/jquery.min.js"></script><script src="../assets/js/bootstrap.min.js"></script><script src="../assets/js/jquery.colorbox-min.js"></script><!-- Social buttons --><div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
+<a class="addthis_button_more">Share</a>
+<ul>
+<li>
+<a class="addthis_button_facebook"></a>
+</li>
+<li>
+<a class="addthis_button_google_plusone_share"></a>
+</li>
+<li>
+<a class="addthis_button_linkedin"></a>
+</li>
+<li>
+<a class="addthis_button_twitter"></a>
+</li>
+</ul>
+</div>
+<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script><!-- End of social buttons --><script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+</body>
+</html>

@@ -41,11 +41,23 @@
   <lastmod>2014-11-14</lastmod>
  </sitemap>
  <sitemap>
+  <loc>http://www.subsymbol.org/categories/emacs.xml</loc>
+  <lastmod>2014-11-14</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>http://www.subsymbol.org/categories/evaluation.xml</loc>
   <lastmod>2014-11-14</lastmod>
  </sitemap>
  <sitemap>
+  <loc>http://www.subsymbol.org/categories/filesystems.xml</loc>
+  <lastmod>2014-11-14</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>http://www.subsymbol.org/categories/hacker-school.xml</loc>
+  <lastmod>2014-11-14</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://www.subsymbol.org/categories/inotify.xml</loc>
   <lastmod>2014-11-14</lastmod>
  </sitemap>
  <sitemap>
@@ -54,6 +66,10 @@
  </sitemap>
  <sitemap>
   <loc>http://www.subsymbol.org/categories/linguistics.xml</loc>
+  <lastmod>2014-11-14</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://www.subsymbol.org/categories/links.xml</loc>
   <lastmod>2014-11-14</lastmod>
  </sitemap>
  <sitemap>
@@ -110,6 +126,10 @@
  </sitemap>
  <sitemap>
   <loc>http://www.subsymbol.org/categories/tools.xml</loc>
+  <lastmod>2014-11-14</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://www.subsymbol.org/categories/vim.xml</loc>
   <lastmod>2014-11-14</lastmod>
  </sitemap>
  <sitemap>
