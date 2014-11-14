@@ -17,7 +17,7 @@ I have an M.Sc. from the University of Toronto, where `I studied computational l
 
 My primary research interest is in the properties that emerge from the way information is structured. For example, different languages (formal or natural) vary in robustness to error, potential for ambiguity, expressiveness, and susceptibility to inference.
 
-`My publications so far <http://scholar.google.com/citations?user=15gGywMAAAAJ>`_ have explored this from the perspectives of coding theory, human memory, and natural language error correction:
+`My publications so far <http://scholar.google.com/citations?user=15gGywMAAAAJ>`_ have explored this from the perspectives of coding theory, human memory, and natural language error correction.
 
 I spent the summer improving my coding skills at `Hacker School <http://www.hackerschool.com>`_.
 
