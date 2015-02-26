@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>subsymbol.org (blog)</title><link>http://www.subsymbol.org/</link><description></description><language>en</language><lastBuildDate>Fri, 14 Nov 2014 11:34:20 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Two inotify Pitfalls</title><link>http://www.subsymbol.org/posts/two-inotify-pitfalls.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;All I wanted was to track some files.&lt;/p&gt;
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>subsymbol.org (blog)</title><link>http://www.subsymbol.org/</link><description></description><language>en</language><lastBuildDate>Wed, 25 Feb 2015 20:31:29 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Two inotify Pitfalls</title><link>http://www.subsymbol.org/posts/two-inotify-pitfalls.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;All I wanted was to track some files.&lt;/p&gt;
 &lt;p&gt;I have a set of directories populated with files that are hardlinked from other places.
 This serves as a kind of database for associating tags to files.
 I wanted to write a daemon that notifies changes to the files that might affect the consistency of the database.
 For example, if the file is removed, I want my database to let go of its reference.&lt;/p&gt;
 &lt;p&gt;The linux kernel has a set of system calls for this called &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Inotify"&gt;inotify&lt;/a&gt;, and &lt;a class="reference external" href="http://twistedmatrix.com/documents/current/api/twisted.internet.inotify.html"&gt;Twisted has a module to support that API&lt;/a&gt;.
 Not only that, but the module documentation has everything you need.&lt;/p&gt;
-&lt;hr class="docutils"&gt;&lt;pre class="code python literal-block"&gt;
+&lt;hr class="docutils"&gt;
+&lt;pre class="code python literal-block"&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.internet&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.python&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;
 
@@ -25,19 +26,24 @@ Not only that, but the module documentation has everything you need.&lt;/p&gt;
 &lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startReading&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;watch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FilePath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"/some/directory"&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;callbacks&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;/pre&gt;
-&lt;hr class="docutils"&gt;&lt;div class="section" id="pitfall-1"&gt;
+&lt;hr class="docutils"&gt;
+&lt;div class="section" id="pitfall-1"&gt;
 &lt;h2&gt;Pitfall #1&lt;/h2&gt;
 &lt;p&gt;Great!  I copy the code, change the path from "/some/directory" to "/home/amber/somedir", and start it up.&lt;/p&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;I make a file, "f", and am notified of its creation, and some attribute change.&lt;/li&gt;
-&lt;/ul&gt;&lt;pre class="code bash literal-block"&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;I make a file, "f", and am notified of its creation, and some attribute change.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash literal-block"&gt;
 &lt;span class="nv"&gt;$ &lt;/span&gt;touch f
 &lt;/pre&gt;
 &lt;pre class="code bash literal-block"&gt;
 event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/somedir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/somedir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;I hard link it with another name&lt;/li&gt;
-&lt;/ul&gt;&lt;pre class="code bash literal-block"&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;I hard link it with another name&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash literal-block"&gt;
 &lt;span class="nv"&gt;$ &lt;/span&gt;ln f h
 &lt;/pre&gt;
 &lt;pre class="code bash literal-block"&gt;
@@ -45,8 +51,10 @@ event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&
 &lt;/pre&gt;
 &lt;p&gt;Ok.  It logged the creation of h for me, but hasn't this changed the links attribute of f?
 Why wasn't I notified of that?&lt;/p&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;I try modifying it.&lt;/li&gt;
-&lt;/ul&gt;&lt;pre class="code bash literal-block"&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;I try modifying it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash literal-block"&gt;
 &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;hello &amp;gt;&amp;gt; h
 &lt;/pre&gt;
 &lt;pre class="code bash literal-block"&gt;
@@ -266,55 +274,91 @@ On the other hand, if you happened to have drawn red, then the ratio would chang
 &lt;h3&gt;One of each&lt;/h3&gt;
 &lt;p&gt;Let's imagine the simplest case, in which we start with one each of two colours, red and green.
 The following table shows the probabilities of getting red on the first three draws, and how each draw changes the probability of the next by changing the proportion of colours in the urn.&lt;/p&gt;
-&lt;table border="1" class="docutils"&gt;&lt;colgroup&gt;&lt;col width="33%"&gt;&lt;col width="33%"&gt;&lt;col width="33%"&gt;&lt;/colgroup&gt;&lt;thead valign="bottom"&gt;&lt;tr&gt;&lt;th class="head"&gt; &lt;/th&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="33%"&gt;
+&lt;col width="33%"&gt;
+&lt;col width="33%"&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt; &lt;/th&gt;
 &lt;th class="head"&gt;RRR&lt;/th&gt;
 &lt;th class="head"&gt; &lt;/th&gt;
-&lt;/tr&gt;&lt;/thead&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Draw&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Draw&lt;/strong&gt;&lt;/td&gt;
 &lt;td&gt;&lt;strong&gt;p(Draw)&lt;/strong&gt;&lt;/td&gt;
 &lt;td&gt;&lt;strong&gt;new R:G&lt;/strong&gt;&lt;/td&gt;
-&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;R&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;R&lt;/td&gt;
 &lt;td&gt;&lt;span class="math"&gt;\(1/2\)&lt;/span&gt;
 &lt;/td&gt;
 &lt;td&gt;2:1&lt;/td&gt;
-&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;R&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;R&lt;/td&gt;
 &lt;td&gt;&lt;span class="math"&gt;\(2/3\)&lt;/span&gt;
 &lt;/td&gt;
 &lt;td&gt;3:1&lt;/td&gt;
-&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;R&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;R&lt;/td&gt;
 &lt;td&gt;&lt;span class="math"&gt;\(3/4\)&lt;/span&gt;
 &lt;/td&gt;
 &lt;td&gt;4:1&lt;/td&gt;
-&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;hr class="docutils"&gt;&lt;p&gt;There are more ways to have drawn two of one colour, and one of the other, than 3 of one colour.
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr class="docutils"&gt;
+&lt;p&gt;There are more ways to have drawn two of one colour, and one of the other, than 3 of one colour.
 However, because of the way drawing a particular colour reinforces itself,
 there is a &lt;span class="math"&gt;\(50\%\)&lt;/span&gt;
  chance of drawing the same colour every time over the first three draws.&lt;/p&gt;
-&lt;table border="1" class="docutils"&gt;&lt;colgroup&gt;&lt;col width="50%"&gt;&lt;col width="50%"&gt;&lt;/colgroup&gt;&lt;thead valign="bottom"&gt;&lt;tr&gt;&lt;th class="head"&gt;First three draws&lt;/th&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="50%"&gt;
+&lt;col width="50%"&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;First three draws&lt;/th&gt;
 &lt;th class="head"&gt;probability&lt;/th&gt;
-&lt;/tr&gt;&lt;/thead&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td&gt;RRR&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;RRR&lt;/td&gt;
 &lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 3/4 = 1/4\)&lt;/span&gt;
 &lt;/td&gt;
-&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;RRG&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;RRG&lt;/td&gt;
 &lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/4 = 1/12\)&lt;/span&gt;
 &lt;/td&gt;
-&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;RGR&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;RGR&lt;/td&gt;
 &lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/2 = 1/6\)&lt;/span&gt;
 &lt;/td&gt;
-&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;RGG&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;RGG&lt;/td&gt;
 &lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/2 = 1/6\)&lt;/span&gt;
 &lt;/td&gt;
-&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;GRR&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;GRR&lt;/td&gt;
 &lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/2 = 1/6\)&lt;/span&gt;
 &lt;/td&gt;
-&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;GRG&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;GRG&lt;/td&gt;
 &lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/2 = 1/6\)&lt;/span&gt;
 &lt;/td&gt;
-&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;GGR&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;GGR&lt;/td&gt;
 &lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/4 = 1/12\)&lt;/span&gt;
 &lt;/td&gt;
-&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;GGG&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;GGG&lt;/td&gt;
 &lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 3/4 = 1/4\)&lt;/span&gt;
 &lt;/td&gt;
-&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
 &lt;div class="section" id="ten-of-each"&gt;
 &lt;h3&gt;Ten of each&lt;/h3&gt;
 &lt;p&gt;Now suppose that we start with 10 each of red and green balls.
@@ -359,8 +403,11 @@ n: &lt;b id="n-output"&gt;&lt;/b&gt;
 α: &lt;b id="alpha-output"&gt;&lt;/b&gt;
 &lt;input class="alpha-slider" type="range" min="1" max="8"&gt;
 β: &lt;b id="beta-output"&gt;&lt;/b&gt;
-&lt;input class="beta-slider" type="range" min="1" max="8"&gt;&lt;br&gt;&lt;p id="urn"&gt;Urn&lt;/p&gt;
-&lt;br&gt;&lt;button id="draw"&gt;Draw!&lt;/button&gt;
+&lt;input class="beta-slider" type="range" min="1" max="8"&gt;
+&lt;br&gt;
+&lt;p id="urn"&gt;Urn&lt;/p&gt;
+&lt;br&gt;
+&lt;button id="draw"&gt;Draw!&lt;/button&gt;
 &lt;button id="reset"&gt;Reset.&lt;/button&gt;
 &lt;button id="rank"&gt;Order by rank.&lt;/button&gt;
 
@@ -375,12 +422,14 @@ The canonical way to tokenise for topic modelling involves stemming, and it also
 &lt;p&gt;I am not entirely convinced that this latter is appropriate.
 The reason is that the grammatically of words exists on a continuum.
 Even the word "the" carries semantic weight, though its main function is probably to signal the boundaries of syntactic chunks.&lt;/p&gt;
-&lt;hr class="docutils"&gt;&lt;blockquote&gt;
+&lt;hr class="docutils"&gt;
+&lt;blockquote&gt;
 &lt;p&gt;My favourite example of the syntactic function of "the" comes from &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Petr_Beckmann"&gt;Petr Beckmann&lt;/a&gt; 's book &lt;em&gt;The structure of language: a new approach&lt;/em&gt;, which has profoundly influenced me since my undergraduate days.
 In it he shows how the following headline is disambiguated by the placement of "the" before or after "biting":&lt;/p&gt;
 &lt;p&gt;"Man Refuses to Give up Biting Dog"&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;hr class="docutils"&gt;&lt;p&gt;A couple of years ago at &lt;a class="reference external" href="http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=18614"&gt;the NAACL conference&lt;/a&gt;,
+&lt;hr class="docutils"&gt;
+&lt;p&gt;A couple of years ago at &lt;a class="reference external" href="http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=18614"&gt;the NAACL conference&lt;/a&gt;,
 there was a session where a few prominent computational linguists presented their favourite papers from the past.
 Eugene Charniak presented Kenneth Church's 2000 COLING paper: &lt;em&gt;Empirical Estimates of Adaptation:&lt;/em&gt;
 &lt;em&gt;The chance of Two Noriegas is closer to&lt;/em&gt; &lt;span class="math"&gt;\(p/2\)&lt;/span&gt;
@@ -396,7 +445,8 @@ I expect that leaving stop words in a topic model would simply result in having 
 These topics would discriminate among documents poorly.
 However, this result should also be part of a continuum.
 It may be useful to account for the distribution of topics when using them in LDA, in a way analogous to &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Tf%E2%80%93idf"&gt;inverse document frequency&lt;/a&gt; in &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Latent_semantic_analysis"&gt;latent semantic analysis&lt;/a&gt;.&lt;/p&gt;
-&lt;hr class="docutils"&gt;&lt;p&gt;More generally, I am interested in the phenomenon that words vary in their semantic and syntactic load.
+&lt;hr class="docutils"&gt;
+&lt;p&gt;More generally, I am interested in the phenomenon that words vary in their semantic and syntactic load.
 Even just within semantics, a morpheme may carry more than one meaning that cannot be decomposed linguistically.
 For example, "uncle" is male, and while we could assign "uncle" a set of semantic features in a computer system in order to reason about its meaning, those features are only implicit in English.
 In &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Logogram"&gt;logographic writing systems&lt;/a&gt; this is all the more apparent.&lt;/p&gt;
@@ -428,14 +478,21 @@ Learning tends to follow a cyclical pattern of periods of &lt;em&gt;assimilation
 Accommodation is needed when new ideas are fitting less well into the existing model, and an extensive refactorisation makes everything fit more naturally.
 This stage is slow and uncomfortable, and may even feel like a regression.
 After this, there is a shorter period during which learning new things with the new model is fast and rewarding, before reaching another steadier state of assimilation.&lt;/p&gt;
-&lt;hr class="docutils"&gt;&lt;p&gt;Even though I have taken my own way on some critical aspects of my life,
+&lt;hr class="docutils"&gt;
+&lt;p&gt;Even though I have taken my own way on some critical aspects of my life,
 much of my life is characterisable by following paths that were set by someone else, or were simply unexamined pursuit of "the way things are done".
 Applying to Hacker School in the first place was a big, intimidating step away from this pattern that stretched my courage.
 It rivals the most rewarding decisions of my life so far.
 The increased autonomy and competence I am developing here feels like a new freedom, a tipping point into a feedback loop of self-expression and creative action that goes way beyond any particular programming concept I have learned while here.&lt;/p&gt;
 &lt;p&gt;Becoming comfortable with this fundamental lostness, and yet feeling adequate to navigate it, is ultimately much more empowering than the security of excelling at following well-lit, paths sanctioned and rewarded by others.&lt;/p&gt;
-&lt;hr class="docutils"&gt;&lt;p&gt;.&lt;/p&gt;
-&lt;table class="docutils footnote" frame="void" id="id2" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/productively-lost.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;Slides from last year's version here: &lt;a class="reference external" href="http://blog.melchua.com/2013/10/07/edupsych-for-hacker-schoolers-v-1-1-presentation-slides/"&gt;http://blog.melchua.com/2013/10/07/edupsych-for-hacker-schoolers-v-1-1-presentation-slides/&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</description><category>Mel Chua</category><category>blog</category><category>courage</category><category>education</category><category>hacker school</category><category>psychology</category><category>vulnerability</category><guid>http://www.subsymbol.org/posts/productively-lost.html</guid><pubDate>Wed, 23 Jul 2014 15:21:37 GMT</pubDate></item><item><title>Addresses and Contents</title><link>http://www.subsymbol.org/posts/addresses-and-contents.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div class="section" id="what-are-we-naming"&gt;
+&lt;hr class="docutils"&gt;
+&lt;p&gt;.&lt;/p&gt;
+&lt;table class="docutils footnote" frame="void" id="id2" rules="none"&gt;
+&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/productively-lost.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;Slides from last year's version here: &lt;a class="reference external" href="http://blog.melchua.com/2013/10/07/edupsych-for-hacker-schoolers-v-1-1-presentation-slides/"&gt;http://blog.melchua.com/2013/10/07/edupsych-for-hacker-schoolers-v-1-1-presentation-slides/&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description><category>Mel Chua</category><category>blog</category><category>courage</category><category>education</category><category>hacker school</category><category>psychology</category><category>vulnerability</category><guid>http://www.subsymbol.org/posts/productively-lost.html</guid><pubDate>Wed, 23 Jul 2014 15:21:37 GMT</pubDate></item><item><title>Addresses and Contents</title><link>http://www.subsymbol.org/posts/addresses-and-contents.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div class="section" id="what-are-we-naming"&gt;
 &lt;h2&gt;What are we naming?&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The name of the song is called "Haddocks' Eyes."'&lt;/p&gt;
@@ -470,7 +527,8 @@ URLs point to content that can change.&lt;/p&gt;
 &lt;h2&gt;Filesystems&lt;/h2&gt;
 &lt;p&gt;In a filesystem, we usually refer to files by their paths.
 The relationships between paths, addresses (inodes), and contents are shown here:&lt;/p&gt;
-&lt;img alt="https://lh5.googleusercontent.com/-0dFaK3jKirQ/U78BnodwrUI/AAAAAAAACPs/mGzaDJfLZk4/w426-h376-no/name_triangle.png" src="https://lh5.googleusercontent.com/-0dFaK3jKirQ/U78BnodwrUI/AAAAAAAACPs/mGzaDJfLZk4/w426-h376-no/name_triangle.png"&gt;&lt;p&gt;That is, a pathname refers to a single inode, but not necessarily vice versa.
+&lt;img alt="https://lh5.googleusercontent.com/-0dFaK3jKirQ/U78BnodwrUI/AAAAAAAACPs/mGzaDJfLZk4/w426-h376-no/name_triangle.png" src="https://lh5.googleusercontent.com/-0dFaK3jKirQ/U78BnodwrUI/AAAAAAAACPs/mGzaDJfLZk4/w426-h376-no/name_triangle.png"&gt;
+&lt;p&gt;That is, a pathname refers to a single inode, but not necessarily vice versa.
 An inode has exactly one set of contents, but those contents may be replicated in many inodes in the system.
 I didn't recognise at first that the problem of mutable and immutable files is the distinction between addresses and contents.&lt;/p&gt;
 &lt;p&gt;As far as file systems go, I don't know of any that make the distinction between contents and addresses, except Tahoe-LAFS.
@@ -490,8 +548,10 @@ I also wanted there to be a front page that didn't change every time I wrote a n
 &lt;h2&gt;Importing the blog&lt;/h2&gt;
 &lt;p&gt;Nikola has a plugin to import a blog from Blogger, so the first step was to import the blog.
 To import, I took the following steps:&lt;/p&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;First, I exported my blog from Blogger, which gave me a file called &lt;cite&gt;blog-07-05-2014.xml&lt;/cite&gt;. Then,&lt;/li&gt;
-&lt;/ul&gt;&lt;pre class="code literal-block"&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;First, I exported my blog from Blogger, which gave me a file called &lt;cite&gt;blog-07-05-2014.xml&lt;/cite&gt;. Then,&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code literal-block"&gt;
 $ sudo pip install nikola
 $ nikola plugin -i import_blogger
 $ nikola import_blogger -o site blog-07-05-2014.xml # The -o tells nikola what directory to make the site in.
@@ -512,10 +572,12 @@ The instructions boil down to changing three lines of &lt;cite&gt;conf.py&lt;/ci
 &lt;div class="section" id="posts-and-pages"&gt;
 &lt;h3&gt;Posts and Pages&lt;/h3&gt;
 &lt;p&gt;As usual, Nikola distinguishes two different kinds of text-derived files.&lt;/p&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;&lt;em&gt;Posts&lt;/em&gt; are blog files.
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;em&gt;Posts&lt;/em&gt; are blog files.
 They are archived, indexed by tag, and ordered by date for display.&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;Pages&lt;/em&gt; are essentially independent.&lt;/li&gt;
-&lt;/ul&gt;&lt;p&gt;So to make a blog into a non-blog, you simply manipulate the variable &lt;cite&gt;POSTS&lt;/cite&gt; defined in &lt;cite&gt;conf.py&lt;/cite&gt;.
+&lt;/ul&gt;
+&lt;p&gt;So to make a blog into a non-blog, you simply manipulate the variable &lt;cite&gt;POSTS&lt;/cite&gt; defined in &lt;cite&gt;conf.py&lt;/cite&gt;.
 &lt;cite&gt;POSTS&lt;/cite&gt; and &lt;cite&gt;PAGES&lt;/cite&gt; are lists describing where to find posts or pages respectively, where to render them, and what template to use for them.
 We let the &lt;cite&gt;POSTS&lt;/cite&gt; list be empty, so everything on the site will be a page.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
@@ -566,10 +628,12 @@ So we need to add:&lt;/p&gt;
 I had a front page separate from my blog, and all of my previous blog reachable from the site.
 But I still wanted to have two blogs, a primary one for themed entries, and a journal for unstructured reflections.&lt;/p&gt;
 &lt;p&gt;Here are the steps I took to factor the blogs apart:&lt;/p&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;Made a new directory for the journal posts called "journal", and moved the appropriate files into it.&lt;/li&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Made a new directory for the journal posts called "journal", and moved the appropriate files into it.&lt;/li&gt;
 &lt;li&gt;Added ("journal/&lt;em&gt;.rst", "journal", "story.tmpl") and ("journal/&lt;/em&gt;.html", "journal", "story.tmpl") to the &lt;cite&gt;PAGES&lt;/cite&gt; list, so old and new journal entries can be found for rendering.&lt;/li&gt;
 &lt;li&gt;Updated the conf.py &lt;cite&gt;REDIRECTIONS&lt;/cite&gt; to reflect those&lt;/li&gt;
-&lt;/ul&gt;&lt;p&gt;This worked to render them and include them in the site, but the journal articles were not indexed.
+&lt;/ul&gt;
+&lt;p&gt;This worked to render them and include them in the site, but the journal articles were not indexed.
 That meant that if I knew the URL, I could go to the article, but a visitor to the site could never discover them.&lt;/p&gt;
 &lt;p&gt;To add indexing I had to add to conf.py:&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
@@ -623,28 +687,34 @@ It has themes, comments, and a variety of plugins.
 You can export your stuff if you want to, so you aren't completely locked in.&lt;/p&gt;
 &lt;p&gt;However, Blogger is not a good match for someone who wants fine-grained control over her content.
 My use of Blogger for the three sites I have hosted on it has consisted of the following elaborate dance:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;&lt;li&gt;Edit my post in reStructuredText &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id3" id="id1"&gt;[1]&lt;/a&gt;.&lt;/li&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Edit my post in reStructuredText &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id3" id="id1"&gt;[1]&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;Convert my post into HTML using a custom script I adapted from &lt;a class="reference external" href="https://pypi.python.org/pypi/rst2blogger"&gt;rst2blogger&lt;/a&gt; &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id4" id="id2"&gt;[2]&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;Cut and paste my post into the Blogger compose form, click &lt;cite&gt;Preview&lt;/cite&gt;, and see if it looked ok.&lt;/li&gt;
 &lt;li&gt;Repeat until all typos and other issues were resolved.&lt;/li&gt;
 &lt;li&gt;Click &lt;cite&gt;Publish&lt;/cite&gt;.&lt;/li&gt;
-&lt;/ol&gt;&lt;p&gt;The result of all this work was a site that looked more-or-less how I wanted it to in some ways, but was frustrating in others.
+&lt;/ol&gt;
+&lt;p&gt;The result of all this work was a site that looked more-or-less how I wanted it to in some ways, but was frustrating in others.
 For example,&lt;/p&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;I couldn't change the css styles that went with a given theme, (and some of them were really dysfunctional).&lt;/li&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;I couldn't change the css styles that went with a given theme, (and some of them were really dysfunctional).&lt;/li&gt;
 &lt;li&gt;I couldn't make the site &lt;em&gt;not a blog&lt;/em&gt; — the blog assumption is that your most recent content ought to be your most prominent, and this is not an appropriate assumption for some of my use cases.
 I sometimes found myself putting off making a post that was less compelling until I knew I could follow it with a better one quickly!
 The restrictiveness wasn't serving me.&lt;/li&gt;
-&lt;/ul&gt;&lt;p&gt;Also, a little independence from Google seems healthy.&lt;/p&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also, a little independence from Google seems healthy.&lt;/p&gt;
 &lt;p&gt;What I really wanted was a static site generator, with no dynamic logic on a server-side database.
 I wanted my whole site complete and rendered on my local machine to do with what I liked.
 In other words, I wanted a static site generator.&lt;/p&gt;
 &lt;div class="section" id="choosing-a-static-site-generator"&gt;
 &lt;h2&gt;Choosing a static site generator&lt;/h2&gt;
 &lt;p&gt;My criteria were:&lt;/p&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;Open source&lt;/li&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Open source&lt;/li&gt;
 &lt;li&gt;Python&lt;/li&gt;
 &lt;li&gt;Works to generate non-blog sites.&lt;/li&gt;
-&lt;/ul&gt;&lt;p&gt;This gave me two choices that I knew of: &lt;a class="reference external" href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;, and &lt;a class="reference external" href="http://getnikola.com/"&gt;Nikola&lt;/a&gt;.&lt;/p&gt;
+&lt;/ul&gt;
+&lt;p&gt;This gave me two choices that I knew of: &lt;a class="reference external" href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;, and &lt;a class="reference external" href="http://getnikola.com/"&gt;Nikola&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I have had my eyes on Pelican for some time now.
 I didn't like the way the resulting websites looked, though, until recently.
 They had a jarring "I'm a programmer, not a designer" feel.
@@ -655,4 +725,16 @@ The docs are well written, the code looks good, and &lt;a class="reference exter
 which was recommended by &lt;a class="reference external" href="https://github.com/punchagan"&gt;another respected coder-friend&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I decided to use Nikola, in part because it has a plugin to import from Blogger, and in part because the above-mentioned friend offered to help me.&lt;/p&gt;
 &lt;p&gt;In the next post, I'll describe how I ported my Blogger blog into a Nikola blog.&lt;/p&gt;
-&lt;table class="docutils footnote" frame="void" id="id3" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;I used to write in pure HTML, but after much goading from Zooko, I switched to rst.  I'm glad; I find rst more flexible.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="docutils footnote" frame="void" id="id4" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id2"&gt;[2]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;I didn't want the script to deploy it, because I didn't want to trust the script with my Google authentication, so I took that part out.  I also changed some heading styles that Blogger doesn't render well.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;</description><category>blog</category><category>blogger</category><category>blogging</category><category>nikola</category><guid>http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html</guid><pubDate>Tue, 08 Jul 2014 16:48:18 GMT</pubDate></item><item><title>Literally ironic semantic shifts are actually very typical</title><link>http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div class="document" id="literally-ironic-semantic-shifts-are-ironically-very-typical"&gt;   &lt;p&gt;I recently saw a &lt;a class="reference external" href="http://www.npr.org/2014/04/23/306238447/new-browser-plug-in-would-literally-annihilate-this-headline"&gt;story about a whimsical browser plug-in written by Mike Lazer-Walker&lt;/a&gt;(incidentally, a &lt;a class="reference external" href="https://www.hackerschool.com/blog/30-words-are-hard"&gt;Hacker Schooler&lt;/a&gt;), that substitutes all occurrences of the word 'literally' with the word 'figuratively'. I posted it with (almost) no comment on Facebook, to which the only response was from a Waterloo friend, who actually found the substitution annoying, because, he argued, 'figuratively' is not what is usually meant.&lt;/p&gt;&lt;p&gt;Of course, he is right about that. 'Literally', like 'very', 'really', 'truly', and in some cases 'actually' &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html#id3" id="id1"&gt;[1]&lt;/a&gt;, share a common semantic shift. They all originally meant something like 'do not take the following as exaggeration or metaphor' (insofar as any language use can be non-metaphorical), and have all become intensifiers. This is, of course, somewhat ironic (in the situational sense of 'ironic', which is neither the literary sense, nor the emerging sense of 'not what I wanted' &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html#id4" id="id2"&gt;[2]&lt;/a&gt;).&lt;/p&gt;&lt;p&gt;I don't cringe when I hear 'very', except insofar as it is often vacuous. That I do cringe on hearing 'literally' used as an intensifier is probably because, unlike 'very', the current use which is very &lt;a class="reference external" href="http://www.etymonline.com/index.php?term=very"&gt;old&lt;/a&gt;, this meaning of 'literally' emerged in my adulthood, and so it sounds unnatural to me. When wearing my linguist hat, I like to embrace diversity and change, rather than taking the stance that my dialect is 'correct'. The strongest stance I can fairly take is that in &lt;em&gt;my&lt;/em&gt; dialect, the new meaning is unacceptable, or that using this meaning has certain social implications about the speaker.&lt;/p&gt;&lt;p&gt;But rather than taking the plug-in to be suggesting an actual solution, I take it in the spirit of Mark Twain's advice: 'Substitute 'damn' every time you're inclined to write 'very;' your editor will delete it and the writing will be just as it should be.' Once the reader or writer sees 'figuratively', the appropriate transformation should be more readily obvious.&lt;/p&gt;&lt;p&gt;More likely, it is simply an elaborate joke made by a clever person while exploring how to write plug-ins. In any case, I liked the idea, both for its wit, and for the other fun linguistics ideas it points to, including, for example, &lt;a class="reference external" href="http://www.gizoogle.net/tranzizzle.php?search=www.subsymbol.org&amp;amp;se=Go+Git+Dis+Shiznit"&gt;tranzizzle&lt;/a&gt; (hat tip to &lt;a class="reference external" href="http://www.gizoogle.net/tranzizzle.php?search=www.cs.cmu.edu%2F~nasmith&amp;amp;se=Go+Git+Dis+Shiznit"&gt;Noah Smizzle&lt;/a&gt;).&lt;/p&gt;&lt;p&gt;The question I am left with is, given this development, what word do I use &lt;em&gt;now&lt;/em&gt; if I want the literal meaning of literal?&lt;/p&gt;&lt;table class="docutils footnote" frame="void" id="id3" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;'Actually' is often used to make a contrast.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="docutils footnote" frame="void" id="id4" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html#id2"&gt;[2]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;See this comic: &lt;a class="reference external" href="http://theoatmeal.com/comics/irony"&gt;http://theoatmeal.com/comics/irony&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;</description><category>blog</category><category>linguistics</category><guid>http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html</guid><pubDate>Sat, 26 Apr 2014 22:06:00 GMT</pubDate></item><item><title>Transparent Learning</title><link>http://www.subsymbol.org/posts/201403transparent-learning.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div class="document" id="transparent-learning"&gt;   &lt;p&gt;I have applied to &lt;a class="reference external" href="https://www.hackerschool.com"&gt;Hacker School&lt;/a&gt; for the Summer 2014 batch.  I'm immensely excited about it for various reasons, but the one I wanted to mention here now is the attitude toward learning that Hacker School promotes.&lt;/p&gt;&lt;p&gt;One of the few Rules of Conduct at Hacker School is not to &lt;a class="reference external" href="https://www.hackerschool.com/manual"&gt;feign surprise&lt;/a&gt; when someone doesn't know something.&lt;/p&gt;&lt;blockquote&gt;&lt;em&gt;[No feigning surprise] means you shouldn't act surprised when people say they don't know something. This applies to both technical things ("What?! I can't believe you don't know what the stack is!") and non-technical things ("You don't know who RMS is?!"). Feigning surprise has absolutely no social or educational benefit: When people feign surprise, it's usually to make them feel better about themselves and others feel worse. And even when that's not the intention, it's almost always the effect. As you've probably already guessed, this rule is tightly coupled to our belief in the importance of people feeling comfortable saying "I don't know" and "I don't understand."&lt;/em&gt;&lt;/blockquote&gt;&lt;p&gt;The other side of the coin of not feigning surprise is being transparent about your own learning.&lt;/p&gt;&lt;p&gt;When I meet smart people I admire, I am usually eager to show them that &lt;strong&gt;I am like them&lt;/strong&gt;. So I look for opportunities to demonstrate that we share ideas and values. In a programming community, this could translate into finding a reason to bring up topics such as stacks or RMS. There is nothing inherently wrong with this. It is normal and healthy to establish common ground. It feels good.&lt;/p&gt;&lt;!-- Although I'm certain that this is not just a women's issue, I do expect that being female confers more assumptions that a person don't actually know much about math or computers. Whether or not it is true that people I meet make such assumptions, I often feel anxiety about it. --&gt;&lt;p&gt;The problem comes when you want to interact with someone as you continue to learn. If you can't comfortably say “I don't know what a stack is.”, then you deny yourself and your peers the opportunity to collaboratively change that. More importantly, your silence reinforces the idea that it is &lt;em&gt;not okay&lt;/em&gt; to not know or not understand. It is more subtle than feigning surprise, but not necessarily less powerful.&lt;/p&gt;&lt;p&gt;In the process of applying to Hacker School, I've looked at the blogs of some of the facilitators. In her blog, Allison Kaptur takes this concept of transparency a step further. For example, in &lt;a class="reference external" href="http://akaptur.github.io/blog/2013/11/15/introduction-to-the-python-interpreter/"&gt;a post in which she teaches about the Python interpreter&lt;/a&gt;, Allison writes (emphasis mine):&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;There are four steps that python takes when you hit return: lexing, parsing, compiling, and interpreting. Lexing is breaking the line of code you just typed into tokens. The parser takes those tokens and generates a structure that shows their relationship to each other (in this case, an Abstract Syntax Tree). The compiler then takes the AST and turns it into one (or more) code objects. Finally, the interpreter takes each code object executes the code it represents.&lt;/em&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;I’m not going to talk about lexing, parsing, or compiling at all today,&lt;/em&gt; &lt;strong&gt;mainly because I don’t know anything about these steps yet.&lt;/strong&gt; &lt;em&gt;Instead, we’ll suppose that all that went just fine, and we’ll have a proper python code object for the interpreter to interpret.&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;To me, this feels like radical activism. Even if I don't get in to Hacker School, I want to learn this skill of portraying myself authentically, even if it exposes some vulnerability. Fundamentally, it's about separating self-worth from knowledge, and getting over Imposter Syndrome.&lt;/p&gt;&lt;p&gt;As a step in this direction, I am posting the fact that I have applied to Hacker School, even though I may not be admitted. If that happens, I will be very disappointed, and it will be embarrassing for that to be public, but I want to say that it's okay to fail at things, and it's okay to make mistakes.&lt;/p&gt;&lt;/div&gt;</description><category>blog</category><category>education</category><category>hacker school</category><category>vulnerability</category><guid>http://www.subsymbol.org/posts/201403transparent-learning.html</guid><pubDate>Mon, 17 Mar 2014 15:32:00 GMT</pubDate></item><item><title>The Year of the Em Dash</title><link>http://www.subsymbol.org/posts/201401the-year-of-em-dash.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div class="document" id="the-year-of-the-em-dash"&gt;   &lt;p&gt;I admit it. The first thing I thought of when noticing what year was coming was—"em dash". The unicode character 2014 is the em dash, and as I am wont to type it in manually it is practically synonymous to me &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/201401the-year-of-em-dash.html#id2" id="id1"&gt;[1]&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;We symbolic creatures like to embue meaning into all things. While I am not superstitious, I enjoy the Rorschach test–like nature of divination. If I ask myself to make a connection between the changing of the year right now and the character em dash, it reflects my state—and nothing more—but this does not diminish its value.&lt;/p&gt;&lt;p&gt;In contrast with last year's character—the en dash—which is supposed to be used in place of 'to' in spans such as 2010–2016, or as a hyphen between open compounds, as in "computational linguistics–machine learning conference", the em dash is used informally in places of commas, colons, or semicolons for emphasis, interruption, or an abrupt change of thought. So I'm expecting a year of diversion, a relevant but indirect route, with an ultimate return to the path previously intended.&lt;/p&gt;&lt;p&gt;We have been stuck in a run of dash characters since 2010, the year of the hyphen, and won't escape until 2016, the year of the double vertical line (‖), which, I suppose, will entail some sort of parallelism.&lt;/p&gt;&lt;p&gt;Happy New Year!&lt;/p&gt;&lt;table class="docutils footnote" frame="void" id="id2" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/201401the-year-of-em-dash.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;Ctrl-shift-u 2014 will do it in many applications.  To enable this in emacs, put "(global-set-key (kbd "C-S-u") 'quoted-insert)" in your .emacs file.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;</description><category>blog</category><guid>http://www.subsymbol.org/posts/201401the-year-of-em-dash.html</guid><pubDate>Thu, 02 Jan 2014 01:35:00 GMT</pubDate></item></channel></rss>
+&lt;table class="docutils footnote" frame="void" id="id3" rules="none"&gt;
+&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;I used to write in pure HTML, but after much goading from Zooko, I switched to rst.  I'm glad; I find rst more flexible.&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table class="docutils footnote" frame="void" id="id4" rules="none"&gt;
+&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id2"&gt;[2]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;I didn't want the script to deploy it, because I didn't want to trust the script with my Google authentication, so I took that part out.  I also changed some heading styles that Blogger doesn't render well.&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;</description><category>blog</category><category>blogger</category><category>blogging</category><category>nikola</category><guid>http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html</guid><pubDate>Tue, 08 Jul 2014 16:48:18 GMT</pubDate></item><item><title>Literally ironic semantic shifts are actually very typical</title><link>http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div class="document" id="literally-ironic-semantic-shifts-are-ironically-very-typical"&gt;   &lt;p&gt;I recently saw a &lt;a class="reference external" href="http://www.npr.org/2014/04/23/306238447/new-browser-plug-in-would-literally-annihilate-this-headline"&gt;story about a whimsical browser plug-in written by Mike Lazer-Walker&lt;/a&gt;(incidentally, a &lt;a class="reference external" href="https://www.hackerschool.com/blog/30-words-are-hard"&gt;Hacker Schooler&lt;/a&gt;), that substitutes all occurrences of the word 'literally' with the word 'figuratively'. I posted it with (almost) no comment on Facebook, to which the only response was from a Waterloo friend, who actually found the substitution annoying, because, he argued, 'figuratively' is not what is usually meant.&lt;/p&gt;&lt;p&gt;Of course, he is right about that. 'Literally', like 'very', 'really', 'truly', and in some cases 'actually' &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html#id3" id="id1"&gt;[1]&lt;/a&gt;, share a common semantic shift. They all originally meant something like 'do not take the following as exaggeration or metaphor' (insofar as any language use can be non-metaphorical), and have all become intensifiers. This is, of course, somewhat ironic (in the situational sense of 'ironic', which is neither the literary sense, nor the emerging sense of 'not what I wanted' &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html#id4" id="id2"&gt;[2]&lt;/a&gt;).&lt;/p&gt;&lt;p&gt;I don't cringe when I hear 'very', except insofar as it is often vacuous. That I do cringe on hearing 'literally' used as an intensifier is probably because, unlike 'very', the current use which is very &lt;a class="reference external" href="http://www.etymonline.com/index.php?term=very"&gt;old&lt;/a&gt;, this meaning of 'literally' emerged in my adulthood, and so it sounds unnatural to me. When wearing my linguist hat, I like to embrace diversity and change, rather than taking the stance that my dialect is 'correct'. The strongest stance I can fairly take is that in &lt;em&gt;my&lt;/em&gt; dialect, the new meaning is unacceptable, or that using this meaning has certain social implications about the speaker.&lt;/p&gt;&lt;p&gt;But rather than taking the plug-in to be suggesting an actual solution, I take it in the spirit of Mark Twain's advice: 'Substitute 'damn' every time you're inclined to write 'very;' your editor will delete it and the writing will be just as it should be.' Once the reader or writer sees 'figuratively', the appropriate transformation should be more readily obvious.&lt;/p&gt;&lt;p&gt;More likely, it is simply an elaborate joke made by a clever person while exploring how to write plug-ins. In any case, I liked the idea, both for its wit, and for the other fun linguistics ideas it points to, including, for example, &lt;a class="reference external" href="http://www.gizoogle.net/tranzizzle.php?search=www.subsymbol.org&amp;amp;se=Go+Git+Dis+Shiznit"&gt;tranzizzle&lt;/a&gt; (hat tip to &lt;a class="reference external" href="http://www.gizoogle.net/tranzizzle.php?search=www.cs.cmu.edu%2F~nasmith&amp;amp;se=Go+Git+Dis+Shiznit"&gt;Noah Smizzle&lt;/a&gt;).&lt;/p&gt;&lt;p&gt;The question I am left with is, given this development, what word do I use &lt;em&gt;now&lt;/em&gt; if I want the literal meaning of literal?&lt;/p&gt;&lt;table class="docutils footnote" frame="void" id="id3" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;'Actually' is often used to make a contrast.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="docutils footnote" frame="void" id="id4" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html#id2"&gt;[2]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;See this comic: &lt;a class="reference external" href="http://theoatmeal.com/comics/irony"&gt;http://theoatmeal.com/comics/irony&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;</description><category>blog</category><category>linguistics</category><guid>http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html</guid><pubDate>Sat, 26 Apr 2014 22:06:00 GMT</pubDate></item><item><title>Transparent Learning</title><link>http://www.subsymbol.org/posts/201403transparent-learning.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div class="document" id="transparent-learning"&gt;   &lt;p&gt;I have applied to &lt;a class="reference external" href="https://www.hackerschool.com"&gt;Hacker School&lt;/a&gt; for the Summer 2014 batch.  I'm immensely excited about it for various reasons, but the one I wanted to mention here now is the attitude toward learning that Hacker School promotes.&lt;/p&gt;&lt;p&gt;One of the few Rules of Conduct at Hacker School is not to &lt;a class="reference external" href="https://www.hackerschool.com/manual"&gt;feign surprise&lt;/a&gt; when someone doesn't know something.&lt;/p&gt;&lt;blockquote&gt;&lt;em&gt;[No feigning surprise] means you shouldn't act surprised when people say they don't know something. This applies to both technical things ("What?! I can't believe you don't know what the stack is!") and non-technical things ("You don't know who RMS is?!"). Feigning surprise has absolutely no social or educational benefit: When people feign surprise, it's usually to make them feel better about themselves and others feel worse. And even when that's not the intention, it's almost always the effect. As you've probably already guessed, this rule is tightly coupled to our belief in the importance of people feeling comfortable saying "I don't know" and "I don't understand."&lt;/em&gt;&lt;/blockquote&gt;&lt;p&gt;The other side of the coin of not feigning surprise is being transparent about your own learning.&lt;/p&gt;&lt;p&gt;When I meet smart people I admire, I am usually eager to show them that &lt;strong&gt;I am like them&lt;/strong&gt;. So I look for opportunities to demonstrate that we share ideas and values. In a programming community, this could translate into finding a reason to bring up topics such as stacks or RMS. There is nothing inherently wrong with this. It is normal and healthy to establish common ground. It feels good.&lt;/p&gt;&lt;!-- Although I'm certain that this is not just a women's issue, I do expect that being female confers more assumptions that a person don't actually know much about math or computers. Whether or not it is true that people I meet make such assumptions, I often feel anxiety about it. --&gt;&lt;p&gt;The problem comes when you want to interact with someone as you continue to learn. If you can't comfortably say “I don't know what a stack is.”, then you deny yourself and your peers the opportunity to collaboratively change that. More importantly, your silence reinforces the idea that it is &lt;em&gt;not okay&lt;/em&gt; to not know or not understand. It is more subtle than feigning surprise, but not necessarily less powerful.&lt;/p&gt;&lt;p&gt;In the process of applying to Hacker School, I've looked at the blogs of some of the facilitators. In her blog, Allison Kaptur takes this concept of transparency a step further. For example, in &lt;a class="reference external" href="http://akaptur.github.io/blog/2013/11/15/introduction-to-the-python-interpreter/"&gt;a post in which she teaches about the Python interpreter&lt;/a&gt;, Allison writes (emphasis mine):&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;There are four steps that python takes when you hit return: lexing, parsing, compiling, and interpreting. Lexing is breaking the line of code you just typed into tokens. The parser takes those tokens and generates a structure that shows their relationship to each other (in this case, an Abstract Syntax Tree). The compiler then takes the AST and turns it into one (or more) code objects. Finally, the interpreter takes each code object executes the code it represents.&lt;/em&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;I’m not going to talk about lexing, parsing, or compiling at all today,&lt;/em&gt; &lt;strong&gt;mainly because I don’t know anything about these steps yet.&lt;/strong&gt; &lt;em&gt;Instead, we’ll suppose that all that went just fine, and we’ll have a proper python code object for the interpreter to interpret.&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;To me, this feels like radical activism. Even if I don't get in to Hacker School, I want to learn this skill of portraying myself authentically, even if it exposes some vulnerability. Fundamentally, it's about separating self-worth from knowledge, and getting over Imposter Syndrome.&lt;/p&gt;&lt;p&gt;As a step in this direction, I am posting the fact that I have applied to Hacker School, even though I may not be admitted. If that happens, I will be very disappointed, and it will be embarrassing for that to be public, but I want to say that it's okay to fail at things, and it's okay to make mistakes.&lt;/p&gt;&lt;/div&gt;</description><category>blog</category><category>education</category><category>hacker school</category><category>vulnerability</category><guid>http://www.subsymbol.org/posts/201403transparent-learning.html</guid><pubDate>Mon, 17 Mar 2014 15:32:00 GMT</pubDate></item><item><title>The Year of the Em Dash</title><link>http://www.subsymbol.org/posts/201401the-year-of-em-dash.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div class="document" id="the-year-of-the-em-dash"&gt;   &lt;p&gt;I admit it. The first thing I thought of when noticing what year was coming was—"em dash". The unicode character 2014 is the em dash, and as I am wont to type it in manually it is practically synonymous to me &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/201401the-year-of-em-dash.html#id2" id="id1"&gt;[1]&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;We symbolic creatures like to embue meaning into all things. While I am not superstitious, I enjoy the Rorschach test–like nature of divination. If I ask myself to make a connection between the changing of the year right now and the character em dash, it reflects my state—and nothing more—but this does not diminish its value.&lt;/p&gt;&lt;p&gt;In contrast with last year's character—the en dash—which is supposed to be used in place of 'to' in spans such as 2010–2016, or as a hyphen between open compounds, as in "computational linguistics–machine learning conference", the em dash is used informally in places of commas, colons, or semicolons for emphasis, interruption, or an abrupt change of thought. So I'm expecting a year of diversion, a relevant but indirect route, with an ultimate return to the path previously intended.&lt;/p&gt;&lt;p&gt;We have been stuck in a run of dash characters since 2010, the year of the hyphen, and won't escape until 2016, the year of the double vertical line (‖), which, I suppose, will entail some sort of parallelism.&lt;/p&gt;&lt;p&gt;Happy New Year!&lt;/p&gt;&lt;table class="docutils footnote" frame="void" id="id2" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/201401the-year-of-em-dash.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;Ctrl-shift-u 2014 will do it in many applications.  To enable this in emacs, put "(global-set-key (kbd "C-S-u") 'quoted-insert)" in your .emacs file.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;</description><category>blog</category><guid>http://www.subsymbol.org/posts/201401the-year-of-em-dash.html</guid><pubDate>Thu, 02 Jan 2014 01:35:00 GMT</pubDate></item></channel></rss>

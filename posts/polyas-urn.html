@@ -1,31 +1,56 @@
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pólya's Urn | subsymbol.org</title>
-<link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
-<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
-<link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
-<link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
-<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
-<link rel="canonical" href="http://www.subsymbol.org/posts/polyas-urn.html">
-<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><meta name="author" content="L. Amber Wilcox-O'Hearn">
-<meta name="og:title" content="Pólya's Urn">
-<meta name="og:url" content="http://www.subsymbol.org/posts/polyas-urn.html">
-<meta name="og:description" content="Skip to interactive demo: Try it!
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pólya's Urn | subsymbol.org</title>
+
+    
+            <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
+
+    
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+
+      <link rel="canonical" href="http://www.subsymbol.org/posts/polyas-urn.html">
+
+
+
+    
+        <!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
+
+    
+
+
+    
+
+    <meta name="author" content="L. Amber Wilcox-O'Hearn">
+    
+        <meta name="og:title" content="Pólya's Urn">
+        <meta name="og:url" content="http://www.subsymbol.org/posts/polyas-urn.html">
+            <meta name="og:description" content="Skip to interactive demo: Try it!
 
 Balls in Urns
 If you have studied probability, you are probably familiar with the canonical balls-in-an-urn allegory for understanding discrete probability distribut">
-<meta name="og:site_name" content="subsymbol.org">
-<meta name="og:type" content="article">
+        <meta name="og:site_name" content="subsymbol.org">
+        <meta name="og:type" content="article">
+
+    
+
+    
+
+
+
 </head>
 <body>
 
 <!-- Menubar -->
 
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"><div class="container">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
 <!-- This keeps the margins nice -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -42,7 +67,8 @@ If you have studied probability, you are probably familiar with the canonical ba
 <!-- /.navbar-header -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-<li>
+                
+                <li>
 <a href="../archive.html">Archive</a>
                 </li>
 <li>
@@ -60,24 +86,36 @@ If you have studied probability, you are probably familiar with the canonical ba
                 
             </li>
 </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
+
+            <ul class="nav navbar-nav navbar-right">
+                
+                
+                    
+    <li>
     <a href="polyas-urn.rst" id="sourcelink">Source</a>
     </li>
 
                 
             </ul>
-</div>
+        </div>
 <!-- /.navbar-collapse -->
     </div>
 <!-- /.container -->
-</nav><!-- End of Menubar --><div class="container">
+</nav>
+
+<!-- End of Menubar -->
+
+<div class="container">
     <div class="body-content">
         <!--Body content-->
         <div class="row">
             
             
-<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Pólya's Urn</a></h1>
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <header>
+        
+    <h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Pólya's Urn</a></h1>
 
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn">L. Amber Wilcox-O'Hearn</span></p>
@@ -88,7 +126,9 @@ If you have studied probability, you are probably familiar with the canonical ba
         </div>
         
 
-    </header><div class="e-content entry-content" itemprop="articleBody text">
+    </header>
+
+    <div class="e-content entry-content" itemprop="articleBody text">
     <p>Skip to interactive demo: <a class="reference internal" href="polyas-urn.html#try-it">Try it!</a></p>
 <div class="section" id="balls-in-urns">
 <h2>Balls in Urns</h2>
@@ -125,11 +165,13 @@ The following table shows the probabilities of getting red on the first three dr
 <col width="33%">
 <col width="33%">
 </colgroup>
-<thead valign="bottom"><tr>
+<thead valign="bottom">
+<tr>
 <th class="head"> </th>
 <th class="head">RRR</th>
 <th class="head"> </th>
-</tr></thead>
+</tr>
+</thead>
 <tbody valign="top">
 <tr>
 <td><strong>Draw</strong></td>
@@ -169,10 +211,12 @@ there is a <span class="math">\(50\%\)</span>
 <col width="50%">
 <col width="50%">
 </colgroup>
-<thead valign="bottom"><tr>
+<thead valign="bottom">
+<tr>
 <th class="head">First three draws</th>
 <th class="head">probability</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody valign="top">
 <tr>
 <td>RRR</td>
@@ -269,8 +313,11 @@ n: <b id="n-output"></b>
 α: <b id="alpha-output"></b>
 <input class="alpha-slider" type="range" min="1" max="8">
 β: <b id="beta-output"></b>
-<input class="beta-slider" type="range" min="1" max="8"><br><p id="urn">Urn</p>
-<br><button id="draw">Draw!</button>
+<input class="beta-slider" type="range" min="1" max="8">
+<br>
+<p id="urn">Urn</p>
+<br>
+<button id="draw">Draw!</button>
 <button id="reset">Reset.</button>
 <button id="rank">Order by rank.</button>
 
@@ -278,31 +325,56 @@ n: <b id="n-output"></b>
 </script>
 </div>
     </div>
-    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
-<li><a class="tag p-category" href="../categories/blog.html" rel="tag">blog</a></li>
+    <aside class="postpromonav">
+    <nav>
+    
+        <ul itemprop="keywords" class="tags">
+           <li><a class="tag p-category" href="../categories/blog.html" rel="tag">blog</a></li>
            <li><a class="tag p-category" href="../categories/mathjax.html" rel="tag">mathjax</a></li>
            <li><a class="tag p-category" href="../categories/probability.html" rel="tag">probability</a></li>
         </ul>
-<ul class="pager">
-<li class="previous">
+
+    
+        <ul class="pager">
+            <li class="previous">
                 <a href="the-grammaticality-continuum.html" rel="prev" title="The Grammaticality Continuum">Previous post</a>
             </li>
             <li class="next">
                 <a href="two-inotify-pitfalls.html" rel="next" title="Two inotify Pitfalls">Next post</a>
             </li>
-        </ul></nav></aside><script type="text/x-mathjax-config">
-        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});</script><script src="../assets/js/mathjax.js"></script></article><script>var disqus_shortname="subsymbolorg";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
-</div>
+        </ul>
+
+    </nav>
+    </aside>
+    
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});</script>
+        <script src="../assets/js/mathjax.js"></script>
+
+</article>
+
+        
+       <script>var disqus_shortname="subsymbolorg";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+
+
+
+        </div>
         <!--End of body content-->
 
-        <footer><br><br>Contents © 2014         <a href="mailto:amber@cs.toronto.edu">L. Amber Wilcox-O'Hearn</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+        <footer>
+            <br><br>Contents © 2015         <a href="mailto:amber@cs.toronto.edu">L. Amber Wilcox-O'Hearn</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
             
         </footer>
-</div>
+    </div>
 </div>
 
 
-            <script src="../assets/js/jquery.min.js"></script><script src="../assets/js/bootstrap.min.js"></script><script src="../assets/js/jquery.colorbox-min.js"></script><!-- Social buttons --><div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
+            <script src="../assets/js/jquery.min.js"></script>
+            <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery.colorbox-min.js"></script>
+    
+<!-- Social buttons -->
+<div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
 <a class="addthis_button_more">Share</a>
 <ul>
 <li>
@@ -319,6 +391,13 @@ n: <b id="n-output"></b>
 </li>
 </ul>
 </div>
-<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script><!-- End of social buttons --><script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script>
+<!-- End of social buttons -->
+
+
+    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    
+
+
 </body>
 </html>

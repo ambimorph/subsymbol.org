@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>subsymbol.org (linux)</title><link>http://www.subsymbol.org/</link><description></description><language>en</language><lastBuildDate>Fri, 14 Nov 2014 11:34:20 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Two inotify Pitfalls</title><link>http://www.subsymbol.org/posts/two-inotify-pitfalls.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;All I wanted was to track some files.&lt;/p&gt;
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>subsymbol.org (linux)</title><link>http://www.subsymbol.org/</link><description></description><language>en</language><lastBuildDate>Wed, 25 Feb 2015 20:31:29 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Two inotify Pitfalls</title><link>http://www.subsymbol.org/posts/two-inotify-pitfalls.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;All I wanted was to track some files.&lt;/p&gt;
 &lt;p&gt;I have a set of directories populated with files that are hardlinked from other places.
 This serves as a kind of database for associating tags to files.
 I wanted to write a daemon that notifies changes to the files that might affect the consistency of the database.
 For example, if the file is removed, I want my database to let go of its reference.&lt;/p&gt;
 &lt;p&gt;The linux kernel has a set of system calls for this called &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Inotify"&gt;inotify&lt;/a&gt;, and &lt;a class="reference external" href="http://twistedmatrix.com/documents/current/api/twisted.internet.inotify.html"&gt;Twisted has a module to support that API&lt;/a&gt;.
 Not only that, but the module documentation has everything you need.&lt;/p&gt;
-&lt;hr class="docutils"&gt;&lt;pre class="code python literal-block"&gt;
+&lt;hr class="docutils"&gt;
+&lt;pre class="code python literal-block"&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.internet&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.python&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;
 
@@ -25,19 +26,24 @@ Not only that, but the module documentation has everything you need.&lt;/p&gt;
 &lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startReading&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;watch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FilePath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"/some/directory"&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;callbacks&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;/pre&gt;
-&lt;hr class="docutils"&gt;&lt;div class="section" id="pitfall-1"&gt;
+&lt;hr class="docutils"&gt;
+&lt;div class="section" id="pitfall-1"&gt;
 &lt;h2&gt;Pitfall #1&lt;/h2&gt;
 &lt;p&gt;Great!  I copy the code, change the path from "/some/directory" to "/home/amber/somedir", and start it up.&lt;/p&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;I make a file, "f", and am notified of its creation, and some attribute change.&lt;/li&gt;
-&lt;/ul&gt;&lt;pre class="code bash literal-block"&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;I make a file, "f", and am notified of its creation, and some attribute change.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash literal-block"&gt;
 &lt;span class="nv"&gt;$ &lt;/span&gt;touch f
 &lt;/pre&gt;
 &lt;pre class="code bash literal-block"&gt;
 event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/somedir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/somedir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;I hard link it with another name&lt;/li&gt;
-&lt;/ul&gt;&lt;pre class="code bash literal-block"&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;I hard link it with another name&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash literal-block"&gt;
 &lt;span class="nv"&gt;$ &lt;/span&gt;ln f h
 &lt;/pre&gt;
 &lt;pre class="code bash literal-block"&gt;
@@ -45,8 +51,10 @@ event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&
 &lt;/pre&gt;
 &lt;p&gt;Ok.  It logged the creation of h for me, but hasn't this changed the links attribute of f?
 Why wasn't I notified of that?&lt;/p&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;I try modifying it.&lt;/li&gt;
-&lt;/ul&gt;&lt;pre class="code bash literal-block"&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;I try modifying it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code bash literal-block"&gt;
 &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;hello &amp;gt;&amp;gt; h
 &lt;/pre&gt;
 &lt;pre class="code bash literal-block"&gt;

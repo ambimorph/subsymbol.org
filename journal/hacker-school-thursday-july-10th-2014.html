@@ -1,29 +1,54 @@
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hacker School, Thursday, July 10th, 2014 | subsymbol.org</title>
-<link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
-<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
-<link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
-<link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
-<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
-<link rel="canonical" href="http://www.subsymbol.org/journal/hacker-school-thursday-july-10th-2014.html">
-<!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]--><meta name="author" content="L. Amber Wilcox-O'Hearn">
-<meta name="og:title" content="Hacker School, Thursday, July 10th, 2014">
-<meta name="og:url" content="http://www.subsymbol.org/journal/hacker-school-thursday-july-10th-2014.html">
-<meta name="og:description" content="Thursdays are presentation days, and I have decided I want to present as often as possible, regardless of the state of my projects.
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hacker School, Thursday, July 10th, 2014 | subsymbol.org</title>
+
+    
+            <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
+
+    
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+
+      <link rel="canonical" href="http://www.subsymbol.org/journal/hacker-school-thursday-july-10th-2014.html">
+
+
+
+    
+        <!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
+
+    
+
+
+    
+
+    <meta name="author" content="L. Amber Wilcox-O'Hearn">
+    
+        <meta name="og:title" content="Hacker School, Thursday, July 10th, 2014">
+        <meta name="og:url" content="http://www.subsymbol.org/journal/hacker-school-thursday-july-10th-2014.html">
+            <meta name="og:description" content="Thursdays are presentation days, and I have decided I want to present as often as possible, regardless of the state of my projects.
 I chose to present about the realisation I had that dealing with mut">
-<meta name="og:site_name" content="subsymbol.org">
-<meta name="og:type" content="article">
+        <meta name="og:site_name" content="subsymbol.org">
+        <meta name="og:type" content="article">
+
+    
+
+    
+
+
+
 </head>
 <body>
 
 <!-- Menubar -->
 
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"><div class="container">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
 <!-- This keeps the margins nice -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -40,7 +65,8 @@ I chose to present about the realisation I had that dealing with mut">
 <!-- /.navbar-header -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-<li>
+                
+                <li>
 <a href="../archive.html">Archive</a>
                 </li>
 <li>
@@ -58,24 +84,36 @@ I chose to present about the realisation I had that dealing with mut">
                 
             </li>
 </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
+
+            <ul class="nav navbar-nav navbar-right">
+                
+                
+                    
+    <li>
     <a href="hacker-school-thursday-july-10th-2014.rst" id="sourcelink">Source</a>
     </li>
 
                 
             </ul>
-</div>
+        </div>
 <!-- /.navbar-collapse -->
     </div>
 <!-- /.container -->
-</nav><!-- End of Menubar --><div class="container">
+</nav>
+
+<!-- End of Menubar -->
+
+<div class="container">
     <div class="body-content">
         <!--Body content-->
         <div class="row">
             
             
-<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Hacker School, Thursday, July 10th, 2014</a></h1>
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <header>
+        
+    <h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Hacker School, Thursday, July 10th, 2014</a></h1>
 
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn">L. Amber Wilcox-O'Hearn</span></p>
@@ -92,7 +130,9 @@ I chose to present about the realisation I had that dealing with mut">
         </div>
         
 
-    </header><div class="e-content entry-content" itemprop="articleBody text">
+    </header>
+
+    <div class="e-content entry-content" itemprop="articleBody text">
     <p>Thursdays are presentation days, and I have decided I want to present as often as possible, regardless of the state of my projects.
 I chose to present about the realisation I had that dealing with mutable files in Protagonist means making a distinction between addresses and contents that isn't usually done in filesystems.</p>
 <p>I had wanted to draw a simple diagram of three circular nodes laid out in an equilateral triangle formation with arrows between them showing dependencies.
@@ -102,14 +142,25 @@ It gives fine-grained control over your drawing, and it is stack-based.</p>
 <p>However, when I started trying to write my program, I felt rushed, and it seemed like I wouldn't have time to both write an elegant program to draw the diagram, and finish thinking through what I wanted to present before the day was over.
 I have written a similar diagram in the past using some Python interface to GraphViz, but I couldn't remember which one, and I spent some time looking at different such libraries, but not feeling like they gave me what I wanted.</p>
 <p>I eventually went back to PostScript, and hacked out some ugly-but-working code to generate my diagram:</p>
-<img alt="https://lh5.googleusercontent.com/-0dFaK3jKirQ/U78BnodwrUI/AAAAAAAACPs/mGzaDJfLZk4/w426-h376-no/name_triangle.png" src="https://lh5.googleusercontent.com/-0dFaK3jKirQ/U78BnodwrUI/AAAAAAAACPs/mGzaDJfLZk4/w426-h376-no/name_triangle.png"><p>This gave me an idea about to get back into learning a stack-based language, by successively refining this code.</p>
+<img alt="https://lh5.googleusercontent.com/-0dFaK3jKirQ/U78BnodwrUI/AAAAAAAACPs/mGzaDJfLZk4/w426-h376-no/name_triangle.png" src="https://lh5.googleusercontent.com/-0dFaK3jKirQ/U78BnodwrUI/AAAAAAAACPs/mGzaDJfLZk4/w426-h376-no/name_triangle.png">
+<p>This gave me an idea about to get back into learning a stack-based language, by successively refining this code.</p>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=uiXPmDI8qDs&amp;feature=youtu.be">My presentation can be found on YouTube</a>,
 and I also wrote <a class="reference external" href="http://subsymbol.org/posts/addresses-and-contents.html">a blog post about it</a>.</p>
     </div>
-    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
-<li><a class="tag p-category" href="../categories/checkin.html" rel="tag">checkin</a></li>
+    <aside class="postpromonav">
+    <nav>
+    
+        <ul itemprop="keywords" class="tags">
+           <li><a class="tag p-category" href="../categories/checkin.html" rel="tag">checkin</a></li>
            <li><a class="tag p-category" href="../categories/hacker-school.html" rel="tag">hacker school</a></li>
-        </ul></nav></aside><section class="comments"><h2>Comments</h2>
+        </ul>
+
+    
+
+    </nav>
+    </aside>
+        <section class="comments">
+        <h2>Comments</h2>
         
         
         <div id="disqus_thread"></div>
@@ -126,23 +177,39 @@ and I also wrote <a class="reference external" href="http://subsymbol.org/posts/
             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
-    </script><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
 </noscript>
     <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="subsymbolorg";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
-</div>
+        </section>
+    
+
+</article>
+
+        
+       <script>var disqus_shortname="subsymbolorg";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+
+
+
+        </div>
         <!--End of body content-->
 
-        <footer><br><br>Contents © 2014         <a href="mailto:amber@cs.toronto.edu">L. Amber Wilcox-O'Hearn</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+        <footer>
+            <br><br>Contents © 2015         <a href="mailto:amber@cs.toronto.edu">L. Amber Wilcox-O'Hearn</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
             
         </footer>
-</div>
+    </div>
 </div>
 
 
-            <script src="../assets/js/jquery.min.js"></script><script src="../assets/js/bootstrap.min.js"></script><script src="../assets/js/jquery.colorbox-min.js"></script><!-- Social buttons --><div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
+            <script src="../assets/js/jquery.min.js"></script>
+            <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery.colorbox-min.js"></script>
+    
+<!-- Social buttons -->
+<div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
 <a class="addthis_button_more">Share</a>
 <ul>
 <li>
@@ -159,6 +226,13 @@ and I also wrote <a class="reference external" href="http://subsymbol.org/posts/
 </li>
 </ul>
 </div>
-<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script><!-- End of social buttons --><script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script>
+<!-- End of social buttons -->
+
+
+    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    
+
+
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>subsymbol.org (blogging)</title><link>http://www.subsymbol.org/</link><description></description><language>en</language><lastBuildDate>Fri, 14 Nov 2014 11:27:58 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>How I transformed a Blogger blog to a Nikola two-blog website</title><link>http://www.subsymbol.org/posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;In the last post I described why I wanted to move my blog, and what went into my choices.
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>subsymbol.org (blogging)</title><link>http://www.subsymbol.org/</link><description></description><language>en</language><lastBuildDate>Wed, 25 Feb 2015 20:31:29 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>How I transformed a Blogger blog to a Nikola two-blog website</title><link>http://www.subsymbol.org/posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;In the last post I described why I wanted to move my blog, and what went into my choices.
 My goal in exporting my site from Blogger to Nikola was to separate my content into two separate blogs on a single site:
 one which is the primary blog, and the other which resides in the background.
 I wanted them to be archived separately.
@@ -8,8 +8,10 @@ I also wanted there to be a front page that didn't change every time I wrote a n
 &lt;h2&gt;Importing the blog&lt;/h2&gt;
 &lt;p&gt;Nikola has a plugin to import a blog from Blogger, so the first step was to import the blog.
 To import, I took the following steps:&lt;/p&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;First, I exported my blog from Blogger, which gave me a file called &lt;cite&gt;blog-07-05-2014.xml&lt;/cite&gt;. Then,&lt;/li&gt;
-&lt;/ul&gt;&lt;pre class="code literal-block"&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;First, I exported my blog from Blogger, which gave me a file called &lt;cite&gt;blog-07-05-2014.xml&lt;/cite&gt;. Then,&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code literal-block"&gt;
 $ sudo pip install nikola
 $ nikola plugin -i import_blogger
 $ nikola import_blogger -o site blog-07-05-2014.xml # The -o tells nikola what directory to make the site in.
@@ -30,10 +32,12 @@ The instructions boil down to changing three lines of &lt;cite&gt;conf.py&lt;/ci
 &lt;div class="section" id="posts-and-pages"&gt;
 &lt;h3&gt;Posts and Pages&lt;/h3&gt;
 &lt;p&gt;As usual, Nikola distinguishes two different kinds of text-derived files.&lt;/p&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;&lt;em&gt;Posts&lt;/em&gt; are blog files.
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;em&gt;Posts&lt;/em&gt; are blog files.
 They are archived, indexed by tag, and ordered by date for display.&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;Pages&lt;/em&gt; are essentially independent.&lt;/li&gt;
-&lt;/ul&gt;&lt;p&gt;So to make a blog into a non-blog, you simply manipulate the variable &lt;cite&gt;POSTS&lt;/cite&gt; defined in &lt;cite&gt;conf.py&lt;/cite&gt;.
+&lt;/ul&gt;
+&lt;p&gt;So to make a blog into a non-blog, you simply manipulate the variable &lt;cite&gt;POSTS&lt;/cite&gt; defined in &lt;cite&gt;conf.py&lt;/cite&gt;.
 &lt;cite&gt;POSTS&lt;/cite&gt; and &lt;cite&gt;PAGES&lt;/cite&gt; are lists describing where to find posts or pages respectively, where to render them, and what template to use for them.
 We let the &lt;cite&gt;POSTS&lt;/cite&gt; list be empty, so everything on the site will be a page.&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
@@ -84,10 +88,12 @@ So we need to add:&lt;/p&gt;
 I had a front page separate from my blog, and all of my previous blog reachable from the site.
 But I still wanted to have two blogs, a primary one for themed entries, and a journal for unstructured reflections.&lt;/p&gt;
 &lt;p&gt;Here are the steps I took to factor the blogs apart:&lt;/p&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;Made a new directory for the journal posts called "journal", and moved the appropriate files into it.&lt;/li&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Made a new directory for the journal posts called "journal", and moved the appropriate files into it.&lt;/li&gt;
 &lt;li&gt;Added ("journal/&lt;em&gt;.rst", "journal", "story.tmpl") and ("journal/&lt;/em&gt;.html", "journal", "story.tmpl") to the &lt;cite&gt;PAGES&lt;/cite&gt; list, so old and new journal entries can be found for rendering.&lt;/li&gt;
 &lt;li&gt;Updated the conf.py &lt;cite&gt;REDIRECTIONS&lt;/cite&gt; to reflect those&lt;/li&gt;
-&lt;/ul&gt;&lt;p&gt;This worked to render them and include them in the site, but the journal articles were not indexed.
+&lt;/ul&gt;
+&lt;p&gt;This worked to render them and include them in the site, but the journal articles were not indexed.
 That meant that if I knew the URL, I could go to the article, but a visitor to the site could never discover them.&lt;/p&gt;
 &lt;p&gt;To add indexing I had to add to conf.py:&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;
@@ -141,28 +147,34 @@ It has themes, comments, and a variety of plugins.
 You can export your stuff if you want to, so you aren't completely locked in.&lt;/p&gt;
 &lt;p&gt;However, Blogger is not a good match for someone who wants fine-grained control over her content.
 My use of Blogger for the three sites I have hosted on it has consisted of the following elaborate dance:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;&lt;li&gt;Edit my post in reStructuredText &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id3" id="id1"&gt;[1]&lt;/a&gt;.&lt;/li&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Edit my post in reStructuredText &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id3" id="id1"&gt;[1]&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;Convert my post into HTML using a custom script I adapted from &lt;a class="reference external" href="https://pypi.python.org/pypi/rst2blogger"&gt;rst2blogger&lt;/a&gt; &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id4" id="id2"&gt;[2]&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;Cut and paste my post into the Blogger compose form, click &lt;cite&gt;Preview&lt;/cite&gt;, and see if it looked ok.&lt;/li&gt;
 &lt;li&gt;Repeat until all typos and other issues were resolved.&lt;/li&gt;
 &lt;li&gt;Click &lt;cite&gt;Publish&lt;/cite&gt;.&lt;/li&gt;
-&lt;/ol&gt;&lt;p&gt;The result of all this work was a site that looked more-or-less how I wanted it to in some ways, but was frustrating in others.
+&lt;/ol&gt;
+&lt;p&gt;The result of all this work was a site that looked more-or-less how I wanted it to in some ways, but was frustrating in others.
 For example,&lt;/p&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;I couldn't change the css styles that went with a given theme, (and some of them were really dysfunctional).&lt;/li&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;I couldn't change the css styles that went with a given theme, (and some of them were really dysfunctional).&lt;/li&gt;
 &lt;li&gt;I couldn't make the site &lt;em&gt;not a blog&lt;/em&gt; — the blog assumption is that your most recent content ought to be your most prominent, and this is not an appropriate assumption for some of my use cases.
 I sometimes found myself putting off making a post that was less compelling until I knew I could follow it with a better one quickly!
 The restrictiveness wasn't serving me.&lt;/li&gt;
-&lt;/ul&gt;&lt;p&gt;Also, a little independence from Google seems healthy.&lt;/p&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also, a little independence from Google seems healthy.&lt;/p&gt;
 &lt;p&gt;What I really wanted was a static site generator, with no dynamic logic on a server-side database.
 I wanted my whole site complete and rendered on my local machine to do with what I liked.
 In other words, I wanted a static site generator.&lt;/p&gt;
 &lt;div class="section" id="choosing-a-static-site-generator"&gt;
 &lt;h2&gt;Choosing a static site generator&lt;/h2&gt;
 &lt;p&gt;My criteria were:&lt;/p&gt;
-&lt;ul class="simple"&gt;&lt;li&gt;Open source&lt;/li&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Open source&lt;/li&gt;
 &lt;li&gt;Python&lt;/li&gt;
 &lt;li&gt;Works to generate non-blog sites.&lt;/li&gt;
-&lt;/ul&gt;&lt;p&gt;This gave me two choices that I knew of: &lt;a class="reference external" href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;, and &lt;a class="reference external" href="http://getnikola.com/"&gt;Nikola&lt;/a&gt;.&lt;/p&gt;
+&lt;/ul&gt;
+&lt;p&gt;This gave me two choices that I knew of: &lt;a class="reference external" href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;, and &lt;a class="reference external" href="http://getnikola.com/"&gt;Nikola&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I have had my eyes on Pelican for some time now.
 I didn't like the way the resulting websites looked, though, until recently.
 They had a jarring "I'm a programmer, not a designer" feel.
@@ -173,4 +185,16 @@ The docs are well written, the code looks good, and &lt;a class="reference exter
 which was recommended by &lt;a class="reference external" href="https://github.com/punchagan"&gt;another respected coder-friend&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I decided to use Nikola, in part because it has a plugin to import from Blogger, and in part because the above-mentioned friend offered to help me.&lt;/p&gt;
 &lt;p&gt;In the next post, I'll describe how I ported my Blogger blog into a Nikola blog.&lt;/p&gt;
-&lt;table class="docutils footnote" frame="void" id="id3" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;I used to write in pure HTML, but after much goading from Zooko, I switched to rst.  I'm glad; I find rst more flexible.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="docutils footnote" frame="void" id="id4" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id2"&gt;[2]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;I didn't want the script to deploy it, because I didn't want to trust the script with my Google authentication, so I took that part out.  I also changed some heading styles that Blogger doesn't render well.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;</description><category>blog</category><category>blogger</category><category>blogging</category><category>nikola</category><guid>http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html</guid><pubDate>Tue, 08 Jul 2014 16:48:18 GMT</pubDate></item></channel></rss>
+&lt;table class="docutils footnote" frame="void" id="id3" rules="none"&gt;
+&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;I used to write in pure HTML, but after much goading from Zooko, I switched to rst.  I'm glad; I find rst more flexible.&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table class="docutils footnote" frame="void" id="id4" rules="none"&gt;
+&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id2"&gt;[2]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;I didn't want the script to deploy it, because I didn't want to trust the script with my Google authentication, so I took that part out.  I also changed some heading styles that Blogger doesn't render well.&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;</description><category>blog</category><category>blogger</category><category>blogging</category><category>nikola</category><guid>http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html</guid><pubDate>Tue, 08 Jul 2014 16:48:18 GMT</pubDate></item></channel></rss>
