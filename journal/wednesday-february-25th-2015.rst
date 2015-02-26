@@ -24,4 +24,4 @@ In this tech report (which I have only just begun reading) the authors promise t
 The "lexicon" is chosen to optimise between storing a relatively small number of tiny units which require a lot of computation to structure together vs. storing a large number of long strings which cover large stretches of text, but aren't very flexible or general.
 In other words, it's a tradeoff in compression vs. computation.
 
-If this is not enough to hook you right there, the implementation is written in a functional language such that lexical items are recursive funcions.
+If this is not enough to hook you right there, the implementation is written in a functional language such that lexical items are recursive functions.
