@@ -10,7 +10,7 @@ Last week I read
 `Fragment Grammars: Exploring Computation and Reuse in Language <http://dspace.mit.edu/handle/1721.1/44963>`_
 by Timothy J. O'Donnell, Joshua B. Tenenbaum, and Noah D. Goodman.
 
-As I mentioned in `my journal <http://subsymbol.org/journal/wednesday-february-25th-2015.html>`_
+As I mentioned in `my journal <http://subsymbol.org/journal/wednesday-february-25th-2015.html>`_,
 the authors of this tech report promise to generalise `adaptor grammars <http://papers.nips.cc/paper/3101-adaptor-grammars-a-framework-for-specifying-compositional-nonparametric-bayesian-models.pdf>`_ (a variety of `PCFG <http://en.wikipedia.org/wiki/Stochastic_context-free_grammar>`_ that uses a `Pitman-Yor process <http://en.wikipedia.org/wiki/Pitman%E2%80%93Yor_process>`_ to adapt its probabilities based on context) by using a *heterogenous* lexicon (one that is not married to some prescriptivist notion of linguistic category such as word or morpheme, and thus can include items smaller or larger than words).
 The "lexicon" is chosen to optimise between storing a relatively small number of tiny units which require a lot of computation to structure together vs. storing a large number of long strings which cover large stretches of text, but aren't very flexible or general.
 In other words, it's a tradeoff in compression vs. computation.
@@ -20,7 +20,7 @@ Here are my impressions on first reading.
 **What I really love about this tech report is that it unpacks a lot of typically presumed knowledge right inside it.**
 
 So if you didn't know about PCFGs or memoization, or Chinese restaurant processes, or non-parametric Bayesian methods before, you can get a lot of what you need to know right there.
-Of course, The reason a typical conference or journal paper doesn't read so well, is simply that there isn't the space for it.
+Of course, The reason a typical conference or journal paper doesn't include such thorough background, is simply that there isn't the space for it.
 Moreover, one can usually assume that the audience has the appropriate background, or knows how to acquire it.
 Nonetheless, I find it a great pleasure to read something that assumes an educated audience that isn't intimidated by statistical models or equations, but might not know every niche term involved in such a specialised task.
 
