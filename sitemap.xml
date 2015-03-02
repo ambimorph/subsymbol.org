@@ -153,6 +153,10 @@
   <lastmod>2015-03-02</lastmod>
  </url>
  <url>
+  <loc>http://www.subsymbol.org/categories/adaptor-grammars.html</loc>
+  <lastmod>2015-03-02</lastmod>
+ </url>
+ <url>
   <loc>http://www.subsymbol.org/categories/bash.html</loc>
   <lastmod>2015-03-02</lastmod>
  </url>
@@ -198,6 +202,14 @@
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/filesystems.html</loc>
+  <lastmod>2015-03-02</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/categories/fragment-grammars.html</loc>
+  <lastmod>2015-03-02</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/categories/grammar-induction.html</loc>
   <lastmod>2015-03-02</lastmod>
  </url>
  <url>
@@ -249,11 +261,19 @@
   <lastmod>2015-03-02</lastmod>
  </url>
  <url>
+  <loc>http://www.subsymbol.org/categories/nlp.html</loc>
+  <lastmod>2015-03-02</lastmod>
+ </url>
+ <url>
   <loc>http://www.subsymbol.org/categories/open-access.html</loc>
   <lastmod>2015-03-02</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/open-source.html</loc>
+  <lastmod>2015-03-02</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/categories/pcfg.html</loc>
   <lastmod>2015-03-02</lastmod>
  </url>
  <url>
