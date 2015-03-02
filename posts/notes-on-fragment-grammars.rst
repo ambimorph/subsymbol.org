@@ -1,7 +1,7 @@
 .. title: Notes on Fragment Grammars
 .. slug: notes-on-fragment-grammars
 .. date: 2015-03-02 22:00:26 UTC
-.. tags: 
+.. tags: blog, grammar induction, fragment grammars, NLP, PCFG, adaptor grammars
 .. link: 
 .. description: 
 .. type: text
