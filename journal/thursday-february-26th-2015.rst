@@ -8,7 +8,7 @@
 
 My goal for Thursday was to read the rest of `Fragment Grammars: Exploring Computation and Reuse in Language <http://dspace.mit.edu/handle/1721.1/44963>`_, which I did, minus the appendices.
 
-I have written a blog post about my impressions so far.
+I have written `a blog post <http://www.subsymbol.org/posts/notes-on-fragment-grammars.html>`_ about my impressions so far.
 
 .. Extra Notes:
 
