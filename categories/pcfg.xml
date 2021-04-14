@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>subsymbol.org (PCFG)</title><link>http://www.subsymbol.org/</link><description></description><language>en</language><lastBuildDate>Sat, 14 Mar 2015 10:27:13 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Notes on Fragment Grammars</title><link>http://www.subsymbol.org/posts/notes-on-fragment-grammars.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;Last week I read
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>subsymbol.org (Posts about PCFG)</title><link>http://www.subsymbol.org/</link><description></description><atom:link href="http://www.subsymbol.org/categories/pcfg.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 14 Apr 2021 21:35:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Notes on Fragment Grammars</title><link>http://www.subsymbol.org/posts/notes-on-fragment-grammars/index.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;p&gt;Last week I read
 &lt;a class="reference external" href="http://dspace.mit.edu/handle/1721.1/44963"&gt;Fragment Grammars: Exploring Computation and Reuse in Language&lt;/a&gt;
 by Timothy J. O'Donnell, Joshua B. Tenenbaum, and Noah D. Goodman.&lt;/p&gt;
 &lt;p&gt;As I mentioned in &lt;a class="reference external" href="http://subsymbol.org/journal/wednesday-february-25th-2015.html"&gt;my journal&lt;/a&gt;,
@@ -16,31 +16,34 @@ Nonetheless, I find it a great pleasure to read something that assumes an educat
 &lt;p&gt;I had never thought of LDA and related algorithms as &lt;em&gt;stochastic memoisation&lt;/em&gt;, which is how they are described here.&lt;/p&gt;
 &lt;!--  --&gt;
 &lt;blockquote&gt;
-"A stochastic memoizer wraps a stochastic procedure [i.e a sampler]
+&lt;p&gt;"A stochastic memoizer wraps a stochastic procedure [i.e a sampler]
 in another distribution, called the memoization distribution, which
 tells us when to reuse one of the previously computed values, and
 when to compute a fresh value from the underlying procedure. To
 accomplish this, we generalize the notion of a memotable so that it
 stores a distribution for each procedure–plus–arguments
-combination."&lt;/blockquote&gt;
+combination."&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;I like this description because it is immediately understandable to someone who has used dynamic programming.
 We know the value of limiting recomputation (and, again, if you don't, the classic Fibonacci example is right in the paper!),
 and now we see this generalised to probabilistically either using the cached value or resampling.
 As the authors explain:&lt;/p&gt;
 &lt;!--  --&gt;
 &lt;blockquote&gt;
-"If we wrap such a random procedure in a deterministic memoizer, then
+&lt;p&gt;"If we wrap such a random procedure in a deterministic memoizer, then
 it will sample a value the first time it is applied to some arguments,
 but forever after, it will return the same value by virtue of
 memoization. It is natural to consider making the notion of
 memoization itself stochastic, so that sometimes the memoizer returns
-a value computed earlier, and sometimes it computes a fresh value."&lt;/blockquote&gt;
+a value computed earlier, and sometimes it computes a fresh value."&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;I have seen several different presentations of LDA, and not once was it described in this intuitive way.&lt;/p&gt;
 &lt;p&gt;Further, we can see how using the Chinese Restaurant Process, which is biased to sample what has been sampled before as a "simplicity bias":&lt;/p&gt;
 &lt;!--  --&gt;
 &lt;blockquote&gt;
-"all else being equal, when we use the CRP as a stochastic memoizer
-we favor reuse of previously computed values."&lt;/blockquote&gt;
+&lt;p&gt;"all else being equal, when we use the CRP as a stochastic memoizer
+we favor reuse of previously computed values."&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;An assumption that Gibbs sampling relies on was made clear to me in the explanation of &lt;em&gt;exchangeability&lt;/em&gt;.&lt;/p&gt;
 &lt;!--  --&gt;
 &lt;blockquote&gt;
@@ -61,4 +64,4 @@ that is, that permutations don't effect the joint distributions,
 I hadn't thought about the way this frees us in our sampling order.
 If we wanted to add some kind of recency effects to our models, order would, of course, become important.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The real meat of the paper, though, is in describing&lt;/strong&gt; &lt;em&gt;Fragment Grammars&lt;/em&gt; &lt;strong&gt;as contrasted with&lt;/strong&gt; &lt;em&gt;Adaptor Grammars&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;This will likely be the topic of the next post.&lt;/p&gt;</description><category>NLP</category><category>PCFG</category><category>adaptor grammars</category><category>blog</category><category>fragment grammars</category><category>grammar induction</category><guid>http://www.subsymbol.org/posts/notes-on-fragment-grammars.html</guid><pubDate>Mon, 02 Mar 2015 22:00:26 GMT</pubDate></item></channel></rss>
+&lt;p&gt;This will likely be the topic of the next post.&lt;/p&gt;&lt;/div&gt;</description><category>adaptor grammars</category><category>blog</category><category>fragment grammars</category><category>grammar induction</category><category>NLP</category><category>PCFG</category><guid>http://www.subsymbol.org/posts/notes-on-fragment-grammars/index.html</guid><pubDate>Mon, 02 Mar 2015 22:00:26 GMT</pubDate></item></channel></rss>

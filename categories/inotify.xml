@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>subsymbol.org (inotify)</title><link>http://www.subsymbol.org/</link><description></description><language>en</language><lastBuildDate>Sat, 14 Mar 2015 10:27:13 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Two inotify Pitfalls</title><link>http://www.subsymbol.org/posts/two-inotify-pitfalls.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;All I wanted was to track some files.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>subsymbol.org (Posts about inotify)</title><link>http://www.subsymbol.org/</link><description></description><atom:link href="http://www.subsymbol.org/categories/inotify.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 14 Apr 2021 21:35:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Two inotify Pitfalls</title><link>http://www.subsymbol.org/posts/two-inotify-pitfalls/index.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;p&gt;All I wanted was to track some files.&lt;/p&gt;
 &lt;p&gt;I have a set of directories populated with files that are hardlinked from other places.
 This serves as a kind of database for associating tags to files.
 I wanted to write a daemon that notifies changes to the files that might affect the consistency of the database.
@@ -7,241 +7,195 @@ For example, if the file is removed, I want my database to let go of its referen
 &lt;p&gt;The linux kernel has a set of system calls for this called &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Inotify"&gt;inotify&lt;/a&gt;, and &lt;a class="reference external" href="http://twistedmatrix.com/documents/current/api/twisted.internet.inotify.html"&gt;Twisted has a module to support that API&lt;/a&gt;.
 Not only that, but the module documentation has everything you need.&lt;/p&gt;
 &lt;hr class="docutils"&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.internet&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.python&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ignored&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;"""
-    For historical reasons, an opaque handle is passed as first
-    parameter. This object should never be used.
-
-    @param filepath: FilePath on which the event happened.
-    @param mask: inotify event as hexadecimal masks
-    """&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;"event &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; on &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="s"&gt;', '&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;humanReadableMask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;notifier&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;INotify&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startReading&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;watch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FilePath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"/some/directory"&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;callbacks&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;/pre&gt;
-&lt;hr class="docutils"&gt;
-&lt;div class="section" id="pitfall-1"&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.internet&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-2"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.python&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-3"&gt;&lt;/a&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-4"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ignored&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-5"&gt;&lt;/a&gt;    &lt;span class="sd"&gt;"""&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-6"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    For historical reasons, an opaque handle is passed as first&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-7"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    parameter. This object should never be used.&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-8"&gt;&lt;/a&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-9"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    @param filepath: FilePath on which the event happened.&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-10"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    @param mask: inotify event as hexadecimal masks&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-11"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    """&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-12"&gt;&lt;/a&gt;    &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"event &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt; on &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-13"&gt;&lt;/a&gt;        &lt;span class="s1"&gt;', '&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;humanReadableMask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-14"&gt;&lt;/a&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-15"&gt;&lt;/a&gt;&lt;span class="n"&gt;notifier&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;INotify&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-16"&gt;&lt;/a&gt;&lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startReading&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-17"&gt;&lt;/a&gt;&lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;watch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FilePath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/some/directory"&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;callbacks&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;hr class="docutils"&gt;
+&lt;section id="pitfall-1"&gt;
 &lt;h2&gt;Pitfall #1&lt;/h2&gt;
 &lt;p&gt;Great!  I copy the code, change the path from "/some/directory" to "/home/amber/somedir", and start it up.&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;I make a file, "f", and am notified of its creation, and some attribute change.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I make a file, "f", and am notified of its creation, and some attribute change.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;touch f
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/somedir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/somedir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;I hard link it with another name&lt;/li&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_d261a2e45d1349f5b940c311813d6adb-1"&gt;&lt;/a&gt;$ touch f
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_4e55545098334735b6916dd3ae10767e-1"&gt;&lt;/a&gt;event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/somedir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_4e55545098334735b6916dd3ae10767e-2"&gt;&lt;/a&gt;event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/somedir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;I hard link it with another name&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;ln f h
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/h'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;Ok.  It logged the creation of h for me, but hasn't this changed the links attribute of f?
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_0b511966d523407bae39f24263556f00-1"&gt;&lt;/a&gt;$ ln f h
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_db8d9fa463c946d787ffd8d4b09ec42e-1"&gt;&lt;/a&gt;event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/h'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Ok.  It logged the creation of h for me, but hasn't this changed the links attribute of f?
 Why wasn't I notified of that?&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;I try modifying it.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I try modifying it.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;hello &amp;gt;&amp;gt; h
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/h'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;I'm further non-plussed.
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_b646cb1af81042d69e68006ea267b256-1"&gt;&lt;/a&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; hello &amp;gt;&amp;gt; h
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_759995010c31429a8023554113f21347-1"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/h'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;I'm further non-plussed.
 This event should have modified both f and h, but I was only notified of the one used in the command.&lt;/p&gt;
 &lt;p&gt;Finally I try what I really want.
 * I make a hard link to f from outside of "somedir/", and modify it through there.&lt;/p&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;ln f ../h
-&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;hello &amp;gt;&amp;gt; ../h
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="o"&gt;(&lt;/span&gt;no response&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;div class="section" id="what-s-going-on"&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_d06909d031b34240b5b045e7ef5322f8-1"&gt;&lt;/a&gt;$ ln f ../h
+&lt;a name="rest_code_d06909d031b34240b5b045e7ef5322f8-2"&gt;&lt;/a&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; hello &amp;gt;&amp;gt; ../h
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_7c027f1ad68840358f098292625a600e-1"&gt;&lt;/a&gt;&lt;span class="o"&gt;(&lt;/span&gt;no response&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;section id="what-s-going-on"&gt;
 &lt;h3&gt;What's going on?&lt;/h3&gt;
 &lt;p&gt;Inotify takes a pathname.
 If the pathname is a directory, then it watches the directory, but this is not the same as watching each file in the directory.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="pitfall-2"&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="pitfall-2"&gt;
 &lt;h2&gt;Pitfall #2&lt;/h2&gt;
 &lt;p&gt;Glad to have figured out my error, I try again, modifying the pathname argument in the daemon to "somedir/f".
 I remove all those files, touch f, and start the daemon again.
 This time it does what I want.&lt;/p&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;ln f h
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;ln f h
-&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;hello &amp;gt;&amp;gt; h
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;ln f ../h
-&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;hello &amp;gt;&amp;gt; ../h
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;div class="section" id="but-wait"&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_fed253cb37d447fcb810498dcd89d7ca-1"&gt;&lt;/a&gt;$ ln f h
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_3bb32fd9f0b24982809c346c9b35c2de-1"&gt;&lt;/a&gt;event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_c11afccf899f4e6a9404141391d38ef6-1"&gt;&lt;/a&gt;$ ln f h
+&lt;a name="rest_code_c11afccf899f4e6a9404141391d38ef6-2"&gt;&lt;/a&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; hello &amp;gt;&amp;gt; h
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_5bc2ffe2a26b49c99b9d98288e81defc-1"&gt;&lt;/a&gt;event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_5bc2ffe2a26b49c99b9d98288e81defc-2"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_a3487e144f084e8490a4427c7fadea66-1"&gt;&lt;/a&gt;$ ln f ../h
+&lt;a name="rest_code_a3487e144f084e8490a4427c7fadea66-2"&gt;&lt;/a&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; hello &amp;gt;&amp;gt; ../h
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_f6f5c0681d4a456abdae7106fb53b8b5-1"&gt;&lt;/a&gt;event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_f6f5c0681d4a456abdae7106fb53b8b5-2"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;section id="but-wait"&gt;
 &lt;h3&gt;But wait!&lt;/h3&gt;
 &lt;p&gt;I was about to call it good, when I decided to try modifying the file with vim or emacs.
 I deleted all those files again, touched f, and this time modified it with vim.
 On saving the file, I get this:&lt;/p&gt;
-&lt;pre class="code bash literal-block"&gt;
-event move_self on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-event delete_self on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class="section" id="id1"&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_662be57ba5df4179976ec39908a18c56-1"&gt;&lt;/a&gt;event move_self on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_662be57ba5df4179976ec39908a18c56-2"&gt;&lt;/a&gt;event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_662be57ba5df4179976ec39908a18c56-3"&gt;&lt;/a&gt;event delete_self on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/section&gt;
+&lt;section id="id1"&gt;
 &lt;h3&gt;What's going on?&lt;/h3&gt;
 &lt;p&gt;It turns out that vim and emacs, and who knows what else, have a trick to save backups while in use.&lt;/p&gt;
 &lt;p&gt;To see what happens, I edited the daemon to watch the directory again, and also to print some stats about the files:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.internet&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;reactor&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.python&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
-
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ignored&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;"""
-    For historical reasons, an opaque handle is passed as first
-    parameter. This object should never be used.
-
-    @param filepath: FilePath on which the event happened.
-    @param mask: inotify event as hexadecimal masks
-    """&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;"event &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; on &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;', '&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;humanReadableMask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="n"&gt;stat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"mode:"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stat&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;st_mode&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"inode:"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stat&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;st_ino&lt;/span&gt;
-
-&lt;span class="n"&gt;fp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"/home/amber/subdir"&lt;/span&gt;
-&lt;span class="n"&gt;notifier&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;INotify&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startReading&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;watch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FilePath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;callbacks&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;reactor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;Now I run it and open f with vi.&lt;/p&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;vi f
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swpx'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swpx'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-&lt;/pre&gt;
-&lt;p&gt;(pause)&lt;/p&gt;
-&lt;pre class="code bash literal-block"&gt;
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-&lt;/pre&gt;
-&lt;p&gt;(modify manually)&lt;/p&gt;
-&lt;pre class="code bash literal-block"&gt;
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-&lt;/pre&gt;
-&lt;p&gt;(save manually)&lt;/p&gt;
-&lt;pre class="code bash literal-block"&gt;
-event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/4913'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f~ mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/4913'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f~ mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/4913'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f~ mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event moved_from on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f~ mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event moved_to on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f~'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f~ mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307371
-f~ mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307371
-f~ mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307371
-.f.swp mode: 33188 inode: 2307363
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307371
-.f.swp mode: 33188 inode: 2307363
-event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f~'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307371
-.f.swp mode: 33188 inode: 2307363
-&lt;/pre&gt;
-&lt;p&gt;(exit)&lt;/p&gt;
-&lt;pre class="code bash literal-block"&gt;
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307371
-.f.swp mode: 33188 inode: 2307363
-event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307371
-&lt;/pre&gt;
-&lt;p&gt;As far as I can tell, the result is as if they have renamed f to something else like f~, copied the contents of f~ to a new file named f, modified f, and finally deleted f~.
+&lt;pre class="code python"&gt;&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.internet&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;reactor&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-2"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.python&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-3"&gt;&lt;/a&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-5"&gt;&lt;/a&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-6"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ignored&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-7"&gt;&lt;/a&gt;    &lt;span class="sd"&gt;"""&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-8"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    For historical reasons, an opaque handle is passed as first&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-9"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    parameter. This object should never be used.&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-10"&gt;&lt;/a&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-11"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    @param filepath: FilePath on which the event happened.&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-12"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    @param mask: inotify event as hexadecimal masks&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-13"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    """&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-14"&gt;&lt;/a&gt;    &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"event &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt; on &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s1"&gt;', '&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;humanReadableMask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-15"&gt;&lt;/a&gt;    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-16"&gt;&lt;/a&gt;        &lt;span class="n"&gt;stat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-17"&gt;&lt;/a&gt;        &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"mode:"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stat&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;st_mode&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"inode:"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stat&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;st_ino&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-18"&gt;&lt;/a&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-19"&gt;&lt;/a&gt;&lt;span class="n"&gt;fp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"/home/amber/subdir"&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-20"&gt;&lt;/a&gt;&lt;span class="n"&gt;notifier&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;INotify&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-21"&gt;&lt;/a&gt;&lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startReading&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-22"&gt;&lt;/a&gt;&lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;watch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FilePath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;callbacks&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-23"&gt;&lt;/a&gt;&lt;span class="n"&gt;reactor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Now I run it and open f with vi.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_6db96f332d2348e1b137102b784dd23b-1"&gt;&lt;/a&gt;$ vi f
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-1"&gt;&lt;/a&gt;event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-2"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-3"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-4"&gt;&lt;/a&gt;event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swpx'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-5"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-6"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-7"&gt;&lt;/a&gt;event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swpx'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-8"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-9"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-10"&gt;&lt;/a&gt;event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-11"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-12"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-13"&gt;&lt;/a&gt;event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-14"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-15"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-16"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-17"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-18"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-19"&gt;&lt;/a&gt;event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-20"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-21"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;(pause)&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_1b162e5f67c14723ade1337a16d70815-1"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_1b162e5f67c14723ade1337a16d70815-2"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_1b162e5f67c14723ade1337a16d70815-3"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;(modify manually)&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_64137bd4464b406a9d09c06d52776cc1-1"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_64137bd4464b406a9d09c06d52776cc1-2"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_64137bd4464b406a9d09c06d52776cc1-3"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_64137bd4464b406a9d09c06d52776cc1-4"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_64137bd4464b406a9d09c06d52776cc1-5"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_64137bd4464b406a9d09c06d52776cc1-6"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;(save manually)&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-1"&gt;&lt;/a&gt;event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/4913'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-2"&gt;&lt;/a&gt;f~ mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-3"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-4"&gt;&lt;/a&gt;event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/4913'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-5"&gt;&lt;/a&gt;f~ mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-6"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-7"&gt;&lt;/a&gt;event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/4913'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-8"&gt;&lt;/a&gt;f~ mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-9"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-10"&gt;&lt;/a&gt;event moved_from on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-11"&gt;&lt;/a&gt;f~ mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-12"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-13"&gt;&lt;/a&gt;event moved_to on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f~'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-14"&gt;&lt;/a&gt;f~ mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-15"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-16"&gt;&lt;/a&gt;event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-17"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307371&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-18"&gt;&lt;/a&gt;f~ mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-19"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-20"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-21"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307371&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-22"&gt;&lt;/a&gt;f~ mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-23"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-24"&gt;&lt;/a&gt;event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-25"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307371&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-26"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-27"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-28"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307371&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-29"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-30"&gt;&lt;/a&gt;event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f~'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-31"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307371&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-32"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;(exit)&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_1a18f29f92c84fcb8b7c818fa12f9ff3-1"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_1a18f29f92c84fcb8b7c818fa12f9ff3-2"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307371&lt;/span&gt;
+&lt;a name="rest_code_1a18f29f92c84fcb8b7c818fa12f9ff3-3"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_1a18f29f92c84fcb8b7c818fa12f9ff3-4"&gt;&lt;/a&gt;event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_1a18f29f92c84fcb8b7c818fa12f9ff3-5"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307371&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;As far as I can tell, the result is as if they have renamed f to something else like f~, copied the contents of f~ to a new file named f, modified f, and finally deleted f~.
 This is essentially &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Copy-on-write"&gt;copy-on write&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;But inotify, while taking pathnames as arguments and returning pathnames, actually tracks inodes.
 So simply using an editor has the effect of moving the file to a different inode and thereby breaks inotify!&lt;/p&gt;
 &lt;p&gt;This is ultimately a consequence of using aliases to files (pathnames) as if they were canonical references to files (inodes).&lt;/p&gt;
 &lt;!-- **It is a property of mutable objects that --&gt;
-&lt;/div&gt;
-&lt;div class="section" id="post-script-lucky-break"&gt;
+&lt;/section&gt;
+&lt;section id="post-script-lucky-break"&gt;
 &lt;h3&gt;Post Script: Lucky break?&lt;/h3&gt;
 &lt;p&gt;As it happens, the behaviour of vim and emacs is different when the inode holding the file has more than one reference.
 I can prevent the inode from disappearing by making a hardlink to the file before opening it with an editor.
 The editor must have recognised that it can't move inodes willy-nilly when other pathnames depend on it.
 This maps exactly to my original scenario, and therefore might make it safe for me to use.
 On the other hand, my whole confidence in the bahaviour is undermined, and I am reluctant to rely on it.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><category>blog</category><category>emacs</category><category>filesystems</category><category>inotify</category><category>links</category><category>linux</category><category>vim</category><guid>http://www.subsymbol.org/posts/two-inotify-pitfalls.html</guid><pubDate>Thu, 31 Jul 2014 19:35:05 GMT</pubDate></item></channel></rss>
+&lt;/section&gt;
+&lt;/section&gt;&lt;/div&gt;</description><category>blog</category><category>emacs</category><category>filesystems</category><category>inotify</category><category>links</category><category>linux</category><category>vim</category><guid>http://www.subsymbol.org/posts/two-inotify-pitfalls/index.html</guid><pubDate>Thu, 31 Jul 2014 19:35:05 GMT</pubDate></item></channel></rss>

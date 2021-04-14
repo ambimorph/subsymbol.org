@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hacker School, Tuesday, August 5th, 2014 | subsymbol.org</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="http://www.subsymbol.org/journal/hacker-school-tuesday-august-5th-2014/index.html">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="L. Amber Wilcox-O'Hearn">
+<meta property="og:site_name" content="subsymbol.org">
+<meta property="og:title" content="Hacker School, Tuesday, August 5th, 2014">
+<meta property="og:url" content="http://www.subsymbol.org/journal/hacker-school-tuesday-august-5th-2014/index.html">
+<meta property="og:description" content="My goal on Monday was simply to keep working through the LDA code.
+After I completed my third unit test, I looked to see what the next step should be.
+I didn't complete this step the whole day, becaus">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2014-08-05T16:03:16Z">
+<meta property="article:tag" content="checkin">
+<meta property="article:tag" content="hacker school">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Header and menu bar -->
+<div class="container">
+      <header class="blog-header py-3"><div class="row nbb-header align-items-center">
+          <div class="col-md-3 col-xs-2 col-sm-2" style="width: auto;">
+            <button class="navbar-toggler navbar-light bg-light nbb-navbar-toggler" type="button" data-toggle="collapse" data-target=".bs-nav-collapsible" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse bs-nav-collapsible bootblog4-search-form-holder">
+                
+            </div>
+        </div>
+          <div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;">
+            <a class="navbar-brand blog-header-logo text-dark" href="../../">
+
+            <span id="blog-title">subsymbol.org</span>
+        </a>
+          </div>
+            <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
+            <nav class="navbar navbar-light bg-white"><ul class="navbar-nav bootblog4-right-nav">
+<li class="nav-item">
+    <a href="index.rst" id="sourcelink" class="nav-link">Source</a>
+    </li>
+
+
+                    
+            </ul></nav>
+</div>
+    </div>
+</header><nav class="navbar navbar-expand-md navbar-light bg-white static-top"><div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
+            <ul class="navbar-nav nav-fill d-flex w-100">
+<li class="nav-item">
+<a href="../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../posts/" class="nav-link">Blog</a>
+                </li>
+<li class="nav-item">
+<a href="../" class="nav-link">Journal</a>
+                </li>
+<li class="nav-item">
+<a href="../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</nav>
+</div>
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Hacker School, Tuesday, August 5th, 2014</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    L. Amber Wilcox-O'Hearn
+            </span></p>
+            <p class="dateline">
+            <a href="#" rel="bookmark">
+            <time class="published dt-published" datetime="2014-08-05T16:03:16Z" itemprop="datePublished" title="2014-08-05 16:03">2014-08-05 16:03</time></a>
+            </p>
+                <p class="commentline">
+        
+    <a href="index.html#disqus_thread" data-disqus-identifier="cache/journal/hacker-school-tuesday-august-5th-2014.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.rst" class="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>My goal on Monday was simply to keep working through the LDA code.</p>
+<p>After I completed my third unit test, I looked to see what the next step should be.
+I didn't complete this step the whole day, because I spent the entire time trying to figure out how to optimise a data structure.
+The following is probably difficult to follow, and not necessarily interesting.
+I'm writing it down to help me clarify what thought processes I went through, and to remember any conclusions I had.</p>
+<hr class="docutils">
+<p>In Gibbs Sampling LDA, conceptually, we suppose that we have some topic assigned to every occurrence of a word in our corpus.
+This is initially accomplished by assigning topics randomly.</p>
+<p>We then look at every occurrence in a random order, and pretend we don't know what topic it has been assigned.
+Based on the <em>type</em> of the word, and which document it is in, we estimate what the most likely topic for it is, and then update the topic to that.
+So the next problem I was facing was how to go through the corpus randomly.</p>
+<p>The usual way to implement LDA includes making an index into the corpus that tells you for each word occurrence position in each document, what word type is there, and what topic it has been assigned.
+This makes it relatively easy to assign a permutation for the random ordering, and to update the information in place.
+This has always struck me as inordinately expensive in space, and I had been imagining trying to optimise it.</p>
+<p>My idea was this:
+Instead of having an index into every position in the corpus, we could have a count of every instance of a word type in a document that is assigned a given topic.
+In other words, make our model be a set of key, value pairs, where the key is the document and word type, and the value is a dictionary counting topics.
+For example, {(d5, "function"): {t0: 3, t5: 1}}.</p>
+<p>Then to iterate through the tokens, we just make sure to visit each key the appropriate number of times (proportionally randomly), holding out the topic the appropriate number of times.
+There are a couple of problems with the idea, though.</p>
+<p>First, how do we organise the permutation, especially if the structure is being updated in place?
+I spent a great part of the day exploring this problem.
+I came up with many ideas that I rejected for one reason or another.
+It turns out that getting a random permutation of a hash table in Python is kind of a hard problem.
+You can certainly get one — the order of the hashes — but it's not clear how to get another.
+Possibly one is enough, but it may contain bias, with unknown consequences.</p>
+<p>One idea I had was to do this functionally by passing the entire structure to a function that selects one (document, type, topic) token proportionally randomly to its frequency, and returns the choice, plus a new structure not containing it.
+I really like this idea, because I am persuaded by the value of immutability.
+However, it would be very expensive to create a new structure on every call, and there would be as many calls as there are words in the corpus.
+There does seem to be a use case here for mutability, though by the time of this writing, I am considering a persistent data structure idea.</p>
+<p>The next thought I had, to mitigate the creation of large new structures, was to modify the structure by mutating only a count of how many times the node was visited.
+So it would be like keeping the core data persistent, but adding a single mutable part inside.</p>
+<p>While thinking of this, it also occurred to me that the problem of choosing the token proportionally randomly might be too <em>computationally</em> expensive.
+This might be worse than a large space requirement, because Gibbs sampling is already notoriously slow.</p>
+<p>I then wondered if I could take advantage of the fact that I already have the data file on disk.
+I already have to do a first pass that gets all the documents and tokens, and assigns a random topic.
+This can be done using a generator.
+I wondered if I could build an index into the file to tell me the type of the word occurrence at each point in each document.
+The problem here is that I expect the files to be stored under compression (bzip2 probably right now).
+It turns out it is not easy to get random access into a bzip2 file.</p>
+<p>By the end of all this, I had decided I was probably better off following the convention of storing an index of the entire token set of the corpus.</p>
+<hr class="docutils">
+<p>I also decided it would be helpful for many reasons to have a solid understanding of how Python data structures are implemented, so that I know what it costs to use any of them for particular operations.
+I had seen a book on this topic: <a class="reference external" href="http://interactivepython.org/runestone/static/pythonds/index.html">Problem Solving with Algorithms and Data Structures, by Brad Miller and David Ranum</a>.
+So I spent the remainder of the day browsing that book.</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/checkin/" rel="tag">checkin</a></li>
+            <li><a class="tag p-category" href="../../categories/hacker-school/" rel="tag">hacker school</a></li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="subsymbolorg",
+            disqus_url="http://www.subsymbol.org/journal/hacker-school-tuesday-august-5th-2014/index.html",
+        disqus_title="Hacker School, Tuesday, August 5th, 2014",
+        disqus_identifier="cache/journal/hacker-school-tuesday-august-5th-2014.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="subsymbolorg";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer"><br><br>Contents © 2021         <a href="mailto:amber@cs.toronto.edu">L. Amber Wilcox-O'Hearn</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

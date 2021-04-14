@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hacker-school-friday-june-20th-2014 | subsymbol.org</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="http://www.subsymbol.org/journal/hacker-school-friday-june-20th-2014/index.html">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="L. Amber Wilcox-O'Hearn">
+<meta property="og:site_name" content="subsymbol.org">
+<meta property="og:title" content="hacker-school-friday-june-20th-2014">
+<meta property="og:url" content="http://www.subsymbol.org/journal/hacker-school-friday-june-20th-2014/index.html">
+<meta property="og:description" content="Fridays are optional days, and job preparation workshops are offered. I was intimidated by this, and so I participated. We were given a spec, and set off to write as much as we could, and we gathered ">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-04-14T20:05:26Z">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Header and menu bar -->
+<div class="container">
+      <header class="blog-header py-3"><div class="row nbb-header align-items-center">
+          <div class="col-md-3 col-xs-2 col-sm-2" style="width: auto;">
+            <button class="navbar-toggler navbar-light bg-light nbb-navbar-toggler" type="button" data-toggle="collapse" data-target=".bs-nav-collapsible" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse bs-nav-collapsible bootblog4-search-form-holder">
+                
+            </div>
+        </div>
+          <div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;">
+            <a class="navbar-brand blog-header-logo text-dark" href="../../">
+
+            <span id="blog-title">subsymbol.org</span>
+        </a>
+          </div>
+            <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
+            <nav class="navbar navbar-light bg-white"><ul class="navbar-nav bootblog4-right-nav">
+<li class="nav-item">
+    <a href="index.src.html" id="sourcelink" class="nav-link">Source</a>
+    </li>
+
+
+                    
+            </ul></nav>
+</div>
+    </div>
+</header><nav class="navbar navbar-expand-md navbar-light bg-white static-top"><div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
+            <ul class="navbar-nav nav-fill d-flex w-100">
+<li class="nav-item">
+<a href="../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../posts/" class="nav-link">Blog</a>
+                </li>
+<li class="nav-item">
+<a href="../" class="nav-link">Journal</a>
+                </li>
+<li class="nav-item">
+<a href="../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</nav>
+</div>
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
+<article class="post-text storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">hacker-school-friday-june-20th-2014</a></h1>
+
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div class="document" id="hacker-school-friday-june-20th-2014">   <p>Fridays are optional days, and job preparation workshops are offered. I was intimidated by this, and so I participated. We were given a spec, and set off to write as much as we could, and we gathered in groups later to review each other's designs and code.</p>
+<p>The problem involved writing a simple database with a particular command line interface.</p>
+<p>During the discussions I noticed two interesting things.</p>
+<ol class="arabic simple">
+<li>First, I noticed some things about my own style of program building.<ul>
+<li>I tend to start bottom up, making functions one at a time, approximately test-first, and not gluing them into the system until later. I'm not sure how I feel about that. I like to focus on core functionality, but it does break the "minimum viable product" rule of thumb. When it was time to break, I hadn't finished my core functions, and had not touched the command line integration yet.  So from one perspective, my program did nothing! On the other hand, it was probably useful to focus on the meat of the problem, because I had confidence that I could make the command line interface work later. I'm not saying there is a single <em>right</em> way, but it was useful to me to think about what choices I am making, so I can make them more deliberately.</li>
+<li>Even so, I had not successfully purified the functionality from the interface, and after the discussion, I could see much more clearly how to divide the problem more cleanly into modular interacting pieces.  This leads directly into the second point.</li>
+</ul>
+</li>
+<li>Alan encouraged us to think about the particular constraints we were given in a modular way: What if the data set was much bigger, so you couldn't hold it in RAM? What if the interface needed to adapt to a web app instead of a command line? What if the access to the fields needed to be fuzzier or more flexible? And so on. This is useful when designing, and in the practical situation of an interview, it would show engineering maturity to be able to talk about a problem in this way.</li>
+</ol>
+<p>The situation reminded me of the introduction to Dennet's book, <a class="reference external" href="http://www.amazon.com/Intuition-Pumps-Other-Tools-Thinking/dp/0393082067">Intuiton Pumps</a>, that I mentioned yesterday, in which he gives a thought experiment called the Whimsical Jailer, intended to prompt some considerations about the notion of free-will:</p>
+<blockquote>"Every night he waits until all the prisoners are sound asleep and then he goes around unlocking all the doors, leaving them open for hours on end."</blockquote>
+<p>Dennet goes on to talk about the importance of "turning all the knobs", in this example to segment the semantics like this:</p>
+<blockquote>Every night ‖ he waits ‖ until all the prisoners ‖ are sound asleep ‖ and then he goes around unlocking ‖ all the doors, ‖ leaving them open for hours on end.</blockquote>
+<p>and consider the effect changing any of these variables has on the intuitions that it pumps.</p>
+</div>
+    </div>
+    
+
+</article><!--End of body content--><footer id="footer"><br><br>Contents © 2021         <a href="mailto:amber@cs.toronto.edu">L. Amber Wilcox-O'Hearn</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>subsymbol.org (blog)</title><link>http://www.subsymbol.org/</link><description></description><language>en</language><lastBuildDate>Sat, 14 Mar 2015 10:27:14 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Notes on Fragment Grammars</title><link>http://www.subsymbol.org/posts/notes-on-fragment-grammars.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;Last week I read
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>subsymbol.org (Posts about blog)</title><link>http://www.subsymbol.org/</link><description></description><atom:link href="http://www.subsymbol.org/categories/blog.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 14 Apr 2021 21:59:06 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>I did it!</title><link>http://www.subsymbol.org/posts/i-did-it/index.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;section id="i-did-it"&gt;
+&lt;h2&gt;I did it!&lt;/h2&gt;
+&lt;p&gt;It's been a long time since I wrote anything here;
+everything I've written has been over at
+&lt;a class="reference external" href="https://mostly-fat.com"&gt;Mostly Fat&lt;/a&gt; or the companion book site,
+being health or nutrition related in nature.&lt;/p&gt;
+&lt;p&gt;I've had some subsymbol themed ideas to write, but after six years I was afraid I might forget how to use Nikola,
+or that the code would have changed so dramatically that I wouldn't be able to get my site to build at all.
+So I had been putting it off.&lt;/p&gt;
+&lt;p&gt;But I finally tried it today, and it worked!&lt;/p&gt;
+&lt;p&gt;I did run into a snag with the old posts written in html.
+It seems that where Nikola used to read "meta" files for certain information,
+it now expects to read that information out of the html head.
+That was easy enough to fix once I figured out the issue.&lt;/p&gt;
+&lt;p&gt;There are still some warnings and formatting changes that I need to clean up,
+but this seems good enough to at least try deploying!
+I'm eager to start writing here again.&lt;/p&gt;
+&lt;/section&gt;</description><category>blog</category><guid>http://www.subsymbol.org/posts/i-did-it/index.html</guid><pubDate>Wed, 14 Apr 2021 21:45:35 GMT</pubDate></item><item><title>Notes on Fragment Grammars</title><link>http://www.subsymbol.org/posts/notes-on-fragment-grammars/index.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;p&gt;Last week I read
 &lt;a class="reference external" href="http://dspace.mit.edu/handle/1721.1/44963"&gt;Fragment Grammars: Exploring Computation and Reuse in Language&lt;/a&gt;
 by Timothy J. O'Donnell, Joshua B. Tenenbaum, and Noah D. Goodman.&lt;/p&gt;
 &lt;p&gt;As I mentioned in &lt;a class="reference external" href="http://subsymbol.org/journal/wednesday-february-25th-2015.html"&gt;my journal&lt;/a&gt;,
@@ -16,31 +33,34 @@ Nonetheless, I find it a great pleasure to read something that assumes an educat
 &lt;p&gt;I had never thought of LDA and related algorithms as &lt;em&gt;stochastic memoisation&lt;/em&gt;, which is how they are described here.&lt;/p&gt;
 &lt;!--  --&gt;
 &lt;blockquote&gt;
-"A stochastic memoizer wraps a stochastic procedure [i.e a sampler]
+&lt;p&gt;"A stochastic memoizer wraps a stochastic procedure [i.e a sampler]
 in another distribution, called the memoization distribution, which
 tells us when to reuse one of the previously computed values, and
 when to compute a fresh value from the underlying procedure. To
 accomplish this, we generalize the notion of a memotable so that it
 stores a distribution for each procedure–plus–arguments
-combination."&lt;/blockquote&gt;
+combination."&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;I like this description because it is immediately understandable to someone who has used dynamic programming.
 We know the value of limiting recomputation (and, again, if you don't, the classic Fibonacci example is right in the paper!),
 and now we see this generalised to probabilistically either using the cached value or resampling.
 As the authors explain:&lt;/p&gt;
 &lt;!--  --&gt;
 &lt;blockquote&gt;
-"If we wrap such a random procedure in a deterministic memoizer, then
+&lt;p&gt;"If we wrap such a random procedure in a deterministic memoizer, then
 it will sample a value the first time it is applied to some arguments,
 but forever after, it will return the same value by virtue of
 memoization. It is natural to consider making the notion of
 memoization itself stochastic, so that sometimes the memoizer returns
-a value computed earlier, and sometimes it computes a fresh value."&lt;/blockquote&gt;
+a value computed earlier, and sometimes it computes a fresh value."&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;I have seen several different presentations of LDA, and not once was it described in this intuitive way.&lt;/p&gt;
 &lt;p&gt;Further, we can see how using the Chinese Restaurant Process, which is biased to sample what has been sampled before as a "simplicity bias":&lt;/p&gt;
 &lt;!--  --&gt;
 &lt;blockquote&gt;
-"all else being equal, when we use the CRP as a stochastic memoizer
-we favor reuse of previously computed values."&lt;/blockquote&gt;
+&lt;p&gt;"all else being equal, when we use the CRP as a stochastic memoizer
+we favor reuse of previously computed values."&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;An assumption that Gibbs sampling relies on was made clear to me in the explanation of &lt;em&gt;exchangeability&lt;/em&gt;.&lt;/p&gt;
 &lt;!--  --&gt;
 &lt;blockquote&gt;
@@ -61,7 +81,7 @@ that is, that permutations don't effect the joint distributions,
 I hadn't thought about the way this frees us in our sampling order.
 If we wanted to add some kind of recency effects to our models, order would, of course, become important.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The real meat of the paper, though, is in describing&lt;/strong&gt; &lt;em&gt;Fragment Grammars&lt;/em&gt; &lt;strong&gt;as contrasted with&lt;/strong&gt; &lt;em&gt;Adaptor Grammars&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;This will likely be the topic of the next post.&lt;/p&gt;</description><category>NLP</category><category>PCFG</category><category>adaptor grammars</category><category>blog</category><category>fragment grammars</category><category>grammar induction</category><guid>http://www.subsymbol.org/posts/notes-on-fragment-grammars.html</guid><pubDate>Mon, 02 Mar 2015 22:00:26 GMT</pubDate></item><item><title>Two inotify Pitfalls</title><link>http://www.subsymbol.org/posts/two-inotify-pitfalls.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;All I wanted was to track some files.&lt;/p&gt;
+&lt;p&gt;This will likely be the topic of the next post.&lt;/p&gt;&lt;/div&gt;</description><category>adaptor grammars</category><category>blog</category><category>fragment grammars</category><category>grammar induction</category><category>NLP</category><category>PCFG</category><guid>http://www.subsymbol.org/posts/notes-on-fragment-grammars/index.html</guid><pubDate>Mon, 02 Mar 2015 22:00:26 GMT</pubDate></item><item><title>Two inotify Pitfalls</title><link>http://www.subsymbol.org/posts/two-inotify-pitfalls/index.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;p&gt;All I wanted was to track some files.&lt;/p&gt;
 &lt;p&gt;I have a set of directories populated with files that are hardlinked from other places.
 This serves as a kind of database for associating tags to files.
 I wanted to write a daemon that notifies changes to the files that might affect the consistency of the database.
@@ -69,397 +89,320 @@ For example, if the file is removed, I want my database to let go of its referen
 &lt;p&gt;The linux kernel has a set of system calls for this called &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Inotify"&gt;inotify&lt;/a&gt;, and &lt;a class="reference external" href="http://twistedmatrix.com/documents/current/api/twisted.internet.inotify.html"&gt;Twisted has a module to support that API&lt;/a&gt;.
 Not only that, but the module documentation has everything you need.&lt;/p&gt;
 &lt;hr class="docutils"&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.internet&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.python&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ignored&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;"""
-    For historical reasons, an opaque handle is passed as first
-    parameter. This object should never be used.
-
-    @param filepath: FilePath on which the event happened.
-    @param mask: inotify event as hexadecimal masks
-    """&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;"event &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; on &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="s"&gt;', '&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;humanReadableMask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;notifier&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;INotify&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startReading&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;watch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FilePath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"/some/directory"&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;callbacks&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;/pre&gt;
-&lt;hr class="docutils"&gt;
-&lt;div class="section" id="pitfall-1"&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.internet&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-2"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.python&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-3"&gt;&lt;/a&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-4"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ignored&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-5"&gt;&lt;/a&gt;    &lt;span class="sd"&gt;"""&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-6"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    For historical reasons, an opaque handle is passed as first&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-7"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    parameter. This object should never be used.&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-8"&gt;&lt;/a&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-9"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    @param filepath: FilePath on which the event happened.&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-10"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    @param mask: inotify event as hexadecimal masks&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-11"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    """&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-12"&gt;&lt;/a&gt;    &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"event &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt; on &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-13"&gt;&lt;/a&gt;        &lt;span class="s1"&gt;', '&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;humanReadableMask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-14"&gt;&lt;/a&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-15"&gt;&lt;/a&gt;&lt;span class="n"&gt;notifier&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;INotify&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-16"&gt;&lt;/a&gt;&lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startReading&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-17"&gt;&lt;/a&gt;&lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;watch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FilePath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/some/directory"&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;callbacks&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;hr class="docutils"&gt;
+&lt;section id="pitfall-1"&gt;
 &lt;h2&gt;Pitfall #1&lt;/h2&gt;
 &lt;p&gt;Great!  I copy the code, change the path from "/some/directory" to "/home/amber/somedir", and start it up.&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;I make a file, "f", and am notified of its creation, and some attribute change.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I make a file, "f", and am notified of its creation, and some attribute change.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;touch f
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/somedir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/somedir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;I hard link it with another name&lt;/li&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_d261a2e45d1349f5b940c311813d6adb-1"&gt;&lt;/a&gt;$ touch f
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_4e55545098334735b6916dd3ae10767e-1"&gt;&lt;/a&gt;event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/somedir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_4e55545098334735b6916dd3ae10767e-2"&gt;&lt;/a&gt;event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/somedir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;I hard link it with another name&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;ln f h
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/h'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;Ok.  It logged the creation of h for me, but hasn't this changed the links attribute of f?
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_0b511966d523407bae39f24263556f00-1"&gt;&lt;/a&gt;$ ln f h
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_db8d9fa463c946d787ffd8d4b09ec42e-1"&gt;&lt;/a&gt;event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/h'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Ok.  It logged the creation of h for me, but hasn't this changed the links attribute of f?
 Why wasn't I notified of that?&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;I try modifying it.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I try modifying it.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;hello &amp;gt;&amp;gt; h
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/h'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;I'm further non-plussed.
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_b646cb1af81042d69e68006ea267b256-1"&gt;&lt;/a&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; hello &amp;gt;&amp;gt; h
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_759995010c31429a8023554113f21347-1"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/h'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;I'm further non-plussed.
 This event should have modified both f and h, but I was only notified of the one used in the command.&lt;/p&gt;
 &lt;p&gt;Finally I try what I really want.
 * I make a hard link to f from outside of "somedir/", and modify it through there.&lt;/p&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;ln f ../h
-&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;hello &amp;gt;&amp;gt; ../h
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="o"&gt;(&lt;/span&gt;no response&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;div class="section" id="what-s-going-on"&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_d06909d031b34240b5b045e7ef5322f8-1"&gt;&lt;/a&gt;$ ln f ../h
+&lt;a name="rest_code_d06909d031b34240b5b045e7ef5322f8-2"&gt;&lt;/a&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; hello &amp;gt;&amp;gt; ../h
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_7c027f1ad68840358f098292625a600e-1"&gt;&lt;/a&gt;&lt;span class="o"&gt;(&lt;/span&gt;no response&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;section id="what-s-going-on"&gt;
 &lt;h3&gt;What's going on?&lt;/h3&gt;
 &lt;p&gt;Inotify takes a pathname.
 If the pathname is a directory, then it watches the directory, but this is not the same as watching each file in the directory.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="pitfall-2"&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="pitfall-2"&gt;
 &lt;h2&gt;Pitfall #2&lt;/h2&gt;
 &lt;p&gt;Glad to have figured out my error, I try again, modifying the pathname argument in the daemon to "somedir/f".
 I remove all those files, touch f, and start the daemon again.
 This time it does what I want.&lt;/p&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;ln f h
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;ln f h
-&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;hello &amp;gt;&amp;gt; h
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;ln f ../h
-&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;hello &amp;gt;&amp;gt; ../h
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;div class="section" id="but-wait"&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_fed253cb37d447fcb810498dcd89d7ca-1"&gt;&lt;/a&gt;$ ln f h
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_3bb32fd9f0b24982809c346c9b35c2de-1"&gt;&lt;/a&gt;event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_c11afccf899f4e6a9404141391d38ef6-1"&gt;&lt;/a&gt;$ ln f h
+&lt;a name="rest_code_c11afccf899f4e6a9404141391d38ef6-2"&gt;&lt;/a&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; hello &amp;gt;&amp;gt; h
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_5bc2ffe2a26b49c99b9d98288e81defc-1"&gt;&lt;/a&gt;event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_5bc2ffe2a26b49c99b9d98288e81defc-2"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_a3487e144f084e8490a4427c7fadea66-1"&gt;&lt;/a&gt;$ ln f ../h
+&lt;a name="rest_code_a3487e144f084e8490a4427c7fadea66-2"&gt;&lt;/a&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; hello &amp;gt;&amp;gt; ../h
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_f6f5c0681d4a456abdae7106fb53b8b5-1"&gt;&lt;/a&gt;event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_f6f5c0681d4a456abdae7106fb53b8b5-2"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;section id="but-wait"&gt;
 &lt;h3&gt;But wait!&lt;/h3&gt;
 &lt;p&gt;I was about to call it good, when I decided to try modifying the file with vim or emacs.
 I deleted all those files again, touched f, and this time modified it with vim.
 On saving the file, I get this:&lt;/p&gt;
-&lt;pre class="code bash literal-block"&gt;
-event move_self on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-event delete_self on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class="section" id="id1"&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_662be57ba5df4179976ec39908a18c56-1"&gt;&lt;/a&gt;event move_self on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_662be57ba5df4179976ec39908a18c56-2"&gt;&lt;/a&gt;event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_662be57ba5df4179976ec39908a18c56-3"&gt;&lt;/a&gt;event delete_self on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/section&gt;
+&lt;section id="id1"&gt;
 &lt;h3&gt;What's going on?&lt;/h3&gt;
 &lt;p&gt;It turns out that vim and emacs, and who knows what else, have a trick to save backups while in use.&lt;/p&gt;
 &lt;p&gt;To see what happens, I edited the daemon to watch the directory again, and also to print some stats about the files:&lt;/p&gt;
-&lt;pre class="code python literal-block"&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.internet&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;reactor&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.python&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
-
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ignored&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;"""
-    For historical reasons, an opaque handle is passed as first
-    parameter. This object should never be used.
-
-    @param filepath: FilePath on which the event happened.
-    @param mask: inotify event as hexadecimal masks
-    """&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;"event &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; on &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;', '&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;humanReadableMask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="n"&gt;stat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"mode:"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stat&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;st_mode&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"inode:"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stat&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;st_ino&lt;/span&gt;
-
-&lt;span class="n"&gt;fp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"/home/amber/subdir"&lt;/span&gt;
-&lt;span class="n"&gt;notifier&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;INotify&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startReading&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;watch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FilePath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;callbacks&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;reactor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;Now I run it and open f with vi.&lt;/p&gt;
-&lt;pre class="code bash literal-block"&gt;
-&lt;span class="nv"&gt;$ &lt;/span&gt;vi f
-&lt;/pre&gt;
-&lt;pre class="code bash literal-block"&gt;
-event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swpx'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swpx'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-&lt;/pre&gt;
-&lt;p&gt;(pause)&lt;/p&gt;
-&lt;pre class="code bash literal-block"&gt;
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-&lt;/pre&gt;
-&lt;p&gt;(modify manually)&lt;/p&gt;
-&lt;pre class="code bash literal-block"&gt;
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-&lt;/pre&gt;
-&lt;p&gt;(save manually)&lt;/p&gt;
-&lt;pre class="code bash literal-block"&gt;
-event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/4913'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f~ mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/4913'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f~ mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/4913'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f~ mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event moved_from on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f~ mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event moved_to on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f~'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f~ mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307371
-f~ mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307371
-f~ mode: 33204 inode: 2307370
-.f.swp mode: 33188 inode: 2307363
-event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307371
-.f.swp mode: 33188 inode: 2307363
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307371
-.f.swp mode: 33188 inode: 2307363
-event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f~'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307371
-.f.swp mode: 33188 inode: 2307363
-&lt;/pre&gt;
-&lt;p&gt;(exit)&lt;/p&gt;
-&lt;pre class="code bash literal-block"&gt;
-event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307371
-.f.swp mode: 33188 inode: 2307363
-event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-f mode: 33204 inode: 2307371
-&lt;/pre&gt;
-&lt;p&gt;As far as I can tell, the result is as if they have renamed f to something else like f~, copied the contents of f~ to a new file named f, modified f, and finally deleted f~.
+&lt;pre class="code python"&gt;&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.internet&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;reactor&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-2"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;twisted.python&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-3"&gt;&lt;/a&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-5"&gt;&lt;/a&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-6"&gt;&lt;/a&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ignored&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-7"&gt;&lt;/a&gt;    &lt;span class="sd"&gt;"""&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-8"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    For historical reasons, an opaque handle is passed as first&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-9"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    parameter. This object should never be used.&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-10"&gt;&lt;/a&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-11"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    @param filepath: FilePath on which the event happened.&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-12"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    @param mask: inotify event as hexadecimal masks&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-13"&gt;&lt;/a&gt;&lt;span class="sd"&gt;    """&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-14"&gt;&lt;/a&gt;    &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"event &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt; on &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s1"&gt;', '&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;humanReadableMask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-15"&gt;&lt;/a&gt;    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-16"&gt;&lt;/a&gt;        &lt;span class="n"&gt;stat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-17"&gt;&lt;/a&gt;        &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"mode:"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stat&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;st_mode&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"inode:"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stat&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;st_ino&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-18"&gt;&lt;/a&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-19"&gt;&lt;/a&gt;&lt;span class="n"&gt;fp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"/home/amber/subdir"&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-20"&gt;&lt;/a&gt;&lt;span class="n"&gt;notifier&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;inotify&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;INotify&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-21"&gt;&lt;/a&gt;&lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startReading&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-22"&gt;&lt;/a&gt;&lt;span class="n"&gt;notifier&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;watch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filepath&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FilePath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;callbacks&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;notify&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;a name="rest_code_d7592081a04d4217b630cf44913a2361-23"&gt;&lt;/a&gt;&lt;span class="n"&gt;reactor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Now I run it and open f with vi.&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_6db96f332d2348e1b137102b784dd23b-1"&gt;&lt;/a&gt;$ vi f
+&lt;/pre&gt;&lt;pre class="code bash"&gt;&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-1"&gt;&lt;/a&gt;event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-2"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-3"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-4"&gt;&lt;/a&gt;event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swpx'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-5"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-6"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-7"&gt;&lt;/a&gt;event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swpx'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-8"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-9"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-10"&gt;&lt;/a&gt;event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-11"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-12"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-13"&gt;&lt;/a&gt;event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-14"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-15"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-16"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-17"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-18"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-19"&gt;&lt;/a&gt;event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-20"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_061d3a4b137148358617bc4fe32147af-21"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;(pause)&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_1b162e5f67c14723ade1337a16d70815-1"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_1b162e5f67c14723ade1337a16d70815-2"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_1b162e5f67c14723ade1337a16d70815-3"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;(modify manually)&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_64137bd4464b406a9d09c06d52776cc1-1"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_64137bd4464b406a9d09c06d52776cc1-2"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_64137bd4464b406a9d09c06d52776cc1-3"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_64137bd4464b406a9d09c06d52776cc1-4"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_64137bd4464b406a9d09c06d52776cc1-5"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_64137bd4464b406a9d09c06d52776cc1-6"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;(save manually)&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-1"&gt;&lt;/a&gt;event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/4913'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-2"&gt;&lt;/a&gt;f~ mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-3"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-4"&gt;&lt;/a&gt;event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/4913'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-5"&gt;&lt;/a&gt;f~ mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-6"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-7"&gt;&lt;/a&gt;event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/4913'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-8"&gt;&lt;/a&gt;f~ mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-9"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-10"&gt;&lt;/a&gt;event moved_from on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-11"&gt;&lt;/a&gt;f~ mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-12"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-13"&gt;&lt;/a&gt;event moved_to on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f~'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-14"&gt;&lt;/a&gt;f~ mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-15"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-16"&gt;&lt;/a&gt;event create on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-17"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307371&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-18"&gt;&lt;/a&gt;f~ mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-19"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-20"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-21"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307371&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-22"&gt;&lt;/a&gt;f~ mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307370&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-23"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-24"&gt;&lt;/a&gt;event attrib on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-25"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307371&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-26"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-27"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-28"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307371&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-29"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-30"&gt;&lt;/a&gt;event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/f~'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-31"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307371&lt;/span&gt;
+&lt;a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-32"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;(exit)&lt;/p&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_1a18f29f92c84fcb8b7c818fa12f9ff3-1"&gt;&lt;/a&gt;event modify on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_1a18f29f92c84fcb8b7c818fa12f9ff3-2"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307371&lt;/span&gt;
+&lt;a name="rest_code_1a18f29f92c84fcb8b7c818fa12f9ff3-3"&gt;&lt;/a&gt;.f.swp mode: &lt;span class="m"&gt;33188&lt;/span&gt; inode: &lt;span class="m"&gt;2307363&lt;/span&gt;
+&lt;a name="rest_code_1a18f29f92c84fcb8b7c818fa12f9ff3-4"&gt;&lt;/a&gt;event delete on FilePath&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/home/amber/subdir/.f.swp'&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_1a18f29f92c84fcb8b7c818fa12f9ff3-5"&gt;&lt;/a&gt;f mode: &lt;span class="m"&gt;33204&lt;/span&gt; inode: &lt;span class="m"&gt;2307371&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;As far as I can tell, the result is as if they have renamed f to something else like f~, copied the contents of f~ to a new file named f, modified f, and finally deleted f~.
 This is essentially &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Copy-on-write"&gt;copy-on write&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;But inotify, while taking pathnames as arguments and returning pathnames, actually tracks inodes.
 So simply using an editor has the effect of moving the file to a different inode and thereby breaks inotify!&lt;/p&gt;
 &lt;p&gt;This is ultimately a consequence of using aliases to files (pathnames) as if they were canonical references to files (inodes).&lt;/p&gt;
 &lt;!-- **It is a property of mutable objects that --&gt;
-&lt;/div&gt;
-&lt;div class="section" id="post-script-lucky-break"&gt;
+&lt;/section&gt;
+&lt;section id="post-script-lucky-break"&gt;
 &lt;h3&gt;Post Script: Lucky break?&lt;/h3&gt;
 &lt;p&gt;As it happens, the behaviour of vim and emacs is different when the inode holding the file has more than one reference.
 I can prevent the inode from disappearing by making a hardlink to the file before opening it with an editor.
 The editor must have recognised that it can't move inodes willy-nilly when other pathnames depend on it.
 This maps exactly to my original scenario, and therefore might make it safe for me to use.
 On the other hand, my whole confidence in the bahaviour is undermined, and I am reluctant to rely on it.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><category>blog</category><category>emacs</category><category>filesystems</category><category>inotify</category><category>links</category><category>linux</category><category>vim</category><guid>http://www.subsymbol.org/posts/two-inotify-pitfalls.html</guid><pubDate>Thu, 31 Jul 2014 19:35:05 GMT</pubDate></item><item><title>Pólya's Urn</title><link>http://www.subsymbol.org/posts/polyas-urn.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;Skip to interactive demo: &lt;a class="reference internal" href="http://www.subsymbol.org/posts/polyas-urn.html#try-it"&gt;Try it!&lt;/a&gt;&lt;/p&gt;
-&lt;div class="section" id="balls-in-urns"&gt;
+&lt;/section&gt;
+&lt;/section&gt;&lt;/div&gt;</description><category>blog</category><category>emacs</category><category>filesystems</category><category>inotify</category><category>links</category><category>linux</category><category>vim</category><guid>http://www.subsymbol.org/posts/two-inotify-pitfalls/index.html</guid><pubDate>Thu, 31 Jul 2014 19:35:05 GMT</pubDate></item><item><title>Pólya's Urn</title><link>http://www.subsymbol.org/posts/polyas-urn/index.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;p&gt;Skip to interactive demo: &lt;a class="reference internal" href="http://www.subsymbol.org/posts/polyas-urn/index.html#try-it"&gt;Try it!&lt;/a&gt;&lt;/p&gt;
+&lt;section id="balls-in-urns"&gt;
 &lt;h2&gt;Balls in Urns&lt;/h2&gt;
 &lt;p&gt;If you have studied probability, you are probably familiar with the canonical balls-in-an-urn allegory for understanding discrete probability distributions.
 For example, you could imagine an urn containing 1 red ball and 3 green balls.
-Drawing a ball from the urn at random represents sampling from a probability distribution where the probability of one outcome is &lt;span class="math"&gt;\(25\%\)&lt;/span&gt;
- and the probability of the other outcome is &lt;span class="math"&gt;\(75\%\)&lt;/span&gt;
-
+Drawing a ball from the urn at random represents sampling from a probability distribution where the probability of one outcome is &lt;span class="math"&gt;\(25\%\)&lt;/span&gt; and the probability of the other outcome is &lt;span class="math"&gt;\(75\%\)&lt;/span&gt;
 We can extend this idea in a variety of ways.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="polya-s-urn"&gt;
+&lt;/section&gt;
+&lt;section id="polya-s-urn"&gt;
 &lt;h2&gt;Pólya's Urn&lt;/h2&gt;
 &lt;p&gt;In &lt;em&gt;Pólya's Urn&lt;/em&gt;, the extension is that whenever you draw a ball from the urn, you not only replace it, but you add an extra ball of the same colour.
-So if you happened to draw a green ball in the example above, then the ratio would change from &lt;span class="math"&gt;\(1:3\)&lt;/span&gt;
- to &lt;span class="math"&gt;\(1:4\)&lt;/span&gt;
-.
-That means on the next draw, you would now have only a &lt;span class="math"&gt;\(20\%\)&lt;/span&gt;
- chance of drawing red.
-On the other hand, if you happened to have drawn red, then the ratio would change to &lt;span class="math"&gt;\(2:3\)&lt;/span&gt;
-, giving red a probability of &lt;span class="math"&gt;\(40\%\)&lt;/span&gt;
-&lt;/p&gt;
+So if you happened to draw a green ball in the example above, then the ratio would change from &lt;span class="math"&gt;\(1:3\)&lt;/span&gt; to &lt;span class="math"&gt;\(1:4\)&lt;/span&gt;.
+That means on the next draw, you would now have only a &lt;span class="math"&gt;\(20\%\)&lt;/span&gt; chance of drawing red.
+On the other hand, if you happened to have drawn red, then the ratio would change to &lt;span class="math"&gt;\(2:3\)&lt;/span&gt;, giving red a probability of &lt;span class="math"&gt;\(40\%\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;This process is interesting, because it has the property that the more often you observe something, the more likely you are to observe it again.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="different-starting-conditions"&gt;
+&lt;/section&gt;
+&lt;section id="different-starting-conditions"&gt;
 &lt;h2&gt;Different starting conditions&lt;/h2&gt;
 &lt;p&gt;The way the distribution changes over time depends on the starting conditions.&lt;/p&gt;
-&lt;div class="section" id="one-of-each"&gt;
+&lt;section id="one-of-each"&gt;
 &lt;h3&gt;One of each&lt;/h3&gt;
 &lt;p&gt;Let's imagine the simplest case, in which we start with one each of two colours, red and green.
 The following table shows the probabilities of getting red on the first three draws, and how each draw changes the probability of the next by changing the proportion of colours in the urn.&lt;/p&gt;
-&lt;table border="1" class="docutils"&gt;
+&lt;table class="colwidths-given"&gt;
 &lt;colgroup&gt;
-&lt;col width="33%"&gt;
-&lt;col width="33%"&gt;
-&lt;col width="33%"&gt;
+&lt;col style="width: 33%"&gt;
+&lt;col style="width: 33%"&gt;
+&lt;col style="width: 33%"&gt;
 &lt;/colgroup&gt;
-&lt;thead valign="bottom"&gt;
-&lt;tr&gt;&lt;th class="head"&gt; &lt;/th&gt;
-&lt;th class="head"&gt;RRR&lt;/th&gt;
-&lt;th class="head"&gt; &lt;/th&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th class="head"&gt;&lt;/th&gt;
+&lt;th class="head"&gt;&lt;p&gt;RRR&lt;/p&gt;&lt;/th&gt;
+&lt;th class="head"&gt;&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Draw&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;p(Draw)&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;new R:G&lt;/strong&gt;&lt;/td&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;&lt;strong&gt;Draw&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;strong&gt;p(Draw)&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;strong&gt;new R:G&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;R&lt;/td&gt;
-&lt;td&gt;&lt;span class="math"&gt;\(1/2\)&lt;/span&gt;
-&lt;/td&gt;
-&lt;td&gt;2:1&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;R&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;span class="math"&gt;\(1/2\)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;2:1&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;R&lt;/td&gt;
-&lt;td&gt;&lt;span class="math"&gt;\(2/3\)&lt;/span&gt;
-&lt;/td&gt;
-&lt;td&gt;3:1&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;R&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;span class="math"&gt;\(2/3\)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;3:1&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;R&lt;/td&gt;
-&lt;td&gt;&lt;span class="math"&gt;\(3/4\)&lt;/span&gt;
-&lt;/td&gt;
-&lt;td&gt;4:1&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;R&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;span class="math"&gt;\(3/4\)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;4:1&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;hr class="docutils"&gt;
 &lt;p&gt;There are more ways to have drawn two of one colour, and one of the other, than 3 of one colour.
 However, because of the way drawing a particular colour reinforces itself,
-there is a &lt;span class="math"&gt;\(50\%\)&lt;/span&gt;
- chance of drawing the same colour every time over the first three draws.&lt;/p&gt;
-&lt;table border="1" class="docutils"&gt;
+there is a &lt;span class="math"&gt;\(50\%\)&lt;/span&gt; chance of drawing the same colour every time over the first three draws.&lt;/p&gt;
+&lt;table class="colwidths-given"&gt;
 &lt;colgroup&gt;
-&lt;col width="50%"&gt;
-&lt;col width="50%"&gt;
+&lt;col style="width: 50%"&gt;
+&lt;col style="width: 50%"&gt;
 &lt;/colgroup&gt;
-&lt;thead valign="bottom"&gt;
-&lt;tr&gt;&lt;th class="head"&gt;First three draws&lt;/th&gt;
-&lt;th class="head"&gt;probability&lt;/th&gt;
+&lt;thead&gt;
+&lt;tr&gt;&lt;th class="head"&gt;&lt;p&gt;First three draws&lt;/p&gt;&lt;/th&gt;
+&lt;th class="head"&gt;&lt;p&gt;probability&lt;/p&gt;&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td&gt;RRR&lt;/td&gt;
-&lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 3/4 = 1/4\)&lt;/span&gt;
-&lt;/td&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;RRR&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 3/4 = 1/4\)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;RRG&lt;/td&gt;
-&lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/4 = 1/12\)&lt;/span&gt;
-&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;RRG&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/4 = 1/12\)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;RGR&lt;/td&gt;
-&lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/2 = 1/6\)&lt;/span&gt;
-&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;RGR&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/2 = 1/6\)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;RGG&lt;/td&gt;
-&lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/2 = 1/6\)&lt;/span&gt;
-&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;RGG&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/2 = 1/6\)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;GRR&lt;/td&gt;
-&lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/2 = 1/6\)&lt;/span&gt;
-&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;GRR&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/2 = 1/6\)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;GRG&lt;/td&gt;
-&lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/2 = 1/6\)&lt;/span&gt;
-&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;GRG&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/2 = 1/6\)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;GGR&lt;/td&gt;
-&lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/4 = 1/12\)&lt;/span&gt;
-&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;GGR&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 1/4 = 1/12\)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;GGG&lt;/td&gt;
-&lt;td&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 3/4 = 1/4\)&lt;/span&gt;
-&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;p&gt;GGG&lt;/p&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;&lt;span class="math"&gt;\(1/2 \times 2/3 \times 3/4 = 1/4\)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;/div&gt;
-&lt;div class="section" id="ten-of-each"&gt;
+&lt;/section&gt;
+&lt;section id="ten-of-each"&gt;
 &lt;h3&gt;Ten of each&lt;/h3&gt;
 &lt;p&gt;Now suppose that we start with 10 each of red and green balls.
-In this case, simply drawing a red ball the first time does not change the probability that it will be drawn again nearly as significantly as with the &lt;span class="math"&gt;\(1:1\)&lt;/span&gt;
- starting conditions.
-The probability of drawing 3 of the same colour in a row falls to &lt;span class="math"&gt;\(2 \times 10/20 \times 11/21 \times 12/22 = 2/7 \cong  29\%\)&lt;/span&gt;
-&lt;/p&gt;
-&lt;p&gt;We can view the starting conditions as a list of numbers, one for each starting colour, and call it &lt;em&gt;alpha&lt;/em&gt; (&lt;span class="math"&gt;\(\alpha\)&lt;/span&gt;
-).
-So our first example had &lt;span class="math"&gt;\(\alpha = [1, 3]\)&lt;/span&gt;
-,
-our second example had &lt;span class="math"&gt;\(\alpha = [1, 1]\)&lt;/span&gt;
-,
-and our third example had &lt;span class="math"&gt;\(\alpha = [10, 10]\)&lt;/span&gt;
-,&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="higher-returns"&gt;
+In this case, simply drawing a red ball the first time does not change the probability that it will be drawn again nearly as significantly as with the &lt;span class="math"&gt;\(1:1\)&lt;/span&gt; starting conditions.
+The probability of drawing 3 of the same colour in a row falls to &lt;span class="math"&gt;\(2 \times 10/20 \times 11/21 \times 12/22 = 2/7 \cong  29\%\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We can view the starting conditions as a list of numbers, one for each starting colour, and call it &lt;em&gt;alpha&lt;/em&gt; (&lt;span class="math"&gt;\(\alpha\)&lt;/span&gt;).
+So our first example had &lt;span class="math"&gt;\(\alpha = [1, 3]\)&lt;/span&gt;,
+our second example had &lt;span class="math"&gt;\(\alpha = [1, 1]\)&lt;/span&gt;,
+and our third example had &lt;span class="math"&gt;\(\alpha = [10, 10]\)&lt;/span&gt;,&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="higher-returns"&gt;
 &lt;h3&gt;Higher returns&lt;/h3&gt;
 &lt;p&gt;On the other hand, imagine if we started with 1 each of red and green, but instead of increasing the number of balls by 1 when we draw a colour, we increased it by 10.
 Now every draw has a much stronger effect.
-The probability of drawing the same colour 3 times in a row would now be &lt;span class="math"&gt;\(2 \times 1/2 \times 11/12 \times 21/22 = 7/8 \cong 88\%\)&lt;/span&gt;
-&lt;/p&gt;
-&lt;p&gt;We could even have a particular increase number for each colour, and have another list, called &lt;em&gt;beta&lt;/em&gt; (&lt;span class="math"&gt;\(\beta\)&lt;/span&gt;
-).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="more-colours"&gt;
+The probability of drawing the same colour 3 times in a row would now be &lt;span class="math"&gt;\(2 \times 1/2 \times 11/12 \times 21/22 = 7/8 \cong 88\%\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We could even have a particular increase number for each colour, and have another list, called &lt;em&gt;beta&lt;/em&gt; (&lt;span class="math"&gt;\(\beta\)&lt;/span&gt;).&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="more-colours"&gt;
 &lt;h3&gt;More colours&lt;/h3&gt;
 &lt;p&gt;Another way to change the starting conditions is to increase the number of colours.
 If our starting urn had one each of 10 different colours, then, again, when we draw the first ball, it has much less of an effect on the chance of drawing it again.
-We can call the number of colours &lt;span class="math"&gt;\(n\)&lt;/span&gt;
-.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="try-it"&gt;
+We can call the number of colours &lt;span class="math"&gt;\(n\)&lt;/span&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="try-it"&gt;
 &lt;h2&gt;Try it!&lt;/h2&gt;
-&lt;p&gt;Use the sliders to choose &lt;span class="math"&gt;\(n\)&lt;/span&gt;
- colours, and a single &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt;
- and &lt;span class="math"&gt;\(\beta\)&lt;/span&gt;
- for all colours. Try drawing balls from the urn, and see how the urn changes.  At any time you can display the urn in rank order or reset to the current slider position.&lt;/p&gt;
+&lt;p&gt;Use the sliders to choose &lt;span class="math"&gt;\(n\)&lt;/span&gt; colours, and a single &lt;span class="math"&gt;\(\alpha\)&lt;/span&gt; and &lt;span class="math"&gt;\(\beta\)&lt;/span&gt; for all colours. Try drawing balls from the urn, and see how the urn changes.  At any time you can display the urn in rank order or reset to the current slider position.&lt;/p&gt;
 n: &lt;b id="n-output"&gt;&lt;/b&gt;
 &lt;input class="n-slider" type="range" min="1" max="8"&gt;
 α: &lt;b id="alpha-output"&gt;&lt;/b&gt;
@@ -474,7 +417,7 @@ n: &lt;b id="n-output"&gt;&lt;/b&gt;
 &lt;button id="rank"&gt;Order by rank.&lt;/button&gt;
 
 &lt;script src="http://www.subsymbol.org/scripts/polya.js"&gt;
-&lt;/script&gt;&lt;/div&gt;</description><category>blog</category><category>mathjax</category><category>probability</category><guid>http://www.subsymbol.org/posts/polyas-urn.html</guid><pubDate>Fri, 25 Jul 2014 17:24:37 GMT</pubDate></item><item><title>The Grammaticality Continuum</title><link>http://www.subsymbol.org/posts/the-grammaticality-continuum.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;Yesterday I was thinking about implementing &lt;em&gt;Latent Dirichlet Allocation&lt;/em&gt; (LDA).
+&lt;/script&gt;&lt;/section&gt;&lt;/div&gt;</description><category>blog</category><category>mathjax</category><category>probability</category><guid>http://www.subsymbol.org/posts/polyas-urn/index.html</guid><pubDate>Fri, 25 Jul 2014 17:24:37 GMT</pubDate></item><item><title>The Grammaticality Continuum</title><link>http://www.subsymbol.org/posts/the-grammaticality-continuum/index.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;p&gt;Yesterday I was thinking about implementing &lt;em&gt;Latent Dirichlet Allocation&lt;/em&gt; (LDA).
 LDA is used for &lt;em&gt;topic modelling&lt;/em&gt; — inducing a set of topics, such that a set of natural language documents can be represented by a mixture of those topics.
 This is then used to estimate document similarity, and related information retrieval tasks.&lt;/p&gt;
 &lt;p&gt;The first step in such a project is to &lt;em&gt;tokenise&lt;/em&gt; — to break up the text into words, removing attached punctuation, and regularising things like capitalisation.
@@ -494,9 +437,7 @@ In it he shows how the following headline is disambiguated by the placement of "
 &lt;p&gt;A couple of years ago at &lt;a class="reference external" href="http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=18614"&gt;the NAACL conference&lt;/a&gt;,
 there was a session where a few prominent computational linguists presented their favourite papers from the past.
 Eugene Charniak presented Kenneth Church's 2000 COLING paper: &lt;em&gt;Empirical Estimates of Adaptation:&lt;/em&gt;
-&lt;em&gt;The chance of Two Noriegas is closer to&lt;/em&gt; &lt;span class="math"&gt;\(p/2\)&lt;/span&gt;
- &lt;em&gt;than&lt;/em&gt; &lt;span class="math"&gt;\(p^2\)&lt;/span&gt;
-.
+&lt;em&gt;The chance of Two Noriegas is closer to&lt;/em&gt; &lt;span class="math"&gt;\(p/2\)&lt;/span&gt; &lt;em&gt;than&lt;/em&gt; &lt;span class="math"&gt;\(p^2\)&lt;/span&gt;.
 It introduced a measure of adaptation for language models based on how much a recent occurrence of a word increases its tendency to occur beyond what is already expected.&lt;/p&gt;
 &lt;p&gt;Charniak used this paper as a background with which to present a new idea about the way the prior likelihood of a word predicts its future occurrences.
 He divided words into sets according to how well their priors predicted them.
@@ -512,7 +453,7 @@ It may be useful to account for the distribution of topics when using them in LD
 Even just within semantics, a morpheme may carry more than one meaning that cannot be decomposed linguistically.
 For example, "uncle" is male, and while we could assign "uncle" a set of semantic features in a computer system in order to reason about its meaning, those features are only implicit in English.
 In &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Logogram"&gt;logographic writing systems&lt;/a&gt; this is all the more apparent.&lt;/p&gt;
-&lt;p&gt;This simultaneity of features in an apparently linear system is, to me, one of the most interesting aspects of language, and one of the reasons computational linguistics is difficult and rewarding.&lt;/p&gt;</description><category>blog</category><category>computational linguistics</category><category>lda</category><category>lsa</category><category>mathjax</category><guid>http://www.subsymbol.org/posts/the-grammaticality-continuum.html</guid><pubDate>Fri, 25 Jul 2014 15:20:07 GMT</pubDate></item><item><title>Productively Lost</title><link>http://www.subsymbol.org/posts/productively-lost.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;Yesterday Hacker School's resident &lt;a class="reference external" href="http://blog.melchua.com/about/"&gt;Mel Chua&lt;/a&gt; shared her work on educational psychology theory for Hacker School &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/productively-lost.html#id2" id="id1"&gt;[1]&lt;/a&gt;.
+&lt;p&gt;This simultaneity of features in an apparently linear system is, to me, one of the most interesting aspects of language, and one of the reasons computational linguistics is difficult and rewarding.&lt;/p&gt;&lt;/div&gt;</description><category>blog</category><category>computational linguistics</category><category>lda</category><category>lsa</category><category>mathjax</category><guid>http://www.subsymbol.org/posts/the-grammaticality-continuum/index.html</guid><pubDate>Fri, 25 Jul 2014 15:20:07 GMT</pubDate></item><item><title>Productively Lost</title><link>http://www.subsymbol.org/posts/productively-lost/index.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;p&gt;Yesterday Hacker School's resident &lt;a class="reference external" href="http://blog.melchua.com/about/"&gt;Mel Chua&lt;/a&gt; shared her work on educational psychology theory for Hacker School &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/productively-lost/index.html#id2" id="id1"&gt;1&lt;/a&gt;.
 I had seen an earlier iteration of this talk from PyCon video archives, and it was useful to me then.
 However, this time I had more relevant experience with which to understand it.
 Hacker School is the first time I have had such a fluid and indeterminate educational experience.
@@ -549,12 +490,11 @@ The increased autonomy and competence I am developing here feels like a new free
 &lt;p&gt;Becoming comfortable with this fundamental lostness, and yet feeling adequate to navigate it, is ultimately much more empowering than the security of excelling at following well-lit, paths sanctioned and rewarded by others.&lt;/p&gt;
 &lt;hr class="docutils"&gt;
 &lt;p&gt;.&lt;/p&gt;
-&lt;table class="docutils footnote" frame="void" id="id2" rules="none"&gt;
-&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/productively-lost.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;Slides from last year's version here: &lt;a class="reference external" href="http://blog.melchua.com/2013/10/07/edupsych-for-hacker-schoolers-v-1-1-presentation-slides/"&gt;http://blog.melchua.com/2013/10/07/edupsych-for-hacker-schoolers-v-1-1-presentation-slides/&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description><category>Mel Chua</category><category>blog</category><category>courage</category><category>education</category><category>hacker school</category><category>psychology</category><category>vulnerability</category><guid>http://www.subsymbol.org/posts/productively-lost.html</guid><pubDate>Wed, 23 Jul 2014 15:21:37 GMT</pubDate></item><item><title>Addresses and Contents</title><link>http://www.subsymbol.org/posts/addresses-and-contents.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div class="section" id="what-are-we-naming"&gt;
+&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id2"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/productively-lost/index.html#id1"&gt;1&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Slides from last year's version here: &lt;a class="reference external" href="http://blog.melchua.com/2013/10/07/edupsych-for-hacker-schoolers-v-1-1-presentation-slides/"&gt;http://blog.melchua.com/2013/10/07/edupsych-for-hacker-schoolers-v-1-1-presentation-slides/&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;</description><category>blog</category><category>courage</category><category>education</category><category>hacker school</category><category>Mel Chua</category><category>psychology</category><category>vulnerability</category><guid>http://www.subsymbol.org/posts/productively-lost/index.html</guid><pubDate>Wed, 23 Jul 2014 15:21:37 GMT</pubDate></item><item><title>Addresses and Contents</title><link>http://www.subsymbol.org/posts/addresses-and-contents/index.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;section id="what-are-we-naming"&gt;
 &lt;h2&gt;What are we naming?&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The name of the song is called "Haddocks' Eyes."'&lt;/p&gt;
@@ -566,8 +506,8 @@ The increased autonomy and competence I am developing here feels like a new free
 &lt;p&gt;'I was coming to that,' the Knight said. 'The song really is "A-sitting On A Gate": and the tune's my own invention.'&lt;/p&gt;
 &lt;p class="attribution"&gt;—&lt;a class="reference external" href="http://www.alice-in-wonderland.net/books/2chpt8.html"&gt;Alice Through the Looking Glass&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;/div&gt;
-&lt;div class="section" id="mutability-applies-to-content"&gt;
+&lt;/section&gt;
+&lt;section id="mutability-applies-to-content"&gt;
 &lt;h2&gt;Mutability applies to content&lt;/h2&gt;
 &lt;p&gt;I have been designing a system that seeks to change the way we name our data:
 instead of naming the hierarchical way, using directories (or folders), it will name the category way, using tags.
@@ -576,16 +516,16 @@ I chose to use a content-based hash for the IDs.
 However, this ID is not a good match for mutable files.
 I had been putting off thinking about how to handle mutable files, figuring I could add that functionality later.&lt;/p&gt;
 &lt;p&gt;When I was finally ready to confront mutable files, I realised that I was running up against a fundamental issue:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="people-often-conflate-addresses-with-contents-when-naming-things"&gt;
+&lt;/section&gt;
+&lt;section id="people-often-conflate-addresses-with-contents-when-naming-things"&gt;
 &lt;h2&gt;People often conflate addresses with contents when naming things&lt;/h2&gt;
 &lt;p&gt;Take for example the problem of citation.
 If you cite a book or a research paper, then what you are citing is the contents.
 When we first started wanting to cite URLs, we treated them as though we were addressing content, but we aren't.
 URLs point to content that can change.&lt;/p&gt;
 &lt;p&gt;Of course, this issue shows up in many areas of computer science whenever we use references.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="filesystems"&gt;
+&lt;/section&gt;
+&lt;section id="filesystems"&gt;
 &lt;h2&gt;Filesystems&lt;/h2&gt;
 &lt;p&gt;In a filesystem, we usually refer to files by their paths.
 The relationships between paths, addresses (inodes), and contents are shown here:&lt;/p&gt;
@@ -601,24 +541,22 @@ Both addresses and contents should be eligible for tagging.
 Tagging the box will use the inode.
 Tagging the contents will use the hash.&lt;/p&gt;
 &lt;!-- The fact that we make extensive use of links in our systems attests the fact that hierarchies are not a great model for naming things. --&gt;
-&lt;/div&gt;</description><category>blog</category><category>cs</category><category>linguistics</category><category>names</category><category>storage</category><guid>http://www.subsymbol.org/posts/addresses-and-contents.html</guid><pubDate>Wed, 09 Jul 2014 21:42:03 GMT</pubDate></item><item><title>How I transformed a Blogger blog to a Nikola two-blog website</title><link>http://www.subsymbol.org/posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;In the last post I described why I wanted to move my blog, and what went into my choices.
+&lt;/section&gt;&lt;/div&gt;</description><category>blog</category><category>cs</category><category>linguistics</category><category>names</category><category>storage</category><guid>http://www.subsymbol.org/posts/addresses-and-contents/index.html</guid><pubDate>Wed, 09 Jul 2014 21:42:03 GMT</pubDate></item><item><title>How I transformed a Blogger blog to a Nikola two-blog website</title><link>http://www.subsymbol.org/posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website/index.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;p&gt;In the last post I described why I wanted to move my blog, and what went into my choices.
 My goal in exporting my site from Blogger to Nikola was to separate my content into two separate blogs on a single site:
 one which is the primary blog, and the other which resides in the background.
 I wanted them to be archived separately.
 I also wanted there to be a front page that didn't change every time I wrote a new post.&lt;/p&gt;
-&lt;div class="section" id="importing-the-blog"&gt;
+&lt;section id="importing-the-blog"&gt;
 &lt;h2&gt;Importing the blog&lt;/h2&gt;
 &lt;p&gt;Nikola has a plugin to import a blog from Blogger, so the first step was to import the blog.
 To import, I took the following steps:&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;First, I exported my blog from Blogger, which gave me a file called &lt;cite&gt;blog-07-05-2014.xml&lt;/cite&gt;. Then,&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;First, I exported my blog from Blogger, which gave me a file called &lt;cite&gt;blog-07-05-2014.xml&lt;/cite&gt;. Then,&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre class="code literal-block"&gt;
-$ sudo pip install nikola
-$ nikola plugin -i import_blogger
-$ nikola import_blogger -o site blog-07-05-2014.xml # The -o tells nikola what directory to make the site in.
-&lt;/pre&gt;
-&lt;p&gt;After this, I had some cleanup to do.
+&lt;pre class="code text"&gt;&lt;a name="rest_code_823788c4eacc442a91b043f096e9b3b2-1"&gt;&lt;/a&gt;$ sudo pip install nikola
+&lt;a name="rest_code_823788c4eacc442a91b043f096e9b3b2-2"&gt;&lt;/a&gt;$ nikola plugin -i import_blogger
+&lt;a name="rest_code_823788c4eacc442a91b043f096e9b3b2-3"&gt;&lt;/a&gt;$ nikola import_blogger -o site blog-07-05-2014.xml # The -o tells nikola what directory to make the site in.
+&lt;/pre&gt;&lt;p&gt;After this, I had some cleanup to do.
 For one thing, Nikola renamed all the Blogger files (in a sensible way).
 Blogger has date-derived subdirectories for posts, whereas in Nikola all the posts are kept in one folder, called "posts"
 So when the new site is up, redirects will be required for anyone with the old link.&lt;/p&gt;
@@ -626,120 +564,104 @@ So when the new site is up, redirects will be required for anyone with the old l
 Since I only had a few, I did this manually.
 For every line in the url_map, I inserted a tuple into the &lt;cite&gt;REDIRECTIONS&lt;/cite&gt; list in &lt;cite&gt;conf.py&lt;/cite&gt;.&lt;/p&gt;
 &lt;p&gt;The result at this point was a Nikola blog that contained everything the old blog did.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="making-it-not-a-blog"&gt;
+&lt;/section&gt;
+&lt;section id="making-it-not-a-blog"&gt;
 &lt;h2&gt;Making it not a blog&lt;/h2&gt;
 &lt;p&gt;There is a document in the Nikola project describing &lt;a class="reference external" href="http://getnikola.com/creating-a-site-not-a-blog-with-nikola.html"&gt;how to make a non-blog site&lt;/a&gt;.
 The instructions boil down to changing three lines of &lt;cite&gt;conf.py&lt;/cite&gt;.&lt;/p&gt;
-&lt;div class="section" id="posts-and-pages"&gt;
+&lt;section id="posts-and-pages"&gt;
 &lt;h3&gt;Posts and Pages&lt;/h3&gt;
 &lt;p&gt;As usual, Nikola distinguishes two different kinds of text-derived files.&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;em&gt;Posts&lt;/em&gt; are blog files.
-They are archived, indexed by tag, and ordered by date for display.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Pages&lt;/em&gt; are essentially independent.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Posts&lt;/em&gt; are blog files.
+They are archived, indexed by tag, and ordered by date for display.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Pages&lt;/em&gt; are essentially independent.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;So to make a blog into a non-blog, you simply manipulate the variable &lt;cite&gt;POSTS&lt;/cite&gt; defined in &lt;cite&gt;conf.py&lt;/cite&gt;.
 &lt;cite&gt;POSTS&lt;/cite&gt; and &lt;cite&gt;PAGES&lt;/cite&gt; are lists describing where to find posts or pages respectively, where to render them, and what template to use for them.
 We let the &lt;cite&gt;POSTS&lt;/cite&gt; list be empty, so everything on the site will be a page.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;
-POSTS = []
-PAGES = [
-        ("pages/*.rst", "", "story.tmpl"),
-        ("pages/*.txt", "", "story.tmpl"),
-        ]
-&lt;/pre&gt;
-&lt;p&gt;The two entries for &lt;cite&gt;PAGES&lt;/cite&gt; are here to allow either txt or rst, but the one that comes first is what will be used when you use the &lt;cite&gt;new_post&lt;/cite&gt; command.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_973a085fbbc44f809bb4021eee747136-1"&gt;&lt;/a&gt;POSTS = []
+&lt;a name="rest_code_973a085fbbc44f809bb4021eee747136-2"&gt;&lt;/a&gt;PAGES = [
+&lt;a name="rest_code_973a085fbbc44f809bb4021eee747136-3"&gt;&lt;/a&gt;        ("pages/*.rst", "", "story.tmpl"),
+&lt;a name="rest_code_973a085fbbc44f809bb4021eee747136-4"&gt;&lt;/a&gt;        ("pages/*.txt", "", "story.tmpl"),
+&lt;a name="rest_code_973a085fbbc44f809bb4021eee747136-5"&gt;&lt;/a&gt;        ]
+&lt;/pre&gt;&lt;p&gt;The two entries for &lt;cite&gt;PAGES&lt;/cite&gt; are here to allow either txt or rst, but the one that comes first is what will be used when you use the &lt;cite&gt;new_post&lt;/cite&gt; command.&lt;/p&gt;
 &lt;p&gt;So you can create a &lt;em&gt;page&lt;/em&gt; called "index.html" by running &lt;cite&gt;new_post -p&lt;/cite&gt;, and giving it the name &lt;cite&gt;index&lt;/cite&gt;.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;
-$ nikola new_post -p
-
-[...]
-
-Creating New Page
------------------
-
-Title: index
-
-[...]
-INFO: new_page: Your page's text is at: pages/index.rst
-&lt;/pre&gt;
-&lt;p&gt;Since we put it at "", which is the top level of the site, it will be what you see on the "front page".&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-1"&gt;&lt;/a&gt;$ nikola new_post -p
+&lt;a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-2"&gt;&lt;/a&gt;
+&lt;a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-3"&gt;&lt;/a&gt;[...]
+&lt;a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-4"&gt;&lt;/a&gt;
+&lt;a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-5"&gt;&lt;/a&gt;Creating New Page
+&lt;a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-6"&gt;&lt;/a&gt;-----------------
+&lt;a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-7"&gt;&lt;/a&gt;
+&lt;a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-8"&gt;&lt;/a&gt;Title: index
+&lt;a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-9"&gt;&lt;/a&gt;
+&lt;a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-10"&gt;&lt;/a&gt;[...]
+&lt;a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-11"&gt;&lt;/a&gt;INFO: new_page: Your page's text is at: pages/index.rst
+&lt;/pre&gt;&lt;p&gt;Since we put it at "", which is the top level of the site, it will be what you see on the "front page".&lt;/p&gt;
 &lt;p&gt;Unfortunately, this creates a conflict, because when you build the site, the &lt;em&gt;blog&lt;/em&gt; part is already wired to make an index.html file in the top-level directory, since that's how blogs normally appear.
 So you intercept this by adding to &lt;cite&gt;conf.py&lt;/cite&gt; the line:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;
-INDEX_PATH = "blog"
-&lt;/pre&gt;
-&lt;p&gt;This just makes it so the blog index is now created under the folder blog, instead of the top level, and it no longer conflicts.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_6169b637b11a493cba75143a03509c24-1"&gt;&lt;/a&gt;INDEX_PATH = "blog"
+&lt;/pre&gt;&lt;p&gt;This just makes it so the blog index is now created under the folder blog, instead of the top level, and it no longer conflicts.&lt;/p&gt;
 &lt;p&gt;It also means that now you can have a regular blog under the subdirectory blog, by putting options back in for &lt;cite&gt;POSTS&lt;/cite&gt;:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;
-POSTS = [("posts/*.rst", "blog", "post.tmpl")]
-&lt;/pre&gt;
-&lt;p&gt;But this is not enough for us, because we have imported posts from Blogger that were also being found from the &lt;cite&gt;POSTS&lt;/cite&gt; list.
+&lt;pre class="code text"&gt;&lt;a name="rest_code_65fe22b04c084ce09cb8efaeaa0ffc27-1"&gt;&lt;/a&gt;POSTS = [("posts/*.rst", "blog", "post.tmpl")]
+&lt;/pre&gt;&lt;p&gt;But this is not enough for us, because we have imported posts from Blogger that were also being found from the &lt;cite&gt;POSTS&lt;/cite&gt; list.
 There is another entry in &lt;cite&gt;POSTS&lt;/cite&gt; that we need back, that tells Nikola to also collect and render existing html files, such as those we imported.
 So we need to add:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;
-("posts/*.html", "blog", "post.tmpl")
-&lt;/pre&gt;
-&lt;p&gt;back into the list.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="two-blogs"&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_83312868b93b48bbaa39a46633395453-1"&gt;&lt;/a&gt;("posts/*.html", "blog", "post.tmpl")
+&lt;/pre&gt;&lt;p&gt;back into the list.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="two-blogs"&gt;
 &lt;h2&gt;Two blogs&lt;/h2&gt;
 &lt;p&gt;At this point I had part of what I wanted.
 I had a front page separate from my blog, and all of my previous blog reachable from the site.
 But I still wanted to have two blogs, a primary one for themed entries, and a journal for unstructured reflections.&lt;/p&gt;
 &lt;p&gt;Here are the steps I took to factor the blogs apart:&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;Made a new directory for the journal posts called "journal", and moved the appropriate files into it.&lt;/li&gt;
-&lt;li&gt;Added ("journal/&lt;em&gt;.rst", "journal", "story.tmpl") and ("journal/&lt;/em&gt;.html", "journal", "story.tmpl") to the &lt;cite&gt;PAGES&lt;/cite&gt; list, so old and new journal entries can be found for rendering.&lt;/li&gt;
-&lt;li&gt;Updated the conf.py &lt;cite&gt;REDIRECTIONS&lt;/cite&gt; to reflect those&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Made a new directory for the journal posts called "journal", and moved the appropriate files into it.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Added ("journal/&lt;em&gt;.rst", "journal", "story.tmpl") and ("journal/&lt;/em&gt;.html", "journal", "story.tmpl") to the &lt;cite&gt;PAGES&lt;/cite&gt; list, so old and new journal entries can be found for rendering.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Updated the conf.py &lt;cite&gt;REDIRECTIONS&lt;/cite&gt; to reflect those&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;This worked to render them and include them in the site, but the journal articles were not indexed.
 That meant that if I knew the URL, I could go to the article, but a visitor to the site could never discover them.&lt;/p&gt;
 &lt;p&gt;To add indexing I had to add to conf.py:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;
-STORY_INDEX = True
-&lt;/pre&gt;
-&lt;p&gt;But again, this created a conflict with multiple files called "index.html" trying to go in the same folder.
+&lt;pre class="code text"&gt;&lt;a name="rest_code_a3b879e67e824208af4383b5d09dce71-1"&gt;&lt;/a&gt;STORY_INDEX = True
+&lt;/pre&gt;&lt;p&gt;But again, this created a conflict with multiple files called "index.html" trying to go in the same folder.
 So I also had to change the name of the index.  I chose "index.htm", so that the server would automatically redirect.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;
-INDEX_FILE = "index.htm"
-&lt;/pre&gt;
-&lt;p&gt;Finally, I wanted the journal to be findable without knowing the directory name "journal", so I updated the navigation links:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;
-NAVIGATION_LINKS = {
- DEFAULT_LANG: (
-     ("/archive.html", "Archive"),
-     ("/categories/", "Tags"),
-     ("/blog/", "Blog"),
-     ("/journal/", "Journal"),
-     ("/rss.xml", "RSS feed"),
-  ),
- }
-&lt;/pre&gt;
-&lt;p&gt;As an extra configuration tweak, I set &lt;cite&gt;TAG_PAGES_ARE_INDEXES = True&lt;/cite&gt;, so that when you go to the page for a given tag, it renders the posts themselves, rather than a list.&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_ce41733c032841318ba618b8a4bf8825-1"&gt;&lt;/a&gt;INDEX_FILE = "index.htm"
+&lt;/pre&gt;&lt;p&gt;Finally, I wanted the journal to be findable without knowing the directory name "journal", so I updated the navigation links:&lt;/p&gt;
+&lt;pre class="code text"&gt;&lt;a name="rest_code_2976cfde4f9f407a812069b0db647910-1"&gt;&lt;/a&gt;NAVIGATION_LINKS = {
+&lt;a name="rest_code_2976cfde4f9f407a812069b0db647910-2"&gt;&lt;/a&gt; DEFAULT_LANG: (
+&lt;a name="rest_code_2976cfde4f9f407a812069b0db647910-3"&gt;&lt;/a&gt;     ("/archive.html", "Archive"),
+&lt;a name="rest_code_2976cfde4f9f407a812069b0db647910-4"&gt;&lt;/a&gt;     ("/categories/", "Tags"),
+&lt;a name="rest_code_2976cfde4f9f407a812069b0db647910-5"&gt;&lt;/a&gt;     ("/blog/", "Blog"),
+&lt;a name="rest_code_2976cfde4f9f407a812069b0db647910-6"&gt;&lt;/a&gt;     ("/journal/", "Journal"),
+&lt;a name="rest_code_2976cfde4f9f407a812069b0db647910-7"&gt;&lt;/a&gt;     ("/rss.xml", "RSS feed"),
+&lt;a name="rest_code_2976cfde4f9f407a812069b0db647910-8"&gt;&lt;/a&gt;  ),
+&lt;a name="rest_code_2976cfde4f9f407a812069b0db647910-9"&gt;&lt;/a&gt; }
+&lt;/pre&gt;&lt;p&gt;As an extra configuration tweak, I set &lt;cite&gt;TAG_PAGES_ARE_INDEXES = True&lt;/cite&gt;, so that when you go to the page for a given tag, it renders the posts themselves, rather than a list.&lt;/p&gt;
 &lt;p&gt;I would like to do that for my journal index as well, but that feature is not yet general, so if you navigate to "Journal" you will get a list of posts, and unfortunately, since it is a journal, they are named by date.
 Moreover, their tags aren't collected.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="parting-thoughts"&gt;
+&lt;/section&gt;
+&lt;section id="parting-thoughts"&gt;
 &lt;h2&gt;Parting thoughts&lt;/h2&gt;
 &lt;p&gt;All in all, I'm satisfied with the move.
 I got a lot of help from the Nikola community, and my main requirements are fulfilled.&lt;/p&gt;
 &lt;p&gt;There are a few remaining troubles.&lt;/p&gt;
-&lt;div class="section" id="comments"&gt;
+&lt;section id="comments"&gt;
 &lt;h3&gt;Comments&lt;/h3&gt;
 &lt;p&gt;I signed up with Disqus, and think I have initiated the process of importing my old comments, which I was reluctant to lose.
 It takes an unspecified amount of time to complete, so I'm hoping that will take care of itself now, but I'm uncertain.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="orphaned-rst"&gt;
+&lt;/section&gt;
+&lt;section id="orphaned-rst"&gt;
 &lt;h3&gt;Orphaned rst&lt;/h3&gt;
 &lt;p&gt;Because of the way I built my Blogger site: writing in reStructuredText, converting to HTML, and uploading, I still have the original, pristine rst files on my local system, but Nikola doesn't use them.
 It uses the backported HTML from Blogger.
 In order to inject the old rst files into Nikola, however, would require manually editing them all to include the correct headers and timestamps.
 This seems like a lot of work, and I'm not willing to do it right now.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><category>blog</category><category>blogger</category><category>blogging</category><category>nikola</category><guid>http://www.subsymbol.org/posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html</guid><pubDate>Tue, 08 Jul 2014 16:59:38 GMT</pubDate></item><item><title>Moving my site off of Blogger</title><link>http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;I was having two problems with the setup of this website.
+&lt;/section&gt;
+&lt;/section&gt;&lt;/div&gt;</description><category>blog</category><category>blogger</category><category>blogging</category><category>nikola</category><guid>http://www.subsymbol.org/posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website/index.html</guid><pubDate>Tue, 08 Jul 2014 16:59:38 GMT</pubDate></item><item><title>Moving my site off of Blogger</title><link>http://www.subsymbol.org/posts/moving-my-site-off-of-blogger/index.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;p&gt;I was having two problems with the setup of this website.
 First, I wanted to factor out &lt;a class="reference external" href="http://www.subsymbol.org/journal/"&gt;the experiment in vulnerability and transparency that I have been doing by keep a log of my daily goals, progress, and insights at Hacker School&lt;/a&gt;.
 I like the experiment, but I wanted it to be separate from &lt;a class="reference external" href="http://www.subsymbol.org/blog/"&gt;articles I write more deliberately&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The second problem was that I wanted to migrate from Blogger.&lt;/p&gt;
@@ -750,31 +672,31 @@ You can export your stuff if you want to, so you aren't completely locked in.&lt
 &lt;p&gt;However, Blogger is not a good match for someone who wants fine-grained control over her content.
 My use of Blogger for the three sites I have hosted on it has consisted of the following elaborate dance:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;Edit my post in reStructuredText &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id3" id="id1"&gt;[1]&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Convert my post into HTML using a custom script I adapted from &lt;a class="reference external" href="https://pypi.python.org/pypi/rst2blogger"&gt;rst2blogger&lt;/a&gt; &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id4" id="id2"&gt;[2]&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Cut and paste my post into the Blogger compose form, click &lt;cite&gt;Preview&lt;/cite&gt;, and see if it looked ok.&lt;/li&gt;
-&lt;li&gt;Repeat until all typos and other issues were resolved.&lt;/li&gt;
-&lt;li&gt;Click &lt;cite&gt;Publish&lt;/cite&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Edit my post in reStructuredText &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger/index.html#id3" id="id1"&gt;1&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Convert my post into HTML using a custom script I adapted from &lt;a class="reference external" href="https://pypi.python.org/pypi/rst2blogger"&gt;rst2blogger&lt;/a&gt; &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger/index.html#id4" id="id2"&gt;2&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Cut and paste my post into the Blogger compose form, click &lt;cite&gt;Preview&lt;/cite&gt;, and see if it looked ok.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Repeat until all typos and other issues were resolved.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Click &lt;cite&gt;Publish&lt;/cite&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;The result of all this work was a site that looked more-or-less how I wanted it to in some ways, but was frustrating in others.
 For example,&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;I couldn't change the css styles that went with a given theme, (and some of them were really dysfunctional).&lt;/li&gt;
-&lt;li&gt;I couldn't make the site &lt;em&gt;not a blog&lt;/em&gt; — the blog assumption is that your most recent content ought to be your most prominent, and this is not an appropriate assumption for some of my use cases.
+&lt;li&gt;&lt;p&gt;I couldn't change the css styles that went with a given theme, (and some of them were really dysfunctional).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I couldn't make the site &lt;em&gt;not a blog&lt;/em&gt; — the blog assumption is that your most recent content ought to be your most prominent, and this is not an appropriate assumption for some of my use cases.
 I sometimes found myself putting off making a post that was less compelling until I knew I could follow it with a better one quickly!
-The restrictiveness wasn't serving me.&lt;/li&gt;
+The restrictiveness wasn't serving me.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Also, a little independence from Google seems healthy.&lt;/p&gt;
 &lt;p&gt;What I really wanted was a static site generator, with no dynamic logic on a server-side database.
 I wanted my whole site complete and rendered on my local machine to do with what I liked.
 In other words, I wanted a static site generator.&lt;/p&gt;
-&lt;div class="section" id="choosing-a-static-site-generator"&gt;
+&lt;section id="choosing-a-static-site-generator"&gt;
 &lt;h2&gt;Choosing a static site generator&lt;/h2&gt;
 &lt;p&gt;My criteria were:&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;Open source&lt;/li&gt;
-&lt;li&gt;Python&lt;/li&gt;
-&lt;li&gt;Works to generate non-blog sites.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Open source&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Python&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Works to generate non-blog sites.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;This gave me two choices that I knew of: &lt;a class="reference external" href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;, and &lt;a class="reference external" href="http://getnikola.com/"&gt;Nikola&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I have had my eyes on Pelican for some time now.
@@ -787,16 +709,12 @@ The docs are well written, the code looks good, and &lt;a class="reference exter
 which was recommended by &lt;a class="reference external" href="https://github.com/punchagan"&gt;another respected coder-friend&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I decided to use Nikola, in part because it has a plugin to import from Blogger, and in part because the above-mentioned friend offered to help me.&lt;/p&gt;
 &lt;p&gt;In the next post, I'll describe how I ported my Blogger blog into a Nikola blog.&lt;/p&gt;
-&lt;table class="docutils footnote" frame="void" id="id3" rules="none"&gt;
-&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;I used to write in pure HTML, but after much goading from Zooko, I switched to rst.  I'm glad; I find rst more flexible.&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;table class="docutils footnote" frame="void" id="id4" rules="none"&gt;
-&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html#id2"&gt;[2]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;I didn't want the script to deploy it, because I didn't want to trust the script with my Google authentication, so I took that part out.  I also changed some heading styles that Blogger doesn't render well.&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;</description><category>blog</category><category>blogger</category><category>blogging</category><category>nikola</category><guid>http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html</guid><pubDate>Tue, 08 Jul 2014 16:48:18 GMT</pubDate></item><item><title>Literally ironic semantic shifts are actually very typical</title><link>http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div class="document" id="literally-ironic-semantic-shifts-are-ironically-very-typical"&gt;   &lt;p&gt;I recently saw a &lt;a class="reference external" href="http://www.npr.org/2014/04/23/306238447/new-browser-plug-in-would-literally-annihilate-this-headline"&gt;story about a whimsical browser plug-in written by Mike Lazer-Walker&lt;/a&gt;(incidentally, a &lt;a class="reference external" href="https://www.hackerschool.com/blog/30-words-are-hard"&gt;Hacker Schooler&lt;/a&gt;), that substitutes all occurrences of the word 'literally' with the word 'figuratively'. I posted it with (almost) no comment on Facebook, to which the only response was from a Waterloo friend, who actually found the substitution annoying, because, he argued, 'figuratively' is not what is usually meant.&lt;/p&gt;&lt;p&gt;Of course, he is right about that. 'Literally', like 'very', 'really', 'truly', and in some cases 'actually' &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html#id3" id="id1"&gt;[1]&lt;/a&gt;, share a common semantic shift. They all originally meant something like 'do not take the following as exaggeration or metaphor' (insofar as any language use can be non-metaphorical), and have all become intensifiers. This is, of course, somewhat ironic (in the situational sense of 'ironic', which is neither the literary sense, nor the emerging sense of 'not what I wanted' &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html#id4" id="id2"&gt;[2]&lt;/a&gt;).&lt;/p&gt;&lt;p&gt;I don't cringe when I hear 'very', except insofar as it is often vacuous. That I do cringe on hearing 'literally' used as an intensifier is probably because, unlike 'very', the current use which is very &lt;a class="reference external" href="http://www.etymonline.com/index.php?term=very"&gt;old&lt;/a&gt;, this meaning of 'literally' emerged in my adulthood, and so it sounds unnatural to me. When wearing my linguist hat, I like to embrace diversity and change, rather than taking the stance that my dialect is 'correct'. The strongest stance I can fairly take is that in &lt;em&gt;my&lt;/em&gt; dialect, the new meaning is unacceptable, or that using this meaning has certain social implications about the speaker.&lt;/p&gt;&lt;p&gt;But rather than taking the plug-in to be suggesting an actual solution, I take it in the spirit of Mark Twain's advice: 'Substitute 'damn' every time you're inclined to write 'very;' your editor will delete it and the writing will be just as it should be.' Once the reader or writer sees 'figuratively', the appropriate transformation should be more readily obvious.&lt;/p&gt;&lt;p&gt;More likely, it is simply an elaborate joke made by a clever person while exploring how to write plug-ins. In any case, I liked the idea, both for its wit, and for the other fun linguistics ideas it points to, including, for example, &lt;a class="reference external" href="http://www.gizoogle.net/tranzizzle.php?search=www.subsymbol.org&amp;amp;se=Go+Git+Dis+Shiznit"&gt;tranzizzle&lt;/a&gt; (hat tip to &lt;a class="reference external" href="http://www.gizoogle.net/tranzizzle.php?search=www.cs.cmu.edu%2F~nasmith&amp;amp;se=Go+Git+Dis+Shiznit"&gt;Noah Smizzle&lt;/a&gt;).&lt;/p&gt;&lt;p&gt;The question I am left with is, given this development, what word do I use &lt;em&gt;now&lt;/em&gt; if I want the literal meaning of literal?&lt;/p&gt;&lt;table class="docutils footnote" frame="void" id="id3" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;'Actually' is often used to make a contrast.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="docutils footnote" frame="void" id="id4" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html#id2"&gt;[2]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;See this comic: &lt;a class="reference external" href="http://theoatmeal.com/comics/irony"&gt;http://theoatmeal.com/comics/irony&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;</description><category>blog</category><category>linguistics</category><guid>http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html</guid><pubDate>Sat, 26 Apr 2014 22:06:00 GMT</pubDate></item><item><title>Transparent Learning</title><link>http://www.subsymbol.org/posts/201403transparent-learning.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div class="document" id="transparent-learning"&gt;   &lt;p&gt;I have applied to &lt;a class="reference external" href="https://www.hackerschool.com"&gt;Hacker School&lt;/a&gt; for the Summer 2014 batch.  I'm immensely excited about it for various reasons, but the one I wanted to mention here now is the attitude toward learning that Hacker School promotes.&lt;/p&gt;&lt;p&gt;One of the few Rules of Conduct at Hacker School is not to &lt;a class="reference external" href="https://www.hackerschool.com/manual"&gt;feign surprise&lt;/a&gt; when someone doesn't know something.&lt;/p&gt;&lt;blockquote&gt;&lt;em&gt;[No feigning surprise] means you shouldn't act surprised when people say they don't know something. This applies to both technical things ("What?! I can't believe you don't know what the stack is!") and non-technical things ("You don't know who RMS is?!"). Feigning surprise has absolutely no social or educational benefit: When people feign surprise, it's usually to make them feel better about themselves and others feel worse. And even when that's not the intention, it's almost always the effect. As you've probably already guessed, this rule is tightly coupled to our belief in the importance of people feeling comfortable saying "I don't know" and "I don't understand."&lt;/em&gt;&lt;/blockquote&gt;&lt;p&gt;The other side of the coin of not feigning surprise is being transparent about your own learning.&lt;/p&gt;&lt;p&gt;When I meet smart people I admire, I am usually eager to show them that &lt;strong&gt;I am like them&lt;/strong&gt;. So I look for opportunities to demonstrate that we share ideas and values. In a programming community, this could translate into finding a reason to bring up topics such as stacks or RMS. There is nothing inherently wrong with this. It is normal and healthy to establish common ground. It feels good.&lt;/p&gt;&lt;!-- Although I'm certain that this is not just a women's issue, I do expect that being female confers more assumptions that a person don't actually know much about math or computers. Whether or not it is true that people I meet make such assumptions, I often feel anxiety about it. --&gt;&lt;p&gt;The problem comes when you want to interact with someone as you continue to learn. If you can't comfortably say “I don't know what a stack is.”, then you deny yourself and your peers the opportunity to collaboratively change that. More importantly, your silence reinforces the idea that it is &lt;em&gt;not okay&lt;/em&gt; to not know or not understand. It is more subtle than feigning surprise, but not necessarily less powerful.&lt;/p&gt;&lt;p&gt;In the process of applying to Hacker School, I've looked at the blogs of some of the facilitators. In her blog, Allison Kaptur takes this concept of transparency a step further. For example, in &lt;a class="reference external" href="http://akaptur.github.io/blog/2013/11/15/introduction-to-the-python-interpreter/"&gt;a post in which she teaches about the Python interpreter&lt;/a&gt;, Allison writes (emphasis mine):&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;There are four steps that python takes when you hit return: lexing, parsing, compiling, and interpreting. Lexing is breaking the line of code you just typed into tokens. The parser takes those tokens and generates a structure that shows their relationship to each other (in this case, an Abstract Syntax Tree). The compiler then takes the AST and turns it into one (or more) code objects. Finally, the interpreter takes each code object executes the code it represents.&lt;/em&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;I’m not going to talk about lexing, parsing, or compiling at all today,&lt;/em&gt; &lt;strong&gt;mainly because I don’t know anything about these steps yet.&lt;/strong&gt; &lt;em&gt;Instead, we’ll suppose that all that went just fine, and we’ll have a proper python code object for the interpreter to interpret.&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;To me, this feels like radical activism. Even if I don't get in to Hacker School, I want to learn this skill of portraying myself authentically, even if it exposes some vulnerability. Fundamentally, it's about separating self-worth from knowledge, and getting over Imposter Syndrome.&lt;/p&gt;&lt;p&gt;As a step in this direction, I am posting the fact that I have applied to Hacker School, even though I may not be admitted. If that happens, I will be very disappointed, and it will be embarrassing for that to be public, but I want to say that it's okay to fail at things, and it's okay to make mistakes.&lt;/p&gt;&lt;/div&gt;</description><category>blog</category><category>education</category><category>hacker school</category><category>vulnerability</category><guid>http://www.subsymbol.org/posts/201403transparent-learning.html</guid><pubDate>Mon, 17 Mar 2014 15:32:00 GMT</pubDate></item></channel></rss>
+&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id3"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger/index.html#id1"&gt;1&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;I used to write in pure HTML, but after much goading from Zooko, I switched to rst.  I'm glad; I find rst more flexible.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="id4"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/moving-my-site-off-of-blogger/index.html#id2"&gt;2&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;I didn't want the script to deploy it, because I didn't want to trust the script with my Google authentication, so I took that part out.  I also changed some heading styles that Blogger doesn't render well.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/section&gt;&lt;/div&gt;</description><category>blog</category><category>blogger</category><category>blogging</category><category>nikola</category><guid>http://www.subsymbol.org/posts/moving-my-site-off-of-blogger/index.html</guid><pubDate>Tue, 08 Jul 2014 16:48:18 GMT</pubDate></item><item><title>Literally ironic semantic shifts are actually very typical</title><link>http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are/index.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div class="document" id="literally-ironic-semantic-shifts-are-ironically-very-typical"&gt;   &lt;p&gt;I recently saw a &lt;a class="reference external" href="http://www.npr.org/2014/04/23/306238447/new-browser-plug-in-would-literally-annihilate-this-headline"&gt;story about a whimsical browser plug-in written by Mike Lazer-Walker&lt;/a&gt;(incidentally, a &lt;a class="reference external" href="https://www.hackerschool.com/blog/30-words-are-hard"&gt;Hacker Schooler&lt;/a&gt;), that substitutes all occurrences of the word 'literally' with the word 'figuratively'. I posted it with (almost) no comment on Facebook, to which the only response was from a Waterloo friend, who actually found the substitution annoying, because, he argued, 'figuratively' is not what is usually meant.&lt;/p&gt;&lt;p&gt;Of course, he is right about that. 'Literally', like 'very', 'really', 'truly', and in some cases 'actually' &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are/index.html#id3" id="id1"&gt;[1]&lt;/a&gt;, share a common semantic shift. They all originally meant something like 'do not take the following as exaggeration or metaphor' (insofar as any language use can be non-metaphorical), and have all become intensifiers. This is, of course, somewhat ironic (in the situational sense of 'ironic', which is neither the literary sense, nor the emerging sense of 'not what I wanted' &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are/index.html#id4" id="id2"&gt;[2]&lt;/a&gt;).&lt;/p&gt;&lt;p&gt;I don't cringe when I hear 'very', except insofar as it is often vacuous. That I do cringe on hearing 'literally' used as an intensifier is probably because, unlike 'very', the current use which is very &lt;a class="reference external" href="http://www.etymonline.com/index.php?term=very"&gt;old&lt;/a&gt;, this meaning of 'literally' emerged in my adulthood, and so it sounds unnatural to me. When wearing my linguist hat, I like to embrace diversity and change, rather than taking the stance that my dialect is 'correct'. The strongest stance I can fairly take is that in &lt;em&gt;my&lt;/em&gt; dialect, the new meaning is unacceptable, or that using this meaning has certain social implications about the speaker.&lt;/p&gt;&lt;p&gt;But rather than taking the plug-in to be suggesting an actual solution, I take it in the spirit of Mark Twain's advice: 'Substitute 'damn' every time you're inclined to write 'very;' your editor will delete it and the writing will be just as it should be.' Once the reader or writer sees 'figuratively', the appropriate transformation should be more readily obvious.&lt;/p&gt;&lt;p&gt;More likely, it is simply an elaborate joke made by a clever person while exploring how to write plug-ins. In any case, I liked the idea, both for its wit, and for the other fun linguistics ideas it points to, including, for example, &lt;a class="reference external" href="http://www.gizoogle.net/tranzizzle.php?search=www.subsymbol.org&amp;amp;se=Go+Git+Dis+Shiznit"&gt;tranzizzle&lt;/a&gt; (hat tip to &lt;a class="reference external" href="http://www.gizoogle.net/tranzizzle.php?search=www.cs.cmu.edu%2F~nasmith&amp;amp;se=Go+Git+Dis+Shiznit"&gt;Noah Smizzle&lt;/a&gt;).&lt;/p&gt;&lt;p&gt;The question I am left with is, given this development, what word do I use &lt;em&gt;now&lt;/em&gt; if I want the literal meaning of literal?&lt;/p&gt;&lt;table class="docutils footnote" frame="void" id="id3" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are/index.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;'Actually' is often used to make a contrast.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="docutils footnote" frame="void" id="id4" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are/index.html#id2"&gt;[2]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;See this comic: &lt;a class="reference external" href="http://theoatmeal.com/comics/irony"&gt;http://theoatmeal.com/comics/irony&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;</description><category>blog</category><category>linguistics</category><guid>http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are/index.html</guid><pubDate>Sat, 26 Apr 2014 22:06:00 GMT</pubDate></item></channel></rss>
