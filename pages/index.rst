@@ -17,13 +17,13 @@ I have an M.Sc. from the University of Toronto, where `I studied computational l
 
 My primary research interest is in the properties that emerge from the way information is structured. For example, different languages (formal or natural) vary in robustness to error, potential for ambiguity, expressiveness, and susceptibility to inference.
 
-`My publications so far <http://scholar.google.com/citations?user=15gGywMAAAAJ>`_ have explored this from the perspectives of coding theory, human memory, and natural language error correction.
+`My cs publications so far <http://scholar.google.com/citations?user=15gGywMAAAAJ>`_ have explored this from the perspectives of coding theory, human memory, and natural language error correction.
 
-I spent the summer improving my coding skills at `Hacker School <http://www.hackerschool.com>`_.
+I spent the summer of 2014 improving my coding skills at `Hacker School <http://www.hackerschool.com>`_.
 
 
 See also:
 
 |    `CV <http://www.cs.toronto.edu/~amber/cv-website.pdf>`_
-|    `Linkedin <http://www.linkedin.com/pub/l-amber-wilcox-o-hearn/8/301/492>`_
+|    `Linkedin <https://www.linkedin.com/in/l-amber-o-hearn-4923018/>`_
 |    `GitHub <https://github.com/ambimorph/>`_
