@@ -1,5 +1,657 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>subsymbol.org</title><link>http://www.subsymbol.org/</link><description></description><atom:link href="http://www.subsymbol.org/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:amber@cs.toronto.edu"&gt;L. Amber Wilcox-O'Hearn&lt;/a&gt; </copyright><lastBuildDate>Thu, 15 Apr 2021 03:05:15 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>I did it!</title><link>http://www.subsymbol.org/posts/i-did-it.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;section id="i-did-it"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>subsymbol.org</title><link>http://www.subsymbol.org/</link><description></description><atom:link href="http://www.subsymbol.org/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:amber@cs.toronto.edu"&gt;L. Amber Wilcox-O'Hearn&lt;/a&gt; </copyright><lastBuildDate>Sun, 28 Aug 2022 22:55:02 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Some Philosophical Implications of Deacon's Model of Symbolic Reference</title><link>http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;&lt;em&gt;This is an attempt from a few years ago to assemble some thoughts on&lt;/em&gt;
+&lt;em&gt;Terrence Deacon's&lt;/em&gt; The Symbolic Species.
+&lt;em&gt;It is presented here as written then with a few minor edits.&lt;/em&gt;&lt;/p&gt;
+&lt;!-- Explain the hierarchy itself --&gt;
+&lt;!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - --&gt;
+&lt;p&gt;In his book &lt;em&gt;The Symbolic Species&lt;/em&gt;,
+Terrence Deacon sketches a theory of human language
+aiming to explain how it is qualitatively different
+from other forms of animal communication,
+and not just a more advanced form of the same kind of communication &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id2" id="id1"&gt;1&lt;/a&gt;.
+I will summarize his model and attempt to describe how it
+leads to particular stances on
+a selection of problems in the philosophy of language
+and of linguistics.&lt;/p&gt;
+&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id2"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id1"&gt;1&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Deacon, Terrence William and International Society for Science and Religion. The Symbolic Species: The Co-Evolution of Language and the Brain. Cambridge: International Society for Science and Religion, 2007.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;Deacon argues that different modes of reference entail properties
+that constrain or allow different degrees of expressiveness, learnability,
+and other formal characteristics affecting how they can be used.
+It is the mode he terms &lt;em&gt;symbolic&lt;/em&gt;, which he holds responsible for the
+unique properties of human languages.
+This symbolic mode of communication in turn allows symbolic thought.&lt;/p&gt;
+&lt;p&gt;The symbolic mode is contrasted with two simpler modes,
+&lt;em&gt;iconic&lt;/em&gt; and &lt;em&gt;indexical&lt;/em&gt;, on which it depends.
+He then argues that human communication is the only animal communication
+that uses all three modes.
+These three modes are not meant to be
+properties of signs themselves,
+but rather modes of cognitive processing.
+And argues that symbolic processing cannot occur
+without being simultaneous iconic and indexical processing.&lt;/p&gt;
+&lt;p&gt;As these terms have all been used by other philosophers and linguists
+in different ways, we must head off confusion.
+The word 'symbol' is often used to refer to a mark,
+such a character or other grapheme.
+We will refer to that usage with &lt;em&gt;sign vehicle&lt;/em&gt;.
+Similarly, the word 'indexical' has a different meaning historically
+in discussion of the semantic reference pertaining to
+certain words including demonstratives.
+Deacon's use of the term is related and so
+does have implications for that type of reference,
+which I will touch on only tangentially.&lt;/p&gt;
+&lt;!-- Deacon's hierarchy is based largely on Peirce's distinctions. --&gt;
+&lt;p&gt;The simplest mode of reference in this model is &lt;em&gt;iconic&lt;/em&gt;.
+What is meant by iconic reference,
+is the mere recognition that x is similar to y and thus invokes it.
+As such, iconic reference is basic to any cognitive process;
+it reflects the formation of a category.
+This is basic because all learning
+requires enough stimulus generalization to
+respond the same way to different stimuli
+based on their similarity.
+But such generalization can also be used in iconic sign vehicles
+that bring to mind a category and thus &lt;em&gt;represent&lt;/em&gt; it.&lt;/p&gt;
+&lt;p&gt;Iconic reference is necessary as a first step of language processing
+even in sign vehicles that can be processed further as indices or symbols.
+For example, a written character must be
+recognized as being an instance of its class before it can be interpreted.
+Similarly, this is reflected in
+the type-token distinction of words in corpus analysis,
+where we refer to a type as the class of the word
+as separate from each of its token instances.&lt;/p&gt;
+&lt;!-- 02c054b4-3e86-11eb-8db2-d4619d1011e0 indexical --&gt;
+&lt;p&gt;&lt;em&gt;Indexical&lt;/em&gt; reference builds on iconic reference
+by the addition of association.
+To refer indexically requires that two categories
+are already established via iconic reference.
+The association of these categories allows one to index, or indicate the other.
+Because these are established by co-occurrence,
+there is potential for implication of causal relation.
+Note also that indexical reference is transitive.
+If smoke indicates fire and a smoke alarm indicates smoke,
+then a smoke alarm indicates fire.&lt;/p&gt;
+&lt;p&gt;As with iconicity,
+associations are also characteristic of all learning processes
+and not unique to human communication.
+They do not even require cognition.
+Biochemical communication, for example in the human body,
+is based on what are often termed &lt;em&gt;signals&lt;/em&gt;,
+because they indicate a physiological state.
+For example, high levels of insulin
+can indicate conditions favourable for growth,
+so systems in the body respond to that signal
+with growth promoting activity.&lt;/p&gt;
+&lt;p&gt;Indexicality is a critical stage in linguistic processing.
+For example, the process of associating the word 'cup'
+with things in the world that hold liquid for drinking
+entails iconic relationships between instances of the word 'cup'
+and iconic relationships between instances of drinking vessels
+establishing both categories
+before (or at the same time as) the association between them can be made.
+Indexical reference is also ubiquitous in animal communication.
+For example, vervet alarm calls differentiate predator types.
+Likewise, in human to animal communication,
+a dog can be taught associations between spoken words
+and behaviours such as sitting or events such as feeding.&lt;/p&gt;
+&lt;p&gt;The mode of reference that sets human language apart is what Deacon terms symbolic.
+Symbolic reference depends on a sign vehicle already having
+been processed indexically.
+It then entails further indexical reference among other symbols in a set.
+What makes a word a symbol is not just that it indexically
+points to a conceptually or physically present referent.
+It must also refer to other words,
+not only reflected in a thesaurus-like web of substitutability,
+but in semantic ontologies and usage constraints
+constituting grammar.
+This aspect of symbolic reference is responsible for
+its combinatorially expansive generative power.&lt;/p&gt;
+&lt;p&gt;However, this also poses a fundamental problem
+in language learnability.
+If learning to symbolically process a word requires learning
+its relationship with every other word,
+then the task quickly becomes intractable.
+The puzzle of how children seemingly effortlessly learn language,
+despite this "poverty of the stimulus"
+is a long-standing question,
+and is the motivation for cognitive hypotheses
+of innateness, and even of the hard-coded grammar modules
+proposed by Chomsky that lack only
+a small set of parameters by which to fit the native language &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id4" id="id3"&gt;2&lt;/a&gt;.&lt;/p&gt;
+&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id4"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id3"&gt;2&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Chomsky, Noam. “Language and Problems of Knowledge.” Teorema: Revista Internacional de Filosofía 16, no. 2 (1997): 5–33.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;In AI terms, Chomsky's view says that the language learning problem requires high bias
+in the bias-variance tradeoff of learning models.
+That is, most of the information is already in the model.
+This would seem to be confirmed by the fact that
+computational models that learn
+co-occurrence relationships between contiguous vocabulary items on a large scale
+are still very limited in ability to recognize or generate well formed language.
+Not only do they fail to capture long distance relationships,
+but there is never enough data to capture the behaviour of rare collocations,
+let alone predict the behaviour of unseen ones.&lt;/p&gt;
+&lt;p&gt;While there is certainly evidence of bias in human brains
+conferring ability to process language,
+Deacon's view is that the machinery for learning these relationships
+is not something added to the ability to process symbols,
+but that is already present simply by having these three modes available,
+and the ability to switch among them.
+What is necessary to reduce the size of the language learning search space
+is a way to constrain options.
+Through a process of "desymbolization",
+Deacon proposes that some words and contexts
+call for only indexical reference to other words,
+and knowing which mode of reference to use is part of what is learned.
+So, for example, the word 'cup' can in principle occur in speech
+with any other known word.
+However the phrase 'a cup of ___' has a much smaller set of likely completions,
+and 'not my cup of ___' even fewer.
+This is because grammatical function words represent only indexically.
+They point to specific relationships between symbols.
+It does turn out that computational models that learn
+implicit distribution patterns are much more powerful.&lt;/p&gt;
+&lt;p&gt;Once the responsibility for the complexity of human language
+is seen as an inherent property of optional symbolic reference,
+the answer to the question of how humans can acquire complex grammars
+ceases to require either more intelligence than other creatures
+or more cognitive infrastructure than what is necessary for symbolic reference itself.
+And since symbolic reference is built hierarchically from simpler forms of reference
+already present in other animal communication,
+and even other important non-verbal human communication,
+there need only be an enhanced disposition to refer in this mode.&lt;/p&gt;
+&lt;p&gt;Even the important property of recursion
+follows emergently from symbolic reference itself,
+because symbolic reference allows substitution across type levels.
+For example, symbols can replace deictic indexicals,
+such as 'that boy' being replaced with 'he',
+or larger grammatical units such as entire arguments replaced with 'that',
+or, more abstractly,
+the implicit recursion of successively applying adjectives to noun phrases,
+such as 'the little red hen'.&lt;/p&gt;
+&lt;p&gt;Iconic reference and indexical reference are constrained
+by the necessities of similarity of form
+and correlation in time or space, respectively.
+That means they cannot be substituted except
+when those similarities or correlations apply transitively.
+This constraint is transcended in the symbolic mode.
+We don't actually need to have seen two words
+occur together to learn a symbolic relationship between them!
+In fact, we learn strong associations between words that occur in alternation.
+For example, we associate words such as 'coffee' and 'tea',
+even if each tends to occur in exclusion of the other.
+This implies both that symbolic properties such as recursion cannot be added
+to a system without symbolic reference,
+and that once symbolic reference is in place,
+nothing more is required for properties such as recursion to be possible.&lt;/p&gt;
+&lt;p&gt;I hope through the following examples to further clarify
+how this symbolic distinction operates.&lt;/p&gt;
+&lt;!-- "has a grammar" means constraints on well formed combinations. --&gt;
+&lt;!-- 98aeeb4e-3e4e-11eb-8db2-d4619d1011e0 not a simple mapping --&gt;
+&lt;!-- 98aeeb4e-3e4e-11eb-8db2-d4619d1011e0 symbols and physical correspondence --&gt;
+&lt;!-- 5a0c9e66-3e87-11eb-8db2-d4619d1011e0 type-token --&gt;
+&lt;!-- b5ef23c8-3f10-11eb-8db2-d4619d1011e0 PoS --&gt;
+&lt;!-- 13000828-400d-11eb-8db2-d4619d1011e0 recursion --&gt;
+&lt;!-- a4491f74-40e2-11eb-8968-d4619d1011e0 analogy to math --&gt;
+&lt;!-- c6bb6fa8-40e2-11eb-8968-d4619d1011e0 structure is not the constraint, but the product --&gt;
+&lt;!-- Sapir Whorf --&gt;
+&lt;!-- - - - - - - - - - - - --&gt;
+&lt;section id="linguistic-relativism"&gt;
+&lt;h2&gt;Linguistic relativism&lt;/h2&gt;
+&lt;p&gt;Deacon reasons that since
+the structural properties of human language
+emerge from the symbolic mode of reference,
+the habitual use of symbolic reference for communication
+in turn affects the way we think,
+making it different from other kinds of thought
+based on other forms of reference.
+Because this mode is almost entirely restricted to humans,
+this could be viewed as a species version of strong linguistic relativism &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id6" id="id5"&gt;3&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The relativistic idea that there is a relationship between
+the particular language one speaks and the form of one's thoughts
+is usually attributed to Sapir and Whorf.
+It has been criticized as being either trivial in its weak form of mere influence,
+or implausible in its strong form of limitation on what thoughts are possible.
+It's not particularly contentious that, for example,
+linguistic distinctions our language requires
+can predispose us to make those distinctions
+when thinking about objects, especially when we are preparing to talk about them,
+but just because a certain meaning is more easily accessible in one language
+than another, does not mean it cannot be arrived at in another.
+However, if the comparison is among species rather than within,
+the strong form becomes a more attractive hypothesis.
+We know from the study of formal languages
+that different generative rules in symbolic systems concretely affect
+expressibility in mathematically provable ways.
+Not having symbolic reference at all
+seems to preclude many kinds of thought,
+particularly thought involving modal and logical operators or other counterfactuals.&lt;/p&gt;
+&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id6"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id5"&gt;3&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Deacon spends many pages describing a set of experiments in which
+the researchers successfully (though with difficulty)
+teach chimps to make a modest number of symbolic references.
+This is important for two reasons: first it shows that
+symbolic reference is a process, not an innate brain structure,
+that you either have or you don't,
+and second it shows that nonetheless it is much easier for humans
+to make that particular leap, so there must be an innate &lt;em&gt;facility&lt;/em&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;!-- 3db9ece6-458f-11eb-9ff5-d4619d1011e0 examples of things animals can't think due to grammar --&gt;
+&lt;p&gt;If we think about animals in close human contact, for example dogs,
+it's clear that we can teach some of them to "understand" words,
+but this understanding appears to stay strictly within indexical interpretation.
+A dog can learn to associate a word or phrase with a behaviour to perform,
+or with an event to happen now, such as "Let's go for a walk" or "dinner time".
+These are indexical understandings only,
+because they associate a word category with
+a conceptual category that is, crucially, coincident in time and place.
+If the co-occurrence between the word and event ceased,
+the association would eventually be extinguished, too.
+But imagine trying to verbally present a dog with
+an alternative between a walk and a meal,
+or to tell him a story about yesterday's walk.
+You cannot ask a dog whether he believes there is a squirrel outside.&lt;/p&gt;
+&lt;!-- and probably most reliably when presented with
+a particular pattern of intonation. --&gt;
+&lt;p&gt;Consider trying to replicate the "marshmallow test" of delayed gratification.
+In the original Stanford experiment,
+young children were given a marshmallow, and a choice.
+If they did not eat the marshmallow when the staff left the room,
+they would soon be given two marshmallows to eat.
+The idea is that two marshmallows are better than one,
+and that a child who has the ability to temporarily inhibit
+the impulse to eat the one given knowledge of the contingent second,
+will have better outcomes in life.&lt;/p&gt;
+&lt;p&gt;I submit that the corresponding test performed on dogs can only test obedience,
+because the dog cannot be taught to understand the trade being offered,
+even if they "know" the word for the treat in question.
+We could train the dog not to eat a treat
+because he knows he'll be rewarded.
+We could even train him to reject a lesser treat, say, a strawberry,
+in anticipation of a slice of beef.
+But this would be a mere association of the strawberry with
+the initiation of a performance: do not eat the strawberry and be rewarded with beef.
+It would require training exactly because it could not be explained in words.
+In other words, the dog can learn an association between behaviour and reward;
+this is an indexical reference, a particular instance of
+an "if x then y" relation.
+But the dog can't seem to learn "if x then y" itself as a hypothetical structure
+and then apply it to new referents.
+If other animals had symbolic tools with which to organize perception,
+we would expect to see expression of symbolic reference in their native communication,
+or at least the ability to be taught to use it with humans.&lt;/p&gt;
+&lt;!-- The interesting difference in the child and dog versions of the test
+comes in the presumption that a choice can made.
+In other words, if we presume that a dog likes strawberries but prefers beef,
+how do we know that the dog, having eaten the strawberry or not,
+knew the choice he was making?
+I think at the very least we would require a kind of Turing Test,
+in which the dog could --&gt;
+&lt;p&gt;Although much of the focus of the discourse on
+linguistic relativism among human languages is lexical —
+the canonical example being the existence of many words for snow in the Arctic —
+Whorf's original descriptions focused on what he deemed grammatical differences.
+That is, he noted that in order to communicate
+we have to agree on a system of organizing our perceptions,
+and asserts it is this organization which then shapes our thought &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id8" id="id7"&gt;4&lt;/a&gt;.
+Specifically, he wrote about classifications that would either be
+explicitly marked grammatically, for example with grammatical morphemes,
+or implicitly through distribution patterns.&lt;/p&gt;
+&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id8"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id7"&gt;4&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Scholz, Barbara C., Francis Jeffry Pelletier, and Geoffrey K. Pullum. “Philosophy of Linguistics.” In The Stanford Encyclopedia of Philosophy, edited by Edward N. Zalta, Summer 2020. Metaphysics Research Lab, Stanford University, 2020.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;!-- a428029e-458d-11eb-9ff5-d4619d1011e0 experiences, categories don't require language --&gt;
+&lt;p&gt;Arguably, from a strictly lexical perspective,
+we should expect other animals to be able to associate words with
+particular sets of stimuli in ways that could
+illustrate different ways of organizing the perceptual world.
+We know that we can teach lab animals complex tasks that entail such distinctions.
+Experiencing categories is not a linguistic act.
+It requires only iconic reference and is not unique to humans.
+Using a word to refer to a category is only indexical reference
+and is also demonstrably teachable to some animals as in our dog example.&lt;/p&gt;
+&lt;p&gt;What is linguistic and symbolic is using categories to
+constrain grammatical constructions.
+For this purpose categories can be based on semantic properties grounded in experience
+the way 'a cup of ___' imposes selectional restrictions &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id10" id="id9"&gt;5&lt;/a&gt;,
+but they can also be completely arbitrary such as grammatical gender.
+Having the ability to organize categories around grammatical functions
+is critical for reducing the search space of relations between words.
+It's also essential for the recursive ability to
+carry forward reference through a chain of substitution.&lt;/p&gt;
+&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id10"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id9"&gt;5&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;xxx selectional restrictions&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;!-- differentiating into language requires shaping into a form
+choosing features required by it --&gt;
+&lt;!-- Thinking symbolically is a result of internalizing symbolic communication,
+therefore animals cannnot think symbolically at all. --&gt;
+&lt;!-- Emoji example --&gt;
+&lt;!-- Sense and reference --&gt;
+&lt;!-- - - - - - - - - - - - - - - - - - - - --&gt;
+&lt;!-- Frege: predication is applying sense to a reference --&gt;
+&lt;/section&gt;
+&lt;section id="sense-and-reference"&gt;
+&lt;h2&gt;Sense and reference&lt;/h2&gt;
+&lt;p&gt;Deacon hypothesizes that the predicate-argument structure of linguistic communication
+results from the dependence of symbolic reference on indexical reference &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id12" id="id11"&gt;6&lt;/a&gt;.
+The linguistic function of a predicate is to categorize its argument.
+In this sense, the argument is what the discourse is "about",
+and therefore its reference requires a kind of concreteness of instantiation,
+or grounding to something "real",
+while the predicate only refers to a symbolic category
+that needn't itself be thus instantiated.
+Thus the predicate derives grounding via its argument
+and, according to Deacon, requires it to be meaningful.
+Concreteness is a property of indexical reference,
+because of its requirement for co-occurence or contiguity.
+What an index refers to must be something present or proximate.
+But because indexical reference has transitivity,
+this proximity requirement for
+words that refer indexically can be linked in a chain.
+To see this, consider sentences (1) - (4).&lt;/p&gt;
+&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id12"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id11"&gt;6&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Deacon, Terrence W. “Beyond the Symbolic Species.” In The Symbolic Species Evolved, edited by Theresa Schilhab, Frederik Stjernfelt, and Terrence Deacon, 6:9–38. Biosemiotics. Dordrecht: Springer Netherlands, 2012.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;p&gt;The girl sat in the chair.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;She was too heavy.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;It broke.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;That's a shame.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In Deacon's analysis, in (1) 'the' serves in both cases as a form of deixis
+that grounds the sentence indexically to specific referents.
+However, once they have been incorporated into the sentence,
+they can be substituted symbolically in a way that carries the reference.
+'She', 'it', and 'that' make use of grammatical category to transitively
+maintain a chain of referential grounding.&lt;/p&gt;
+&lt;p&gt;There is a tradition in analytic philosophy
+to seek a direct correspondence between language and metaphysical reality;
+for words and expressions to "attach" via reference to things in the world.
+In Wittgenstein's Tractatus, he lays out a kind of logico-linguistic atomism,
+where every proposition can be analyzed down to "names":
+elements that directly refer to objects in the world.&lt;/p&gt;
+&lt;p&gt;There have been many different
+interpretations of what it means for an expression to refer to objects
+and how that reference happens.
+Gottlob Frege distinguished between sense and reference,
+saying "We let a &lt;em&gt;sign&lt;/em&gt; &lt;em&gt;express&lt;/em&gt; its sense and &lt;em&gt;designate&lt;/em&gt; its nominatum." &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id14" id="id13"&gt;7&lt;/a&gt;.
+In other words, in this view,
+sense is a set of properties that an expression describes,
+and that description, in addition to corresponding to the properties,
+also refers to something specific by them,
+insofar as it narrows down the potential referential candidates to
+the single thing in the world that has those properties.
+If something does exist in the world with the properties,
+the expression also corresponds to a true proposition.
+He also pointed out that an expression
+can have a sense and yet not have a nominatum;
+not refer to anything existing in the world,
+if there is nothing having the properties described.&lt;/p&gt;
+&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id14"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id13"&gt;7&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Frege, G.: 1892, ‘On Sense and Nominatum’, in Martinich, Aloysius, ed. The Philosophy of Language. New York, N.Y: Oxford University Press, 2010.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;A distinction was subsequently proposed by Keith Donellan
+about definite descriptions &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id16" id="id15"&gt;8&lt;/a&gt;.
+He suggested that when a definite description narrows a subject
+to something specific that we don't know the referent for,
+it merely attributes, but doesn't refer.
+For example, his claim is that in a sentence such as
+'The person who sat in my chair was too heavy.'
+if we don't know who sat in the chair, then
+the expression 'The person who sat in my chair' doesn't refer,
+but merely attributes, having a meaning akin to
+there exists a person x such that x sat in my chair.
+Whereas if we do believe we know who sat in the chair,
+then the expression refers to that person in a "rigid" way.
+That is, in the attributive case,
+any subsequent attribution is meant to apply to whoever sat in the chair,
+whereas in the "referring" case,
+subsequent attributions are meant to apply to the person we believed sat in the chair,
+even if it turns out that they didn't sit in the chair after all,
+or if there is contention over that point.&lt;/p&gt;
+&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id16"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id15"&gt;8&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Donnellan, Keith S. “Reference and Definite Descriptions.” The Philosophical Review 75, no. 3 (July 1966): 281.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;In both cases there is an act of predication,
+so Deacon's hypothesis would require an indexical reference in the phrase either way.
+However, I don't think his hypothesis requires that the chain of reference
+terminate in a rigid reference or Wittgensteinian atom.
+Rather, the chain of reference need only terminate in some
+mutually agreed upon focus of attention.
+And this focus could be entirely fictional, such as the Jabberwock,
+or incompletely specified, so long as it is held constant across substitutions.&lt;/p&gt;
+&lt;p&gt;The requirement that every predicate be
+a symbol grounded by its argument via indexical reference
+and that a reference chain need trace back only to a mutual focus of attention,
+may explain a further example in Donellan's argument.
+Donellan pointed out that a definite description in a predicate
+need neither refer nor attribute
+(and thus carry the implication that there exists a referent).
+His example contrasts the questions:&lt;/p&gt;
+&lt;ol class="arabic simple" start="5"&gt;
+&lt;li&gt;&lt;p&gt;Is de Gaulle the King of France?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Is the King of France de Gaulle?&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Normally, we would not consider (5) to contain the presupposition
+that there is a king of France, whereas we would in (6).
+Deacon's hypothesis would explain this by noting that
+the first predication requires an indexical grounding,
+because it begins the communication.
+Therefore it asserts its description as referring to something,
+even if it is only the attributive sense of
+asserting that the thing exists.
+The second predication derives its indexical reference from the first,
+so it need not itself be grounded.
+In this way, (5) does not assert there is a king of France,
+but only asks if the referent, de Gaulle, fits that symbolic
+(and therefore hypothetical), category of being king of France.
+In contrast, (6) first asserts the king of France has a referent before
+asking if it can be merged with the category of being de Gaulle.&lt;/p&gt;
+&lt;!-- This interpretation of sense and reference is thus called "descriptivism."
+
+Because descriptions inherently contain sense,
+they can solve problems where a sentence appears vacuous
+from a referent only analysis.
+For example a sentence of the form "x is y" would seem meaningless
+if x and y have no meaning other than referring to something,
+but if they carry sense,
+then the expression serves to --&gt;
+&lt;!-- identify
+two referents, where it may not have been a priori deducible
+that the two descriptions referred to the same thing. --&gt;
+&lt;!-- be03ccc4-3e45-11eb-8db2-d4619d1011e0 Donellan causal chain --&gt;
+&lt;!-- d4d7d8f2-40dc-11eb-8968-d4619d1011e0 predication and sense --&gt;
+&lt;!-- The problem of easy knowledge and private language --&gt;
+&lt;!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - --&gt;
+&lt;!-- 30162e7c-3f10-11eb-8db2-d4619d1011e0 overview --&gt;
+&lt;/section&gt;
+&lt;section id="knowledge-of-language"&gt;
+&lt;h2&gt;Knowledge of language&lt;/h2&gt;
+&lt;p&gt;While the above discussion
+suggests that expressions of language refer, at least transitively,
+to objects in the world,
+I have glossed over the difference between reference and meaning.
+Potential differences are sometimes illustrated
+by embedding propositions that look like they have the same meaning
+from a reference point of view
+into belief statements.
+Hence the classic example from Frege of 'the morning star' and 'the evening star'
+which both refer to Venus can be used to show the difference.&lt;/p&gt;
+&lt;ol class="arabic simple" start="7"&gt;
+&lt;li&gt;&lt;p&gt;I believe that the morning star is the morning star.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I believe that the morning star is the evening star.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If meaning were merely reference, (7) and (8) would have the same meaning.
+Meaning appears to have more to do with ideas in the mind
+than objects in the world.
+Given that only the individual has access to his own ideas,
+this led Locke to somewhat absurdly conclude that language must be private —
+absurd because the putative function of language is to communicate,
+and if meaning is necessarily private then nothing can be communicated &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id18" id="id17"&gt;9&lt;/a&gt;.&lt;/p&gt;
+&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id18"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id17"&gt;9&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Locke, John, and Frederick Ryland. Locke on Words: An Essay Concerning Human Understanding. W.S. Sonnenschein &amp;amp; Company, 1882.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;If what words or expressions refer to are ideas,
+then we may be able to make a helpful analogy
+between mental representations and indexical reference.
+One theory of associative memory is that the hippocampus
+organizes it by index.
+For example, the word 'cup' can be an index into associative memory
+which ties together perceptual fragments of actual experience
+(though they may be merged or idealized over time).
+In this way, the associations with the word 'cup' for an individual
+are indeed private.
+However, because 'cup' can also be processed symbolically,
+that means there are associations with other symbols
+and how those symbols interact via grammar.
+Grammar, unlike associative memory, is procedural
+and therefore processed in part in the cerebellum &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id20" id="id19"&gt;10&lt;/a&gt;.
+Because the &lt;em&gt;word&lt;/em&gt; 'cup' and its grammatical occurrences
+are exactly what is shared when people use language to communicate,
+this symbol-to-symbol structure is negotiated in public,
+regardless of the idiosyncratic associative contents of its indexical grounding.
+In other words,
+perhaps what is private is not language, the symbolic system,
+but merely associations in the pre-verbal processing of meanings.&lt;/p&gt;
+&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id20"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id19"&gt;10&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;See e.g. Adamaszek, Michael, and Kenneth C. Kirkby. “Cerebellum and Grammar Processing.” In The Linguistic Cerebellum, 81–105. Elsevier, 2016.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;Debate about whether language can be private
+does sometimes center on discussion of grammatical rules.
+For example, Saul Kripke and others point out
+that there can be many, perhaps even infinitely many rules that a given
+data set of usage seen at a given point in time is obeying,
+and therefore there is no way to distinguish
+whether you and I are following the same rules
+or whether our rules merely agree thus far,
+but are each, essentially, private and different.
+To be sure even within what is considered correct usage,
+there are idiosyncracies in production
+such that linguistic forensics can sometimes determine authorship
+just by statistical analysis.&lt;/p&gt;
+&lt;p&gt;In analogy to formal languages, many have sought
+to characterize human languages as infinite sets
+of utterances that would qualify as grammatically correct English.
+This analogy leads naturally to treating the problem
+as an inference puzzle to find the formal language
+that would generate the appropriate grammar.
+In contrast, Deacon's view is that language in the wild
+is not so much deemed correct or incorrect,
+but understandable or not,
+and that this depends exactly on whether the indexical references can be
+derived from immediate sources of joint attention, linguistic or non-linguistic.
+This would explain tolerance of "broken" English
+by foreigners and children, or the fragments characteristic of dialogue.
+Interestingly, this does seem to imply that language
+requires outside verification to judge,
+denying the ability of language to be private.&lt;/p&gt;
+&lt;p&gt;A related problem in language knowledge
+that Deacon specifically aimed to address
+was the Chomskian idea that the complexity of grammar
+is so high that humans must have innate grammatical structures
+that need only be parameterized to function.
+They seem to agree that the induction of a rule set
+is implausible,
+but Deacon's solution is to consider the complexity inherent in the
+symbolic mode of reference,
+and the constraints to be exactly what is imposed
+by generic learning constraints in the human brain.
+Thus, we incorporate desymbolization exactly to the degree needed
+to cope with our cognitive limitations,
+such as short term memory capacity.
+In other words, the forms of grammatical constraints human languages have
+are a direct result of our limited cognitive ability to deal with symbolic reference,
+and this is the source of apparent universality.
+The structure is the product of the process,
+not the constraint that has to be learned.&lt;/p&gt;
+&lt;p&gt;In "Language and Problems of Knowledge",
+Chomsky goes so far as to say that we must have innate concepts
+that need only be given labels [1].
+Otherwise, he says, we could not explain that children at
+their peak of language acquisition learn
+many words a day, sometimes after a single occurrence.
+But this is not so remarkable when we remember that concepts are not symbolic,
+they are merely indexical, and therefore do not require language.
+It's possible that when children are in the phase of
+acquiring lexical items at this rate,
+they have a backlog of concepts waiting for labels,
+not because those concepts were innate,
+but because they were acquired non-verbally before the rest of their language ability
+was ready to label them,
+and the phase corresponds to a sudden readiness to acquire words symbolically,
+because they have figured out how to do this mode of reference.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="summary"&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;Deacon's model of symbolic reference
+distinguishes a hierarchy of modes of reference,
+such that the first two are ubiquitous in learning and communication
+in all living systems,
+whereas the symbolic mode, building on the others, is unique to human language.
+These distinctions cast new light on some old problems.
+While they do not directly bear on differences between human languages,
+they clarify how certain word-like communications in other animals
+differ from full-fledged symbolic words, while retaining indexical properties,
+and how this limitation to their use in communication,
+likely imposes limitations in thought.&lt;/p&gt;
+&lt;p&gt;Conceiving of reference as a mode of processing
+rather than something inherent in sign vehicles themselves
+allows a shift in the objective of linguistic analyses
+from finding assertions about things in the world
+to maintaining shared focus on a small, but growing set of ideas
+as they are transformed and created through predications.
+This ability to focus on ideas via symbolic reference
+allows a kind of cognition that is not dependent on
+the proximity or reality of any object,
+and yet is always linked to a shared context.&lt;/p&gt;
+&lt;p&gt;The general constraints of memory are sufficient to
+require limitations on symbol-to-symbol relations
+that would be reflected as a kind of universal
+in any language.
+Therefore, according to Deacon,
+We need no special innate representation of grammar,
+but only a capacity to optionally use symbolic reference,
+in order to end up with language structures sharing basic properties.
+Non-human animal communication is not simplified symbolic language,
+but rather non-symbolic.&lt;/p&gt;
+&lt;!-- Grammar syntactic-semantic --&gt;
+&lt;!-- - - - - - - - - - - - - - - - - - - - - - - - - - - --&gt;
+&lt;!-- Error correction --&gt;
+&lt;!-- - - - - - - - - - - - - - - - - --&gt;
+&lt;!-- 33854d56-3f0e-11eb-8db2-d4619d1011e0 overview --&gt;
+&lt;!-- 7d350224-3f0f-11eb-8db2-d4619d1011e0 symbolic level --&gt;
+&lt;!-- 19ac3fd6-40e7-11eb-8968-d4619d1011e0
+A broken category that is not a error, is a metaphor. --&gt;
+&lt;!-- Metaphor --&gt;
+&lt;!-- - - - - - - - - --&gt;
+&lt;!-- Computational Cognitive Science --&gt;
+&lt;!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - --&gt;
+&lt;!-- 7fc79df2-40e1-11eb-8968-d4619d1011e0 neural nets --&gt;
+&lt;!-- bce30aec-40e5-11eb-8968-d4619d1011e0 Search space reduction --&gt;
+&lt;/section&gt;</description><guid>http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html</guid><pubDate>Sun, 28 Aug 2022 22:52:12 GMT</pubDate></item><item><title>I did it!</title><link>http://www.subsymbol.org/posts/i-did-it.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;section id="i-did-it"&gt;
 &lt;h2&gt;I did it!&lt;/h2&gt;
 &lt;p&gt;It's been a long time since I wrote anything here;
 everything I've written has been over at
@@ -16,7 +668,7 @@ That was easy enough to fix once I figured out the issue.&lt;/p&gt;
 &lt;p&gt;There are still some warnings and formatting changes that I need to clean up,
 but this seems good enough to at least try deploying!
 I'm eager to start writing here again.&lt;/p&gt;
-&lt;/section&gt;</description><category>blog</category><guid>http://www.subsymbol.org/posts/i-did-it.html</guid><pubDate>Wed, 14 Apr 2021 21:45:35 GMT</pubDate></item><item><title>Notes on Fragment Grammars</title><link>http://www.subsymbol.org/posts/notes-on-fragment-grammars.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;p&gt;Last week I read
+&lt;/section&gt;</description><category>blog</category><guid>http://www.subsymbol.org/posts/i-did-it.html</guid><pubDate>Wed, 14 Apr 2021 21:45:35 GMT</pubDate></item><item><title>Notes on Fragment Grammars</title><link>http://www.subsymbol.org/posts/notes-on-fragment-grammars.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;Last week I read
 &lt;a class="reference external" href="http://dspace.mit.edu/handle/1721.1/44963"&gt;Fragment Grammars: Exploring Computation and Reuse in Language&lt;/a&gt;
 by Timothy J. O'Donnell, Joshua B. Tenenbaum, and Noah D. Goodman.&lt;/p&gt;
 &lt;p&gt;As I mentioned in &lt;a class="reference external" href="http://subsymbol.org/journal/wednesday-february-25th-2015.html"&gt;my journal&lt;/a&gt;,
@@ -81,7 +733,7 @@ that is, that permutations don't effect the joint distributions,
 I hadn't thought about the way this frees us in our sampling order.
 If we wanted to add some kind of recency effects to our models, order would, of course, become important.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The real meat of the paper, though, is in describing&lt;/strong&gt; &lt;em&gt;Fragment Grammars&lt;/em&gt; &lt;strong&gt;as contrasted with&lt;/strong&gt; &lt;em&gt;Adaptor Grammars&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;This will likely be the topic of the next post.&lt;/p&gt;&lt;/div&gt;</description><category>adaptor grammars</category><category>blog</category><category>fragment grammars</category><category>grammar induction</category><category>NLP</category><category>PCFG</category><guid>http://www.subsymbol.org/posts/notes-on-fragment-grammars.html</guid><pubDate>Mon, 02 Mar 2015 22:00:26 GMT</pubDate></item><item><title>Two inotify Pitfalls</title><link>http://www.subsymbol.org/posts/two-inotify-pitfalls.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;p&gt;All I wanted was to track some files.&lt;/p&gt;
+&lt;p&gt;This will likely be the topic of the next post.&lt;/p&gt;</description><category>adaptor grammars</category><category>blog</category><category>fragment grammars</category><category>grammar induction</category><category>NLP</category><category>PCFG</category><guid>http://www.subsymbol.org/posts/notes-on-fragment-grammars.html</guid><pubDate>Mon, 02 Mar 2015 22:00:26 GMT</pubDate></item><item><title>Two inotify Pitfalls</title><link>http://www.subsymbol.org/posts/two-inotify-pitfalls.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;All I wanted was to track some files.&lt;/p&gt;
 &lt;p&gt;I have a set of directories populated with files that are hardlinked from other places.
 This serves as a kind of database for associating tags to files.
 I wanted to write a daemon that notifies changes to the files that might affect the consistency of the database.
@@ -280,7 +932,7 @@ The editor must have recognised that it can't move inodes willy-nilly when other
 This maps exactly to my original scenario, and therefore might make it safe for me to use.
 On the other hand, my whole confidence in the bahaviour is undermined, and I am reluctant to rely on it.&lt;/p&gt;
 &lt;/section&gt;
-&lt;/section&gt;&lt;/div&gt;</description><category>blog</category><category>emacs</category><category>filesystems</category><category>inotify</category><category>links</category><category>linux</category><category>vim</category><guid>http://www.subsymbol.org/posts/two-inotify-pitfalls.html</guid><pubDate>Thu, 31 Jul 2014 19:35:05 GMT</pubDate></item><item><title>Pólya's Urn</title><link>http://www.subsymbol.org/posts/polyas-urn.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;p&gt;Skip to interactive demo: &lt;a class="reference internal" href="http://www.subsymbol.org/posts/polyas-urn.html#try-it"&gt;Try it!&lt;/a&gt;&lt;/p&gt;
+&lt;/section&gt;</description><category>blog</category><category>emacs</category><category>filesystems</category><category>inotify</category><category>links</category><category>linux</category><category>vim</category><guid>http://www.subsymbol.org/posts/two-inotify-pitfalls.html</guid><pubDate>Thu, 31 Jul 2014 19:35:05 GMT</pubDate></item><item><title>Pólya's Urn</title><link>http://www.subsymbol.org/posts/polyas-urn.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;Skip to interactive demo: &lt;a class="reference internal" href="http://www.subsymbol.org/posts/polyas-urn.html#try-it"&gt;Try it!&lt;/a&gt;&lt;/p&gt;
 &lt;section id="balls-in-urns"&gt;
 &lt;h2&gt;Balls in Urns&lt;/h2&gt;
 &lt;p&gt;If you have studied probability, you are probably familiar with the canonical balls-in-an-urn allegory for understanding discrete probability distributions.
@@ -417,7 +1069,7 @@ n: &lt;b id="n-output"&gt;&lt;/b&gt;
 &lt;button id="rank"&gt;Order by rank.&lt;/button&gt;
 
 &lt;script src="http://www.subsymbol.org/scripts/polya.js"&gt;
-&lt;/script&gt;&lt;/section&gt;&lt;/div&gt;</description><category>blog</category><category>mathjax</category><category>probability</category><guid>http://www.subsymbol.org/posts/polyas-urn.html</guid><pubDate>Fri, 25 Jul 2014 17:24:37 GMT</pubDate></item><item><title>The Grammaticality Continuum</title><link>http://www.subsymbol.org/posts/the-grammaticality-continuum.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;p&gt;Yesterday I was thinking about implementing &lt;em&gt;Latent Dirichlet Allocation&lt;/em&gt; (LDA).
+&lt;/script&gt;&lt;/section&gt;</description><category>blog</category><category>mathjax</category><category>probability</category><guid>http://www.subsymbol.org/posts/polyas-urn.html</guid><pubDate>Fri, 25 Jul 2014 17:24:37 GMT</pubDate></item><item><title>The Grammaticality Continuum</title><link>http://www.subsymbol.org/posts/the-grammaticality-continuum.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;Yesterday I was thinking about implementing &lt;em&gt;Latent Dirichlet Allocation&lt;/em&gt; (LDA).
 LDA is used for &lt;em&gt;topic modelling&lt;/em&gt; — inducing a set of topics, such that a set of natural language documents can be represented by a mixture of those topics.
 This is then used to estimate document similarity, and related information retrieval tasks.&lt;/p&gt;
 &lt;p&gt;The first step in such a project is to &lt;em&gt;tokenise&lt;/em&gt; — to break up the text into words, removing attached punctuation, and regularising things like capitalisation.
@@ -453,7 +1105,7 @@ It may be useful to account for the distribution of topics when using them in LD
 Even just within semantics, a morpheme may carry more than one meaning that cannot be decomposed linguistically.
 For example, "uncle" is male, and while we could assign "uncle" a set of semantic features in a computer system in order to reason about its meaning, those features are only implicit in English.
 In &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Logogram"&gt;logographic writing systems&lt;/a&gt; this is all the more apparent.&lt;/p&gt;
-&lt;p&gt;This simultaneity of features in an apparently linear system is, to me, one of the most interesting aspects of language, and one of the reasons computational linguistics is difficult and rewarding.&lt;/p&gt;&lt;/div&gt;</description><category>blog</category><category>computational linguistics</category><category>lda</category><category>lsa</category><category>mathjax</category><guid>http://www.subsymbol.org/posts/the-grammaticality-continuum.html</guid><pubDate>Fri, 25 Jul 2014 15:20:07 GMT</pubDate></item><item><title>Productively Lost</title><link>http://www.subsymbol.org/posts/productively-lost.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;p&gt;Yesterday Hacker School's resident &lt;a class="reference external" href="http://blog.melchua.com/about/"&gt;Mel Chua&lt;/a&gt; shared her work on educational psychology theory for Hacker School &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/productively-lost.html#id2" id="id1"&gt;1&lt;/a&gt;.
+&lt;p&gt;This simultaneity of features in an apparently linear system is, to me, one of the most interesting aspects of language, and one of the reasons computational linguistics is difficult and rewarding.&lt;/p&gt;</description><category>blog</category><category>computational linguistics</category><category>lda</category><category>lsa</category><category>mathjax</category><guid>http://www.subsymbol.org/posts/the-grammaticality-continuum.html</guid><pubDate>Fri, 25 Jul 2014 15:20:07 GMT</pubDate></item><item><title>Productively Lost</title><link>http://www.subsymbol.org/posts/productively-lost.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;Yesterday Hacker School's resident &lt;a class="reference external" href="http://blog.melchua.com/about/"&gt;Mel Chua&lt;/a&gt; shared her work on educational psychology theory for Hacker School &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/productively-lost.html#id2" id="id1"&gt;1&lt;/a&gt;.
 I had seen an earlier iteration of this talk from PyCon video archives, and it was useful to me then.
 However, this time I had more relevant experience with which to understand it.
 Hacker School is the first time I have had such a fluid and indeterminate educational experience.
@@ -494,7 +1146,7 @@ The increased autonomy and competence I am developing here feels like a new free
 &lt;dt class="label" id="id2"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/productively-lost.html#id1"&gt;1&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
 &lt;dd&gt;&lt;p&gt;Slides from last year's version here: &lt;a class="reference external" href="http://blog.melchua.com/2013/10/07/edupsych-for-hacker-schoolers-v-1-1-presentation-slides/"&gt;http://blog.melchua.com/2013/10/07/edupsych-for-hacker-schoolers-v-1-1-presentation-slides/&lt;/a&gt;&lt;/p&gt;
 &lt;/dd&gt;
-&lt;/dl&gt;&lt;/div&gt;</description><category>blog</category><category>courage</category><category>education</category><category>hacker school</category><category>Mel Chua</category><category>psychology</category><category>vulnerability</category><guid>http://www.subsymbol.org/posts/productively-lost.html</guid><pubDate>Wed, 23 Jul 2014 15:21:37 GMT</pubDate></item><item><title>Addresses and Contents</title><link>http://www.subsymbol.org/posts/addresses-and-contents.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;section id="what-are-we-naming"&gt;
+&lt;/dl&gt;</description><category>blog</category><category>courage</category><category>education</category><category>hacker school</category><category>Mel Chua</category><category>psychology</category><category>vulnerability</category><guid>http://www.subsymbol.org/posts/productively-lost.html</guid><pubDate>Wed, 23 Jul 2014 15:21:37 GMT</pubDate></item><item><title>Addresses and Contents</title><link>http://www.subsymbol.org/posts/addresses-and-contents.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;section id="what-are-we-naming"&gt;
 &lt;h2&gt;What are we naming?&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The name of the song is called "Haddocks' Eyes."'&lt;/p&gt;
@@ -541,7 +1193,7 @@ Both addresses and contents should be eligible for tagging.
 Tagging the box will use the inode.
 Tagging the contents will use the hash.&lt;/p&gt;
 &lt;!-- The fact that we make extensive use of links in our systems attests the fact that hierarchies are not a great model for naming things. --&gt;
-&lt;/section&gt;&lt;/div&gt;</description><category>blog</category><category>cs</category><category>linguistics</category><category>names</category><category>storage</category><guid>http://www.subsymbol.org/posts/addresses-and-contents.html</guid><pubDate>Wed, 09 Jul 2014 21:42:03 GMT</pubDate></item><item><title>How I transformed a Blogger blog to a Nikola two-blog website</title><link>http://www.subsymbol.org/posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;p&gt;In the last post I described why I wanted to move my blog, and what went into my choices.
+&lt;/section&gt;</description><category>blog</category><category>cs</category><category>linguistics</category><category>names</category><category>storage</category><guid>http://www.subsymbol.org/posts/addresses-and-contents.html</guid><pubDate>Wed, 09 Jul 2014 21:42:03 GMT</pubDate></item><item><title>How I transformed a Blogger blog to a Nikola two-blog website</title><link>http://www.subsymbol.org/posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;In the last post I described why I wanted to move my blog, and what went into my choices.
 My goal in exporting my site from Blogger to Nikola was to separate my content into two separate blogs on a single site:
 one which is the primary blog, and the other which resides in the background.
 I wanted them to be archived separately.
@@ -661,7 +1313,7 @@ It uses the backported HTML from Blogger.
 In order to inject the old rst files into Nikola, however, would require manually editing them all to include the correct headers and timestamps.
 This seems like a lot of work, and I'm not willing to do it right now.&lt;/p&gt;
 &lt;/section&gt;
-&lt;/section&gt;&lt;/div&gt;</description><category>blog</category><category>blogger</category><category>blogging</category><category>nikola</category><guid>http://www.subsymbol.org/posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html</guid><pubDate>Tue, 08 Jul 2014 16:59:38 GMT</pubDate></item><item><title>Moving my site off of Blogger</title><link>http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div&gt;&lt;p&gt;I was having two problems with the setup of this website.
+&lt;/section&gt;</description><category>blog</category><category>blogger</category><category>blogging</category><category>nikola</category><guid>http://www.subsymbol.org/posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html</guid><pubDate>Tue, 08 Jul 2014 16:59:38 GMT</pubDate></item><item><title>Moving my site off of Blogger</title><link>http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;I was having two problems with the setup of this website.
 First, I wanted to factor out &lt;a class="reference external" href="http://www.subsymbol.org/journal/"&gt;the experiment in vulnerability and transparency that I have been doing by keep a log of my daily goals, progress, and insights at Hacker School&lt;/a&gt;.
 I like the experiment, but I wanted it to be separate from &lt;a class="reference external" href="http://www.subsymbol.org/blog/"&gt;articles I write more deliberately&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The second problem was that I wanted to migrate from Blogger.&lt;/p&gt;
@@ -717,4 +1369,4 @@ which was recommended by &lt;a class="reference external" href="https://github.c
 &lt;dd&gt;&lt;p&gt;I didn't want the script to deploy it, because I didn't want to trust the script with my Google authentication, so I took that part out.  I also changed some heading styles that Blogger doesn't render well.&lt;/p&gt;
 &lt;/dd&gt;
 &lt;/dl&gt;
-&lt;/section&gt;&lt;/div&gt;</description><category>blog</category><category>blogger</category><category>blogging</category><category>nikola</category><guid>http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html</guid><pubDate>Tue, 08 Jul 2014 16:48:18 GMT</pubDate></item><item><title>Literally ironic semantic shifts are actually very typical</title><link>http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;div class="document" id="literally-ironic-semantic-shifts-are-ironically-very-typical"&gt;   &lt;p&gt;I recently saw a &lt;a class="reference external" href="http://www.npr.org/2014/04/23/306238447/new-browser-plug-in-would-literally-annihilate-this-headline"&gt;story about a whimsical browser plug-in written by Mike Lazer-Walker&lt;/a&gt;(incidentally, a &lt;a class="reference external" href="https://www.hackerschool.com/blog/30-words-are-hard"&gt;Hacker Schooler&lt;/a&gt;), that substitutes all occurrences of the word 'literally' with the word 'figuratively'. I posted it with (almost) no comment on Facebook, to which the only response was from a Waterloo friend, who actually found the substitution annoying, because, he argued, 'figuratively' is not what is usually meant.&lt;/p&gt;&lt;p&gt;Of course, he is right about that. 'Literally', like 'very', 'really', 'truly', and in some cases 'actually' &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html#id3" id="id1"&gt;[1]&lt;/a&gt;, share a common semantic shift. They all originally meant something like 'do not take the following as exaggeration or metaphor' (insofar as any language use can be non-metaphorical), and have all become intensifiers. This is, of course, somewhat ironic (in the situational sense of 'ironic', which is neither the literary sense, nor the emerging sense of 'not what I wanted' &lt;a class="footnote-reference" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html#id4" id="id2"&gt;[2]&lt;/a&gt;).&lt;/p&gt;&lt;p&gt;I don't cringe when I hear 'very', except insofar as it is often vacuous. That I do cringe on hearing 'literally' used as an intensifier is probably because, unlike 'very', the current use which is very &lt;a class="reference external" href="http://www.etymonline.com/index.php?term=very"&gt;old&lt;/a&gt;, this meaning of 'literally' emerged in my adulthood, and so it sounds unnatural to me. When wearing my linguist hat, I like to embrace diversity and change, rather than taking the stance that my dialect is 'correct'. The strongest stance I can fairly take is that in &lt;em&gt;my&lt;/em&gt; dialect, the new meaning is unacceptable, or that using this meaning has certain social implications about the speaker.&lt;/p&gt;&lt;p&gt;But rather than taking the plug-in to be suggesting an actual solution, I take it in the spirit of Mark Twain's advice: 'Substitute 'damn' every time you're inclined to write 'very;' your editor will delete it and the writing will be just as it should be.' Once the reader or writer sees 'figuratively', the appropriate transformation should be more readily obvious.&lt;/p&gt;&lt;p&gt;More likely, it is simply an elaborate joke made by a clever person while exploring how to write plug-ins. In any case, I liked the idea, both for its wit, and for the other fun linguistics ideas it points to, including, for example, &lt;a class="reference external" href="http://www.gizoogle.net/tranzizzle.php?search=www.subsymbol.org&amp;amp;se=Go+Git+Dis+Shiznit"&gt;tranzizzle&lt;/a&gt; (hat tip to &lt;a class="reference external" href="http://www.gizoogle.net/tranzizzle.php?search=www.cs.cmu.edu%2F~nasmith&amp;amp;se=Go+Git+Dis+Shiznit"&gt;Noah Smizzle&lt;/a&gt;).&lt;/p&gt;&lt;p&gt;The question I am left with is, given this development, what word do I use &lt;em&gt;now&lt;/em&gt; if I want the literal meaning of literal?&lt;/p&gt;&lt;table class="docutils footnote" frame="void" id="id3" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;'Actually' is often used to make a contrast.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="docutils footnote" frame="void" id="id4" rules="none"&gt;&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;&lt;tbody valign="top"&gt;&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html#id2"&gt;[2]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;See this comic: &lt;a class="reference external" href="http://theoatmeal.com/comics/irony"&gt;http://theoatmeal.com/comics/irony&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;</description><category>blog</category><category>linguistics</category><guid>http://www.subsymbol.org/posts/201404literally-ironic-semantic-shifts-are.html</guid><pubDate>Sun, 27 Apr 2014 04:06:00 GMT</pubDate></item></channel></rss>
+&lt;/section&gt;</description><category>blog</category><category>blogger</category><category>blogging</category><category>nikola</category><guid>http://www.subsymbol.org/posts/moving-my-site-off-of-blogger.html</guid><pubDate>Tue, 08 Jul 2014 16:48:18 GMT</pubDate></item></channel></rss>
