@@ -22,7 +22,7 @@ My primary research interest is in the properties that emerge from the way infor
 
 I spent the summer of 2014 improving my coding skills at `Hacker School <http://www.hackerschool.com>`_.
 
-In 2022 I'm returning to thinking about information theory and adjecaent subjects after spending the past five years more focused on writing about metabolism, diet, and evolution.
+In 2022 I'm returning to thinking about information theory and adjacent subjects after spending the past five years more focused on writing about metabolism, diet, and evolution.
 
 
 See also:
