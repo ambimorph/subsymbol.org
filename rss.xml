@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>subsymbol.org</title><link>http://www.subsymbol.org/</link><description></description><atom:link href="http://www.subsymbol.org/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:amber@cs.toronto.edu"&gt;L. Amber Wilcox-O'Hearn&lt;/a&gt; </copyright><lastBuildDate>Sun, 28 Aug 2022 22:55:02 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Some Philosophical Implications of Deacon's Model of Symbolic Reference</title><link>http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;&lt;em&gt;This is an attempt from a few years ago to assemble some thoughts on&lt;/em&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>subsymbol.org</title><link>http://www.subsymbol.org/</link><description></description><atom:link href="http://www.subsymbol.org/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2022 &lt;a href="mailto:amber@cs.toronto.edu"&gt;L. Amber Wilcox-O'Hearn&lt;/a&gt; </copyright><lastBuildDate>Tue, 30 Aug 2022 18:43:09 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Some Philosophical Implications of Deacon's Model of Symbolic Reference</title><link>http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;p&gt;&lt;em&gt;This is an attempt from a few years ago to assemble some thoughts on&lt;/em&gt;
 &lt;em&gt;Terrence Deacon's&lt;/em&gt; The Symbolic Species.
 &lt;em&gt;It is presented here as written then with a few minor edits.&lt;/em&gt;&lt;/p&gt;
 &lt;!-- Explain the hierarchy itself --&gt;
 &lt;!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - --&gt;
+&lt;section id="a-hierarchy-of-referential-processes"&gt;
+&lt;h2&gt;A hierarchy of referential processes&lt;/h2&gt;
 &lt;p&gt;In his book &lt;em&gt;The Symbolic Species&lt;/em&gt;,
 Terrence Deacon sketches a theory of human language
 aiming to explain how it is qualitatively different
 from other forms of animal communication,
-and not just a more advanced form of the same kind of communication &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id2" id="id1"&gt;1&lt;/a&gt;.
+and not just a more advanced form of the same kind of communication &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id11" id="id1"&gt;1&lt;/a&gt;.
 I will summarize his model and attempt to describe how it
 leads to particular stances on
 a selection of problems in the philosophy of language
 and of linguistics.&lt;/p&gt;
-&lt;dl class="footnote brackets"&gt;
-&lt;dt class="label" id="id2"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id1"&gt;1&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;Deacon, Terrence William and International Society for Science and Religion. The Symbolic Species: The Co-Evolution of Language and the Brain. Cambridge: International Society for Science and Religion, 2007.&lt;/p&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
 &lt;p&gt;Deacon argues that different modes of reference entail properties
 that constrain or allow different degrees of expressiveness, learnability,
 and other formal characteristics affecting how they can be used.
@@ -33,6 +30,9 @@ properties of signs themselves,
 but rather modes of cognitive processing.
 And argues that symbolic processing cannot occur
 without being simultaneous iconic and indexical processing.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="deacon-s-terminology-in-brief"&gt;
+&lt;h2&gt;Deacon's terminology in brief&lt;/h2&gt;
 &lt;p&gt;As these terms have all been used by other philosophers and linguists
 in different ways, we must head off confusion.
 The word 'symbol' is often used to refer to a mark,
@@ -98,7 +98,7 @@ For example, vervet alarm calls differentiate predator types.
 Likewise, in human to animal communication,
 a dog can be taught associations between spoken words
 and behaviours such as sitting or events such as feeding.&lt;/p&gt;
-&lt;p&gt;The mode of reference that sets human language apart is what Deacon terms symbolic.
+&lt;p&gt;The mode of reference that sets human language apart is what Deacon terms &lt;em&gt;symbolic&lt;/em&gt;
 Symbolic reference depends on a sign vehicle already having
 been processed indexically.
 It then entails further indexical reference among other symbols in a set.
@@ -121,12 +121,7 @@ is a long-standing question,
 and is the motivation for cognitive hypotheses
 of innateness, and even of the hard-coded grammar modules
 proposed by Chomsky that lack only
-a small set of parameters by which to fit the native language &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id4" id="id3"&gt;2&lt;/a&gt;.&lt;/p&gt;
-&lt;dl class="footnote brackets"&gt;
-&lt;dt class="label" id="id4"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id3"&gt;2&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;Chomsky, Noam. “Language and Problems of Knowledge.” Teorema: Revista Internacional de Filosofía 16, no. 2 (1997): 5–33.&lt;/p&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
+a small set of parameters by which to fit the native language &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id12" id="id2"&gt;2&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In AI terms, Chomsky's view says that the language learning problem requires high bias
 in the bias-variance tradeoff of learning models.
 That is, most of the information is already in the model.
@@ -202,6 +197,7 @@ how this symbolic distinction operates.&lt;/p&gt;
 &lt;!-- c6bb6fa8-40e2-11eb-8968-d4619d1011e0 structure is not the constraint, but the product --&gt;
 &lt;!-- Sapir Whorf --&gt;
 &lt;!-- - - - - - - - - - - - --&gt;
+&lt;/section&gt;
 &lt;section id="linguistic-relativism"&gt;
 &lt;h2&gt;Linguistic relativism&lt;/h2&gt;
 &lt;p&gt;Deacon reasons that since
@@ -212,7 +208,7 @@ in turn affects the way we think,
 making it different from other kinds of thought
 based on other forms of reference.
 Because this mode is almost entirely restricted to humans,
-this could be viewed as a species version of strong linguistic relativism &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id6" id="id5"&gt;3&lt;/a&gt;.&lt;/p&gt;
+this could be viewed as a species version of strong linguistic relativism &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id13" id="id3"&gt;3&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The relativistic idea that there is a relationship between
 the particular language one speaks and the form of one's thoughts
 is usually attributed to Sapir and Whorf.
@@ -232,18 +228,6 @@ expressibility in mathematically provable ways.
 Not having symbolic reference at all
 seems to preclude many kinds of thought,
 particularly thought involving modal and logical operators or other counterfactuals.&lt;/p&gt;
-&lt;dl class="footnote brackets"&gt;
-&lt;dt class="label" id="id6"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id5"&gt;3&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;Deacon spends many pages describing a set of experiments in which
-the researchers successfully (though with difficulty)
-teach chimps to make a modest number of symbolic references.
-This is important for two reasons: first it shows that
-symbolic reference is a process, not an innate brain structure,
-that you either have or you don't,
-and second it shows that nonetheless it is much easier for humans
-to make that particular leap, so there must be an innate &lt;em&gt;facility&lt;/em&gt;.&lt;/p&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
 &lt;!-- 3db9ece6-458f-11eb-9ff5-d4619d1011e0 examples of things animals can't think due to grammar --&gt;
 &lt;p&gt;If we think about animals in close human contact, for example dogs,
 it's clear that we can teach some of them to "understand" words,
@@ -301,15 +285,10 @@ the canonical example being the existence of many words for snow in the Arctic �
 Whorf's original descriptions focused on what he deemed grammatical differences.
 That is, he noted that in order to communicate
 we have to agree on a system of organizing our perceptions,
-and asserts it is this organization which then shapes our thought &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id8" id="id7"&gt;4&lt;/a&gt;.
+and asserts it is this organization which then shapes our thought &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id14" id="id4"&gt;4&lt;/a&gt;.
 Specifically, he wrote about classifications that would either be
 explicitly marked grammatically, for example with grammatical morphemes,
 or implicitly through distribution patterns.&lt;/p&gt;
-&lt;dl class="footnote brackets"&gt;
-&lt;dt class="label" id="id8"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id7"&gt;4&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;Scholz, Barbara C., Francis Jeffry Pelletier, and Geoffrey K. Pullum. “Philosophy of Linguistics.” In The Stanford Encyclopedia of Philosophy, edited by Edward N. Zalta, Summer 2020. Metaphysics Research Lab, Stanford University, 2020.&lt;/p&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
 &lt;!-- a428029e-458d-11eb-9ff5-d4619d1011e0 experiences, categories don't require language --&gt;
 &lt;p&gt;Arguably, from a strictly lexical perspective,
 we should expect other animals to be able to associate words with
@@ -323,17 +302,12 @@ and is also demonstrably teachable to some animals as in our dog example.&lt;/p&
 &lt;p&gt;What is linguistic and symbolic is using categories to
 constrain grammatical constructions.
 For this purpose categories can be based on semantic properties grounded in experience
-the way 'a cup of ___' imposes selectional restrictions &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id10" id="id9"&gt;5&lt;/a&gt;,
+the way 'a cup of ___' imposes selectional restrictions &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id15" id="id5"&gt;5&lt;/a&gt;,
 but they can also be completely arbitrary such as grammatical gender.
 Having the ability to organize categories around grammatical functions
 is critical for reducing the search space of relations between words.
 It's also essential for the recursive ability to
 carry forward reference through a chain of substitution.&lt;/p&gt;
-&lt;dl class="footnote brackets"&gt;
-&lt;dt class="label" id="id10"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id9"&gt;5&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;xxx selectional restrictions&lt;/p&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
 &lt;!-- differentiating into language requires shaping into a form
 choosing features required by it --&gt;
 &lt;!-- Thinking symbolically is a result of internalizing symbolic communication,
@@ -346,7 +320,7 @@ therefore animals cannnot think symbolically at all. --&gt;
 &lt;section id="sense-and-reference"&gt;
 &lt;h2&gt;Sense and reference&lt;/h2&gt;
 &lt;p&gt;Deacon hypothesizes that the predicate-argument structure of linguistic communication
-results from the dependence of symbolic reference on indexical reference &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id12" id="id11"&gt;6&lt;/a&gt;.
+results from the dependence of symbolic reference on indexical reference &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id16" id="id6"&gt;6&lt;/a&gt;.
 The linguistic function of a predicate is to categorize its argument.
 In this sense, the argument is what the discourse is "about",
 and therefore its reference requires a kind of concreteness of instantiation,
@@ -362,11 +336,6 @@ But because indexical reference has transitivity,
 this proximity requirement for
 words that refer indexically can be linked in a chain.
 To see this, consider sentences (1) - (4).&lt;/p&gt;
-&lt;dl class="footnote brackets"&gt;
-&lt;dt class="label" id="id12"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id11"&gt;6&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;Deacon, Terrence W. “Beyond the Symbolic Species.” In The Symbolic Species Evolved, edited by Theresa Schilhab, Frederik Stjernfelt, and Terrence Deacon, 6:9–38. Biosemiotics. Dordrecht: Springer Netherlands, 2012.&lt;/p&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;&lt;p&gt;The girl sat in the chair.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;She was too heavy.&lt;/p&gt;&lt;/li&gt;
@@ -389,7 +358,7 @@ elements that directly refer to objects in the world.&lt;/p&gt;
 interpretations of what it means for an expression to refer to objects
 and how that reference happens.
 Gottlob Frege distinguished between sense and reference,
-saying "We let a &lt;em&gt;sign&lt;/em&gt; &lt;em&gt;express&lt;/em&gt; its sense and &lt;em&gt;designate&lt;/em&gt; its nominatum." &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id14" id="id13"&gt;7&lt;/a&gt;.
+saying "We let a &lt;em&gt;sign&lt;/em&gt; &lt;em&gt;express&lt;/em&gt; its sense and &lt;em&gt;designate&lt;/em&gt; its nominatum." &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id17" id="id7"&gt;7&lt;/a&gt;.
 In other words, in this view,
 sense is a set of properties that an expression describes,
 and that description, in addition to corresponding to the properties,
@@ -402,13 +371,8 @@ He also pointed out that an expression
 can have a sense and yet not have a nominatum;
 not refer to anything existing in the world,
 if there is nothing having the properties described.&lt;/p&gt;
-&lt;dl class="footnote brackets"&gt;
-&lt;dt class="label" id="id14"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id13"&gt;7&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;Frege, G.: 1892, ‘On Sense and Nominatum’, in Martinich, Aloysius, ed. The Philosophy of Language. New York, N.Y: Oxford University Press, 2010.&lt;/p&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
 &lt;p&gt;A distinction was subsequently proposed by Keith Donellan
-about definite descriptions &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id16" id="id15"&gt;8&lt;/a&gt;.
+about definite descriptions &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id18" id="id8"&gt;8&lt;/a&gt;.
 He suggested that when a definite description narrows a subject
 to something specific that we don't know the referent for,
 it merely attributes, but doesn't refer.
@@ -426,11 +390,6 @@ whereas in the "referring" case,
 subsequent attributions are meant to apply to the person we believed sat in the chair,
 even if it turns out that they didn't sit in the chair after all,
 or if there is contention over that point.&lt;/p&gt;
-&lt;dl class="footnote brackets"&gt;
-&lt;dt class="label" id="id16"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id15"&gt;8&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;Donnellan, Keith S. “Reference and Definite Descriptions.” The Philosophical Review 75, no. 3 (July 1966): 281.&lt;/p&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
 &lt;p&gt;In both cases there is an act of predication,
 so Deacon's hypothesis would require an indexical reference in the phrase either way.
 However, I don't think his hypothesis requires that the chain of reference
@@ -506,12 +465,7 @@ than objects in the world.
 Given that only the individual has access to his own ideas,
 this led Locke to somewhat absurdly conclude that language must be private —
 absurd because the putative function of language is to communicate,
-and if meaning is necessarily private then nothing can be communicated &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id18" id="id17"&gt;9&lt;/a&gt;.&lt;/p&gt;
-&lt;dl class="footnote brackets"&gt;
-&lt;dt class="label" id="id18"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id17"&gt;9&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;Locke, John, and Frederick Ryland. Locke on Words: An Essay Concerning Human Understanding. W.S. Sonnenschein &amp;amp; Company, 1882.&lt;/p&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
+and if meaning is necessarily private then nothing can be communicated &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id19" id="id9"&gt;9&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If what words or expressions refer to are ideas,
 then we may be able to make a helpful analogy
 between mental representations and indexical reference.
@@ -526,7 +480,7 @@ However, because 'cup' can also be processed symbolically,
 that means there are associations with other symbols
 and how those symbols interact via grammar.
 Grammar, unlike associative memory, is procedural
-and therefore processed in part in the cerebellum &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id20" id="id19"&gt;10&lt;/a&gt;.
+and therefore processed in part in the cerebellum &lt;a class="footnote-reference brackets" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id20" id="id10"&gt;10&lt;/a&gt;.
 Because the &lt;em&gt;word&lt;/em&gt; 'cup' and its grammatical occurrences
 are exactly what is shared when people use language to communicate,
 this symbol-to-symbol structure is negotiated in public,
@@ -534,11 +488,6 @@ regardless of the idiosyncratic associative contents of its indexical grounding.
 In other words,
 perhaps what is private is not language, the symbolic system,
 but merely associations in the pre-verbal processing of meanings.&lt;/p&gt;
-&lt;dl class="footnote brackets"&gt;
-&lt;dt class="label" id="id20"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id19"&gt;10&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;See e.g. Adamaszek, Michael, and Kenneth C. Kirkby. “Cerebellum and Grammar Processing.” In The Linguistic Cerebellum, 81–105. Elsevier, 2016.&lt;/p&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
 &lt;p&gt;Debate about whether language can be private
 does sometimes center on discussion of grammatical rules.
 For example, Saul Kripke and others point out
@@ -651,6 +600,45 @@ A broken category that is not a error, is a metaphor. --&gt;
 &lt;!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - --&gt;
 &lt;!-- 7fc79df2-40e1-11eb-8968-d4619d1011e0 neural nets --&gt;
 &lt;!-- bce30aec-40e5-11eb-8968-d4619d1011e0 Search space reduction --&gt;
+&lt;dl class="footnote brackets"&gt;
+&lt;dt class="label" id="id11"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id1"&gt;1&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Deacon, Terrence William and International Society for Science and Religion. The Symbolic Species: The Co-Evolution of Language and the Brain. Cambridge: International Society for Science and Religion, 2007.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="id12"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id2"&gt;2&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Chomsky, Noam. “Language and Problems of Knowledge.” Teorema: Revista Internacional de Filosofía 16, no. 2 (1997): 5–33.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="id13"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id3"&gt;3&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Deacon spends many pages describing a set of experiments in which
+the researchers successfully (though with difficulty)
+teach chimps to make a modest number of symbolic references.
+This is important for two reasons: first it shows that
+symbolic reference is a process, not an innate brain structure,
+that you either have or you don't,
+and second it shows that nonetheless it is much easier for humans
+to make that particular leap, so there must be an innate &lt;em&gt;facility&lt;/em&gt;.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="id14"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id4"&gt;4&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Scholz, Barbara C., Francis Jeffry Pelletier, and Geoffrey K. Pullum. “Philosophy of Linguistics.” In The Stanford Encyclopedia of Philosophy, edited by Edward N. Zalta, Summer 2020. Metaphysics Research Lab, Stanford University, 2020.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="id15"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id5"&gt;5&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;selectional restrictions: &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Selection_(linguistics"&gt;https://en.wikipedia.org/wiki/Selection_(linguistics&lt;/a&gt;)&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="id16"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id6"&gt;6&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Deacon, Terrence W. “Beyond the Symbolic Species.” In The Symbolic Species Evolved, edited by Theresa Schilhab, Frederik Stjernfelt, and Terrence Deacon, 6:9–38. Biosemiotics. Dordrecht: Springer Netherlands, 2012.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="id17"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id7"&gt;7&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Frege, G.: 1892, ‘On Sense and Nominatum’, in Martinich, Aloysius, ed. The Philosophy of Language. New York, N.Y: Oxford University Press, 2010.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="id18"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id8"&gt;8&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Donnellan, Keith S. “Reference and Definite Descriptions.” The Philosophical Review 75, no. 3 (July 1966): 281.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="id19"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id9"&gt;9&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Locke, John, and Frederick Ryland. Locke on Words: An Essay Concerning Human Understanding. W.S. Sonnenschein &amp;amp; Company, 1882.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt class="label" id="id20"&gt;&lt;span class="brackets"&gt;&lt;a class="fn-backref" href="http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id10"&gt;10&lt;/a&gt;&lt;/span&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;See e.g. Adamaszek, Michael, and Kenneth C. Kirkby. “Cerebellum and Grammar Processing.” In The Linguistic Cerebellum, 81–105. Elsevier, 2016.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
 &lt;/section&gt;</description><guid>http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html</guid><pubDate>Sun, 28 Aug 2022 22:52:12 GMT</pubDate></item><item><title>I did it!</title><link>http://www.subsymbol.org/posts/i-did-it.html</link><dc:creator>L. Amber Wilcox-O'Hearn</dc:creator><description>&lt;section id="i-did-it"&gt;
 &lt;h2&gt;I did it!&lt;/h2&gt;
 &lt;p&gt;It's been a long time since I wrote anything here;
