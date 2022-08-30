@@ -11,8 +11,12 @@
 *Terrence Deacon's* The Symbolic Species.
 *It is presented here as written then with a few minor edits.*
 
+
 .. Explain the hierarchy itself
 .. ----------------------------
+
+A hierarchy of referential processes
+------------------------------------
 
 In his book *The Symbolic Species*,
 Terrence Deacon sketches a theory of human language
@@ -23,8 +27,6 @@ I will summarize his model and attempt to describe how it
 leads to particular stances on
 a selection of problems in the philosophy of language
 and of linguistics.
-
-.. [#] Deacon, Terrence William and International Society for Science and Religion. The Symbolic Species: The Co-Evolution of Language and the Brain. Cambridge: International Society for Science and Religion, 2007.
 
 Deacon argues that different modes of reference entail properties
 that constrain or allow different degrees of expressiveness, learnability, 
@@ -42,6 +44,9 @@ properties of signs themselves,
 but rather modes of cognitive processing.
 And argues that symbolic processing cannot occur
 without being simultaneous iconic and indexical processing.
+
+Deacon's terminology in brief
+-----------------------------
 
 As these terms have all been used by other philosophers and linguists
 in different ways, we must head off confusion.
@@ -116,7 +121,7 @@ Likewise, in human to animal communication,
 a dog can be taught associations between spoken words
 and behaviours such as sitting or events such as feeding.
 
-The mode of reference that sets human language apart is what Deacon terms symbolic.
+The mode of reference that sets human language apart is what Deacon terms *symbolic*
 Symbolic reference depends on a sign vehicle already having
 been processed indexically.
 It then entails further indexical reference among other symbols in a set.
@@ -141,8 +146,6 @@ and is the motivation for cognitive hypotheses
 of innateness, and even of the hard-coded grammar modules
 proposed by Chomsky that lack only
 a small set of parameters by which to fit the native language [#]_.
-
-.. [#] Chomsky, Noam. “Language and Problems of Knowledge.” Teorema: Revista Internacional de Filosofía 16, no. 2 (1997): 5–33.
 
 In AI terms, Chomsky's view says that the language learning problem requires high bias
 in the bias-variance tradeoff of learning models.
@@ -268,15 +271,6 @@ Not having symbolic reference at all
 seems to preclude many kinds of thought,
 particularly thought involving modal and logical operators or other counterfactuals.
 
-.. [#] Deacon spends many pages describing a set of experiments in which
-       the researchers successfully (though with difficulty)
-       teach chimps to make a modest number of symbolic references.
-       This is important for two reasons: first it shows that 
-       symbolic reference is a process, not an innate brain structure,
-       that you either have or you don't,
-       and second it shows that nonetheless it is much easier for humans
-       to make that particular leap, so there must be an innate *facility*.
-
 .. 3db9ece6-458f-11eb-9ff5-d4619d1011e0 examples of things animals can't think due to grammar
 
 If we think about animals in close human contact, for example dogs,
@@ -345,8 +339,6 @@ Specifically, he wrote about classifications that would either be
 explicitly marked grammatically, for example with grammatical morphemes,
 or implicitly through distribution patterns.
 
-.. [#] Scholz, Barbara C., Francis Jeffry Pelletier, and Geoffrey K. Pullum. “Philosophy of Linguistics.” In The Stanford Encyclopedia of Philosophy, edited by Edward N. Zalta, Summer 2020. Metaphysics Research Lab, Stanford University, 2020. 
-
 .. a428029e-458d-11eb-9ff5-d4619d1011e0 experiences, categories don't require language
 
 Arguably, from a strictly lexical perspective,
@@ -368,8 +360,6 @@ Having the ability to organize categories around grammatical functions
 is critical for reducing the search space of relations between words.
 It's also essential for the recursive ability to
 carry forward reference through a chain of substitution.
-
-.. [#] xxx selectional restrictions
 
 .. differentiating into language requires shaping into a form
    choosing features required by it
@@ -402,8 +392,6 @@ But because indexical reference has transitivity,
 this proximity requirement for
 words that refer indexically can be linked in a chain.
 To see this, consider sentences (1) - (4).
-
-.. [#] Deacon, Terrence W. “Beyond the Symbolic Species.” In The Symbolic Species Evolved, edited by Theresa Schilhab, Frederik Stjernfelt, and Terrence Deacon, 6:9–38. Biosemiotics. Dordrecht: Springer Netherlands, 2012. 
 
 (1) The girl sat in the chair.
 (2) She was too heavy.
@@ -442,8 +430,6 @@ can have a sense and yet not have a nominatum;
 not refer to anything existing in the world,
 if there is nothing having the properties described.
 
-.. [#] Frege, G.: 1892, ‘On Sense and Nominatum’, in Martinich, Aloysius, ed. The Philosophy of Language. New York, N.Y: Oxford University Press, 2010.
-
 A distinction was subsequently proposed by Keith Donellan
 about definite descriptions [#]_.
 He suggested that when a definite description narrows a subject
@@ -463,8 +449,6 @@ whereas in the "referring" case,
 subsequent attributions are meant to apply to the person we believed sat in the chair,
 even if it turns out that they didn't sit in the chair after all,
 or if there is contention over that point.
-
-.. [#] Donnellan, Keith S. “Reference and Definite Descriptions.” The Philosophical Review 75, no. 3 (July 1966): 281. 
 
 In both cases there is an act of predication,
 so Deacon's hypothesis would require an indexical reference in the phrase either way.
@@ -554,8 +538,6 @@ this led Locke to somewhat absurdly conclude that language must be private —
 absurd because the putative function of language is to communicate,
 and if meaning is necessarily private then nothing can be communicated [#]_.
 
-.. [#] Locke, John, and Frederick Ryland. Locke on Words: An Essay Concerning Human Understanding. W.S. Sonnenschein & Company, 1882.
-
 If what words or expressions refer to are ideas,
 then we may be able to make a helpful analogy
 between mental representations and indexical reference.
@@ -578,8 +560,6 @@ regardless of the idiosyncratic associative contents of its indexical grounding.
 In other words,
 perhaps what is private is not language, the symbolic system,
 but merely associations in the pre-verbal processing of meanings.
-
-.. [#] See e.g. Adamaszek, Michael, and Kenneth C. Kirkby. “Cerebellum and Grammar Processing.” In The Linguistic Cerebellum, 81–105. Elsevier, 2016. 
 
 Debate about whether language can be private
 does sometimes center on discussion of grammatical rules.
@@ -713,4 +693,38 @@ but rather non-symbolic.
 .. 7fc79df2-40e1-11eb-8968-d4619d1011e0 neural nets
 
 .. bce30aec-40e5-11eb-8968-d4619d1011e0 Search space reduction
+
+
+
+.. [#] Deacon, Terrence William and International Society for Science and Religion. The Symbolic Species: The Co-Evolution of Language and the Brain. Cambridge: International Society for Science and Religion, 2007.
+
+.. [#] Chomsky, Noam. “Language and Problems of Knowledge.” Teorema: Revista Internacional de Filosofía 16, no. 2 (1997): 5–33.
+
+.. [#] Deacon spends many pages describing a set of experiments in which
+       the researchers successfully (though with difficulty)
+       teach chimps to make a modest number of symbolic references.
+       This is important for two reasons: first it shows that 
+       symbolic reference is a process, not an innate brain structure,
+       that you either have or you don't,
+       and second it shows that nonetheless it is much easier for humans
+       to make that particular leap, so there must be an innate *facility*.
+
+
+.. [#] Scholz, Barbara C., Francis Jeffry Pelletier, and Geoffrey K. Pullum. “Philosophy of Linguistics.” In The Stanford Encyclopedia of Philosophy, edited by Edward N. Zalta, Summer 2020. Metaphysics Research Lab, Stanford University, 2020. 
+
+
+
+.. [#] selectional restrictions: https://en.wikipedia.org/wiki/Selection_(linguistics)
+
+       
+
+.. [#] Deacon, Terrence W. “Beyond the Symbolic Species.” In The Symbolic Species Evolved, edited by Theresa Schilhab, Frederik Stjernfelt, and Terrence Deacon, 6:9–38. Biosemiotics. Dordrecht: Springer Netherlands, 2012. 
+
+.. [#] Frege, G.: 1892, ‘On Sense and Nominatum’, in Martinich, Aloysius, ed. The Philosophy of Language. New York, N.Y: Oxford University Press, 2010.
+
+.. [#] Donnellan, Keith S. “Reference and Definite Descriptions.” The Philosophical Review 75, no. 3 (July 1966): 281. 
+
+.. [#] Locke, John, and Frederick Ryland. Locke on Words: An Essay Concerning Human Understanding. W.S. Sonnenschein & Company, 1882.
+
+.. [#] See e.g. Adamaszek, Michael, and Kenneth C. Kirkby. “Cerebellum and Grammar Processing.” In The Linguistic Cerebellum, 81–105. Elsevier, 2016. 
 
