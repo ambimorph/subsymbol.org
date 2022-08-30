@@ -47,7 +47,7 @@
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/</loc>
-  <lastmod>2021-04-15T03:05:00Z</lastmod>
+  <lastmod>2022-08-30T18:53:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/adaptor-grammars.html</loc>
@@ -118,6 +118,10 @@
   <lastmod>2022-08-28T22:55:00Z</lastmod>
  </url>
  <url>
+  <loc>http://www.subsymbol.org/categories/language.html</loc>
+  <lastmod>2022-08-30T18:53:00Z</lastmod>
+ </url>
+ <url>
   <loc>http://www.subsymbol.org/categories/lda.html</loc>
   <lastmod>2022-08-28T22:55:00Z</lastmod>
  </url>
@@ -168,6 +172,10 @@
  <url>
   <loc>http://www.subsymbol.org/categories/pcfg.html</loc>
   <lastmod>2022-08-28T22:55:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/categories/philosophy.html</loc>
+  <lastmod>2022-08-30T18:53:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/probability.html</loc>
@@ -427,7 +435,7 @@
  </url>
  <url>
   <loc>http://www.subsymbol.org/posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html</loc>
-  <lastmod>2022-08-30T18:43:00Z</lastmod>
+  <lastmod>2022-08-30T18:53:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/posts/addresses-and-contents.html</loc>

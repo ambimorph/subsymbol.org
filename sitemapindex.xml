@@ -74,6 +74,10 @@
   <lastmod>2022-08-28T22:55:00Z</lastmod>
  </sitemap>
  <sitemap>
+  <loc>http://www.subsymbol.org/categories/language.xml</loc>
+  <lastmod>2022-08-30T18:53:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>http://www.subsymbol.org/categories/lda.xml</loc>
   <lastmod>2022-08-28T22:55:00Z</lastmod>
  </sitemap>
@@ -126,6 +130,10 @@
   <lastmod>2022-08-28T22:55:00Z</lastmod>
  </sitemap>
  <sitemap>
+  <loc>http://www.subsymbol.org/categories/philosophy.xml</loc>
+  <lastmod>2022-08-30T18:53:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>http://www.subsymbol.org/categories/probability.xml</loc>
   <lastmod>2022-08-28T22:55:00Z</lastmod>
  </sitemap>
@@ -163,10 +171,10 @@
  </sitemap>
  <sitemap>
   <loc>http://www.subsymbol.org/rss.xml</loc>
-  <lastmod>2022-08-30T18:43:00Z</lastmod>
+  <lastmod>2022-08-30T18:53:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.subsymbol.org/sitemap.xml</loc>
-  <lastmod>2022-08-30T18:43:00Z</lastmod>
+  <lastmod>2022-08-30T18:53:00Z</lastmod>
  </sitemap>
 </sitemapindex>
