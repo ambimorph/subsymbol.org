@@ -6,7 +6,7 @@
 .. description: 
 .. type: text
 
-.. image:: /galleries/amber-bw-by-misha.png
+.. image:: /galleries/amber-bw-breakfast-fsm.png
 
 .. https://lh3.googleusercontent.com/--8r0NRCwAps/UWGO43c_dKI/AAAAAAAABTw/Rq2EMOMDFpw/w1042-h252-no/ireallylike-280-wide.png
 
