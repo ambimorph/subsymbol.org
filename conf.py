@@ -293,7 +293,7 @@ TIMEZONE = "America/Denver"
 # Default is:
 # FILES_FOLDERS = {'files': ''}
 # Which means copy 'files' into 'output'
-FILES_FOLDERS = {'scripts':'scripts'}
+FILES_FOLDERS = {'files': '', 'scripts':'scripts'}
 
 # One or more folders containing code listings to be processed and published on
 # the site. The format is a dictionary of {source: relative destination}.
