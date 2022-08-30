@@ -1,7 +1,7 @@
 .. title: Some Philosophical Implications of Deacon's Model of Symbolic Reference
 .. slug: some-philosophical-implications-of-deacons-model-of-symbolic-reference
 .. date: 2022-08-28 16:52:12 UTC-06:00
-.. tags: 
+.. tags: philosophy, language
 .. category: 
 .. link: 
 .. description: 
