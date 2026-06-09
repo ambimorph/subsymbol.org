@@ -74,7 +74,97 @@
     
         
     <div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html" class="u-url">Some Philosophical Implications of Deacon's Model of Symbolic Reference</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html" class="u-url">Orchard-free bootstrap window for Ironwood</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        L. Amber O'Hearn
+                    </span></p>
+            <p class="dateline">
+            <a href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html" rel="bookmark">
+            <time class="published dt-published" datetime="2026-06-09T13:15:38-06:00" itemprop="datePublished" title="2026-06-09 13:15">2026-06-09 13:15</time></a>
+            </p>
+                        <p class="commentline">
+    
+    <a href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#disqus_thread" data-disqus-identifier="cache/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html">Comments</a>
+
+
+                </p>
+</div>
+            </header><div class="p-summary entry-summary">
+                    <p><a class="reference external" href="https://x.com/i/status/2063262293442678830">When Ironwood opens, any ZEC currently in Orchard can enter the new pool.</a></p>
+<p>This solves the supply uncertainty problem created by the existence of a double-spend bug that is now patched.
+But there is a remaining problem.
+Orchard notes are indistinguishable from each other in terms of provenance —
+a note with a hidden double spend somewhere in its ancestry
+looks identical to one with a completely clean history.
+<em>If</em> this bug has been exploited (which I highly doubt),
+the current situation is simply going to be a race: whoever moves first gets in.</p>
+<p>As far as I can tell, though, <em>some</em> ZEC in Orchard has a provably sound history:
+any note whose creating transaction has no shielded ancestry since Orchard activation in May 2022.
+These cannot have come via a double-spend transaction because double spends must originate in Orchard.
+Because only shielded pools hide their spend graphs,
+a note with no post-May-2022 shielded ancestry has a fully auditable value history.
+No hidden double spend can exist in its past.
+While other notes may exist in Orchard with no double-spend provenance,
+it would not be verifiable, so notes of this type are only a subset, but they may be a significant one.</p>
+<p>I think it is too late to submit ideas for the new consensus rules for Ironwood,
+and this idea has at least one flaw,
+but I'm going to write it down anyway in case it's of interest or spurs other ideas later.</p>
+<p>The idea is to open Ironwood with a short VIP admission window during which only these <strong>Orchard-free</strong> notes may enter.
+This gives demonstrably sound ZEC first priority, rather than leaving admission to a race with no quality distinction.</p>
+<p>The feasibility of this depends directly on how feasible it would be
+to create a zk proof to verify that a nullifier comes from a note created with a txid from a particular known set.
+I don't have the background to analyze that right now, but it does seem to me that it's possible to do.</p>
+<p>The flaw I'm sure about is that because only some genuine transactions can be verified in this way,
+we would have to enforce biased admission, putting provably good-provenance ZEC ahead of unprovably good-provenance ZEC.</p>
+<section id="mechanism"><h2>Mechanism</h2>
+<p>Here's how it would work.
+Before Ironwood activates,
+the full transaction graph is traced to identify every transaction that has an Orchard output
+but whose inputs trace back to coinbase or pre-Orchard history without crossing any post-May-2022 shielded pool.
+The set of qualifying txids is committed as a protocol consensus parameter before activation.</p>
+<p>During the VIP window, admission to Ironwood requires a zero-knowledge proof that
+the entering note was created by one of these qualifying transactions,
+and that its nullifier is unspent,
+without revealing which transaction created it.
+When this initial window closes, Ironwood opens to all.</p>
+</section><section id="provenance-chain-examples"><h2>Provenance Chain Examples</h2>
+<p>The diagram below illustrates valid and invalid provenance chains. Chains A, B, and C qualify for VIP admission. Chain D is disqualified because an Orchard transaction appears in its ancestry — regardless of how many transparent hops follow it.</p>
+<img alt="Orchard-free provenance chains" src="../images/orchard-free-provenance-chains.png"></section><section id="real-world-example"><h2>Real-World Example</h2>
+<p>The following is a real, recent transaction on the Zcash mainnet that qualifies as Orchard-free (iff it has not since moved).
+Its ancestry traces back exclusively to coinbase outputs:
+15 separate coinbase transactions feed into it with no shielded intermediaries.
+And it represents significant value.
+I don't yet know how many such potentially qualifying notes exist,
+because I don't yet have a full node running for quick analysis and I've had to search on explorer APIs.</p>
+<p>Transaction: <a class="reference external" href="https://blockexplorer.one/zcash/mainnet/tx/5b2843fa67f46fb00b54a2bb7f43603df8ea1e8a43f209f3323f6ef5009da303">5b2843fa...09da303</a></p>
+<div class="code"><pre class="code json"><a id="rest_code_e9dc0171c7434c8390725bb8890accd0-1" name="rest_code_e9dc0171c7434c8390725bb8890accd0-1" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-1"></a><span class="p">{</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-2" name="rest_code_e9dc0171c7434c8390725bb8890accd0-2" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-2"></a><span class="nt">"5b2843fa67f46fb00b54a2bb7f43603df8ea1e8a43f209f3323f6ef5009da303"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-3" name="rest_code_e9dc0171c7434c8390725bb8890accd0-3" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-3"></a><span class="w">    </span><span class="nt">"61b8863a4309f0a797c0f7f268e9d6ef4ee7bb27954b71b8fd76476ca057a967"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coinbase"</span><span class="p">,</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-4" name="rest_code_e9dc0171c7434c8390725bb8890accd0-4" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-4"></a><span class="w">    </span><span class="nt">"9adb7b460d3078a58cbdf1d9758edf31a444e9d90adb78aaff264252ea623c6b"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coinbase"</span><span class="p">,</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-5" name="rest_code_e9dc0171c7434c8390725bb8890accd0-5" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-5"></a><span class="w">    </span><span class="nt">"08de598f8f05d04a7fbc4440146ed5938ac0359ea99a5efabd876b118fd9136d"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coinbase"</span><span class="p">,</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-6" name="rest_code_e9dc0171c7434c8390725bb8890accd0-6" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-6"></a><span class="w">    </span><span class="nt">"daebd531bc8e9db495969a8aec3889a99182f7a220aa087e1895e69fc593336f"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coinbase"</span><span class="p">,</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-7" name="rest_code_e9dc0171c7434c8390725bb8890accd0-7" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-7"></a><span class="w">    </span><span class="nt">"2392412651e328b114ed688388a8291cf9bc6b13e3a62304321257afd4721e71"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coinbase"</span><span class="p">,</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-8" name="rest_code_e9dc0171c7434c8390725bb8890accd0-8" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-8"></a><span class="w">    </span><span class="nt">"4196d87bf14217a064e529cef3c98e7be24d575b8551ae5326bc852d3460cf72"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coinbase"</span><span class="p">,</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-9" name="rest_code_e9dc0171c7434c8390725bb8890accd0-9" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-9"></a><span class="w">    </span><span class="nt">"e2704ad5f38d4a423108b2665b22622e05fb6f71ed585b62ac2f127f20e3867b"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coinbase"</span><span class="p">,</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-10" name="rest_code_e9dc0171c7434c8390725bb8890accd0-10" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-10"></a><span class="w">    </span><span class="nt">"ab31922bed40edc5e7bd3e1c040c1b641939c6fbbc9fbfd696e1c8128e75327f"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coinbase"</span><span class="p">,</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-11" name="rest_code_e9dc0171c7434c8390725bb8890accd0-11" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-11"></a><span class="w">    </span><span class="nt">"1956a1ee11175bd5f1538094c60eaa0665531bf76c3fc23b13615f1089c95d81"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coinbase"</span><span class="p">,</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-12" name="rest_code_e9dc0171c7434c8390725bb8890accd0-12" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-12"></a><span class="w">    </span><span class="nt">"b6c07b84b1b80be94ed96a627fda6661e42d609deee3b7ba95252ac3a132b383"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coinbase"</span><span class="p">,</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-13" name="rest_code_e9dc0171c7434c8390725bb8890accd0-13" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-13"></a><span class="w">    </span><span class="nt">"0b1a92ec597df115e4039fee6ecf7f33b897540fc18f1060a9ffc179c93f4a87"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coinbase"</span><span class="p">,</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-14" name="rest_code_e9dc0171c7434c8390725bb8890accd0-14" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-14"></a><span class="w">    </span><span class="nt">"909a2d677fdb5d1c9422b4cb2a4eee46d42eb1e3d0b776d64a3154d06fac9e8a"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coinbase"</span><span class="p">,</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-15" name="rest_code_e9dc0171c7434c8390725bb8890accd0-15" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-15"></a><span class="w">    </span><span class="nt">"c48ea6aea6969cb0ca7b352944167a06cad46129544b2119225b0754bbbafb8a"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coinbase"</span><span class="p">,</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-16" name="rest_code_e9dc0171c7434c8390725bb8890accd0-16" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-16"></a><span class="w">    </span><span class="nt">"940174f44d65168a2ef729117b7eb10db72baf87dab70628e24fcaf4024c6a8d"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coinbase"</span><span class="p">,</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-17" name="rest_code_e9dc0171c7434c8390725bb8890accd0-17" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-17"></a><span class="w">    </span><span class="nt">"deced902f846d290354236fe20c8f84d16eb2cc01c534984577bebe263435d93"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coinbase"</span><span class="p">,</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-18" name="rest_code_e9dc0171c7434c8390725bb8890accd0-18" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-18"></a><span class="w">    </span><span class="p">}</span>
+<a id="rest_code_e9dc0171c7434c8390725bb8890accd0-19" name="rest_code_e9dc0171c7434c8390725bb8890accd0-19" href="../posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_e9dc0171c7434c8390725bb8890accd0-19"></a><span class="p">}</span>
+</pre></div>
+<p>Each key at the second level is a direct ancestor txid; each maps to <cite>"coinbase"</cite>, meaning it was a mining reward.</p>
+</section><section id="open-question"><h2>Open Question</h2>
+<p>Is this proof constructable within the existing Orchard/Halo2 infrastructure? Specifically: can a prover demonstrate that their note's creating txid is a member of the committed qualifying set, combined with nullifier non-membership, without revealing the txid?</p>
+<p>And if so, is it desirable?</p>
+</section>
+</div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html" class="u-url">Some Philosophical Implications of Deacon's Model of Symbolic Reference</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                         L. Amber O'Hearn
@@ -101,7 +191,7 @@
 Terrence Deacon sketches a theory of human language
 aiming to explain how it is qualitatively different
 from other forms of animal communication,
-and not just a more advanced form of the same kind of communication <a class="footnote-reference brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id11" id="id1">1</a>.
+and not just a more advanced form of the same kind of communication <a class="brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-1" id="footnote-reference-1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 I will summarize his model and attempt to describe how it
 leads to particular stances on
 a selection of problems in the philosophy of language
@@ -210,7 +300,7 @@ is a long-standing question,
 and is the motivation for cognitive hypotheses
 of innateness, and even of the hard-coded grammar modules
 proposed by Chomsky that lack only
-a small set of parameters by which to fit the native language <a class="footnote-reference brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id12" id="id2">2</a>.</p>
+a small set of parameters by which to fit the native language <a class="brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-2" id="footnote-reference-2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
 <p>In AI terms, Chomsky's view says that the language learning problem requires high bias
 in the bias-variance tradeoff of learning models.
 That is, most of the information is already in the model.
@@ -295,7 +385,7 @@ in turn affects the way we think,
 making it different from other kinds of thought
 based on other forms of reference.
 Because this mode is almost entirely restricted to humans,
-this could be viewed as a species version of strong linguistic relativism <a class="footnote-reference brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id13" id="id3">3</a>.</p>
+this could be viewed as a species version of strong linguistic relativism <a class="brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-3" id="footnote-reference-3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.</p>
 <p>The relativistic idea that there is a relationship between
 the particular language one speaks and the form of one's thoughts
 is usually attributed to Sapir and Whorf.
@@ -372,7 +462,7 @@ the canonical example being the existence of many words for snow in the Arctic �
 Whorf's original descriptions focused on what he deemed grammatical differences.
 That is, he noted that in order to communicate
 we have to agree on a system of organizing our perceptions,
-and asserts it is this organization which then shapes our thought <a class="footnote-reference brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id14" id="id4">4</a>.
+and asserts it is this organization which then shapes our thought <a class="brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-4" id="footnote-reference-4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>.
 Specifically, he wrote about classifications that would either be
 explicitly marked grammatically, for example with grammatical morphemes,
 or implicitly through distribution patterns.</p>
@@ -389,7 +479,7 @@ and is also demonstrably teachable to some animals as in our dog example.</p>
 <p>What is linguistic and symbolic is using categories to
 constrain grammatical constructions.
 For this purpose categories can be based on semantic properties grounded in experience
-the way 'a cup of ___' imposes selectional restrictions <a class="footnote-reference brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id15" id="id5">5</a>,
+the way 'a cup of ___' imposes selectional restrictions <a class="brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-5" id="footnote-reference-5" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>,
 but they can also be completely arbitrary such as grammatical gender.
 Having the ability to organize categories around grammatical functions
 is critical for reducing the search space of relations between words.
@@ -405,7 +495,7 @@ therefore animals cannnot think symbolically at all. -->
 <!-- Frege: predication is applying sense to a reference -->
 </section><section id="sense-and-reference"><h2>Sense and reference</h2>
 <p>Deacon hypothesizes that the predicate-argument structure of linguistic communication
-results from the dependence of symbolic reference on indexical reference <a class="footnote-reference brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id16" id="id6">6</a>.
+results from the dependence of symbolic reference on indexical reference <a class="brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-6" id="footnote-reference-6" role="doc-noteref"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></a>.
 The linguistic function of a predicate is to categorize its argument.
 In this sense, the argument is what the discourse is "about",
 and therefore its reference requires a kind of concreteness of instantiation,
@@ -443,7 +533,7 @@ elements that directly refer to objects in the world.</p>
 interpretations of what it means for an expression to refer to objects
 and how that reference happens.
 Gottlob Frege distinguished between sense and reference,
-saying "We let a <em>sign</em> <em>express</em> its sense and <em>designate</em> its nominatum." <a class="footnote-reference brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id17" id="id7">7</a>.
+saying "We let a <em>sign</em> <em>express</em> its sense and <em>designate</em> its nominatum." <a class="brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-7" id="footnote-reference-7" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a>.
 In other words, in this view,
 sense is a set of properties that an expression describes,
 and that description, in addition to corresponding to the properties,
@@ -457,7 +547,7 @@ can have a sense and yet not have a nominatum;
 not refer to anything existing in the world,
 if there is nothing having the properties described.</p>
 <p>A distinction was subsequently proposed by Keith Donellan
-about definite descriptions <a class="footnote-reference brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id18" id="id8">8</a>.
+about definite descriptions <a class="brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-8" id="footnote-reference-8" role="doc-noteref"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></a>.
 He suggested that when a definite description narrows a subject
 to something specific that we don't know the referent for,
 it merely attributes, but doesn't refer.
@@ -548,7 +638,7 @@ than objects in the world.
 Given that only the individual has access to his own ideas,
 this led Locke to somewhat absurdly conclude that language must be private —
 absurd because the putative function of language is to communicate,
-and if meaning is necessarily private then nothing can be communicated <a class="footnote-reference brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id19" id="id9">9</a>.</p>
+and if meaning is necessarily private then nothing can be communicated <a class="brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-9" id="footnote-reference-9" role="doc-noteref"><span class="fn-bracket">[</span>9<span class="fn-bracket">]</span></a>.</p>
 <p>If what words or expressions refer to are ideas,
 then we may be able to make a helpful analogy
 between mental representations and indexical reference.
@@ -563,7 +653,7 @@ However, because 'cup' can also be processed symbolically,
 that means there are associations with other symbols
 and how those symbols interact via grammar.
 Grammar, unlike associative memory, is procedural
-and therefore processed in part in the cerebellum <a class="footnote-reference brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id20" id="id10">10</a>.
+and therefore processed in part in the cerebellum <a class="brackets" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-10" id="footnote-reference-10" role="doc-noteref"><span class="fn-bracket">[</span>10<span class="fn-bracket">]</span></a>.
 Because the <em>word</em> 'cup' and its grammatical occurrences
 are exactly what is shared when people use language to communicate,
 this symbol-to-symbol structure is negotiated in public,
@@ -681,17 +771,11 @@ A broken category that is not a error, is a metaphor. -->
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- 7fc79df2-40e1-11eb-8968-d4619d1011e0 neural nets -->
 <!-- bce30aec-40e5-11eb-8968-d4619d1011e0 Search space reduction -->
-<dl class="footnote brackets">
-<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id1">1</a></span></dt>
-<dd>
+<aside class="footnote-list brackets"><aside class="footnote brackets" id="footnote-1" role="doc-footnote"><span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-reference-1">1</a><span class="fn-bracket">]</span></span>
 <p>Deacon, Terrence William and International Society for Science and Religion. The Symbolic Species: The Co-Evolution of Language and the Brain. Cambridge: International Society for Science and Religion, 2007.</p>
-</dd>
-<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id2">2</a></span></dt>
-<dd>
+</aside><aside class="footnote brackets" id="footnote-2" role="doc-footnote"><span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-reference-2">2</a><span class="fn-bracket">]</span></span>
 <p>Chomsky, Noam. “Language and Problems of Knowledge.” Teorema: Revista Internacional de Filosofía 16, no. 2 (1997): 5–33.</p>
-</dd>
-<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id3">3</a></span></dt>
-<dd>
+</aside><aside class="footnote brackets" id="footnote-3" role="doc-footnote"><span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-reference-3">3</a><span class="fn-bracket">]</span></span>
 <p>Deacon spends many pages describing a set of experiments in which
 the researchers successfully (though with difficulty)
 teach chimps to make a modest number of symbolic references.
@@ -700,36 +784,21 @@ symbolic reference is a process, not an innate brain structure,
 that you either have or you don't,
 and second it shows that nonetheless it is much easier for humans
 to make that particular leap, so there must be an innate <em>facility</em>.</p>
-</dd>
-<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id4">4</a></span></dt>
-<dd>
+</aside><aside class="footnote brackets" id="footnote-4" role="doc-footnote"><span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-reference-4">4</a><span class="fn-bracket">]</span></span>
 <p>Scholz, Barbara C., Francis Jeffry Pelletier, and Geoffrey K. Pullum. “Philosophy of Linguistics.” In The Stanford Encyclopedia of Philosophy, edited by Edward N. Zalta, Summer 2020. Metaphysics Research Lab, Stanford University, 2020.</p>
-</dd>
-<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id5">5</a></span></dt>
-<dd>
+</aside><aside class="footnote brackets" id="footnote-5" role="doc-footnote"><span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-reference-5">5</a><span class="fn-bracket">]</span></span>
 <p>selectional restrictions: <a class="reference external" href="https://en.wikipedia.org/wiki/Selection_(linguistics">https://en.wikipedia.org/wiki/Selection_(linguistics</a>)</p>
-</dd>
-<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id6">6</a></span></dt>
-<dd>
+</aside><aside class="footnote brackets" id="footnote-6" role="doc-footnote"><span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-reference-6">6</a><span class="fn-bracket">]</span></span>
 <p>Deacon, Terrence W. “Beyond the Symbolic Species.” In The Symbolic Species Evolved, edited by Theresa Schilhab, Frederik Stjernfelt, and Terrence Deacon, 6:9–38. Biosemiotics. Dordrecht: Springer Netherlands, 2012.</p>
-</dd>
-<dt class="label" id="id17"><span class="brackets"><a class="fn-backref" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id7">7</a></span></dt>
-<dd>
+</aside><aside class="footnote brackets" id="footnote-7" role="doc-footnote"><span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-reference-7">7</a><span class="fn-bracket">]</span></span>
 <p>Frege, G.: 1892, ‘On Sense and Nominatum’, in Martinich, Aloysius, ed. The Philosophy of Language. New York, N.Y: Oxford University Press, 2010.</p>
-</dd>
-<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id8">8</a></span></dt>
-<dd>
+</aside><aside class="footnote brackets" id="footnote-8" role="doc-footnote"><span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-reference-8">8</a><span class="fn-bracket">]</span></span>
 <p>Donnellan, Keith S. “Reference and Definite Descriptions.” The Philosophical Review 75, no. 3 (July 1966): 281.</p>
-</dd>
-<dt class="label" id="id19"><span class="brackets"><a class="fn-backref" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id9">9</a></span></dt>
-<dd>
+</aside><aside class="footnote brackets" id="footnote-9" role="doc-footnote"><span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-reference-9">9</a><span class="fn-bracket">]</span></span>
 <p>Locke, John, and Frederick Ryland. Locke on Words: An Essay Concerning Human Understanding. W.S. Sonnenschein &amp; Company, 1882.</p>
-</dd>
-<dt class="label" id="id20"><span class="brackets"><a class="fn-backref" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#id10">10</a></span></dt>
-<dd>
+</aside><aside class="footnote brackets" id="footnote-10" role="doc-footnote"><span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="../posts/2022/08/28/some-philosophical-implications-of-deacons-model-of-symbolic-reference.html#footnote-reference-10">10</a><span class="fn-bracket">]</span></span>
 <p>See e.g. Adamaszek, Michael, and Kenneth C. Kirkby. “Cerebellum and Grammar Processing.” In The Linguistic Cerebellum, 81–105. Elsevier, 2016.</p>
-</dd>
-</dl></section>
+</aside></aside></section>
 </div>
             </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="../posts/i-did-it.html" class="u-url">I did it!</a></h1>
                 <div class="metadata">
@@ -875,60 +944,60 @@ For example, if the file is removed, I want my database to let go of its referen
 <p>The linux kernel has a set of system calls for this called <a class="reference external" href="http://en.wikipedia.org/wiki/Inotify">inotify</a>, and <a class="reference external" href="http://twistedmatrix.com/documents/current/api/twisted.internet.inotify.html">Twisted has a module to support that API</a>.
 Not only that, but the module documentation has everything you need.</p>
 <hr class="docutils">
-<pre class="code python"><a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-1"></a><span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">inotify</span>
-<a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-2"></a><span class="kn">from</span> <span class="nn">twisted.python</span> <span class="kn">import</span> <span class="n">filepath</span>
-<a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-3"></a>
-<a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-4"></a><span class="k">def</span> <span class="nf">notify</span><span class="p">(</span><span class="n">ignored</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
-<a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-5"></a>    <span class="sd">"""</span>
-<a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-6"></a><span class="sd">    For historical reasons, an opaque handle is passed as first</span>
-<a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-7"></a><span class="sd">    parameter. This object should never be used.</span>
-<a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-8"></a>
-<a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-9"></a><span class="sd">    @param filepath: FilePath on which the event happened.</span>
-<a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-10"></a><span class="sd">    @param mask: inotify event as hexadecimal masks</span>
-<a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-11"></a><span class="sd">    """</span>
-<a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-12"></a>    <span class="nb">print</span> <span class="s2">"event </span><span class="si">%s</span><span class="s2"> on </span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span>
-<a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-13"></a>        <span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inotify</span><span class="o">.</span><span class="n">humanReadableMask</span><span class="p">(</span><span class="n">mask</span><span class="p">)),</span> <span class="n">filepath</span><span class="p">)</span>
-<a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-14"></a>
-<a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-15"></a><span class="n">notifier</span> <span class="o">=</span> <span class="n">inotify</span><span class="o">.</span><span class="n">INotify</span><span class="p">()</span>
-<a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-16"></a><span class="n">notifier</span><span class="o">.</span><span class="n">startReading</span><span class="p">()</span>
-<a name="rest_code_082ecdcd941b4ba58ccacb9eb78399cc-17"></a><span class="n">notifier</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="n">filepath</span><span class="o">.</span><span class="n">FilePath</span><span class="p">(</span><span class="s2">"/some/directory"</span><span class="p">),</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">notify</span><span class="p">])</span>
-</pre>
+<div class="code"><pre class="code python"><a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-1" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-1" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">twisted.internet</span><span class="w"> </span><span class="kn">import</span> <span class="n">inotify</span>
+<a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-2" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-2" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">twisted.python</span><span class="w"> </span><span class="kn">import</span> <span class="n">filepath</span>
+<a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-3" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-3" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-3"></a>
+<a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-4" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-4" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">notify</span><span class="p">(</span><span class="n">ignored</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-5" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-5" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-5"></a><span class="w">    </span><span class="sd">"""</span>
+<a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-6" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-6" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-6"></a><span class="sd">    For historical reasons, an opaque handle is passed as first</span>
+<a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-7" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-7" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-7"></a><span class="sd">    parameter. This object should never be used.</span>
+<a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-8" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-8" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-8"></a>
+<a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-9" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-9" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-9"></a><span class="sd">    @param filepath: FilePath on which the event happened.</span>
+<a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-10" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-10" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-10"></a><span class="sd">    @param mask: inotify event as hexadecimal masks</span>
+<a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-11" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-11" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-11"></a><span class="sd">    """</span>
+<a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-12" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-12" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-12"></a>    <span class="nb">print</span> <span class="s2">"event </span><span class="si">%s</span><span class="s2"> on </span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span>
+<a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-13" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-13" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-13"></a>        <span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inotify</span><span class="o">.</span><span class="n">humanReadableMask</span><span class="p">(</span><span class="n">mask</span><span class="p">)),</span> <span class="n">filepath</span><span class="p">)</span>
+<a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-14" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-14" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-14"></a>
+<a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-15" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-15" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-15"></a><span class="n">notifier</span> <span class="o">=</span> <span class="n">inotify</span><span class="o">.</span><span class="n">INotify</span><span class="p">()</span>
+<a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-16" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-16" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-16"></a><span class="n">notifier</span><span class="o">.</span><span class="n">startReading</span><span class="p">()</span>
+<a id="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-17" name="rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-17" href="../posts/two-inotify-pitfalls.html#rest_code_6db7b1832be04a6fa2ddc1ca44c92f41-17"></a><span class="n">notifier</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="n">filepath</span><span class="o">.</span><span class="n">FilePath</span><span class="p">(</span><span class="s2">"/some/directory"</span><span class="p">),</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">notify</span><span class="p">])</span>
+</pre></div>
 <hr class="docutils">
 <section id="pitfall-1"><h2>Pitfall #1</h2>
 <p>Great!  I copy the code, change the path from "/some/directory" to "/home/amber/somedir", and start it up.</p>
 <ul class="simple">
 <li><p>I make a file, "f", and am notified of its creation, and some attribute change.</p></li>
 </ul>
-<pre class="code bash"><a name="rest_code_d261a2e45d1349f5b940c311813d6adb-1"></a>$ touch f
-</pre>
-<pre class="code bash"><a name="rest_code_4e55545098334735b6916dd3ae10767e-1"></a>event create on FilePath<span class="o">(</span><span class="s1">'/home/amber/somedir/f'</span><span class="o">)</span>
-<a name="rest_code_4e55545098334735b6916dd3ae10767e-2"></a>event attrib on FilePath<span class="o">(</span><span class="s1">'/home/amber/somedir/f'</span><span class="o">)</span>
-</pre>
+<div class="code"><pre class="code bash"><a id="rest_code_b0f73ffdf2be40e49fbd3fe81eb012ab-1" name="rest_code_b0f73ffdf2be40e49fbd3fe81eb012ab-1" href="../posts/two-inotify-pitfalls.html#rest_code_b0f73ffdf2be40e49fbd3fe81eb012ab-1"></a>$<span class="w"> </span>touch<span class="w"> </span>f
+</pre></div>
+<div class="code"><pre class="code bash"><a id="rest_code_e2fa61fe8e6548929190f8f5f950e9cb-1" name="rest_code_e2fa61fe8e6548929190f8f5f950e9cb-1" href="../posts/two-inotify-pitfalls.html#rest_code_e2fa61fe8e6548929190f8f5f950e9cb-1"></a>event<span class="w"> </span>create<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/somedir/f'</span><span class="o">)</span>
+<a id="rest_code_e2fa61fe8e6548929190f8f5f950e9cb-2" name="rest_code_e2fa61fe8e6548929190f8f5f950e9cb-2" href="../posts/two-inotify-pitfalls.html#rest_code_e2fa61fe8e6548929190f8f5f950e9cb-2"></a>event<span class="w"> </span>attrib<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/somedir/f'</span><span class="o">)</span>
+</pre></div>
 <ul class="simple">
 <li><p>I hard link it with another name</p></li>
 </ul>
-<pre class="code bash"><a name="rest_code_0b511966d523407bae39f24263556f00-1"></a>$ ln f h
-</pre>
-<pre class="code bash"><a name="rest_code_db8d9fa463c946d787ffd8d4b09ec42e-1"></a>event create on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/h'</span><span class="o">)</span>
-</pre>
+<div class="code"><pre class="code bash"><a id="rest_code_4bf668795bcb47939c1ea78c73bcdfe8-1" name="rest_code_4bf668795bcb47939c1ea78c73bcdfe8-1" href="../posts/two-inotify-pitfalls.html#rest_code_4bf668795bcb47939c1ea78c73bcdfe8-1"></a>$<span class="w"> </span>ln<span class="w"> </span>f<span class="w"> </span>h
+</pre></div>
+<div class="code"><pre class="code bash"><a id="rest_code_4600ad3e9ff1487ab3c9e28617c04d91-1" name="rest_code_4600ad3e9ff1487ab3c9e28617c04d91-1" href="../posts/two-inotify-pitfalls.html#rest_code_4600ad3e9ff1487ab3c9e28617c04d91-1"></a>event<span class="w"> </span>create<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/h'</span><span class="o">)</span>
+</pre></div>
 <p>Ok.  It logged the creation of h for me, but hasn't this changed the links attribute of f?
 Why wasn't I notified of that?</p>
 <ul class="simple">
 <li><p>I try modifying it.</p></li>
 </ul>
-<pre class="code bash"><a name="rest_code_b646cb1af81042d69e68006ea267b256-1"></a>$ <span class="nb">echo</span> hello &gt;&gt; h
-</pre>
-<pre class="code bash"><a name="rest_code_759995010c31429a8023554113f21347-1"></a>event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/h'</span><span class="o">)</span>
-</pre>
+<div class="code"><pre class="code bash"><a id="rest_code_9fa582e942df483ea8f8b5cf610c4b21-1" name="rest_code_9fa582e942df483ea8f8b5cf610c4b21-1" href="../posts/two-inotify-pitfalls.html#rest_code_9fa582e942df483ea8f8b5cf610c4b21-1"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>hello<span class="w"> </span>&gt;&gt;<span class="w"> </span>h
+</pre></div>
+<div class="code"><pre class="code bash"><a id="rest_code_0248cdcb9a604829a3ac82e948f690f8-1" name="rest_code_0248cdcb9a604829a3ac82e948f690f8-1" href="../posts/two-inotify-pitfalls.html#rest_code_0248cdcb9a604829a3ac82e948f690f8-1"></a>event<span class="w"> </span>modify<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/h'</span><span class="o">)</span>
+</pre></div>
 <p>I'm further non-plussed.
 This event should have modified both f and h, but I was only notified of the one used in the command.</p>
 <p>Finally I try what I really want.
 * I make a hard link to f from outside of "somedir/", and modify it through there.</p>
-<pre class="code bash"><a name="rest_code_d06909d031b34240b5b045e7ef5322f8-1"></a>$ ln f ../h
-<a name="rest_code_d06909d031b34240b5b045e7ef5322f8-2"></a>$ <span class="nb">echo</span> hello &gt;&gt; ../h
-</pre>
-<pre class="code bash"><a name="rest_code_7c027f1ad68840358f098292625a600e-1"></a><span class="o">(</span>no response<span class="o">)</span>
-</pre>
+<div class="code"><pre class="code bash"><a id="rest_code_9130c2cc51f342bb8a05857bf119083f-1" name="rest_code_9130c2cc51f342bb8a05857bf119083f-1" href="../posts/two-inotify-pitfalls.html#rest_code_9130c2cc51f342bb8a05857bf119083f-1"></a>$<span class="w"> </span>ln<span class="w"> </span>f<span class="w"> </span>../h
+<a id="rest_code_9130c2cc51f342bb8a05857bf119083f-2" name="rest_code_9130c2cc51f342bb8a05857bf119083f-2" href="../posts/two-inotify-pitfalls.html#rest_code_9130c2cc51f342bb8a05857bf119083f-2"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>hello<span class="w"> </span>&gt;&gt;<span class="w"> </span>../h
+</pre></div>
+<div class="code"><pre class="code bash"><a id="rest_code_b27b999541994959bd99ecca61c7f4b5-1" name="rest_code_b27b999541994959bd99ecca61c7f4b5-1" href="../posts/two-inotify-pitfalls.html#rest_code_b27b999541994959bd99ecca61c7f4b5-1"></a><span class="o">(</span>no<span class="w"> </span>response<span class="o">)</span>
+</pre></div>
 <section id="what-s-going-on"><h3>What's going on?</h3>
 <p>Inotify takes a pathname.
 If the pathname is a directory, then it watches the directory, but this is not the same as watching each file in the directory.</p>
@@ -936,135 +1005,136 @@ If the pathname is a directory, then it watches the directory, but this is not t
 <p>Glad to have figured out my error, I try again, modifying the pathname argument in the daemon to "somedir/f".
 I remove all those files, touch f, and start the daemon again.
 This time it does what I want.</p>
-<pre class="code bash"><a name="rest_code_fed253cb37d447fcb810498dcd89d7ca-1"></a>$ ln f h
-</pre>
-<pre class="code bash"><a name="rest_code_3bb32fd9f0b24982809c346c9b35c2de-1"></a>event attrib on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
-</pre>
-<pre class="code bash"><a name="rest_code_c11afccf899f4e6a9404141391d38ef6-1"></a>$ ln f h
-<a name="rest_code_c11afccf899f4e6a9404141391d38ef6-2"></a>$ <span class="nb">echo</span> hello &gt;&gt; h
-</pre>
-<pre class="code bash"><a name="rest_code_5bc2ffe2a26b49c99b9d98288e81defc-1"></a>event attrib on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
-<a name="rest_code_5bc2ffe2a26b49c99b9d98288e81defc-2"></a>event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
-</pre>
-<pre class="code bash"><a name="rest_code_a3487e144f084e8490a4427c7fadea66-1"></a>$ ln f ../h
-<a name="rest_code_a3487e144f084e8490a4427c7fadea66-2"></a>$ <span class="nb">echo</span> hello &gt;&gt; ../h
-</pre>
-<pre class="code bash"><a name="rest_code_f6f5c0681d4a456abdae7106fb53b8b5-1"></a>event attrib on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
-<a name="rest_code_f6f5c0681d4a456abdae7106fb53b8b5-2"></a>event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
-</pre>
+<div class="code"><pre class="code bash"><a id="rest_code_29ad46b321be4ddd8d5f0b1645d7375e-1" name="rest_code_29ad46b321be4ddd8d5f0b1645d7375e-1" href="../posts/two-inotify-pitfalls.html#rest_code_29ad46b321be4ddd8d5f0b1645d7375e-1"></a>$<span class="w"> </span>ln<span class="w"> </span>f<span class="w"> </span>h
+</pre></div>
+<div class="code"><pre class="code bash"><a id="rest_code_9466015713554259998b184754df5e1b-1" name="rest_code_9466015713554259998b184754df5e1b-1" href="../posts/two-inotify-pitfalls.html#rest_code_9466015713554259998b184754df5e1b-1"></a>event<span class="w"> </span>attrib<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+</pre></div>
+<div class="code"><pre class="code bash"><a id="rest_code_928bbf009ca8486ab0441a54029a5ca0-1" name="rest_code_928bbf009ca8486ab0441a54029a5ca0-1" href="../posts/two-inotify-pitfalls.html#rest_code_928bbf009ca8486ab0441a54029a5ca0-1"></a>$<span class="w"> </span>ln<span class="w"> </span>f<span class="w"> </span>h
+<a id="rest_code_928bbf009ca8486ab0441a54029a5ca0-2" name="rest_code_928bbf009ca8486ab0441a54029a5ca0-2" href="../posts/two-inotify-pitfalls.html#rest_code_928bbf009ca8486ab0441a54029a5ca0-2"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>hello<span class="w"> </span>&gt;&gt;<span class="w"> </span>h
+</pre></div>
+<div class="code"><pre class="code bash"><a id="rest_code_10bfdc293b984aee837aee33028ed00e-1" name="rest_code_10bfdc293b984aee837aee33028ed00e-1" href="../posts/two-inotify-pitfalls.html#rest_code_10bfdc293b984aee837aee33028ed00e-1"></a>event<span class="w"> </span>attrib<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+<a id="rest_code_10bfdc293b984aee837aee33028ed00e-2" name="rest_code_10bfdc293b984aee837aee33028ed00e-2" href="../posts/two-inotify-pitfalls.html#rest_code_10bfdc293b984aee837aee33028ed00e-2"></a>event<span class="w"> </span>modify<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+</pre></div>
+<div class="code"><pre class="code bash"><a id="rest_code_1aedb76b75f54c0d86ada29c940b86f9-1" name="rest_code_1aedb76b75f54c0d86ada29c940b86f9-1" href="../posts/two-inotify-pitfalls.html#rest_code_1aedb76b75f54c0d86ada29c940b86f9-1"></a>$<span class="w"> </span>ln<span class="w"> </span>f<span class="w"> </span>../h
+<a id="rest_code_1aedb76b75f54c0d86ada29c940b86f9-2" name="rest_code_1aedb76b75f54c0d86ada29c940b86f9-2" href="../posts/two-inotify-pitfalls.html#rest_code_1aedb76b75f54c0d86ada29c940b86f9-2"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>hello<span class="w"> </span>&gt;&gt;<span class="w"> </span>../h
+</pre></div>
+<div class="code"><pre class="code bash"><a id="rest_code_65f6bdbc61974926b094096cee04da7a-1" name="rest_code_65f6bdbc61974926b094096cee04da7a-1" href="../posts/two-inotify-pitfalls.html#rest_code_65f6bdbc61974926b094096cee04da7a-1"></a>event<span class="w"> </span>attrib<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+<a id="rest_code_65f6bdbc61974926b094096cee04da7a-2" name="rest_code_65f6bdbc61974926b094096cee04da7a-2" href="../posts/two-inotify-pitfalls.html#rest_code_65f6bdbc61974926b094096cee04da7a-2"></a>event<span class="w"> </span>modify<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+</pre></div>
 <section id="but-wait"><h3>But wait!</h3>
 <p>I was about to call it good, when I decided to try modifying the file with vim or emacs.
 I deleted all those files again, touched f, and this time modified it with vim.
 On saving the file, I get this:</p>
-<pre class="code bash"><a name="rest_code_662be57ba5df4179976ec39908a18c56-1"></a>event move_self on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
-<a name="rest_code_662be57ba5df4179976ec39908a18c56-2"></a>event attrib on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
-<a name="rest_code_662be57ba5df4179976ec39908a18c56-3"></a>event delete_self on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
-</pre></section><section id="id1"><h3>What's going on?</h3>
+<div class="code"><pre class="code bash"><a id="rest_code_e50ba828c2984b598eb83c11e9d063b6-1" name="rest_code_e50ba828c2984b598eb83c11e9d063b6-1" href="../posts/two-inotify-pitfalls.html#rest_code_e50ba828c2984b598eb83c11e9d063b6-1"></a>event<span class="w"> </span>move_self<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+<a id="rest_code_e50ba828c2984b598eb83c11e9d063b6-2" name="rest_code_e50ba828c2984b598eb83c11e9d063b6-2" href="../posts/two-inotify-pitfalls.html#rest_code_e50ba828c2984b598eb83c11e9d063b6-2"></a>event<span class="w"> </span>attrib<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+<a id="rest_code_e50ba828c2984b598eb83c11e9d063b6-3" name="rest_code_e50ba828c2984b598eb83c11e9d063b6-3" href="../posts/two-inotify-pitfalls.html#rest_code_e50ba828c2984b598eb83c11e9d063b6-3"></a>event<span class="w"> </span>delete_self<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+</pre></div>
+</section><section id="what-s-going-on-1"><h3>What's going on?</h3>
 <p>It turns out that vim and emacs, and who knows what else, have a trick to save backups while in use.</p>
 <p>To see what happens, I edited the daemon to watch the directory again, and also to print some stats about the files:</p>
-<pre class="code python"><a name="rest_code_d7592081a04d4217b630cf44913a2361-1"></a><span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">inotify</span><span class="p">,</span> <span class="n">reactor</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-2"></a><span class="kn">from</span> <span class="nn">twisted.python</span> <span class="kn">import</span> <span class="n">filepath</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-3"></a><span class="kn">import</span> <span class="nn">os</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-4"></a>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-5"></a>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-6"></a><span class="k">def</span> <span class="nf">notify</span><span class="p">(</span><span class="n">ignored</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-7"></a>    <span class="sd">"""</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-8"></a><span class="sd">    For historical reasons, an opaque handle is passed as first</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-9"></a><span class="sd">    parameter. This object should never be used.</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-10"></a>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-11"></a><span class="sd">    @param filepath: FilePath on which the event happened.</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-12"></a><span class="sd">    @param mask: inotify event as hexadecimal masks</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-13"></a><span class="sd">    """</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-14"></a>    <span class="nb">print</span> <span class="s2">"event </span><span class="si">%s</span><span class="s2"> on </span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span> <span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inotify</span><span class="o">.</span><span class="n">humanReadableMask</span><span class="p">(</span><span class="n">mask</span><span class="p">)),</span> <span class="n">filepath</span><span class="p">)</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-15"></a>    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">fp</span><span class="p">):</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-16"></a>        <span class="n">stat</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-17"></a>        <span class="nb">print</span> <span class="n">f</span><span class="p">,</span> <span class="s2">"mode:"</span><span class="p">,</span> <span class="n">stat</span><span class="o">.</span><span class="n">st_mode</span><span class="p">,</span> <span class="s2">"inode:"</span><span class="p">,</span> <span class="n">stat</span><span class="o">.</span><span class="n">st_ino</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-18"></a>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-19"></a><span class="n">fp</span> <span class="o">=</span> <span class="s2">"/home/amber/subdir"</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-20"></a><span class="n">notifier</span> <span class="o">=</span> <span class="n">inotify</span><span class="o">.</span><span class="n">INotify</span><span class="p">()</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-21"></a><span class="n">notifier</span><span class="o">.</span><span class="n">startReading</span><span class="p">()</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-22"></a><span class="n">notifier</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="n">filepath</span><span class="o">.</span><span class="n">FilePath</span><span class="p">(</span><span class="n">fp</span><span class="p">),</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">notify</span><span class="p">])</span>
-<a name="rest_code_d7592081a04d4217b630cf44913a2361-23"></a><span class="n">reactor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</pre>
+<div class="code"><pre class="code python"><a id="rest_code_98d939e8c55a412da070d824dc25b3f4-1" name="rest_code_98d939e8c55a412da070d824dc25b3f4-1" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">twisted.internet</span><span class="w"> </span><span class="kn">import</span> <span class="n">inotify</span><span class="p">,</span> <span class="n">reactor</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-2" name="rest_code_98d939e8c55a412da070d824dc25b3f4-2" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">twisted.python</span><span class="w"> </span><span class="kn">import</span> <span class="n">filepath</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-3" name="rest_code_98d939e8c55a412da070d824dc25b3f4-3" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-4" name="rest_code_98d939e8c55a412da070d824dc25b3f4-4" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-4"></a>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-5" name="rest_code_98d939e8c55a412da070d824dc25b3f4-5" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-5"></a>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-6" name="rest_code_98d939e8c55a412da070d824dc25b3f4-6" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">notify</span><span class="p">(</span><span class="n">ignored</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-7" name="rest_code_98d939e8c55a412da070d824dc25b3f4-7" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-7"></a><span class="w">    </span><span class="sd">"""</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-8" name="rest_code_98d939e8c55a412da070d824dc25b3f4-8" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-8"></a><span class="sd">    For historical reasons, an opaque handle is passed as first</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-9" name="rest_code_98d939e8c55a412da070d824dc25b3f4-9" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-9"></a><span class="sd">    parameter. This object should never be used.</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-10" name="rest_code_98d939e8c55a412da070d824dc25b3f4-10" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-10"></a>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-11" name="rest_code_98d939e8c55a412da070d824dc25b3f4-11" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-11"></a><span class="sd">    @param filepath: FilePath on which the event happened.</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-12" name="rest_code_98d939e8c55a412da070d824dc25b3f4-12" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-12"></a><span class="sd">    @param mask: inotify event as hexadecimal masks</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-13" name="rest_code_98d939e8c55a412da070d824dc25b3f4-13" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-13"></a><span class="sd">    """</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-14" name="rest_code_98d939e8c55a412da070d824dc25b3f4-14" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-14"></a>    <span class="nb">print</span> <span class="s2">"event </span><span class="si">%s</span><span class="s2"> on </span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span> <span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inotify</span><span class="o">.</span><span class="n">humanReadableMask</span><span class="p">(</span><span class="n">mask</span><span class="p">)),</span> <span class="n">filepath</span><span class="p">)</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-15" name="rest_code_98d939e8c55a412da070d824dc25b3f4-15" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-15"></a>    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">fp</span><span class="p">):</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-16" name="rest_code_98d939e8c55a412da070d824dc25b3f4-16" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-16"></a>        <span class="n">stat</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-17" name="rest_code_98d939e8c55a412da070d824dc25b3f4-17" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-17"></a>        <span class="nb">print</span> <span class="n">f</span><span class="p">,</span> <span class="s2">"mode:"</span><span class="p">,</span> <span class="n">stat</span><span class="o">.</span><span class="n">st_mode</span><span class="p">,</span> <span class="s2">"inode:"</span><span class="p">,</span> <span class="n">stat</span><span class="o">.</span><span class="n">st_ino</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-18" name="rest_code_98d939e8c55a412da070d824dc25b3f4-18" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-18"></a>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-19" name="rest_code_98d939e8c55a412da070d824dc25b3f4-19" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-19"></a><span class="n">fp</span> <span class="o">=</span> <span class="s2">"/home/amber/subdir"</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-20" name="rest_code_98d939e8c55a412da070d824dc25b3f4-20" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-20"></a><span class="n">notifier</span> <span class="o">=</span> <span class="n">inotify</span><span class="o">.</span><span class="n">INotify</span><span class="p">()</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-21" name="rest_code_98d939e8c55a412da070d824dc25b3f4-21" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-21"></a><span class="n">notifier</span><span class="o">.</span><span class="n">startReading</span><span class="p">()</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-22" name="rest_code_98d939e8c55a412da070d824dc25b3f4-22" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-22"></a><span class="n">notifier</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="n">filepath</span><span class="o">.</span><span class="n">FilePath</span><span class="p">(</span><span class="n">fp</span><span class="p">),</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">notify</span><span class="p">])</span>
+<a id="rest_code_98d939e8c55a412da070d824dc25b3f4-23" name="rest_code_98d939e8c55a412da070d824dc25b3f4-23" href="../posts/two-inotify-pitfalls.html#rest_code_98d939e8c55a412da070d824dc25b3f4-23"></a><span class="n">reactor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
 <p>Now I run it and open f with vi.</p>
-<pre class="code bash"><a name="rest_code_6db96f332d2348e1b137102b784dd23b-1"></a>$ vi f
-</pre>
-<pre class="code bash"><a name="rest_code_061d3a4b137148358617bc4fe32147af-1"></a>event create on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-2"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-3"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-4"></a>event create on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swpx'</span><span class="o">)</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-5"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-6"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-7"></a>event delete on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swpx'</span><span class="o">)</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-8"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-9"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-10"></a>event delete on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-11"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-12"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-13"></a>event create on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-14"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-15"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-16"></a>event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-17"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-18"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-19"></a>event attrib on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-20"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_061d3a4b137148358617bc4fe32147af-21"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-</pre>
+<div class="code"><pre class="code bash"><a id="rest_code_10cd2594700041e68975c8976bd60671-1" name="rest_code_10cd2594700041e68975c8976bd60671-1" href="../posts/two-inotify-pitfalls.html#rest_code_10cd2594700041e68975c8976bd60671-1"></a>$<span class="w"> </span>vi<span class="w"> </span>f
+</pre></div>
+<div class="code"><pre class="code bash"><a id="rest_code_1c19c07691d4427c9744c15b862c8595-1" name="rest_code_1c19c07691d4427c9744c15b862c8595-1" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-1"></a>event<span class="w"> </span>create<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-2" name="rest_code_1c19c07691d4427c9744c15b862c8595-2" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-2"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-3" name="rest_code_1c19c07691d4427c9744c15b862c8595-3" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-3"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-4" name="rest_code_1c19c07691d4427c9744c15b862c8595-4" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-4"></a>event<span class="w"> </span>create<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swpx'</span><span class="o">)</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-5" name="rest_code_1c19c07691d4427c9744c15b862c8595-5" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-5"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-6" name="rest_code_1c19c07691d4427c9744c15b862c8595-6" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-6"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-7" name="rest_code_1c19c07691d4427c9744c15b862c8595-7" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-7"></a>event<span class="w"> </span>delete<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swpx'</span><span class="o">)</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-8" name="rest_code_1c19c07691d4427c9744c15b862c8595-8" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-8"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-9" name="rest_code_1c19c07691d4427c9744c15b862c8595-9" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-9"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-10" name="rest_code_1c19c07691d4427c9744c15b862c8595-10" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-10"></a>event<span class="w"> </span>delete<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-11" name="rest_code_1c19c07691d4427c9744c15b862c8595-11" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-11"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-12" name="rest_code_1c19c07691d4427c9744c15b862c8595-12" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-12"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-13" name="rest_code_1c19c07691d4427c9744c15b862c8595-13" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-13"></a>event<span class="w"> </span>create<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-14" name="rest_code_1c19c07691d4427c9744c15b862c8595-14" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-14"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-15" name="rest_code_1c19c07691d4427c9744c15b862c8595-15" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-15"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-16" name="rest_code_1c19c07691d4427c9744c15b862c8595-16" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-16"></a>event<span class="w"> </span>modify<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-17" name="rest_code_1c19c07691d4427c9744c15b862c8595-17" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-17"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-18" name="rest_code_1c19c07691d4427c9744c15b862c8595-18" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-18"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-19" name="rest_code_1c19c07691d4427c9744c15b862c8595-19" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-19"></a>event<span class="w"> </span>attrib<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-20" name="rest_code_1c19c07691d4427c9744c15b862c8595-20" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-20"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_1c19c07691d4427c9744c15b862c8595-21" name="rest_code_1c19c07691d4427c9744c15b862c8595-21" href="../posts/two-inotify-pitfalls.html#rest_code_1c19c07691d4427c9744c15b862c8595-21"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+</pre></div>
 <p>(pause)</p>
-<pre class="code bash"><a name="rest_code_1b162e5f67c14723ade1337a16d70815-1"></a>event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
-<a name="rest_code_1b162e5f67c14723ade1337a16d70815-2"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_1b162e5f67c14723ade1337a16d70815-3"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-</pre>
+<div class="code"><pre class="code bash"><a id="rest_code_7c66eaef5c314c4a85346f725a9efb6b-1" name="rest_code_7c66eaef5c314c4a85346f725a9efb6b-1" href="../posts/two-inotify-pitfalls.html#rest_code_7c66eaef5c314c4a85346f725a9efb6b-1"></a>event<span class="w"> </span>modify<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+<a id="rest_code_7c66eaef5c314c4a85346f725a9efb6b-2" name="rest_code_7c66eaef5c314c4a85346f725a9efb6b-2" href="../posts/two-inotify-pitfalls.html#rest_code_7c66eaef5c314c4a85346f725a9efb6b-2"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_7c66eaef5c314c4a85346f725a9efb6b-3" name="rest_code_7c66eaef5c314c4a85346f725a9efb6b-3" href="../posts/two-inotify-pitfalls.html#rest_code_7c66eaef5c314c4a85346f725a9efb6b-3"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+</pre></div>
 <p>(modify manually)</p>
-<pre class="code bash"><a name="rest_code_64137bd4464b406a9d09c06d52776cc1-1"></a>event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
-<a name="rest_code_64137bd4464b406a9d09c06d52776cc1-2"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_64137bd4464b406a9d09c06d52776cc1-3"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_64137bd4464b406a9d09c06d52776cc1-4"></a>event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
-<a name="rest_code_64137bd4464b406a9d09c06d52776cc1-5"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_64137bd4464b406a9d09c06d52776cc1-6"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-</pre>
+<div class="code"><pre class="code bash"><a id="rest_code_65967f6787f9404986defc28841bbf8d-1" name="rest_code_65967f6787f9404986defc28841bbf8d-1" href="../posts/two-inotify-pitfalls.html#rest_code_65967f6787f9404986defc28841bbf8d-1"></a>event<span class="w"> </span>modify<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+<a id="rest_code_65967f6787f9404986defc28841bbf8d-2" name="rest_code_65967f6787f9404986defc28841bbf8d-2" href="../posts/two-inotify-pitfalls.html#rest_code_65967f6787f9404986defc28841bbf8d-2"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_65967f6787f9404986defc28841bbf8d-3" name="rest_code_65967f6787f9404986defc28841bbf8d-3" href="../posts/two-inotify-pitfalls.html#rest_code_65967f6787f9404986defc28841bbf8d-3"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_65967f6787f9404986defc28841bbf8d-4" name="rest_code_65967f6787f9404986defc28841bbf8d-4" href="../posts/two-inotify-pitfalls.html#rest_code_65967f6787f9404986defc28841bbf8d-4"></a>event<span class="w"> </span>modify<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+<a id="rest_code_65967f6787f9404986defc28841bbf8d-5" name="rest_code_65967f6787f9404986defc28841bbf8d-5" href="../posts/two-inotify-pitfalls.html#rest_code_65967f6787f9404986defc28841bbf8d-5"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_65967f6787f9404986defc28841bbf8d-6" name="rest_code_65967f6787f9404986defc28841bbf8d-6" href="../posts/two-inotify-pitfalls.html#rest_code_65967f6787f9404986defc28841bbf8d-6"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+</pre></div>
 <p>(save manually)</p>
-<pre class="code bash"><a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-1"></a>event create on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/4913'</span><span class="o">)</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-2"></a>f~ mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-3"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-4"></a>event attrib on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/4913'</span><span class="o">)</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-5"></a>f~ mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-6"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-7"></a>event delete on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/4913'</span><span class="o">)</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-8"></a>f~ mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-9"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-10"></a>event moved_from on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-11"></a>f~ mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-12"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-13"></a>event moved_to on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f~'</span><span class="o">)</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-14"></a>f~ mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-15"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-16"></a>event create on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-17"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307371</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-18"></a>f~ mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-19"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-20"></a>event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-21"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307371</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-22"></a>f~ mode: <span class="m">33204</span> inode: <span class="m">2307370</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-23"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-24"></a>event attrib on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-25"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307371</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-26"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-27"></a>event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-28"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307371</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-29"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-30"></a>event delete on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f~'</span><span class="o">)</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-31"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307371</span>
-<a name="rest_code_82b9cfe9cb8943a9aa5a28bff7f00643-32"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-</pre>
+<div class="code"><pre class="code bash"><a id="rest_code_2cd27f2500904e0fb22eb804125587d3-1" name="rest_code_2cd27f2500904e0fb22eb804125587d3-1" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-1"></a>event<span class="w"> </span>create<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/4913'</span><span class="o">)</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-2" name="rest_code_2cd27f2500904e0fb22eb804125587d3-2" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-2"></a>f~<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-3" name="rest_code_2cd27f2500904e0fb22eb804125587d3-3" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-3"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-4" name="rest_code_2cd27f2500904e0fb22eb804125587d3-4" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-4"></a>event<span class="w"> </span>attrib<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/4913'</span><span class="o">)</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-5" name="rest_code_2cd27f2500904e0fb22eb804125587d3-5" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-5"></a>f~<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-6" name="rest_code_2cd27f2500904e0fb22eb804125587d3-6" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-6"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-7" name="rest_code_2cd27f2500904e0fb22eb804125587d3-7" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-7"></a>event<span class="w"> </span>delete<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/4913'</span><span class="o">)</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-8" name="rest_code_2cd27f2500904e0fb22eb804125587d3-8" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-8"></a>f~<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-9" name="rest_code_2cd27f2500904e0fb22eb804125587d3-9" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-9"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-10" name="rest_code_2cd27f2500904e0fb22eb804125587d3-10" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-10"></a>event<span class="w"> </span>moved_from<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-11" name="rest_code_2cd27f2500904e0fb22eb804125587d3-11" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-11"></a>f~<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-12" name="rest_code_2cd27f2500904e0fb22eb804125587d3-12" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-12"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-13" name="rest_code_2cd27f2500904e0fb22eb804125587d3-13" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-13"></a>event<span class="w"> </span>moved_to<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f~'</span><span class="o">)</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-14" name="rest_code_2cd27f2500904e0fb22eb804125587d3-14" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-14"></a>f~<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-15" name="rest_code_2cd27f2500904e0fb22eb804125587d3-15" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-15"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-16" name="rest_code_2cd27f2500904e0fb22eb804125587d3-16" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-16"></a>event<span class="w"> </span>create<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-17" name="rest_code_2cd27f2500904e0fb22eb804125587d3-17" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-17"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307371</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-18" name="rest_code_2cd27f2500904e0fb22eb804125587d3-18" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-18"></a>f~<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-19" name="rest_code_2cd27f2500904e0fb22eb804125587d3-19" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-19"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-20" name="rest_code_2cd27f2500904e0fb22eb804125587d3-20" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-20"></a>event<span class="w"> </span>modify<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-21" name="rest_code_2cd27f2500904e0fb22eb804125587d3-21" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-21"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307371</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-22" name="rest_code_2cd27f2500904e0fb22eb804125587d3-22" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-22"></a>f~<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307370</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-23" name="rest_code_2cd27f2500904e0fb22eb804125587d3-23" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-23"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-24" name="rest_code_2cd27f2500904e0fb22eb804125587d3-24" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-24"></a>event<span class="w"> </span>attrib<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f'</span><span class="o">)</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-25" name="rest_code_2cd27f2500904e0fb22eb804125587d3-25" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-25"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307371</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-26" name="rest_code_2cd27f2500904e0fb22eb804125587d3-26" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-26"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-27" name="rest_code_2cd27f2500904e0fb22eb804125587d3-27" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-27"></a>event<span class="w"> </span>modify<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-28" name="rest_code_2cd27f2500904e0fb22eb804125587d3-28" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-28"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307371</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-29" name="rest_code_2cd27f2500904e0fb22eb804125587d3-29" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-29"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-30" name="rest_code_2cd27f2500904e0fb22eb804125587d3-30" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-30"></a>event<span class="w"> </span>delete<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/f~'</span><span class="o">)</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-31" name="rest_code_2cd27f2500904e0fb22eb804125587d3-31" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-31"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307371</span>
+<a id="rest_code_2cd27f2500904e0fb22eb804125587d3-32" name="rest_code_2cd27f2500904e0fb22eb804125587d3-32" href="../posts/two-inotify-pitfalls.html#rest_code_2cd27f2500904e0fb22eb804125587d3-32"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+</pre></div>
 <p>(exit)</p>
-<pre class="code bash"><a name="rest_code_1a18f29f92c84fcb8b7c818fa12f9ff3-1"></a>event modify on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
-<a name="rest_code_1a18f29f92c84fcb8b7c818fa12f9ff3-2"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307371</span>
-<a name="rest_code_1a18f29f92c84fcb8b7c818fa12f9ff3-3"></a>.f.swp mode: <span class="m">33188</span> inode: <span class="m">2307363</span>
-<a name="rest_code_1a18f29f92c84fcb8b7c818fa12f9ff3-4"></a>event delete on FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
-<a name="rest_code_1a18f29f92c84fcb8b7c818fa12f9ff3-5"></a>f mode: <span class="m">33204</span> inode: <span class="m">2307371</span>
-</pre>
+<div class="code"><pre class="code bash"><a id="rest_code_20a3196de34d4a8eb8a6378402381895-1" name="rest_code_20a3196de34d4a8eb8a6378402381895-1" href="../posts/two-inotify-pitfalls.html#rest_code_20a3196de34d4a8eb8a6378402381895-1"></a>event<span class="w"> </span>modify<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+<a id="rest_code_20a3196de34d4a8eb8a6378402381895-2" name="rest_code_20a3196de34d4a8eb8a6378402381895-2" href="../posts/two-inotify-pitfalls.html#rest_code_20a3196de34d4a8eb8a6378402381895-2"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307371</span>
+<a id="rest_code_20a3196de34d4a8eb8a6378402381895-3" name="rest_code_20a3196de34d4a8eb8a6378402381895-3" href="../posts/two-inotify-pitfalls.html#rest_code_20a3196de34d4a8eb8a6378402381895-3"></a>.f.swp<span class="w"> </span>mode:<span class="w"> </span><span class="m">33188</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307363</span>
+<a id="rest_code_20a3196de34d4a8eb8a6378402381895-4" name="rest_code_20a3196de34d4a8eb8a6378402381895-4" href="../posts/two-inotify-pitfalls.html#rest_code_20a3196de34d4a8eb8a6378402381895-4"></a>event<span class="w"> </span>delete<span class="w"> </span>on<span class="w"> </span>FilePath<span class="o">(</span><span class="s1">'/home/amber/subdir/.f.swp'</span><span class="o">)</span>
+<a id="rest_code_20a3196de34d4a8eb8a6378402381895-5" name="rest_code_20a3196de34d4a8eb8a6378402381895-5" href="../posts/two-inotify-pitfalls.html#rest_code_20a3196de34d4a8eb8a6378402381895-5"></a>f<span class="w"> </span>mode:<span class="w"> </span><span class="m">33204</span><span class="w"> </span>inode:<span class="w"> </span><span class="m">2307371</span>
+</pre></div>
 <p>As far as I can tell, the result is as if they have renamed f to something else like f~, copied the contents of f~ to a new file named f, modified f, and finally deleted f~.
 This is essentially <a class="reference external" href="http://en.wikipedia.org/wiki/Copy-on-write">copy-on write</a>.</p>
 <p>But inotify, while taking pathnames as arguments and returning pathnames, actually tracks inodes.
@@ -1107,11 +1177,11 @@ On the other hand, if you happened to have drawn red, then the ratio would chang
 <section id="one-of-each"><h3>One of each</h3>
 <p>Let's imagine the simplest case, in which we start with one each of two colours, red and green.
 The following table shows the probabilities of getting red on the first three draws, and how each draw changes the probability of the next by changing the proportion of colours in the urn.</p>
-<table class="colwidths-given">
+<table>
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 33.3%">
+<col style="width: 33.3%">
+<col style="width: 33.3%">
 </colgroup>
 <thead><tr>
 <th class="head"></th>
@@ -1145,10 +1215,10 @@ The following table shows the probabilities of getting red on the first three dr
 <p>There are more ways to have drawn two of one colour, and one of the other, than 3 of one colour.
 However, because of the way drawing a particular colour reinforces itself,
 there is a <span class="math">\(50\%\)</span> chance of drawing the same colour every time over the first three draws.</p>
-<table class="colwidths-given">
+<table>
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 50.0%">
+<col style="width: 50.0%">
 </colgroup>
 <thead><tr>
 <th class="head"><p>First three draws</p></th>
@@ -1292,7 +1362,7 @@ In <a class="reference external" href="http://en.wikipedia.org/wiki/Logogram">lo
                 </p>
 </div>
             </header><div class="p-summary entry-summary">
-                    <p>Yesterday Hacker School's resident <a class="reference external" href="http://blog.melchua.com/about/">Mel Chua</a> shared her work on educational psychology theory for Hacker School <a class="footnote-reference brackets" href="../posts/productively-lost.html#id2" id="id1">1</a>.
+                    <p>Yesterday Hacker School's resident <a class="reference external" href="http://blog.melchua.com/about/">Mel Chua</a> shared her work on educational psychology theory for Hacker School <a class="brackets" href="../posts/productively-lost.html#footnote-1" id="footnote-reference-1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 I had seen an earlier iteration of this talk from PyCon video archives, and it was useful to me then.
 However, this time I had more relevant experience with which to understand it.
 Hacker School is the first time I have had such a fluid and indeterminate educational experience.
@@ -1329,12 +1399,9 @@ The increased autonomy and competence I am developing here feels like a new free
 <p>Becoming comfortable with this fundamental lostness, and yet feeling adequate to navigate it, is ultimately much more empowering than the security of excelling at following well-lit, paths sanctioned and rewarded by others.</p>
 <hr class="docutils">
 <p>.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="../posts/productively-lost.html#id1">1</a></span></dt>
-<dd>
+<aside class="footnote-list brackets"><aside class="footnote brackets" id="footnote-1" role="doc-footnote"><span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="../posts/productively-lost.html#footnote-reference-1">1</a><span class="fn-bracket">]</span></span>
 <p>Slides from last year's version here: <a class="reference external" href="http://blog.melchua.com/2013/10/07/edupsych-for-hacker-schoolers-v-1-1-presentation-slides/">http://blog.melchua.com/2013/10/07/edupsych-for-hacker-schoolers-v-1-1-presentation-slides/</a></p>
-</dd>
-</dl>
+</aside></aside>
 </div>
             </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="../posts/addresses-and-contents.html" class="u-url">Addresses and Contents</a></h1>
                 <div class="metadata">
@@ -1422,10 +1489,10 @@ To import, I took the following steps:</p>
 <ul class="simple">
 <li><p>First, I exported my blog from Blogger, which gave me a file called <cite>blog-07-05-2014.xml</cite>. Then,</p></li>
 </ul>
-<pre class="code text"><a name="rest_code_823788c4eacc442a91b043f096e9b3b2-1"></a>$ sudo pip install nikola
-<a name="rest_code_823788c4eacc442a91b043f096e9b3b2-2"></a>$ nikola plugin -i import_blogger
-<a name="rest_code_823788c4eacc442a91b043f096e9b3b2-3"></a>$ nikola import_blogger -o site blog-07-05-2014.xml # The -o tells nikola what directory to make the site in.
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_df7dd6b80a96402099aa2cb1e59ea709-1" name="rest_code_df7dd6b80a96402099aa2cb1e59ea709-1" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_df7dd6b80a96402099aa2cb1e59ea709-1"></a>$ sudo pip install nikola
+<a id="rest_code_df7dd6b80a96402099aa2cb1e59ea709-2" name="rest_code_df7dd6b80a96402099aa2cb1e59ea709-2" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_df7dd6b80a96402099aa2cb1e59ea709-2"></a>$ nikola plugin -i import_blogger
+<a id="rest_code_df7dd6b80a96402099aa2cb1e59ea709-3" name="rest_code_df7dd6b80a96402099aa2cb1e59ea709-3" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_df7dd6b80a96402099aa2cb1e59ea709-3"></a>$ nikola import_blogger -o site blog-07-05-2014.xml # The -o tells nikola what directory to make the site in.
+</pre></div>
 <p>After this, I had some cleanup to do.
 For one thing, Nikola renamed all the Blogger files (in a sensible way).
 Blogger has date-derived subdirectories for posts, whereas in Nikola all the posts are kept in one folder, called "posts"
@@ -1447,40 +1514,40 @@ They are archived, indexed by tag, and ordered by date for display.</p></li>
 <p>So to make a blog into a non-blog, you simply manipulate the variable <cite>POSTS</cite> defined in <cite>conf.py</cite>.
 <cite>POSTS</cite> and <cite>PAGES</cite> are lists describing where to find posts or pages respectively, where to render them, and what template to use for them.
 We let the <cite>POSTS</cite> list be empty, so everything on the site will be a page.</p>
-<pre class="code text"><a name="rest_code_973a085fbbc44f809bb4021eee747136-1"></a>POSTS = []
-<a name="rest_code_973a085fbbc44f809bb4021eee747136-2"></a>PAGES = [
-<a name="rest_code_973a085fbbc44f809bb4021eee747136-3"></a>        ("pages/*.rst", "", "story.tmpl"),
-<a name="rest_code_973a085fbbc44f809bb4021eee747136-4"></a>        ("pages/*.txt", "", "story.tmpl"),
-<a name="rest_code_973a085fbbc44f809bb4021eee747136-5"></a>        ]
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_841a555821944d5ebbc6bf526ecde7f5-1" name="rest_code_841a555821944d5ebbc6bf526ecde7f5-1" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_841a555821944d5ebbc6bf526ecde7f5-1"></a>POSTS = []
+<a id="rest_code_841a555821944d5ebbc6bf526ecde7f5-2" name="rest_code_841a555821944d5ebbc6bf526ecde7f5-2" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_841a555821944d5ebbc6bf526ecde7f5-2"></a>PAGES = [
+<a id="rest_code_841a555821944d5ebbc6bf526ecde7f5-3" name="rest_code_841a555821944d5ebbc6bf526ecde7f5-3" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_841a555821944d5ebbc6bf526ecde7f5-3"></a>        ("pages/*.rst", "", "story.tmpl"),
+<a id="rest_code_841a555821944d5ebbc6bf526ecde7f5-4" name="rest_code_841a555821944d5ebbc6bf526ecde7f5-4" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_841a555821944d5ebbc6bf526ecde7f5-4"></a>        ("pages/*.txt", "", "story.tmpl"),
+<a id="rest_code_841a555821944d5ebbc6bf526ecde7f5-5" name="rest_code_841a555821944d5ebbc6bf526ecde7f5-5" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_841a555821944d5ebbc6bf526ecde7f5-5"></a>        ]
+</pre></div>
 <p>The two entries for <cite>PAGES</cite> are here to allow either txt or rst, but the one that comes first is what will be used when you use the <cite>new_post</cite> command.</p>
 <p>So you can create a <em>page</em> called "index.html" by running <cite>new_post -p</cite>, and giving it the name <cite>index</cite>.</p>
-<pre class="code text"><a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-1"></a>$ nikola new_post -p
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-2"></a>
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-3"></a>[...]
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-4"></a>
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-5"></a>Creating New Page
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-6"></a>-----------------
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-7"></a>
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-8"></a>Title: index
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-9"></a>
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-10"></a>[...]
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-11"></a>INFO: new_page: Your page's text is at: pages/index.rst
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-1" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-1" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-1"></a>$ nikola new_post -p
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-2" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-2" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-2"></a>
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-3" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-3" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-3"></a>[...]
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-4" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-4" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-4"></a>
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-5" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-5" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-5"></a>Creating New Page
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-6" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-6" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-6"></a>-----------------
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-7" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-7" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-7"></a>
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-8" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-8" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-8"></a>Title: index
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-9" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-9" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-9"></a>
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-10" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-10" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-10"></a>[...]
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-11" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-11" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-11"></a>INFO: new_page: Your page's text is at: pages/index.rst
+</pre></div>
 <p>Since we put it at "", which is the top level of the site, it will be what you see on the "front page".</p>
 <p>Unfortunately, this creates a conflict, because when you build the site, the <em>blog</em> part is already wired to make an index.html file in the top-level directory, since that's how blogs normally appear.
 So you intercept this by adding to <cite>conf.py</cite> the line:</p>
-<pre class="code text"><a name="rest_code_6169b637b11a493cba75143a03509c24-1"></a>INDEX_PATH = "blog"
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_7e1c762fc3ba430d931d83beb9e5f312-1" name="rest_code_7e1c762fc3ba430d931d83beb9e5f312-1" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_7e1c762fc3ba430d931d83beb9e5f312-1"></a>INDEX_PATH = "blog"
+</pre></div>
 <p>This just makes it so the blog index is now created under the folder blog, instead of the top level, and it no longer conflicts.</p>
 <p>It also means that now you can have a regular blog under the subdirectory blog, by putting options back in for <cite>POSTS</cite>:</p>
-<pre class="code text"><a name="rest_code_65fe22b04c084ce09cb8efaeaa0ffc27-1"></a>POSTS = [("posts/*.rst", "blog", "post.tmpl")]
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_0b1ed77abfe94c0681a94971a9f14971-1" name="rest_code_0b1ed77abfe94c0681a94971a9f14971-1" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_0b1ed77abfe94c0681a94971a9f14971-1"></a>POSTS = [("posts/*.rst", "blog", "post.tmpl")]
+</pre></div>
 <p>But this is not enough for us, because we have imported posts from Blogger that were also being found from the <cite>POSTS</cite> list.
 There is another entry in <cite>POSTS</cite> that we need back, that tells Nikola to also collect and render existing html files, such as those we imported.
 So we need to add:</p>
-<pre class="code text"><a name="rest_code_83312868b93b48bbaa39a46633395453-1"></a>("posts/*.html", "blog", "post.tmpl")
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_04cecae7be9e4dd9ae52c57e84df78a8-1" name="rest_code_04cecae7be9e4dd9ae52c57e84df78a8-1" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_04cecae7be9e4dd9ae52c57e84df78a8-1"></a>("posts/*.html", "blog", "post.tmpl")
+</pre></div>
 <p>back into the list.</p>
 </section></section><section id="two-blogs"><h2>Two blogs</h2>
 <p>At this point I had part of what I wanted.
@@ -1495,23 +1562,23 @@ But I still wanted to have two blogs, a primary one for themed entries, and a jo
 <p>This worked to render them and include them in the site, but the journal articles were not indexed.
 That meant that if I knew the URL, I could go to the article, but a visitor to the site could never discover them.</p>
 <p>To add indexing I had to add to conf.py:</p>
-<pre class="code text"><a name="rest_code_a3b879e67e824208af4383b5d09dce71-1"></a>STORY_INDEX = True
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_b404b87e03f54998bca01e296dfd2fdf-1" name="rest_code_b404b87e03f54998bca01e296dfd2fdf-1" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_b404b87e03f54998bca01e296dfd2fdf-1"></a>STORY_INDEX = True
+</pre></div>
 <p>But again, this created a conflict with multiple files called "index.html" trying to go in the same folder.
 So I also had to change the name of the index.  I chose "index.htm", so that the server would automatically redirect.</p>
-<pre class="code text"><a name="rest_code_ce41733c032841318ba618b8a4bf8825-1"></a>INDEX_FILE = "index.htm"
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_6a62e87bb988496d9ff22a02aa68e625-1" name="rest_code_6a62e87bb988496d9ff22a02aa68e625-1" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_6a62e87bb988496d9ff22a02aa68e625-1"></a>INDEX_FILE = "index.htm"
+</pre></div>
 <p>Finally, I wanted the journal to be findable without knowing the directory name "journal", so I updated the navigation links:</p>
-<pre class="code text"><a name="rest_code_2976cfde4f9f407a812069b0db647910-1"></a>NAVIGATION_LINKS = {
-<a name="rest_code_2976cfde4f9f407a812069b0db647910-2"></a> DEFAULT_LANG: (
-<a name="rest_code_2976cfde4f9f407a812069b0db647910-3"></a>     ("/archive.html", "Archive"),
-<a name="rest_code_2976cfde4f9f407a812069b0db647910-4"></a>     ("/categories/", "Tags"),
-<a name="rest_code_2976cfde4f9f407a812069b0db647910-5"></a>     ("/blog/", "Blog"),
-<a name="rest_code_2976cfde4f9f407a812069b0db647910-6"></a>     ("/journal/", "Journal"),
-<a name="rest_code_2976cfde4f9f407a812069b0db647910-7"></a>     ("/rss.xml", "RSS feed"),
-<a name="rest_code_2976cfde4f9f407a812069b0db647910-8"></a>  ),
-<a name="rest_code_2976cfde4f9f407a812069b0db647910-9"></a> }
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-1" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-1" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-1"></a>NAVIGATION_LINKS = {
+<a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-2" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-2" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-2"></a> DEFAULT_LANG: (
+<a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-3" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-3" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-3"></a>     ("/archive.html", "Archive"),
+<a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-4" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-4" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-4"></a>     ("/categories/", "Tags"),
+<a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-5" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-5" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-5"></a>     ("/blog/", "Blog"),
+<a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-6" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-6" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-6"></a>     ("/journal/", "Journal"),
+<a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-7" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-7" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-7"></a>     ("/rss.xml", "RSS feed"),
+<a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-8" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-8" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-8"></a>  ),
+<a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-9" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-9" href="../posts/how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-9"></a> }
+</pre></div>
 <p>As an extra configuration tweak, I set <cite>TAG_PAGES_ARE_INDEXES = True</cite>, so that when you go to the page for a given tag, it renders the posts themselves, rather than a list.</p>
 <p>I would like to do that for my journal index as well, but that feature is not yet general, so if you navigate to "Journal" you will get a list of posts, and unfortunately, since it is a journal, they are named by date.
 Moreover, their tags aren't collected.</p>
@@ -1529,81 +1596,6 @@ In order to inject the old rst files into Nikola, however, would require manuall
 This seems like a lot of work, and I'm not willing to do it right now.</p>
 </section></section>
 </div>
-            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="../posts/moving-my-site-off-of-blogger.html" class="u-url">Moving my site off of Blogger</a></h1>
-                <div class="metadata">
-                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                        L. Amber O'Hearn
-                    </span></p>
-            <p class="dateline">
-            <a href="../posts/moving-my-site-off-of-blogger.html" rel="bookmark">
-            <time class="published dt-published" datetime="2014-07-08T16:48:18Z" itemprop="datePublished" title="2014-07-08 16:48">2014-07-08 16:48</time></a>
-            </p>
-                        <p class="commentline">
-    
-    <a href="../posts/moving-my-site-off-of-blogger.html#disqus_thread" data-disqus-identifier="cache/posts/moving-my-site-off-of-blogger.html">Comments</a>
-
-
-                </p>
-</div>
-            </header><div class="p-summary entry-summary">
-                    <p>I was having two problems with the setup of this website.
-First, I wanted to factor out <a class="reference external" href="http://www.subsymbol.org/journal/">the experiment in vulnerability and transparency that I have been doing by keep a log of my daily goals, progress, and insights at Hacker School</a>.
-I like the experiment, but I wanted it to be separate from <a class="reference external" href="http://www.subsymbol.org/blog/">articles I write more deliberately</a>.</p>
-<p>The second problem was that I wanted to migrate from Blogger.</p>
-<p>Blogger has advantages.
-It is easy to set up, and freely hosted.
-It has themes, comments, and a variety of plugins.
-You can export your stuff if you want to, so you aren't completely locked in.</p>
-<p>However, Blogger is not a good match for someone who wants fine-grained control over her content.
-My use of Blogger for the three sites I have hosted on it has consisted of the following elaborate dance:</p>
-<ol class="arabic simple">
-<li><p>Edit my post in reStructuredText <a class="footnote-reference brackets" href="../posts/moving-my-site-off-of-blogger.html#id3" id="id1">1</a>.</p></li>
-<li><p>Convert my post into HTML using a custom script I adapted from <a class="reference external" href="https://pypi.python.org/pypi/rst2blogger">rst2blogger</a> <a class="footnote-reference brackets" href="../posts/moving-my-site-off-of-blogger.html#id4" id="id2">2</a>.</p></li>
-<li><p>Cut and paste my post into the Blogger compose form, click <cite>Preview</cite>, and see if it looked ok.</p></li>
-<li><p>Repeat until all typos and other issues were resolved.</p></li>
-<li><p>Click <cite>Publish</cite>.</p></li>
-</ol>
-<p>The result of all this work was a site that looked more-or-less how I wanted it to in some ways, but was frustrating in others.
-For example,</p>
-<ul class="simple">
-<li><p>I couldn't change the css styles that went with a given theme, (and some of them were really dysfunctional).</p></li>
-<li><p>I couldn't make the site <em>not a blog</em> — the blog assumption is that your most recent content ought to be your most prominent, and this is not an appropriate assumption for some of my use cases.
-I sometimes found myself putting off making a post that was less compelling until I knew I could follow it with a better one quickly!
-The restrictiveness wasn't serving me.</p></li>
-</ul>
-<p>Also, a little independence from Google seems healthy.</p>
-<p>What I really wanted was a static site generator, with no dynamic logic on a server-side database.
-I wanted my whole site complete and rendered on my local machine to do with what I liked.
-In other words, I wanted a static site generator.</p>
-<section id="choosing-a-static-site-generator"><h2>Choosing a static site generator</h2>
-<p>My criteria were:</p>
-<ul class="simple">
-<li><p>Open source</p></li>
-<li><p>Python</p></li>
-<li><p>Works to generate non-blog sites.</p></li>
-</ul>
-<p>This gave me two choices that I knew of: <a class="reference external" href="http://blog.getpelican.com/">Pelican</a>, and <a class="reference external" href="http://getnikola.com/">Nikola</a>.</p>
-<p>I have had my eyes on Pelican for some time now.
-I didn't like the way the resulting websites looked, though, until recently.
-They had a jarring "I'm a programmer, not a designer" feel.
-Being a programmer and not a designer, I can't articulate it much more precisely than that.
-These days, the sites look fine to me.
-The docs are well written, the code looks good, and <a class="reference external" href="http://www.lothar.com/blog/">people whose opinions about such things I respect</a> use it.</p>
-<p>In the meantime, I also found out about Nikola,
-which was recommended by <a class="reference external" href="https://github.com/punchagan">another respected coder-friend</a>.</p>
-<p>I decided to use Nikola, in part because it has a plugin to import from Blogger, and in part because the above-mentioned friend offered to help me.</p>
-<p>In the next post, I'll describe how I ported my Blogger blog into a Nikola blog.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="../posts/moving-my-site-off-of-blogger.html#id1">1</a></span></dt>
-<dd>
-<p>I used to write in pure HTML, but after much goading from Zooko, I switched to rst.  I'm glad; I find rst more flexible.</p>
-</dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="../posts/moving-my-site-off-of-blogger.html#id2">2</a></span></dt>
-<dd>
-<p>I didn't want the script to deploy it, because I didn't want to trust the script with my Google authentication, so I took that part out.  I also changed some heading styles that Blogger doesn't render well.</p>
-</dd>
-</dl></section>
-</div>
             </article>
 </div>
     
@@ -1611,7 +1603,7 @@ which was recommended by <a class="reference external" href="https://github.com/
 <li class="next"><a href="index-1.html" rel="next">Older posts</a></li>
         </ul>
 <script>var disqus_shortname="subsymbol.org";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
-            Contents © 2022         <a href="mailto:amber@cs.toronto.edu">L. Amber O'Hearn</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+            Contents © 2026         <a href="mailto:amber@cs.toronto.edu">L. Amber O'Hearn</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
             
             
         </footer>

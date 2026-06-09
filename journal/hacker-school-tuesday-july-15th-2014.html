@@ -126,17 +126,17 @@ This is why I used text files to hold the pathnames.</p>
 <p>Under the new design, I intend to construct a more complete database, but still constructing tables out of files and directories.
 One of the tables was going to be called inodes.
 It was going to look something like this:</p>
-<pre class="code text"><a name="rest_code_312709a8228f4cc997b4d7b2c11136be-1"></a>   .
-<a name="rest_code_312709a8228f4cc997b4d7b2c11136be-2"></a>└── .protagonist
-<a name="rest_code_312709a8228f4cc997b4d7b2c11136be-3"></a>    └── inodes
-<a name="rest_code_312709a8228f4cc997b4d7b2c11136be-4"></a>        ├── i0
-<a name="rest_code_312709a8228f4cc997b4d7b2c11136be-5"></a>        │   ├── p0
-<a name="rest_code_312709a8228f4cc997b4d7b2c11136be-6"></a>        │   │   └── somehash
-<a name="rest_code_312709a8228f4cc997b4d7b2c11136be-7"></a>        │   ├── p1
-<a name="rest_code_312709a8228f4cc997b4d7b2c11136be-8"></a>        │   └── p2
-<a name="rest_code_312709a8228f4cc997b4d7b2c11136be-9"></a>        ├── i1
-<a name="rest_code_312709a8228f4cc997b4d7b2c11136be-10"></a>        └── i2
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_a891c838b2f0468d91ad6d89ab461350-1" name="rest_code_a891c838b2f0468d91ad6d89ab461350-1" href="hacker-school-tuesday-july-15th-2014.html#rest_code_a891c838b2f0468d91ad6d89ab461350-1"></a>   .
+<a id="rest_code_a891c838b2f0468d91ad6d89ab461350-2" name="rest_code_a891c838b2f0468d91ad6d89ab461350-2" href="hacker-school-tuesday-july-15th-2014.html#rest_code_a891c838b2f0468d91ad6d89ab461350-2"></a>└── .protagonist
+<a id="rest_code_a891c838b2f0468d91ad6d89ab461350-3" name="rest_code_a891c838b2f0468d91ad6d89ab461350-3" href="hacker-school-tuesday-july-15th-2014.html#rest_code_a891c838b2f0468d91ad6d89ab461350-3"></a>    └── inodes
+<a id="rest_code_a891c838b2f0468d91ad6d89ab461350-4" name="rest_code_a891c838b2f0468d91ad6d89ab461350-4" href="hacker-school-tuesday-july-15th-2014.html#rest_code_a891c838b2f0468d91ad6d89ab461350-4"></a>        ├── i0
+<a id="rest_code_a891c838b2f0468d91ad6d89ab461350-5" name="rest_code_a891c838b2f0468d91ad6d89ab461350-5" href="hacker-school-tuesday-july-15th-2014.html#rest_code_a891c838b2f0468d91ad6d89ab461350-5"></a>        │   ├── p0
+<a id="rest_code_a891c838b2f0468d91ad6d89ab461350-6" name="rest_code_a891c838b2f0468d91ad6d89ab461350-6" href="hacker-school-tuesday-july-15th-2014.html#rest_code_a891c838b2f0468d91ad6d89ab461350-6"></a>        │   │   └── somehash
+<a id="rest_code_a891c838b2f0468d91ad6d89ab461350-7" name="rest_code_a891c838b2f0468d91ad6d89ab461350-7" href="hacker-school-tuesday-july-15th-2014.html#rest_code_a891c838b2f0468d91ad6d89ab461350-7"></a>        │   ├── p1
+<a id="rest_code_a891c838b2f0468d91ad6d89ab461350-8" name="rest_code_a891c838b2f0468d91ad6d89ab461350-8" href="hacker-school-tuesday-july-15th-2014.html#rest_code_a891c838b2f0468d91ad6d89ab461350-8"></a>        │   └── p2
+<a id="rest_code_a891c838b2f0468d91ad6d89ab461350-9" name="rest_code_a891c838b2f0468d91ad6d89ab461350-9" href="hacker-school-tuesday-july-15th-2014.html#rest_code_a891c838b2f0468d91ad6d89ab461350-9"></a>        ├── i1
+<a id="rest_code_a891c838b2f0468d91ad6d89ab461350-10" name="rest_code_a891c838b2f0468d91ad6d89ab461350-10" href="hacker-school-tuesday-july-15th-2014.html#rest_code_a891c838b2f0468d91ad6d89ab461350-10"></a>        └── i2
+</pre></div>
 <p>(not fully filled in)</p>
 <p>There is a list of inodes IDs, each of which has one or more paths that link to it, and those paths have hard links in the form of hashes to the inodes.</p>
 <p>The problem here is that pathnames are strings with '/'s in them, which makes for difficulty in constructing directory names without reconstructing the path.
@@ -174,7 +174,7 @@ I'm glad I chose to do it.</p>
 
 
         </section></article><script>var disqus_shortname="subsymbol.org";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
-            Contents © 2022         <a href="mailto:amber@cs.toronto.edu">L. Amber O'Hearn</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+            Contents © 2026         <a href="mailto:amber@cs.toronto.edu">L. Amber O'Hearn</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
             
             
         </footer>

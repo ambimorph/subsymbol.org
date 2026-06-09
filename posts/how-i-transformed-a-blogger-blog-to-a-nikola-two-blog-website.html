@@ -121,10 +121,10 @@ To import, I took the following steps:</p>
 <ul class="simple">
 <li><p>First, I exported my blog from Blogger, which gave me a file called <cite>blog-07-05-2014.xml</cite>. Then,</p></li>
 </ul>
-<pre class="code text"><a name="rest_code_823788c4eacc442a91b043f096e9b3b2-1"></a>$ sudo pip install nikola
-<a name="rest_code_823788c4eacc442a91b043f096e9b3b2-2"></a>$ nikola plugin -i import_blogger
-<a name="rest_code_823788c4eacc442a91b043f096e9b3b2-3"></a>$ nikola import_blogger -o site blog-07-05-2014.xml # The -o tells nikola what directory to make the site in.
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_df7dd6b80a96402099aa2cb1e59ea709-1" name="rest_code_df7dd6b80a96402099aa2cb1e59ea709-1" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_df7dd6b80a96402099aa2cb1e59ea709-1"></a>$ sudo pip install nikola
+<a id="rest_code_df7dd6b80a96402099aa2cb1e59ea709-2" name="rest_code_df7dd6b80a96402099aa2cb1e59ea709-2" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_df7dd6b80a96402099aa2cb1e59ea709-2"></a>$ nikola plugin -i import_blogger
+<a id="rest_code_df7dd6b80a96402099aa2cb1e59ea709-3" name="rest_code_df7dd6b80a96402099aa2cb1e59ea709-3" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_df7dd6b80a96402099aa2cb1e59ea709-3"></a>$ nikola import_blogger -o site blog-07-05-2014.xml # The -o tells nikola what directory to make the site in.
+</pre></div>
 <p>After this, I had some cleanup to do.
 For one thing, Nikola renamed all the Blogger files (in a sensible way).
 Blogger has date-derived subdirectories for posts, whereas in Nikola all the posts are kept in one folder, called "posts"
@@ -146,40 +146,40 @@ They are archived, indexed by tag, and ordered by date for display.</p></li>
 <p>So to make a blog into a non-blog, you simply manipulate the variable <cite>POSTS</cite> defined in <cite>conf.py</cite>.
 <cite>POSTS</cite> and <cite>PAGES</cite> are lists describing where to find posts or pages respectively, where to render them, and what template to use for them.
 We let the <cite>POSTS</cite> list be empty, so everything on the site will be a page.</p>
-<pre class="code text"><a name="rest_code_973a085fbbc44f809bb4021eee747136-1"></a>POSTS = []
-<a name="rest_code_973a085fbbc44f809bb4021eee747136-2"></a>PAGES = [
-<a name="rest_code_973a085fbbc44f809bb4021eee747136-3"></a>        ("pages/*.rst", "", "story.tmpl"),
-<a name="rest_code_973a085fbbc44f809bb4021eee747136-4"></a>        ("pages/*.txt", "", "story.tmpl"),
-<a name="rest_code_973a085fbbc44f809bb4021eee747136-5"></a>        ]
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_841a555821944d5ebbc6bf526ecde7f5-1" name="rest_code_841a555821944d5ebbc6bf526ecde7f5-1" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_841a555821944d5ebbc6bf526ecde7f5-1"></a>POSTS = []
+<a id="rest_code_841a555821944d5ebbc6bf526ecde7f5-2" name="rest_code_841a555821944d5ebbc6bf526ecde7f5-2" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_841a555821944d5ebbc6bf526ecde7f5-2"></a>PAGES = [
+<a id="rest_code_841a555821944d5ebbc6bf526ecde7f5-3" name="rest_code_841a555821944d5ebbc6bf526ecde7f5-3" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_841a555821944d5ebbc6bf526ecde7f5-3"></a>        ("pages/*.rst", "", "story.tmpl"),
+<a id="rest_code_841a555821944d5ebbc6bf526ecde7f5-4" name="rest_code_841a555821944d5ebbc6bf526ecde7f5-4" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_841a555821944d5ebbc6bf526ecde7f5-4"></a>        ("pages/*.txt", "", "story.tmpl"),
+<a id="rest_code_841a555821944d5ebbc6bf526ecde7f5-5" name="rest_code_841a555821944d5ebbc6bf526ecde7f5-5" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_841a555821944d5ebbc6bf526ecde7f5-5"></a>        ]
+</pre></div>
 <p>The two entries for <cite>PAGES</cite> are here to allow either txt or rst, but the one that comes first is what will be used when you use the <cite>new_post</cite> command.</p>
 <p>So you can create a <em>page</em> called "index.html" by running <cite>new_post -p</cite>, and giving it the name <cite>index</cite>.</p>
-<pre class="code text"><a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-1"></a>$ nikola new_post -p
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-2"></a>
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-3"></a>[...]
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-4"></a>
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-5"></a>Creating New Page
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-6"></a>-----------------
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-7"></a>
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-8"></a>Title: index
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-9"></a>
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-10"></a>[...]
-<a name="rest_code_78098978dd1f43e28aa35ad4036fc3cd-11"></a>INFO: new_page: Your page's text is at: pages/index.rst
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-1" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-1" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-1"></a>$ nikola new_post -p
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-2" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-2" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-2"></a>
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-3" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-3" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-3"></a>[...]
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-4" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-4" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-4"></a>
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-5" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-5" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-5"></a>Creating New Page
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-6" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-6" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-6"></a>-----------------
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-7" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-7" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-7"></a>
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-8" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-8" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-8"></a>Title: index
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-9" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-9" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-9"></a>
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-10" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-10" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-10"></a>[...]
+<a id="rest_code_d1bd027cd56a4036a25bff7c91b34974-11" name="rest_code_d1bd027cd56a4036a25bff7c91b34974-11" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_d1bd027cd56a4036a25bff7c91b34974-11"></a>INFO: new_page: Your page's text is at: pages/index.rst
+</pre></div>
 <p>Since we put it at "", which is the top level of the site, it will be what you see on the "front page".</p>
 <p>Unfortunately, this creates a conflict, because when you build the site, the <em>blog</em> part is already wired to make an index.html file in the top-level directory, since that's how blogs normally appear.
 So you intercept this by adding to <cite>conf.py</cite> the line:</p>
-<pre class="code text"><a name="rest_code_6169b637b11a493cba75143a03509c24-1"></a>INDEX_PATH = "blog"
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_7e1c762fc3ba430d931d83beb9e5f312-1" name="rest_code_7e1c762fc3ba430d931d83beb9e5f312-1" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_7e1c762fc3ba430d931d83beb9e5f312-1"></a>INDEX_PATH = "blog"
+</pre></div>
 <p>This just makes it so the blog index is now created under the folder blog, instead of the top level, and it no longer conflicts.</p>
 <p>It also means that now you can have a regular blog under the subdirectory blog, by putting options back in for <cite>POSTS</cite>:</p>
-<pre class="code text"><a name="rest_code_65fe22b04c084ce09cb8efaeaa0ffc27-1"></a>POSTS = [("posts/*.rst", "blog", "post.tmpl")]
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_0b1ed77abfe94c0681a94971a9f14971-1" name="rest_code_0b1ed77abfe94c0681a94971a9f14971-1" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_0b1ed77abfe94c0681a94971a9f14971-1"></a>POSTS = [("posts/*.rst", "blog", "post.tmpl")]
+</pre></div>
 <p>But this is not enough for us, because we have imported posts from Blogger that were also being found from the <cite>POSTS</cite> list.
 There is another entry in <cite>POSTS</cite> that we need back, that tells Nikola to also collect and render existing html files, such as those we imported.
 So we need to add:</p>
-<pre class="code text"><a name="rest_code_83312868b93b48bbaa39a46633395453-1"></a>("posts/*.html", "blog", "post.tmpl")
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_04cecae7be9e4dd9ae52c57e84df78a8-1" name="rest_code_04cecae7be9e4dd9ae52c57e84df78a8-1" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_04cecae7be9e4dd9ae52c57e84df78a8-1"></a>("posts/*.html", "blog", "post.tmpl")
+</pre></div>
 <p>back into the list.</p>
 </section></section><section id="two-blogs"><h2>Two blogs</h2>
 <p>At this point I had part of what I wanted.
@@ -194,23 +194,23 @@ But I still wanted to have two blogs, a primary one for themed entries, and a jo
 <p>This worked to render them and include them in the site, but the journal articles were not indexed.
 That meant that if I knew the URL, I could go to the article, but a visitor to the site could never discover them.</p>
 <p>To add indexing I had to add to conf.py:</p>
-<pre class="code text"><a name="rest_code_a3b879e67e824208af4383b5d09dce71-1"></a>STORY_INDEX = True
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_b404b87e03f54998bca01e296dfd2fdf-1" name="rest_code_b404b87e03f54998bca01e296dfd2fdf-1" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_b404b87e03f54998bca01e296dfd2fdf-1"></a>STORY_INDEX = True
+</pre></div>
 <p>But again, this created a conflict with multiple files called "index.html" trying to go in the same folder.
 So I also had to change the name of the index.  I chose "index.htm", so that the server would automatically redirect.</p>
-<pre class="code text"><a name="rest_code_ce41733c032841318ba618b8a4bf8825-1"></a>INDEX_FILE = "index.htm"
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_6a62e87bb988496d9ff22a02aa68e625-1" name="rest_code_6a62e87bb988496d9ff22a02aa68e625-1" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_6a62e87bb988496d9ff22a02aa68e625-1"></a>INDEX_FILE = "index.htm"
+</pre></div>
 <p>Finally, I wanted the journal to be findable without knowing the directory name "journal", so I updated the navigation links:</p>
-<pre class="code text"><a name="rest_code_2976cfde4f9f407a812069b0db647910-1"></a>NAVIGATION_LINKS = {
-<a name="rest_code_2976cfde4f9f407a812069b0db647910-2"></a> DEFAULT_LANG: (
-<a name="rest_code_2976cfde4f9f407a812069b0db647910-3"></a>     ("/archive.html", "Archive"),
-<a name="rest_code_2976cfde4f9f407a812069b0db647910-4"></a>     ("/categories/", "Tags"),
-<a name="rest_code_2976cfde4f9f407a812069b0db647910-5"></a>     ("/blog/", "Blog"),
-<a name="rest_code_2976cfde4f9f407a812069b0db647910-6"></a>     ("/journal/", "Journal"),
-<a name="rest_code_2976cfde4f9f407a812069b0db647910-7"></a>     ("/rss.xml", "RSS feed"),
-<a name="rest_code_2976cfde4f9f407a812069b0db647910-8"></a>  ),
-<a name="rest_code_2976cfde4f9f407a812069b0db647910-9"></a> }
-</pre>
+<div class="code"><pre class="code text"><a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-1" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-1" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-1"></a>NAVIGATION_LINKS = {
+<a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-2" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-2" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-2"></a> DEFAULT_LANG: (
+<a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-3" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-3" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-3"></a>     ("/archive.html", "Archive"),
+<a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-4" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-4" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-4"></a>     ("/categories/", "Tags"),
+<a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-5" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-5" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-5"></a>     ("/blog/", "Blog"),
+<a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-6" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-6" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-6"></a>     ("/journal/", "Journal"),
+<a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-7" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-7" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-7"></a>     ("/rss.xml", "RSS feed"),
+<a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-8" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-8" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-8"></a>  ),
+<a id="rest_code_f21269b06a564b29af2b050cc69ce4f4-9" name="rest_code_f21269b06a564b29af2b050cc69ce4f4-9" href="how-i-transformed-a-blogger-blog-to-a-nikola-two-blog-website.html#rest_code_f21269b06a564b29af2b050cc69ce4f4-9"></a> }
+</pre></div>
 <p>As an extra configuration tweak, I set <cite>TAG_PAGES_ARE_INDEXES = True</cite>, so that when you go to the page for a given tag, it renders the posts themselves, rather than a list.</p>
 <p>I would like to do that for my journal index as well, but that feature is not yet general, so if you navigate to "Journal" you will get a list of posts, and unfortunately, since it is a journal, they are named by date.
 Moreover, their tags aren't collected.</p>
@@ -263,7 +263,7 @@ This seems like a lot of work, and I'm not willing to do it right now.</p>
 
 
         </section></article><script>var disqus_shortname="subsymbol.org";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
-            Contents © 2022         <a href="mailto:amber@cs.toronto.edu">L. Amber O'Hearn</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+            Contents © 2026         <a href="mailto:amber@cs.toronto.edu">L. Amber O'Hearn</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
             
             
         </footer>
