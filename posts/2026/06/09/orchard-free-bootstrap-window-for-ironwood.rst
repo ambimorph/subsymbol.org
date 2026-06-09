@@ -70,6 +70,7 @@ The diagram below illustrates valid and invalid provenance chains. Chains A, B, 
 Real-World Example
 ------------------
 
+I wrote some code to search for examples and by creating a dict of dict origin trace.
 The following is a real, recent transaction on the Zcash mainnet that qualifies as Orchard-free (iff it has not since moved).
 Its ancestry traces back exclusively to coinbase outputs:
 15 separate coinbase transactions feed into it with no shielded intermediaries.
