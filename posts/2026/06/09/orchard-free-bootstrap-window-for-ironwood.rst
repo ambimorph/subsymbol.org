@@ -7,6 +7,8 @@
 .. description: 
 .. type: text
 
+*There is probably some ZEC in the Orchard pool that we can prove was never from double-spent origin, but should we?*
+
 
 `When Ironwood opens, any ZEC currently in Orchard can enter the new pool. <https://x.com/i/status/2063262293442678830>`_
 
