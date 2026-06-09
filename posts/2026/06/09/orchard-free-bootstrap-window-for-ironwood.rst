@@ -1,8 +1,8 @@
 .. title: Orchard-free bootstrap window for Ironwood
 .. slug: orchard-free-bootstrap-window-for-ironwood
 .. date: 2026-06-09 13:15:38 UTC-06:00
-.. tags: Zcash
-.. category: blog
+.. tags: Zcash, blog
+.. category: 
 .. link: 
 .. description: 
 .. type: text
