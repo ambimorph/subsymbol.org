@@ -10,7 +10,7 @@
 *There is probably some ZEC in the Orchard pool that we can prove was never from double-spent origin, but should we?*
 
 
-`When Ironwood opens, any ZEC currently in Orchard can enter the new pool. <https://x.com/i/status/2063262293442678830>`_
+`When Ironwood opens, any ZEC currently in Orchard can enter the new pool via the turnstile. <https://x.com/i/status/2063262293442678830>`_
 
 This solves the supply uncertainty problem created by the existence of a double-spend bug that is now patched.
 But there is a remaining problem.
