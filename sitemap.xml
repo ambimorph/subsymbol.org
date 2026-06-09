@@ -51,7 +51,7 @@
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/</loc>
-  <lastmod>2022-08-30T18:53:00Z</lastmod>
+  <lastmod>2026-06-09T23:10:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/adaptor-grammars.html</loc>
@@ -72,6 +72,10 @@
  <url>
   <loc>http://www.subsymbol.org/categories/blogging.html</loc>
   <lastmod>2026-06-09T22:44:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/categories/cat_blog.html</loc>
+  <lastmod>2026-06-09T23:10:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/categories/computational-linguistics.html</loc>
@@ -212,6 +216,10 @@
  <url>
   <loc>http://www.subsymbol.org/categories/vulnerability.html</loc>
   <lastmod>2026-06-09T22:44:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://www.subsymbol.org/categories/zcash.html</loc>
+  <lastmod>2026-06-09T23:10:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/galleries/</loc>
@@ -443,7 +451,7 @@
  </url>
  <url>
   <loc>http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html</loc>
-  <lastmod>2026-06-09T22:44:00Z</lastmod>
+  <lastmod>2026-06-09T23:10:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.subsymbol.org/posts/addresses-and-contents.html</loc>

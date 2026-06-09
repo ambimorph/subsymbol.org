@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>subsymbol.org (Posts about Zcash)</title><link>http://www.subsymbol.org/</link><description></description><atom:link href="http://www.subsymbol.org/categories/zcash.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2026 &lt;a href="mailto:amber@cs.toronto.edu"&gt;L. Amber O'Hearn&lt;/a&gt; </copyright><lastBuildDate>Tue, 09 Jun 2026 23:10:08 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Orchard-free bootstrap window for Ironwood</title><link>http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html</link><dc:creator>L. Amber O'Hearn</dc:creator><description>&lt;p&gt;&lt;em&gt;There is probably some ZEC in the Orchard pool that we can prove was never from double-spent origin, but should we?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://x.com/i/status/2063262293442678830"&gt;When Ironwood opens, any ZEC currently in Orchard can enter the new pool via the turnstile.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This solves the supply uncertainty problem created by the existence of a double-spend bug that is now patched.
+But there is a remaining problem.
+Orchard notes are indistinguishable from each other in terms of provenance —
+a note with a hidden double spend somewhere in its ancestry
+looks identical to one with a completely clean history.
+&lt;em&gt;If&lt;/em&gt; this bug has been exploited (which I highly doubt),
+the current situation is simply going to be a race: whoever moves first gets in.&lt;/p&gt;
+&lt;p&gt;As far as I can tell, though, &lt;em&gt;some&lt;/em&gt; ZEC in Orchard has a provably sound history:
+any note whose creating transaction has no shielded ancestry since Orchard activation in May 2022.
+These cannot have come via a double-spend transaction because double spends must originate in Orchard.
+Because only shielded pools hide their spend graphs,
+a note with no post-May-2022 shielded ancestry has a fully auditable value history.
+No hidden double spend can exist in its past.
+While other notes may exist in Orchard with no double-spend provenance,
+it would not be verifiable, so notes of this type are only a subset, but they may be a significant one.&lt;/p&gt;
+&lt;p&gt;I think it is too late to submit ideas for the new consensus rules for Ironwood,
+and this idea has at least one flaw,
+but I'm going to write it down anyway in case it's of interest or spurs other ideas later.&lt;/p&gt;
+&lt;p&gt;The idea is to open Ironwood with a short VIP admission window during which only these &lt;strong&gt;Orchard-free&lt;/strong&gt; notes may enter.
+This gives demonstrably sound ZEC first priority, rather than leaving admission to a race with no quality distinction.&lt;/p&gt;
+&lt;p&gt;The feasibility of this depends directly on how feasible it would be
+to create a zk proof to verify that a nullifier comes from a note created with a txid from a particular known set.
+I don't have the background to analyze that right now, but it does seem to me that it's possible to do.&lt;/p&gt;
+&lt;p&gt;The flaw I'm sure about is that because only some genuine transactions can be verified in this way,
+we would have to enforce biased admission, putting provably good-provenance ZEC ahead of unprovably good-provenance ZEC.&lt;/p&gt;
+&lt;section id="mechanism"&gt;
+&lt;h2&gt;Mechanism&lt;/h2&gt;
+&lt;p&gt;Here's how it would work.
+Before Ironwood activates,
+the full transaction graph is traced to identify every transaction that has an Orchard output
+but whose inputs trace back to coinbase or pre-Orchard history without crossing any post-May-2022 shielded pool.
+The set of qualifying txids is committed as a protocol consensus parameter before activation.&lt;/p&gt;
+&lt;p&gt;During the VIP window, admission to Ironwood requires a zero-knowledge proof that
+the entering note was created by one of these qualifying transactions,
+and that its nullifier is unspent,
+without revealing which transaction created it.
+When this initial window closes, Ironwood opens to all.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="provenance-chain-examples"&gt;
+&lt;h2&gt;Provenance Chain Examples&lt;/h2&gt;
+&lt;p&gt;The diagram below illustrates valid and invalid provenance chains. Chains A, B, and C qualify for VIP admission. Chain D is disqualified because an Orchard transaction appears in its ancestry — regardless of how many transparent hops follow it.&lt;/p&gt;
+&lt;img alt="Orchard-free provenance chains" src="http://www.subsymbol.org/images/orchard-free-provenance-chains.png"&gt;
+&lt;/section&gt;
+&lt;section id="real-world-example"&gt;
+&lt;h2&gt;Real-World Example&lt;/h2&gt;
+&lt;p&gt;I wrote some code to search for examples and by creating a dict of dict origin trace.
+The following is a real, recent transaction on the Zcash mainnet that qualifies as Orchard-free (iff it has not since moved).
+Its ancestry traces back exclusively to coinbase outputs:
+15 separate coinbase transactions feed into it with no shielded intermediaries.
+And it represents significant value.
+I don't yet know how many such potentially qualifying notes exist,
+because I don't yet have a full node running for quick analysis and I've had to search on explorer APIs.&lt;/p&gt;
+&lt;p&gt;Transaction: &lt;a class="reference external" href="https://blockexplorer.one/zcash/mainnet/tx/5b2843fa67f46fb00b54a2bb7f43603df8ea1e8a43f209f3323f6ef5009da303"&gt;5b2843fa...09da303&lt;/a&gt;&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code json"&gt;&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-1" name="rest_code_1ac1c9effc144048b09243894be71b4c-1" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-1"&gt;&lt;/a&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-2" name="rest_code_1ac1c9effc144048b09243894be71b4c-2" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-2"&gt;&lt;/a&gt;&lt;span class="nt"&gt;"5b2843fa67f46fb00b54a2bb7f43603df8ea1e8a43f209f3323f6ef5009da303"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-3" name="rest_code_1ac1c9effc144048b09243894be71b4c-3" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-3"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;"61b8863a4309f0a797c0f7f268e9d6ef4ee7bb27954b71b8fd76476ca057a967"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"coinbase"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-4" name="rest_code_1ac1c9effc144048b09243894be71b4c-4" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-4"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;"9adb7b460d3078a58cbdf1d9758edf31a444e9d90adb78aaff264252ea623c6b"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"coinbase"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-5" name="rest_code_1ac1c9effc144048b09243894be71b4c-5" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-5"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;"08de598f8f05d04a7fbc4440146ed5938ac0359ea99a5efabd876b118fd9136d"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"coinbase"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-6" name="rest_code_1ac1c9effc144048b09243894be71b4c-6" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-6"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;"daebd531bc8e9db495969a8aec3889a99182f7a220aa087e1895e69fc593336f"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"coinbase"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-7" name="rest_code_1ac1c9effc144048b09243894be71b4c-7" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-7"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;"2392412651e328b114ed688388a8291cf9bc6b13e3a62304321257afd4721e71"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"coinbase"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-8" name="rest_code_1ac1c9effc144048b09243894be71b4c-8" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-8"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;"4196d87bf14217a064e529cef3c98e7be24d575b8551ae5326bc852d3460cf72"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"coinbase"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-9" name="rest_code_1ac1c9effc144048b09243894be71b4c-9" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-9"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;"e2704ad5f38d4a423108b2665b22622e05fb6f71ed585b62ac2f127f20e3867b"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"coinbase"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-10" name="rest_code_1ac1c9effc144048b09243894be71b4c-10" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-10"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;"ab31922bed40edc5e7bd3e1c040c1b641939c6fbbc9fbfd696e1c8128e75327f"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"coinbase"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-11" name="rest_code_1ac1c9effc144048b09243894be71b4c-11" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-11"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;"1956a1ee11175bd5f1538094c60eaa0665531bf76c3fc23b13615f1089c95d81"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"coinbase"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-12" name="rest_code_1ac1c9effc144048b09243894be71b4c-12" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-12"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;"b6c07b84b1b80be94ed96a627fda6661e42d609deee3b7ba95252ac3a132b383"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"coinbase"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-13" name="rest_code_1ac1c9effc144048b09243894be71b4c-13" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-13"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;"0b1a92ec597df115e4039fee6ecf7f33b897540fc18f1060a9ffc179c93f4a87"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"coinbase"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-14" name="rest_code_1ac1c9effc144048b09243894be71b4c-14" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-14"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;"909a2d677fdb5d1c9422b4cb2a4eee46d42eb1e3d0b776d64a3154d06fac9e8a"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"coinbase"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-15" name="rest_code_1ac1c9effc144048b09243894be71b4c-15" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-15"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;"c48ea6aea6969cb0ca7b352944167a06cad46129544b2119225b0754bbbafb8a"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"coinbase"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-16" name="rest_code_1ac1c9effc144048b09243894be71b4c-16" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-16"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;"940174f44d65168a2ef729117b7eb10db72baf87dab70628e24fcaf4024c6a8d"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"coinbase"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-17" name="rest_code_1ac1c9effc144048b09243894be71b4c-17" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-17"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;"deced902f846d290354236fe20c8f84d16eb2cc01c534984577bebe263435d93"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"coinbase"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-18" name="rest_code_1ac1c9effc144048b09243894be71b4c-18" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-18"&gt;&lt;/a&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;a id="rest_code_1ac1c9effc144048b09243894be71b4c-19" name="rest_code_1ac1c9effc144048b09243894be71b4c-19" href="http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html#rest_code_1ac1c9effc144048b09243894be71b4c-19"&gt;&lt;/a&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Each key at the second level is a direct ancestor txid; each maps to &lt;cite&gt;"coinbase"&lt;/cite&gt;, meaning it was a mining reward.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="open-question"&gt;
+&lt;h2&gt;Open Question&lt;/h2&gt;
+&lt;p&gt;Is this proof constructable within the existing Orchard/Halo2 infrastructure? Specifically: can a prover demonstrate that their note's creating txid is a member of the committed qualifying set, combined with nullifier non-membership, without revealing the txid?&lt;/p&gt;
+&lt;p&gt;And if so, is it desirable?&lt;/p&gt;
+&lt;/section&gt;</description><category>Zcash</category><guid>http://www.subsymbol.org/posts/2026/06/09/orchard-free-bootstrap-window-for-ironwood.html</guid><pubDate>Tue, 09 Jun 2026 19:15:38 GMT</pubDate></item></channel></rss>

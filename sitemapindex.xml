@@ -26,6 +26,10 @@
   <lastmod>2026-06-09T19:33:00Z</lastmod>
  </sitemap>
  <sitemap>
+  <loc>http://www.subsymbol.org/categories/cat_blog.xml</loc>
+  <lastmod>2026-06-09T23:10:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>http://www.subsymbol.org/categories/computational-linguistics.xml</loc>
   <lastmod>2026-06-09T19:33:00Z</lastmod>
  </sitemap>
@@ -166,15 +170,19 @@
   <lastmod>2026-06-09T19:33:00Z</lastmod>
  </sitemap>
  <sitemap>
+  <loc>http://www.subsymbol.org/categories/zcash.xml</loc>
+  <lastmod>2026-06-09T23:10:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>http://www.subsymbol.org/galleries/rss.xml</loc>
   <lastmod>2026-06-09T22:44:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.subsymbol.org/rss.xml</loc>
-  <lastmod>2026-06-09T22:26:00Z</lastmod>
+  <lastmod>2026-06-09T23:10:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.subsymbol.org/sitemap.xml</loc>
-  <lastmod>2026-06-09T22:44:00Z</lastmod>
+  <lastmod>2026-06-09T23:10:00Z</lastmod>
  </sitemap>
 </sitemapindex>
